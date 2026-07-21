@@ -1,0 +1,59 @@
+{
+  "$schema": "https://raw.githubusercontent.com/TanStack/tanstack.com/main/tanstack-docs-config.schema.json",
+  "docSearch": {
+    "appId": "",
+    "apiKey": "",
+    "indexName": "tanstack-markdown"
+  },
+  "sections": [
+    {
+      "label": "Getting Started",
+      "children": [
+        { "label": "Overview", "to": "overview" },
+        { "label": "Installation", "to": "installation" },
+        { "label": "Quick Start", "to": "quick-start" },
+        { "label": "Comparison", "to": "comparison" }
+      ]
+    },
+    {
+      "label": "Core Concepts",
+      "children": [
+        { "label": "Syntax Profile", "to": "core-concepts/syntax-profile" },
+        { "label": "Document Model", "to": "core-concepts/document-model" },
+        { "label": "Parsing", "to": "core-concepts/parsing" },
+        { "label": "Rendering", "to": "core-concepts/rendering" },
+        { "label": "Security", "to": "core-concepts/security" }
+      ]
+    },
+    {
+      "label": "Guides",
+      "children": [
+        { "label": "React", "to": "guides/react" },
+        { "label": "Syntax Highlighting", "to": "guides/syntax-highlighting" },
+        { "label": "Extensions", "to": "guides/extensions" },
+        { "label": "Docs Preset", "to": "guides/docs-preset" },
+        { "label": "Performance", "to": "guides/performance" },
+        { "label": "Testing", "to": "guides/testing" }
+      ]
+    },
+    {
+      "label": "Reference",
+      "children": [
+        { "label": "API Index", "to": "reference/index" },
+        { "label": "Default Entry", "to": "reference/default-entry" },
+        { "label": "Parser", "to": "reference/parser" },
+        { "label": "HTML", "to": "reference/html" },
+        { "label": "React", "to": "reference/react" },
+        { "label": "Types", "to": "reference/types" },
+        { "label": "Extensions", "to": "reference/extensions" }
+      ]
+    },
+    {
+      "label": "Project",
+      "children": [
+        { "label": "Architecture", "to": "project/architecture" },
+        { "label": "FAQ", "to": "project/faq" }
+      ]
+    }
+  ]
+}

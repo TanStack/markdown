@@ -1,0 +1,556 @@
+{
+  "generatedAt": "2026-07-21T20:15:49.951Z",
+  "sink": 89757680,
+  "results": [
+    {
+      "group": "markdown",
+      "name": "@tanstack/markdown parse",
+      "fixture": "code-heavy.md",
+      "bytes": 1011,
+      "iterations": 1000,
+      "msPerOp": 0.009308792000000012,
+      "outputBytes": 15,
+      "heapDeltaKb": -442.1640625
+    },
+    {
+      "group": "markdown",
+      "name": "@tanstack/markdown render AST with external highlighter",
+      "fixture": "code-heavy.md",
+      "bytes": 1011,
+      "iterations": 1000,
+      "msPerOp": 0.008260833999999988,
+      "outputBytes": 4504,
+      "heapDeltaKb": 3791.828125
+    },
+    {
+      "group": "markdown",
+      "name": "@tanstack/markdown render AST",
+      "fixture": "code-heavy.md",
+      "bytes": 1011,
+      "iterations": 1000,
+      "msPerOp": 0.003961457999999993,
+      "outputBytes": 1835,
+      "heapDeltaKb": -1111.7265625
+    },
+    {
+      "group": "markdown",
+      "name": "@tanstack/markdown parse+render with external highlighter",
+      "fixture": "code-heavy.md",
+      "bytes": 1011,
+      "iterations": 1000,
+      "msPerOp": 0.015961624999999997,
+      "outputBytes": 4504,
+      "heapDeltaKb": -482.5390625
+    },
+    {
+      "group": "markdown",
+      "name": "@tanstack/markdown parse+render",
+      "fixture": "code-heavy.md",
+      "bytes": 1011,
+      "iterations": 1000,
+      "msPerOp": 0.011221292000000006,
+      "outputBytes": 1835,
+      "heapDeltaKb": -6340.1875
+    },
+    {
+      "group": "markdown",
+      "name": "marked parse+render",
+      "fixture": "code-heavy.md",
+      "bytes": 1011,
+      "iterations": 1000,
+      "msPerOp": 0.006725500000000011,
+      "outputBytes": 1330,
+      "heapDeltaKb": 4973.0078125
+    },
+    {
+      "group": "markdown",
+      "name": "markdown-it parse+render",
+      "fixture": "code-heavy.md",
+      "bytes": 1011,
+      "iterations": 1000,
+      "msPerOp": 0.01066466699999998,
+      "outputBytes": 1330,
+      "heapDeltaKb": -4892.7265625
+    },
+    {
+      "group": "markdown",
+      "name": "micromark render",
+      "fixture": "code-heavy.md",
+      "bytes": 1011,
+      "iterations": 1000,
+      "msPerOp": 0.139797417,
+      "outputBytes": 1330,
+      "heapDeltaKb": 6.28125
+    },
+    {
+      "group": "markdown",
+      "name": "commonmark parse+render",
+      "fixture": "code-heavy.md",
+      "bytes": 1011,
+      "iterations": 1000,
+      "msPerOp": 0.010623457999999971,
+      "outputBytes": 1330,
+      "heapDeltaKb": 8476.9296875
+    },
+    {
+      "group": "markdown",
+      "name": "markdown-wasm render",
+      "fixture": "code-heavy.md",
+      "bytes": 1011,
+      "iterations": 1000,
+      "msPerOp": 0.00864179200000001,
+      "outputBytes": 1512,
+      "heapDeltaKb": -13744.859375
+    },
+    {
+      "group": "markdown",
+      "name": "unified remark+rehype render",
+      "fixture": "code-heavy.md",
+      "bytes": 1011,
+      "iterations": 1000,
+      "msPerOp": 0.13366250000000002,
+      "outputBytes": 1200,
+      "heapDeltaKb": -943.4296875
+    },
+    {
+      "group": "markdown",
+      "name": "@tanstack/markdown parse",
+      "fixture": "malformed.md",
+      "bytes": 237,
+      "iterations": 2000,
+      "msPerOp": 0.004751000000000033,
+      "outputBytes": 15,
+      "heapDeltaKb": -7516.375
+    },
+    {
+      "group": "markdown",
+      "name": "@tanstack/markdown render AST with external highlighter",
+      "fixture": "malformed.md",
+      "bytes": 237,
+      "iterations": 2000,
+      "msPerOp": 0.0018062499999999774,
+      "outputBytes": 1067,
+      "heapDeltaKb": 895.5234375
+    },
+    {
+      "group": "markdown",
+      "name": "@tanstack/markdown render AST",
+      "fixture": "malformed.md",
+      "bytes": 237,
+      "iterations": 2000,
+      "msPerOp": 0.0008232079999999655,
+      "outputBytes": 361,
+      "heapDeltaKb": 6929.8828125
+    },
+    {
+      "group": "markdown",
+      "name": "@tanstack/markdown parse+render with external highlighter",
+      "fixture": "malformed.md",
+      "bytes": 237,
+      "iterations": 2000,
+      "msPerOp": 0.005288646000000029,
+      "outputBytes": 1067,
+      "heapDeltaKb": -7964.5234375
+    },
+    {
+      "group": "markdown",
+      "name": "@tanstack/markdown parse+render",
+      "fixture": "malformed.md",
+      "bytes": 237,
+      "iterations": 2000,
+      "msPerOp": 0.004116437500000018,
+      "outputBytes": 361,
+      "heapDeltaKb": -1916.2890625
+    },
+    {
+      "group": "markdown",
+      "name": "marked parse+render",
+      "fixture": "malformed.md",
+      "bytes": 237,
+      "iterations": 2000,
+      "msPerOp": 0.004995582999999954,
+      "outputBytes": 350,
+      "heapDeltaKb": 158.796875
+    },
+    {
+      "group": "markdown",
+      "name": "markdown-it parse+render",
+      "fixture": "malformed.md",
+      "bytes": 237,
+      "iterations": 2000,
+      "msPerOp": 0.005490125000000035,
+      "outputBytes": 300,
+      "heapDeltaKb": 8677.828125
+    },
+    {
+      "group": "markdown",
+      "name": "micromark render",
+      "fixture": "malformed.md",
+      "bytes": 237,
+      "iterations": 2000,
+      "msPerOp": 0.047625271,
+      "outputBytes": 300,
+      "heapDeltaKb": 10101.578125
+    },
+    {
+      "group": "markdown",
+      "name": "commonmark parse+render",
+      "fixture": "malformed.md",
+      "bytes": 237,
+      "iterations": 2000,
+      "msPerOp": 0.004449187499999994,
+      "outputBytes": 300,
+      "heapDeltaKb": -8750.859375
+    },
+    {
+      "group": "markdown",
+      "name": "markdown-wasm render",
+      "fixture": "malformed.md",
+      "bytes": 237,
+      "iterations": 2000,
+      "msPerOp": 0.0018975415000000453,
+      "outputBytes": 408,
+      "heapDeltaKb": 2953.6640625
+    },
+    {
+      "group": "markdown",
+      "name": "unified remark+rehype render",
+      "fixture": "malformed.md",
+      "bytes": 237,
+      "iterations": 2000,
+      "msPerOp": 0.04939572899999996,
+      "outputBytes": 297,
+      "heapDeltaKb": 3650.9140625
+    },
+    {
+      "group": "markdown",
+      "name": "@tanstack/markdown parse",
+      "fixture": "prose-heavy.md",
+      "bytes": 1700,
+      "iterations": 1000,
+      "msPerOp": 0.02437829199999999,
+      "outputBytes": 15,
+      "heapDeltaKb": 1380.8515625
+    },
+    {
+      "group": "markdown",
+      "name": "@tanstack/markdown render AST with external highlighter",
+      "fixture": "prose-heavy.md",
+      "bytes": 1700,
+      "iterations": 1000,
+      "msPerOp": 0.0024992499999999607,
+      "outputBytes": 1903,
+      "heapDeltaKb": 12105.15625
+    },
+    {
+      "group": "markdown",
+      "name": "@tanstack/markdown render AST",
+      "fixture": "prose-heavy.md",
+      "bytes": 1700,
+      "iterations": 1000,
+      "msPerOp": 0.0026043750000000047,
+      "outputBytes": 1903,
+      "heapDeltaKb": -4255.34375
+    },
+    {
+      "group": "markdown",
+      "name": "@tanstack/markdown parse+render with external highlighter",
+      "fixture": "prose-heavy.md",
+      "bytes": 1700,
+      "iterations": 1000,
+      "msPerOp": 0.026152416000000015,
+      "outputBytes": 1903,
+      "heapDeltaKb": -1717.09375
+    },
+    {
+      "group": "markdown",
+      "name": "@tanstack/markdown parse+render",
+      "fixture": "prose-heavy.md",
+      "bytes": 1700,
+      "iterations": 1000,
+      "msPerOp": 0.025608458000000042,
+      "outputBytes": 1903,
+      "heapDeltaKb": -1880.34375
+    },
+    {
+      "group": "markdown",
+      "name": "marked parse+render",
+      "fixture": "prose-heavy.md",
+      "bytes": 1700,
+      "iterations": 1000,
+      "msPerOp": 0.035387875000000006,
+      "outputBytes": 1860,
+      "heapDeltaKb": -9105.25
+    },
+    {
+      "group": "markdown",
+      "name": "markdown-it parse+render",
+      "fixture": "prose-heavy.md",
+      "bytes": 1700,
+      "iterations": 1000,
+      "msPerOp": 0.01920404099999996,
+      "outputBytes": 1860,
+      "heapDeltaKb": -3247.0625
+    },
+    {
+      "group": "markdown",
+      "name": "micromark render",
+      "fixture": "prose-heavy.md",
+      "bytes": 1700,
+      "iterations": 1000,
+      "msPerOp": 0.25866041700000003,
+      "outputBytes": 1862,
+      "heapDeltaKb": 8422.6015625
+    },
+    {
+      "group": "markdown",
+      "name": "commonmark parse+render",
+      "fixture": "prose-heavy.md",
+      "bytes": 1700,
+      "iterations": 1000,
+      "msPerOp": 0.014085250000000087,
+      "outputBytes": 1862,
+      "heapDeltaKb": 48080.546875
+    },
+    {
+      "group": "markdown",
+      "name": "markdown-wasm render",
+      "fixture": "prose-heavy.md",
+      "bytes": 1700,
+      "iterations": 1000,
+      "msPerOp": 0.006714999999999918,
+      "outputBytes": 2340,
+      "heapDeltaKb": 3366.90625
+    },
+    {
+      "group": "markdown",
+      "name": "unified remark+rehype render",
+      "fixture": "prose-heavy.md",
+      "bytes": 1700,
+      "iterations": 1000,
+      "msPerOp": 0.25503250000000005,
+      "outputBytes": 1859,
+      "heapDeltaKb": 52468.7578125
+    },
+    {
+      "group": "markdown",
+      "name": "@tanstack/markdown parse",
+      "fixture": "small-doc.md",
+      "bytes": 432,
+      "iterations": 2000,
+      "msPerOp": 0.009645458500000018,
+      "outputBytes": 15,
+      "heapDeltaKb": 23199.421875
+    },
+    {
+      "group": "markdown",
+      "name": "@tanstack/markdown render AST with external highlighter",
+      "fixture": "small-doc.md",
+      "bytes": 432,
+      "iterations": 2000,
+      "msPerOp": 0.003587645500000008,
+      "outputBytes": 1328,
+      "heapDeltaKb": -32634.828125
+    },
+    {
+      "group": "markdown",
+      "name": "@tanstack/markdown render AST",
+      "fixture": "small-doc.md",
+      "bytes": 432,
+      "iterations": 2000,
+      "msPerOp": 0.0027154375000000073,
+      "outputBytes": 1002,
+      "heapDeltaKb": 25868.3828125
+    },
+    {
+      "group": "markdown",
+      "name": "@tanstack/markdown parse+render with external highlighter",
+      "fixture": "small-doc.md",
+      "bytes": 432,
+      "iterations": 2000,
+      "msPerOp": 0.013231291499999997,
+      "outputBytes": 1328,
+      "heapDeltaKb": -14890.8515625
+    },
+    {
+      "group": "markdown",
+      "name": "@tanstack/markdown parse+render",
+      "fixture": "small-doc.md",
+      "bytes": 432,
+      "iterations": 2000,
+      "msPerOp": 0.012607583500000033,
+      "outputBytes": 1002,
+      "heapDeltaKb": -20409.796875
+    },
+    {
+      "group": "markdown",
+      "name": "marked parse+render",
+      "fixture": "small-doc.md",
+      "bytes": 432,
+      "iterations": 2000,
+      "msPerOp": 0.012595187500000065,
+      "outputBytes": 724,
+      "heapDeltaKb": 49459.5859375
+    },
+    {
+      "group": "markdown",
+      "name": "markdown-it parse+render",
+      "fixture": "small-doc.md",
+      "bytes": 432,
+      "iterations": 2000,
+      "msPerOp": 0.008252250000000004,
+      "outputBytes": 776,
+      "heapDeltaKb": 1650.96875
+    },
+    {
+      "group": "markdown",
+      "name": "micromark render",
+      "fixture": "small-doc.md",
+      "bytes": 432,
+      "iterations": 2000,
+      "msPerOp": 0.09666364599999998,
+      "outputBytes": 535,
+      "heapDeltaKb": 44808.421875
+    },
+    {
+      "group": "markdown",
+      "name": "commonmark parse+render",
+      "fixture": "small-doc.md",
+      "bytes": 432,
+      "iterations": 2000,
+      "msPerOp": 0.006402478999999971,
+      "outputBytes": 535,
+      "heapDeltaKb": -15155.1953125
+    },
+    {
+      "group": "markdown",
+      "name": "markdown-wasm render",
+      "fixture": "small-doc.md",
+      "bytes": 432,
+      "iterations": 2000,
+      "msPerOp": 0.0034557290000000193,
+      "outputBytes": 854,
+      "heapDeltaKb": 3824.09375
+    },
+    {
+      "group": "markdown",
+      "name": "unified remark+rehype render",
+      "fixture": "small-doc.md",
+      "bytes": 432,
+      "iterations": 2000,
+      "msPerOp": 0.11663031249999994,
+      "outputBytes": 534,
+      "heapDeltaKb": 4897.6484375
+    },
+    {
+      "group": "markdown",
+      "name": "@tanstack/markdown parse",
+      "fixture": "tables-lists.md",
+      "bytes": 454,
+      "iterations": 2000,
+      "msPerOp": 0.024836687499999927,
+      "outputBytes": 15,
+      "heapDeltaKb": -16598.5703125
+    },
+    {
+      "group": "markdown",
+      "name": "@tanstack/markdown render AST with external highlighter",
+      "fixture": "tables-lists.md",
+      "bytes": 454,
+      "iterations": 2000,
+      "msPerOp": 0.004783645999999862,
+      "outputBytes": 1315,
+      "heapDeltaKb": -17134.078125
+    },
+    {
+      "group": "markdown",
+      "name": "@tanstack/markdown render AST",
+      "fixture": "tables-lists.md",
+      "bytes": 454,
+      "iterations": 2000,
+      "msPerOp": 0.004337500000000091,
+      "outputBytes": 1315,
+      "heapDeltaKb": -17571.5078125
+    },
+    {
+      "group": "markdown",
+      "name": "@tanstack/markdown parse+render with external highlighter",
+      "fixture": "tables-lists.md",
+      "bytes": 454,
+      "iterations": 2000,
+      "msPerOp": 0.02909722899999997,
+      "outputBytes": 1315,
+      "heapDeltaKb": 30529.34375
+    },
+    {
+      "group": "markdown",
+      "name": "@tanstack/markdown parse+render",
+      "fixture": "tables-lists.md",
+      "bytes": 454,
+      "iterations": 2000,
+      "msPerOp": 0.028592853999999987,
+      "outputBytes": 1315,
+      "heapDeltaKb": -35010.9375
+    },
+    {
+      "group": "markdown",
+      "name": "marked parse+render",
+      "fixture": "tables-lists.md",
+      "bytes": 454,
+      "iterations": 2000,
+      "msPerOp": 0.02822714599999995,
+      "outputBytes": 1102,
+      "heapDeltaKb": 45871.78125
+    },
+    {
+      "group": "markdown",
+      "name": "markdown-it parse+render",
+      "fixture": "tables-lists.md",
+      "bytes": 454,
+      "iterations": 2000,
+      "msPerOp": 0.018468458499999996,
+      "outputBytes": 1325,
+      "heapDeltaKb": -42290.890625
+    },
+    {
+      "group": "markdown",
+      "name": "micromark render",
+      "fixture": "tables-lists.md",
+      "bytes": 454,
+      "iterations": 2000,
+      "msPerOp": 0.16413875000000008,
+      "outputBytes": 627,
+      "heapDeltaKb": 26495.4140625
+    },
+    {
+      "group": "markdown",
+      "name": "commonmark parse+render",
+      "fixture": "tables-lists.md",
+      "bytes": 454,
+      "iterations": 2000,
+      "msPerOp": 0.012374645999999984,
+      "outputBytes": 627,
+      "heapDeltaKb": -35588.921875
+    },
+    {
+      "group": "markdown",
+      "name": "markdown-wasm render",
+      "fixture": "tables-lists.md",
+      "bytes": 454,
+      "iterations": 2000,
+      "msPerOp": 0.007065208499999926,
+      "outputBytes": 1202,
+      "heapDeltaKb": 4505.0703125
+    },
+    {
+      "group": "markdown",
+      "name": "unified remark+rehype render",
+      "fixture": "tables-lists.md",
+      "bytes": 454,
+      "iterations": 2000,
+      "msPerOp": 0.19611531249999983,
+      "outputBytes": 622,
+      "heapDeltaKb": 9090.28125
+    }
+  ]
+}

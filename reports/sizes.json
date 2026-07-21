@@ -1,0 +1,96 @@
+{
+  "generatedAt": "2026-07-21T20:15:46.592Z",
+  "results": [
+    {
+      "group": "tanstack",
+      "name": "parser only",
+      "minBytes": 12810,
+      "gzipBytes": 4563,
+      "brotliBytes": 4199
+    },
+    {
+      "group": "tanstack",
+      "name": "html renderer no highlighter",
+      "minBytes": 17837,
+      "gzipBytes": 6366,
+      "brotliBytes": 5826
+    },
+    {
+      "group": "tanstack",
+      "name": "html renderer with external highlighter stub",
+      "minBytes": 17873,
+      "gzipBytes": 6387,
+      "brotliBytes": 5846
+    },
+    {
+      "group": "tanstack",
+      "name": "react adapter",
+      "minBytes": 17803,
+      "gzipBytes": 6279,
+      "brotliBytes": 5760
+    },
+    {
+      "group": "tanstack",
+      "name": "docs extension preset",
+      "minBytes": 6792,
+      "gzipBytes": 2398,
+      "brotliBytes": 2188
+    },
+    {
+      "group": "tanstack",
+      "name": "callouts extension",
+      "minBytes": 556,
+      "gzipBytes": 372,
+      "brotliBytes": 329
+    },
+    {
+      "group": "tanstack",
+      "name": "tabs transforms",
+      "minBytes": 3398,
+      "gzipBytes": 1255,
+      "brotliBytes": 1103
+    },
+    {
+      "group": "markdown",
+      "name": "marked",
+      "minBytes": 41415,
+      "gzipBytes": 12548,
+      "brotliBytes": 11509
+    },
+    {
+      "group": "markdown",
+      "name": "markdown-it",
+      "minBytes": 148242,
+      "gzipBytes": 52655,
+      "brotliBytes": 44023
+    },
+    {
+      "group": "markdown",
+      "name": "micromark",
+      "minBytes": 53283,
+      "gzipBytes": 15420,
+      "brotliBytes": 13712
+    },
+    {
+      "group": "markdown",
+      "name": "commonmark",
+      "minBytes": 159687,
+      "gzipBytes": 48084,
+      "brotliBytes": 39793
+    },
+    {
+      "group": "markdown",
+      "name": "markdown-wasm browser js+wasm",
+      "minBytes": 66387,
+      "gzipBytes": 31275,
+      "brotliBytes": 26431
+    },
+    {
+      "group": "markdown",
+      "name": "unified remark+rehype",
+      "minBytes": 119588,
+      "gzipBytes": 36843,
+      "brotliBytes": 32686
+    }
+  ]
+}
