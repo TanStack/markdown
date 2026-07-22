@@ -106,6 +106,10 @@ export function Demo() {
 </section>`)
   })
 
+  it('omits tanstack.com section markers written as link reference definitions', () => {
+    expect(renderHtml("[//]: # 'ExampleUI1'")).toBe('')
+  })
+
   it('renders repeated footnotes without duplicate ids', () => {
     const markdown = `One[^note], then again[^note].
 

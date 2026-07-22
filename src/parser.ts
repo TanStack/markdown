@@ -424,9 +424,15 @@ function extractDefinitions(lines: string[]) {
         continue
       }
 
-      const definition = line.match(/^ {0,3}\[([^\]\n]+)\]:[ \t]*(\S+)[ \t]*$/)
+      const definition = line.match(
+        /^ {0,3}\[([^\]\n]+)\]:[ \t]*(\S+)(?:[ \t]+(?:"([^"]*)"|'([^']*)'|\(([^)]*)\)))?[ \t]*$/,
+      )
       if (definition) {
-        references[normalizeReferenceLabel(definition[1]!)] = { href: definition[2]!.replace(/^<|>$/g, '') }
+        const title = definition[3] ?? definition[4] ?? definition[5]
+        references[normalizeReferenceLabel(definition[1]!)] = {
+          href: definition[2]!.replace(/^<|>$/g, ''),
+          ...(title !== undefined ? { title } : {}),
+        }
         index++
         continue
       }
