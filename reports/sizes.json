@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-21T20:15:46.592Z",
+  "generatedAt": "2026-07-22T14:20:18.007Z",
   "results": [
     {
       "group": "tanstack",
@@ -28,6 +28,13 @@
       "minBytes": 17803,
       "gzipBytes": 6279,
       "brotliBytes": 5760
+    },
+    {
+      "group": "tanstack",
+      "name": "octane adapter",
+      "minBytes": 17806,
+      "gzipBytes": 6280,
+      "brotliBytes": 5757
     },
     {
       "group": "tanstack",

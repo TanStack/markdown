@@ -12,6 +12,7 @@ TanStack Markdown uses explicit subpath exports so applications can import only 
 | `@tanstack/markdown/parser` | `parseMarkdown` only |
 | `@tanstack/markdown/html` | HTML rendering functions |
 | `@tanstack/markdown/react` | React component and React rendering functions |
+| `@tanstack/markdown/octane` | Octane component and descriptor rendering functions |
 | `@tanstack/markdown/extensions/callouts` | callout block parser |
 | `@tanstack/markdown/extensions/comment-components` | comment-delimited component parser |
 | `@tanstack/markdown/extensions/docs` | composed docs extension preset |
@@ -25,6 +26,7 @@ TanStack Markdown uses explicit subpath exports so applications can import only 
 - [Parser](parser)
 - [HTML](html)
 - [React](react)
+- [Octane](octane)
 - [Types](types)
 - [Extensions](extensions)
 

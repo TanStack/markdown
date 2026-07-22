@@ -4,7 +4,7 @@ title: Rendering
 
 # Rendering
 
-TanStack Markdown provides HTML and React renderers over the same AST.
+TanStack Markdown provides HTML, React, and Octane renderers over the same AST.
 
 ```ts
 import { renderHtml } from '@tanstack/markdown/html'
@@ -18,13 +18,19 @@ import { Markdown } from '@tanstack/markdown/react'
 const article = <Markdown>{source}</Markdown>
 ```
 
+```tsrx
+import { Markdown } from '@tanstack/markdown/octane'
+
+<Markdown>{source}</Markdown>
+```
+
 ## Core parity
 
-Core syntax is tested so server-rendered React markup and `renderHtml` have equivalent structure. Formatting differences that React controls, such as boolean attribute serialization and whitespace between block elements, are normalized in parity tests.
+Core syntax is tested so server-rendered React and Octane markup and `renderHtml` have equivalent structure. Serializer differences such as boolean attributes, trailing style semicolons, and whitespace between block elements are normalized in parity tests.
 
 Renderer-specific boundaries are excluded from this guarantee:
 
-- React `components` replacements
+- React and Octane `components` replacements
 - extension `renderHtml` hooks
 - trusted raw HTML injection
 - highlighter output

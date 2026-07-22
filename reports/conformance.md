@@ -1,6 +1,6 @@
 # Conformance Report
 
-Generated: 2026-07-21T20:15:45.647Z
+Generated: 2026-07-22T14:20:17.061Z
 
 This is compatibility accounting against CommonMark 0.31.2, not a claim of CommonMark conformance.
 

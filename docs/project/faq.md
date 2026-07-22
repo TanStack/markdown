@@ -32,9 +32,9 @@ Each rule adds parser code, interactions, tests, and maintenance cost. This proj
 
 Yes. It is a public discriminated union made from plain objects. Transform it directly or use a `transformDocument` extension. If the work needs a broad ecosystem of interoperable syntax trees and async plugins, unified is usually a better fit.
 
-## Can I parse once and render HTML and React?
+## Can I parse once and render HTML, React, and Octane?
 
-Yes. Both renderers accept the same `MarkdownDocument`. Core output structure is covered by SSR parity tests.
+Yes. Every renderer accepts the same `MarkdownDocument`. Core output structure is covered by React and Octane SSR parity tests.
 
 ## Is the AST stable?
 

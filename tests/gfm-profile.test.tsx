@@ -1,7 +1,9 @@
 import { renderToStaticMarkup } from 'react-dom/server'
+import { renderToStaticMarkup as renderOctaneToStaticMarkup } from 'octane/server'
 import { describe, expect, it } from 'vitest'
 import { renderHtml } from '../src/index.js'
 import { Markdown } from '../src/react.js'
+import { Markdown as OctaneMarkdown } from '../src/octane.js'
 import { normalizeStaticMarkup } from './helpers/normalize-html.js'
 
 // Profile-relevant examples from https://github.github.io/gfm/.
@@ -76,7 +78,9 @@ const examples = [
 describe('GFM docs-profile examples', () => {
   it.each(examples)('$name', ({ source, html }) => {
     const react = renderToStaticMarkup(<Markdown>{source}</Markdown>)
+    const octane = renderOctaneToStaticMarkup(OctaneMarkdown, { children: source }).html
     expect(renderHtml(source)).toBe(html)
     expect(normalizeStaticMarkup(react)).toBe(normalizeStaticMarkup(html))
+    expect(normalizeStaticMarkup(octane)).toBe(normalizeStaticMarkup(html))
   })
 })

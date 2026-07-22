@@ -4,26 +4,26 @@ title: Comparison
 
 # Comparison
 
-Markdown libraries optimize for different jobs. TanStack Markdown is designed for controlled blog and documentation content where bundle size, deterministic rendering, and HTML/React parity matter more than complete syntax compatibility.
+Markdown libraries optimize for different jobs. TanStack Markdown is designed for controlled blog and documentation content where bundle size, deterministic rendering, and HTML/framework parity matter more than complete syntax compatibility.
 
 ## Decision table
 
 | Choose | Best fit | Main tradeoff |
 | --- | --- | --- |
-| **TanStack Markdown** | Blogs and docs with a known syntax profile, SSR, React, and strict bundle budgets | Deliberately incomplete CommonMark/GFM coverage and a small extension surface |
-| **Marked** | A compact general HTML renderer with broad familiar Markdown behavior | No built-in React AST renderer or docs-specific AST contract |
+| **TanStack Markdown** | Blogs and docs with a known syntax profile, SSR, React or Octane, and strict bundle budgets | Deliberately incomplete CommonMark/GFM coverage and a small extension surface |
+| **Marked** | A compact general HTML renderer with broad familiar Markdown behavior | No built-in UI adapter over a docs-specific AST contract |
 | **markdown-it** | Mature plugins and configurable parsing rules | A substantially larger core for this measured use case |
 | **micromark** | Standards-oriented tokenization and extension building blocks | Lower-level API and more assembly for a complete docs renderer |
-| **commonmark.js** | Applications that prioritize CommonMark behavior and an inspectable syntax tree | Larger bundle and no built-in React renderer |
+| **commonmark.js** | Applications that prioritize CommonMark behavior and an inspectable syntax tree | Larger bundle and no built-in UI framework adapter |
 | **unified / remark / rehype** | Rich syntax-tree transformations and a broad content-processing ecosystem | More packages, configuration, and runtime surface |
-| **markdown-wasm** | Very fast HTML rendering where a WASM asset is acceptable | Different deployment model and no built-in React AST renderer |
+| **markdown-wasm** | Very fast HTML rendering where a WASM asset is acceptable | Different deployment model and no built-in UI framework adapter |
 
 ## Capability matrix
 
 | Capability | TanStack Markdown | Marked | markdown-it | micromark | commonmark.js | unified stack |
 | --- | :---: | :---: | :---: | :---: | :---: | :---: |
 | HTML rendering | Built in | Built in | Built in | Built in | Built in | Via rehype |
-| React renderer from the same AST | Built in | No | No | No | No | Ecosystem |
+| React and Octane renderers from the same AST | Built in | No | No | No | No | Ecosystem |
 | Serializable public document AST | Built in | Token output | Token stream | No syntax tree | Built in | Built in |
 | Raw HTML disabled by default | Yes | No | Yes | Yes | No | Pipeline choice |
 | GFM tables, tasks, and strike | Focused built-ins | Built in | Built in/plugins | Extensions | No | Plugins |
@@ -43,6 +43,7 @@ These repository benchmarks bundle representative browser entry points from pinn
 | `@tanstack/markdown/parser` | 4.6 KB | 4.2 KB |
 | `@tanstack/markdown/html` | 6.4 KB | 5.8 KB |
 | `@tanstack/markdown/react` | 6.3 KB | 5.8 KB |
+| `@tanstack/markdown/octane` | 6.3 KB | 5.8 KB |
 | Marked | 12.5 KB | 11.5 KB |
 | micromark | 15.4 KB | 13.7 KB |
 | markdown-wasm JS + WASM | 31.3 KB | 26.4 KB |

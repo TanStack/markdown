@@ -5,6 +5,7 @@ A tiny, fast, deterministic Markdown parser and renderer for blogs and documenta
 - 4.6 KB gzip parser
 - 6.4 KB gzip HTML renderer
 - 6.3 KB gzip React adapter
+- 6.3 KB gzip Octane adapter
 - zero runtime dependencies
 - serializable AST
 - safe defaults for raw HTML and executable URLs
@@ -28,7 +29,15 @@ export function Article({ source }: { source: string }) {
 }
 ```
 
-TanStack Markdown targets controlled technical content. It supports the Markdown used by blogs and docs, then spends its remaining complexity budget on deterministic output, HTML/React parity, malformed-input resilience, and small entry points. It is intentionally not a complete CommonMark, GFM, MDX, or general content-processing implementation.
+```tsrx
+import { Markdown } from '@tanstack/markdown/octane'
+
+export function Article({ source }: { source: string }) @{
+  <Markdown>{source}</Markdown>
+}
+```
+
+TanStack Markdown targets controlled technical content. It supports the Markdown used by blogs and docs, then spends its remaining complexity budget on deterministic output, renderer parity, malformed-input resilience, and small entry points. It is intentionally not a complete CommonMark, GFM, MDX, or general content-processing implementation.
 
 ## Documentation
 
@@ -38,6 +47,7 @@ TanStack Markdown targets controlled technical content. It supports the Markdown
 - [Comparison](./docs/comparison.md)
 - [Syntax Profile](./docs/core-concepts/syntax-profile.md)
 - [React Guide](./docs/guides/react.md)
+- [Octane Guide](./docs/guides/octane.md)
 - [Syntax Highlighting](./docs/guides/syntax-highlighting.md)
 - [Extensions](./docs/guides/extensions.md)
 - [API Reference](./docs/reference/index.md)

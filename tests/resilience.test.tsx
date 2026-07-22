@@ -1,8 +1,10 @@
 import { performance } from 'node:perf_hooks'
 import { renderToStaticMarkup } from 'react-dom/server'
+import { renderToStaticMarkup as renderOctaneToStaticMarkup } from 'octane/server'
 import { describe, expect, it } from 'vitest'
 import { parseMarkdown, renderHtml } from '../src/index.js'
 import { Markdown } from '../src/react.js'
+import { Markdown as OctaneMarkdown } from '../src/octane.js'
 import { normalizeStaticMarkup } from './helpers/normalize-html.js'
 
 describe('parser resilience', () => {
@@ -42,8 +44,10 @@ describe('parser resilience', () => {
       const first = renderHtml(source)
       const second = renderHtml(source)
       const react = renderToStaticMarkup(<Markdown>{source}</Markdown>)
+      const octane = renderOctaneToStaticMarkup(OctaneMarkdown, { children: source }).html
       expect(second).toBe(first)
       expect(normalizeStaticMarkup(react)).toBe(normalizeStaticMarkup(first))
+      expect(normalizeStaticMarkup(octane)).toBe(normalizeStaticMarkup(first))
     }
   })
 })

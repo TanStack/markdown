@@ -7,11 +7,13 @@ describe('bundle budgets', () => {
     const parser = await bundle("import { parseMarkdown } from './src/parser.ts'; console.log(parseMarkdown)")
     const html = await bundle("import { renderHtml } from './src/html.ts'; console.log(renderHtml)")
     const react = await bundle("import { Markdown } from './src/react.ts'; console.log(Markdown)", ['react'])
+    const octane = await bundle("import { Markdown } from './src/octane.ts'; console.log(Markdown)", ['octane'])
     const pluggable = await bundle("import { renderHtml } from './src/html.ts'; const highlighter = (code) => code; console.log(renderHtml('# x', { highlighter }))")
 
     expect(parser.gzipBytes).toBeLessThan(4_625)
     expect(html.gzipBytes).toBeLessThan(6_425)
     expect(react.gzipBytes).toBeLessThan(6_350)
+    expect(octane.gzipBytes).toBeLessThan(6_350)
     expect(pluggable.gzipBytes).toBeLessThan(6_450)
     expect(html.code).not.toContain('external-line')
   })

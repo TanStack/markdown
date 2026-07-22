@@ -53,7 +53,7 @@ The heading collection extension adds `document.headings`, a compact array of ID
 
 ## Parse once, render many
 
-Both renderers accept a source string or a `MarkdownDocument`:
+All renderers accept a source string or a `MarkdownDocument`:
 
 ```ts
 import { parseMarkdown } from '@tanstack/markdown/parser'

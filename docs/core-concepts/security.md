@@ -13,7 +13,7 @@ By default:
 - raw block and inline HTML is escaped
 - `javascript:`, `vbscript:`, `file:`, and dangerous `data:` URLs are removed
 - text, attributes, code, link titles, and image alt text are escaped by the HTML renderer
-- React renders ordinary values rather than injecting HTML
+- React and Octane render ordinary values rather than injecting HTML
 
 Relative URLs, fragments, HTTP, HTTPS, email, and telephone links remain available. Other explicit protocols, including `data:`, are removed.
 
@@ -25,7 +25,7 @@ Relative URLs, fragments, HTTP, HTTPS, email, and telephone links remain availab
 renderHtml(source, { allowHtml: true })
 ```
 
-The HTML renderer emits raw nodes directly. The React renderer uses `dangerouslySetInnerHTML`. Do not enable this option for untrusted user content unless the result is sanitized with a policy appropriate for your application.
+The HTML renderer emits raw nodes directly. The React and Octane renderers use `dangerouslySetInnerHTML`. Do not enable this option for untrusted user content unless the result is sanitized with a policy appropriate for your application.
 
 ## Syntax highlighters
 
@@ -39,7 +39,7 @@ Only use a highlighter that escapes source code and returns trusted markup. TanS
 
 ## Extensions
 
-An extension `renderHtml` hook also returns trusted HTML. React component replacements can enforce application-specific link, image, and navigation policies, but those replacements are outside core renderer parity.
+An extension `renderHtml` hook also returns trusted HTML. React and Octane component replacements can enforce application-specific link, image, and navigation policies, but those replacements are outside core renderer parity.
 
 ## Untrusted content
 
@@ -51,4 +51,4 @@ For user-generated Markdown:
 4. Apply application policies for outbound links and remote images.
 5. Sanitize the final HTML when your threat model requires an independent defense layer.
 
-The security regression suite covers executable protocols, raw HTML opt-in behavior, escaping, and React/HTML handling.
+The security regression suite covers executable protocols, raw HTML opt-in behavior, escaping, and framework renderer handling.

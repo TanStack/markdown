@@ -12,7 +12,7 @@ import { renderHtml } from '@tanstack/markdown/html'
 const source = `# Release notes
 
 - Small browser bundle
-- HTML and React renderers
+- HTML, React, and Octane renderers
 - Safe defaults`
 
 const html = renderHtml(source)
@@ -43,6 +43,20 @@ import { Link } from './Link'
 <Markdown components={{ a: Link }}>{source}</Markdown>
 ```
 
+## Render Octane
+
+```tsrx
+import { Markdown } from '@tanstack/markdown/octane'
+
+export function Article({ source }: { source: string }) @{
+  <article>
+    <Markdown>{source}</Markdown>
+  </article>
+}
+```
+
+Replace host elements with Octane components through the same `components` option.
+
 ## Parse once
 
 For build-time content or repeated rendering, parse once and reuse the AST:
@@ -60,6 +74,14 @@ const html = renderHtml(document)
 import { Markdown } from '@tanstack/markdown/react'
 
 <Markdown>{document}</Markdown>
+```
+
+The same document can render through Octane:
+
+```ts
+import { Markdown as OctaneMarkdown } from '@tanstack/markdown/octane'
+
+const article = OctaneMarkdown({ children: document })
 ```
 
 ## Add heading anchors

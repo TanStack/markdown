@@ -12,11 +12,13 @@ flowchart LR
   P --> A["Serializable AST"]
   A --> H["HTML renderer"]
   A --> R["React renderer"]
+  A --> O["Octane renderer"]
   A --> C["JSON or content cache"]
   E["Optional extensions"] --> P
   E --> H
   X["External highlighter"] --> H
   X --> R
+  X --> O
 ```
 
 ## Package boundaries
@@ -25,10 +27,11 @@ flowchart LR
 - `inline.ts` owns bounded inline parsing.
 - `html.ts` owns escaping and string serialization.
 - `react.ts` owns React element creation and component replacement.
+- `octane.ts` owns Octane descriptor creation and component replacement.
 - `types.ts` is the shared public contract.
 - `extensions/*` contains opt-in docs behavior.
 
-The parser never imports either renderer. The renderers never import a highlighter. The core never imports docs extensions.
+The parser never imports a renderer. The renderers never import a highlighter. The core never imports framework adapters or docs extensions.
 
 ## Design constraints
 
@@ -49,4 +52,4 @@ That boundary is the product: use a unified or MDX stack when those capabilities
 
 ## Release gates
 
-Every release preserves profile fixtures, established CommonMark matches, selected GFM examples, HTML/React parity, corpus determinism, resilience limits, bundle budgets, documentation coverage, typechecking, and production packaging.
+Every release preserves profile fixtures, established CommonMark matches, selected GFM examples, HTML/React/Octane parity, corpus determinism, resilience limits, bundle budgets, documentation coverage, typechecking, and production packaging.

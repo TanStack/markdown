@@ -30,6 +30,12 @@ const entries = [
   },
   {
     group: 'tanstack',
+    name: 'octane adapter',
+    external: ['octane'],
+    contents: "import { Markdown, renderMarkdownOctane } from './src/octane.ts'; console.log(Markdown, renderMarkdownOctane)",
+  },
+  {
+    group: 'tanstack',
     name: 'docs extension preset',
     contents: "import { docsMarkdownExtensions } from './src/extensions/docs.ts'; console.log(docsMarkdownExtensions)",
   },
@@ -141,7 +147,7 @@ function renderSizeReport(results) {
     '',
     `Generated: ${new Date().toISOString()}`,
     '',
-    'Bundles are ESM, browser-targeted, minified with esbuild, then gzip and brotli compressed. React is externalized for the React adapter.',
+    'Bundles are ESM, browser-targeted, minified with esbuild, then gzip and brotli compressed. Framework runtimes are externalized for the React and Octane adapters.',
     '',
     '| Group | Entry | Min bytes | Gzip bytes | Brotli bytes |',
     '| :--- | :--- | ---: | ---: | ---: |',

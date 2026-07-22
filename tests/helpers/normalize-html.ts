@@ -9,6 +9,11 @@ export function normalizeStaticMarkup(value: string): string {
     .replace(/&#8617;/g, '\u21a9')
     .replace(/&#(?:39|x27);/gi, "'")
     .replace(/&#(?:96|x60);/gi, '`')
+    .replace(/(\s[\w:-]+)="([^"]*)"/g, (_, name: string, attributeValue: string) =>
+      `${name}="${attributeValue.replace(/&gt;/g, '>').replace(/&lt;/g, '<')}"`,
+    )
+    .replace(/&quot;/g, '"')
+    .replace(/style="([^"]*);"/g, 'style="$1"')
     .replace(/>\s+</g, '><')
     .replace(/\s+(?=<(?:blockquote|div|figure|h[1-6]|hr|ol|p|pre|section|table|ul)\b)/g, '')
 }

@@ -6,13 +6,13 @@ title: Overview
 
 TanStack Markdown is a small, synchronous Markdown parser and renderer built for technical blogs and documentation.
 
-It provides three independently importable paths:
+It provides independently importable paths for each layer:
 
 - A parser that produces a deterministic, serializable AST
 - An HTML renderer with safe defaults
-- A React renderer with the same core output semantics
+- React and Octane renderers with the same core output semantics
 
-The package has no runtime dependencies. React is a peer dependency used only by `@tanstack/markdown/react`, and syntax highlighting stays outside the Markdown bundle.
+The package has no runtime dependencies. React and Octane are optional peer dependencies used only by their matching adapter entry points, and syntax highlighting stays outside the Markdown bundle.
 
 ## Why another Markdown library?
 
@@ -30,7 +30,7 @@ TanStack Markdown spends its complexity budget on that path. It deliberately doe
 
 ### Small entry points
 
-Current minified browser bundles are 4.6 KB gzip for the parser, 6.4 KB for HTML rendering, and 6.3 KB for the React adapter with React externalized. The generated [bundle report](../reports/sizes.md) is the source of truth.
+Current minified browser bundles are 4.6 KB gzip for the parser, 6.4 KB for HTML rendering, and 6.3 KB for either UI adapter with its framework runtime externalized. The generated [bundle report](../reports/sizes.md) is the source of truth.
 
 ### Parse once, render many
 
@@ -47,6 +47,6 @@ The supported contract is the [TanStack docs syntax profile](core-concepts/synta
 ## Choose your starting point
 
 - Continue to [Installation](installation) for package and runtime requirements.
-- Use [Quick Start](quick-start) for HTML and React examples.
+- Use [Quick Start](quick-start) for HTML, React, and Octane examples.
 - Read [Comparison](comparison) to evaluate the tradeoffs.
 - Review the [Syntax Profile](core-concepts/syntax-profile) before migrating an existing content corpus.

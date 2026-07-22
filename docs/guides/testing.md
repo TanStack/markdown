@@ -23,7 +23,7 @@ MARKDOWN_CORPUS_DIRS=../tanstack.com/src/blog:../tanstack.com/docs \
   pnpm run test:corpus
 ```
 
-Each Markdown file is tested in core and docs-extension modes for deterministic AST output, deterministic HTML output, React SSR success, and expected renderer structure.
+Each Markdown file is tested in core and docs-extension modes for deterministic AST output, deterministic HTML output, React SSR success, and expected renderer structure. Focused adapter fixtures additionally prove Octane static SSR parity.
 
 ## Compatibility accounting
 

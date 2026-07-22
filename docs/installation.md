@@ -47,9 +47,27 @@ export function Article({ source }: { source: string }) {
 
 React is a peer dependency and is not bundled into the adapter.
 
+## Octane usage
+
+The Octane adapter requires Octane 0.1.12 or newer:
+
+```bash
+pnpm add @tanstack/markdown octane
+```
+
+```tsrx
+import { Markdown } from '@tanstack/markdown/octane'
+
+export function Article({ source }: { source: string }) @{
+  <Markdown>{source}</Markdown>
+}
+```
+
+Octane is an optional peer dependency and is not bundled into the adapter.
+
 ## Runtime and module format
 
-TanStack Markdown ships ESM JavaScript and TypeScript declarations. Its synchronous core works in modern browsers, server runtimes, build tools, and React server rendering.
+TanStack Markdown ships ESM JavaScript and TypeScript declarations. Its synchronous core works in modern browsers, server runtimes, build tools, React server rendering, and Octane server rendering.
 
 ## Optional capabilities
 

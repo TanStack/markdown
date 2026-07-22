@@ -29,6 +29,7 @@
       "label": "Guides",
       "children": [
         { "label": "React", "to": "guides/react" },
+        { "label": "Octane", "to": "guides/octane" },
         { "label": "Syntax Highlighting", "to": "guides/syntax-highlighting" },
         { "label": "Extensions", "to": "guides/extensions" },
         { "label": "Docs Preset", "to": "guides/docs-preset" },
@@ -44,6 +45,7 @@
         { "label": "Parser", "to": "reference/parser" },
         { "label": "HTML", "to": "reference/html" },
         { "label": "React", "to": "reference/react" },
+        { "label": "Octane", "to": "reference/octane" },
         { "label": "Types", "to": "reference/types" },
         { "label": "Extensions", "to": "reference/extensions" }
       ]
