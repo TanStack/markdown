@@ -9,4 +9,5 @@ coverage
 .env.*
 !.env.example
 .pnpm-store
+.corpus
 *.tsbuildinfo

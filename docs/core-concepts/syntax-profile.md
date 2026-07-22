@@ -29,7 +29,7 @@ TanStack Markdown implements a documented subset aimed at repository-authored bl
 | Syntax | Support | Notes |
 | --- | :---: | --- |
 | Emphasis and strong | Yes | Natural prose patterns; not every pathological delimiter case |
-| Strikethrough | Yes | GFM `~~text~~` and legacy TanStack `~text~` |
+| Strikethrough | Yes | GFM `~~text~~` and legacy TanStack `~text~`; numeric approximations stay literal |
 | Inline code | Yes | Backtick spans |
 | Inline links and images | Yes | Unsafe URL protocols are removed |
 | Reference links and images | Yes | Full and collapsed forms used by the maintained corpus |

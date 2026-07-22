@@ -25,6 +25,31 @@ MARKDOWN_CORPUS_DIRS=../tanstack.com/src/blog:../tanstack.com/docs \
 
 Each Markdown file is tested in core and docs-extension modes for deterministic AST output, deterministic HTML output, React SSR success, and expected renderer structure. Focused adapter fixtures additionally prove Octane static SSR parity.
 
+## Practical compatibility audit
+
+```bash
+pnpm run corpus:audit:tanstack
+pnpm run corpus:audit:external
+```
+
+The TanStack audit discovers local sibling repositories, scans their tracked Markdown and MDX files, and records each Git revision and dirty state. The external audit checks out exact commits from twenty representative documentation and blog repositories. MDX is inventoried but not parsed.
+
+Both audits parse every Markdown file twice with the docs profile, verify deterministic AST and HTML output, inventory syntax usage, and compare rendered output with Marked. Marked is a differential reference, not a correctness oracle. Reports separate exact output, serialization differences, structural differences with equivalent text, and rendered-content differences.
+
+The external audit runs in CI and fails on parser errors, nondeterminism, or any unexplained target-profile content difference. The local TanStack audit enforces the same rule when the sibling repositories are available.
+
+- [TanStack repository corpus](../../reports/tanstack-corpus.md)
+- [External docs and blogs corpus](../../reports/external-corpus.md)
+
+### Triage policy
+
+1. Parse errors or nondeterministic output are always defects.
+2. Content differences in docs, blogs, or READMEs that use only the supported profile must be fixed or explained before release.
+3. Serialization and structure differences are reviewed but do not imply incorrect output.
+4. MDX, site templates, opt-in HTML, and documented unsupported syntax measure demand; they do not expand the profile automatically.
+
+A syntax rule enters the profile only when real target content needs it, the behavior can be covered across renderers, and its parser and bundle cost are justified. CommonMark examples remain edge-case accounting rather than the product roadmap.
+
 ## Compatibility accounting
 
 ```bash

@@ -1,6 +1,6 @@
 # Benchmark Results
 
-Generated: 2026-07-22T14:20:21.293Z
+Generated: 2026-07-22T18:10:12.744Z
 
 Lower `ms/op` is better. Benchmarks run in Node with production package builds where available; heap delta is a coarse process-level signal, not an allocation profiler.
 
@@ -8,74 +8,74 @@ Lower `ms/op` is better. Benchmarks run in Node with production package builds w
 
 | Name | Fixture | Bytes | Iterations | ms/op | Output bytes | Heap delta KB |
 | :--- | :--- | ---: | ---: | ---: | ---: | ---: |
-| @tanstack/markdown parse | code-heavy.md | 1011 | 1000 | 0.0088 | 15 | -417.5 |
-| @tanstack/markdown render AST with external highlighter | code-heavy.md | 1011 | 1000 | 0.0080 | 4504 | 4003.9 |
-| @tanstack/markdown render AST | code-heavy.md | 1011 | 1000 | 0.0039 | 1835 | -1174.4 |
-| @tanstack/markdown parse+render with external highlighter | code-heavy.md | 1011 | 1000 | 0.0149 | 4504 | -707.3 |
-| @tanstack/markdown parse+render | code-heavy.md | 1011 | 1000 | 0.0109 | 1835 | 1668.1 |
-| marked parse+render | code-heavy.md | 1011 | 1000 | 0.0065 | 1330 | 4953.8 |
-| markdown-it parse+render | code-heavy.md | 1011 | 1000 | 0.0102 | 1330 | -4841.0 |
-| micromark render | code-heavy.md | 1011 | 1000 | 0.1495 | 1330 | 7278.6 |
-| commonmark parse+render | code-heavy.md | 1011 | 1000 | 0.0109 | 1330 | -8518.4 |
-| markdown-wasm render | code-heavy.md | 1011 | 1000 | 0.0083 | 1512 | 2591.3 |
-| unified remark+rehype render | code-heavy.md | 1011 | 1000 | 0.1444 | 1200 | -2061.2 |
-| @tanstack/markdown parse | malformed.md | 237 | 2000 | 0.0052 | 15 | 8761.1 |
-| @tanstack/markdown render AST with external highlighter | malformed.md | 237 | 2000 | 0.0020 | 1067 | 898.5 |
-| @tanstack/markdown render AST | malformed.md | 237 | 2000 | 0.0008 | 361 | -9449.0 |
-| @tanstack/markdown parse+render with external highlighter | malformed.md | 237 | 2000 | 0.0050 | 1067 | 8618.2 |
-| @tanstack/markdown parse+render | malformed.md | 237 | 2000 | 0.0040 | 361 | -1949.3 |
-| marked parse+render | malformed.md | 237 | 2000 | 0.0050 | 350 | 394.8 |
-| markdown-it parse+render | malformed.md | 237 | 2000 | 0.0054 | 300 | -7565.9 |
-| micromark render | malformed.md | 237 | 2000 | 0.0462 | 300 | -6294.8 |
-| commonmark parse+render | malformed.md | 237 | 2000 | 0.0043 | 300 | 7496.9 |
-| markdown-wasm render | malformed.md | 237 | 2000 | 0.0019 | 408 | 2953.6 |
-| unified remark+rehype render | malformed.md | 237 | 2000 | 0.0499 | 297 | 3086.0 |
-| @tanstack/markdown parse | prose-heavy.md | 1700 | 1000 | 0.0254 | 15 | 1412.6 |
-| @tanstack/markdown render AST with external highlighter | prose-heavy.md | 1700 | 1000 | 0.0025 | 1903 | -4233.5 |
-| @tanstack/markdown render AST | prose-heavy.md | 1700 | 1000 | 0.0024 | 1903 | 12075.8 |
-| @tanstack/markdown parse+render with external highlighter | prose-heavy.md | 1700 | 1000 | 0.0262 | 1903 | 14559.5 |
-| @tanstack/markdown parse+render | prose-heavy.md | 1700 | 1000 | 0.0251 | 1903 | -1890.6 |
-| marked parse+render | prose-heavy.md | 1700 | 1000 | 0.0342 | 1860 | 7072.1 |
-| markdown-it parse+render | prose-heavy.md | 1700 | 1000 | 0.0185 | 1860 | -3138.3 |
-| micromark render | prose-heavy.md | 1700 | 1000 | 0.2377 | 1862 | -7116.1 |
-| commonmark parse+render | prose-heavy.md | 1700 | 1000 | 0.0135 | 1862 | 48070.6 |
-| markdown-wasm render | prose-heavy.md | 1700 | 1000 | 0.0067 | 2340 | 3369.6 |
-| unified remark+rehype render | prose-heavy.md | 1700 | 1000 | 0.2731 | 1859 | 52442.5 |
-| @tanstack/markdown parse | small-doc.md | 432 | 2000 | 0.0100 | 15 | 22697.3 |
-| @tanstack/markdown render AST with external highlighter | small-doc.md | 432 | 2000 | 0.0033 | 1328 | -33220.3 |
-| @tanstack/markdown render AST | small-doc.md | 432 | 2000 | 0.0028 | 1002 | 25869.0 |
-| @tanstack/markdown parse+render with external highlighter | small-doc.md | 432 | 2000 | 0.0128 | 1328 | -14894.3 |
-| @tanstack/markdown parse+render | small-doc.md | 432 | 2000 | 0.0122 | 1002 | -20447.8 |
-| marked parse+render | small-doc.md | 432 | 2000 | 0.0120 | 724 | 49454.6 |
-| markdown-it parse+render | small-doc.md | 432 | 2000 | 0.0079 | 776 | 1721.2 |
-| micromark render | small-doc.md | 432 | 2000 | 0.0956 | 535 | -20592.6 |
-| commonmark parse+render | small-doc.md | 432 | 2000 | 0.0059 | 535 | -15109.8 |
-| markdown-wasm render | small-doc.md | 432 | 2000 | 0.0033 | 854 | 3682.8 |
-| unified remark+rehype render | small-doc.md | 432 | 2000 | 0.1077 | 534 | 4655.7 |
-| @tanstack/markdown parse | tables-lists.md | 454 | 2000 | 0.0255 | 15 | -16648.3 |
-| @tanstack/markdown render AST with external highlighter | tables-lists.md | 454 | 2000 | 0.0048 | 1315 | -17193.0 |
-| @tanstack/markdown render AST | tables-lists.md | 454 | 2000 | 0.0042 | 1315 | 47682.1 |
-| @tanstack/markdown parse+render with external highlighter | tables-lists.md | 454 | 2000 | 0.0282 | 1315 | -35005.5 |
-| @tanstack/markdown parse+render | tables-lists.md | 454 | 2000 | 0.0278 | 1315 | 30465.3 |
-| marked parse+render | tables-lists.md | 454 | 2000 | 0.0276 | 1102 | -19255.3 |
-| markdown-it parse+render | tables-lists.md | 454 | 2000 | 0.0179 | 1325 | -42296.0 |
-| micromark render | tables-lists.md | 454 | 2000 | 0.1611 | 627 | 26564.2 |
-| commonmark parse+render | tables-lists.md | 454 | 2000 | 0.0122 | 627 | -35562.6 |
-| markdown-wasm render | tables-lists.md | 454 | 2000 | 0.0059 | 1202 | 4504.4 |
-| unified remark+rehype render | tables-lists.md | 454 | 2000 | 0.1885 | 622 | 9034.0 |
+| @tanstack/markdown parse | code-heavy.md | 1011 | 1000 | 0.0087 | 15 | -414.2 |
+| @tanstack/markdown render AST with external highlighter | code-heavy.md | 1011 | 1000 | 0.0089 | 4504 | 3834.4 |
+| @tanstack/markdown render AST | code-heavy.md | 1011 | 1000 | 0.0039 | 1835 | -1169.2 |
+| @tanstack/markdown parse+render with external highlighter | code-heavy.md | 1011 | 1000 | 0.0177 | 4504 | -356.7 |
+| @tanstack/markdown parse+render | code-heavy.md | 1011 | 1000 | 0.0118 | 1835 | -6238.0 |
+| marked parse+render | code-heavy.md | 1011 | 1000 | 0.0080 | 1330 | 4941.8 |
+| markdown-it parse+render | code-heavy.md | 1011 | 1000 | 0.0111 | 1330 | -5054.3 |
+| micromark render | code-heavy.md | 1011 | 1000 | 0.1219 | 1330 | -825.2 |
+| commonmark parse+render | code-heavy.md | 1011 | 1000 | 0.0098 | 1330 | 8180.1 |
+| markdown-wasm render | code-heavy.md | 1011 | 1000 | 0.0073 | 1512 | 2592.1 |
+| unified remark+rehype render | code-heavy.md | 1011 | 1000 | 0.1197 | 1200 | -2376.6 |
+| @tanstack/markdown parse | malformed.md | 237 | 2000 | 0.0044 | 15 | -6991.4 |
+| @tanstack/markdown render AST with external highlighter | malformed.md | 237 | 2000 | 0.0016 | 1067 | 803.8 |
+| @tanstack/markdown render AST | malformed.md | 237 | 2000 | 0.0007 | 361 | 6929.9 |
+| @tanstack/markdown parse+render with external highlighter | malformed.md | 237 | 2000 | 0.0048 | 1067 | -7606.9 |
+| @tanstack/markdown parse+render | malformed.md | 237 | 2000 | 0.0037 | 361 | -1790.6 |
+| marked parse+render | malformed.md | 237 | 2000 | 0.0047 | 350 | 270.9 |
+| markdown-it parse+render | malformed.md | 237 | 2000 | 0.0048 | 300 | 8729.9 |
+| micromark render | malformed.md | 237 | 2000 | 0.0418 | 300 | 9444.4 |
+| commonmark parse+render | malformed.md | 237 | 2000 | 0.0041 | 300 | -8779.6 |
+| markdown-wasm render | malformed.md | 237 | 2000 | 0.0017 | 408 | 2953.5 |
+| unified remark+rehype render | malformed.md | 237 | 2000 | 0.0431 | 297 | 3229.0 |
+| @tanstack/markdown parse | prose-heavy.md | 1700 | 1000 | 0.0226 | 15 | 1770.2 |
+| @tanstack/markdown render AST with external highlighter | prose-heavy.md | 1700 | 1000 | 0.0023 | 1903 | -4262.2 |
+| @tanstack/markdown render AST | prose-heavy.md | 1700 | 1000 | 0.0022 | 1903 | -4329.0 |
+| @tanstack/markdown parse+render with external highlighter | prose-heavy.md | 1700 | 1000 | 0.0234 | 1903 | -1547.6 |
+| @tanstack/markdown parse+render | prose-heavy.md | 1700 | 1000 | 0.0238 | 1903 | -1655.5 |
+| marked parse+render | prose-heavy.md | 1700 | 1000 | 0.0325 | 1860 | -9294.6 |
+| markdown-it parse+render | prose-heavy.md | 1700 | 1000 | 0.0172 | 1860 | 13230.7 |
+| micromark render | prose-heavy.md | 1700 | 1000 | 0.2140 | 1862 | -7081.7 |
+| commonmark parse+render | prose-heavy.md | 1700 | 1000 | 0.0127 | 1862 | 48079.0 |
+| markdown-wasm render | prose-heavy.md | 1700 | 1000 | 0.0061 | 2340 | 3369.7 |
+| unified remark+rehype render | prose-heavy.md | 1700 | 1000 | 0.2268 | 1859 | 52596.4 |
+| @tanstack/markdown parse | small-doc.md | 432 | 2000 | 0.0087 | 15 | 23523.2 |
+| @tanstack/markdown render AST with external highlighter | small-doc.md | 432 | 2000 | 0.0032 | 1328 | -32785.7 |
+| @tanstack/markdown render AST | small-doc.md | 432 | 2000 | 0.0025 | 1002 | 25865.8 |
+| @tanstack/markdown parse+render with external highlighter | small-doc.md | 432 | 2000 | 0.0121 | 1328 | -14525.9 |
+| @tanstack/markdown parse+render | small-doc.md | 432 | 2000 | 0.0114 | 1002 | -20062.2 |
+| marked parse+render | small-doc.md | 432 | 2000 | 0.0113 | 724 | 49472.8 |
+| markdown-it parse+render | small-doc.md | 432 | 2000 | 0.0075 | 776 | 1534.2 |
+| micromark render | small-doc.md | 432 | 2000 | 0.0869 | 535 | 44657.0 |
+| commonmark parse+render | small-doc.md | 432 | 2000 | 0.0056 | 535 | -15027.6 |
+| markdown-wasm render | small-doc.md | 432 | 2000 | 0.0032 | 854 | 3637.7 |
+| unified remark+rehype render | small-doc.md | 432 | 2000 | 0.0993 | 534 | 4475.7 |
+| @tanstack/markdown parse | tables-lists.md | 454 | 2000 | 0.0229 | 15 | -16469.1 |
+| @tanstack/markdown render AST with external highlighter | tables-lists.md | 454 | 2000 | 0.0042 | 1315 | -17045.7 |
+| @tanstack/markdown render AST | tables-lists.md | 454 | 2000 | 0.0039 | 1315 | -17825.4 |
+| @tanstack/markdown parse+render with external highlighter | tables-lists.md | 454 | 2000 | 0.0266 | 1315 | 30703.9 |
+| @tanstack/markdown parse+render | tables-lists.md | 454 | 2000 | 0.0263 | 1315 | -34852.2 |
+| marked parse+render | tables-lists.md | 454 | 2000 | 0.0257 | 1102 | 46341.5 |
+| markdown-it parse+render | tables-lists.md | 454 | 2000 | 0.0167 | 1325 | -42428.3 |
+| micromark render | tables-lists.md | 454 | 2000 | 0.1471 | 627 | 26931.6 |
+| commonmark parse+render | tables-lists.md | 454 | 2000 | 0.0111 | 627 | -35659.1 |
+| markdown-wasm render | tables-lists.md | 454 | 2000 | 0.0056 | 1202 | 4504.4 |
+| unified remark+rehype render | tables-lists.md | 454 | 2000 | 0.1729 | 622 | 6602.6 |
 
 ## Averages
 
 | Group | Name | Mean ms/op |
 | :--- | :--- | ---: |
-| markdown | @tanstack/markdown parse | 0.0150 |
-| markdown | @tanstack/markdown render AST with external highlighter | 0.0041 |
-| markdown | @tanstack/markdown render AST | 0.0028 |
-| markdown | @tanstack/markdown parse+render with external highlighter | 0.0174 |
-| markdown | @tanstack/markdown parse+render | 0.0160 |
-| markdown | marked parse+render | 0.0170 |
-| markdown | markdown-it parse+render | 0.0120 |
-| markdown | micromark render | 0.1380 |
-| markdown | commonmark parse+render | 0.0094 |
-| markdown | markdown-wasm render | 0.0052 |
-| markdown | unified remark+rehype render | 0.1527 |
+| markdown | @tanstack/markdown parse | 0.0135 |
+| markdown | @tanstack/markdown render AST with external highlighter | 0.0040 |
+| markdown | @tanstack/markdown render AST | 0.0026 |
+| markdown | @tanstack/markdown parse+render with external highlighter | 0.0169 |
+| markdown | @tanstack/markdown parse+render | 0.0154 |
+| markdown | marked parse+render | 0.0164 |
+| markdown | markdown-it parse+render | 0.0115 |
+| markdown | micromark render | 0.1223 |
+| markdown | commonmark parse+render | 0.0087 |
+| markdown | markdown-wasm render | 0.0048 |
+| markdown | unified remark+rehype render | 0.1323 |

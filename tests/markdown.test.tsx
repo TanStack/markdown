@@ -9,6 +9,63 @@ function compact(html: string): string {
 }
 
 describe('TanStack Markdown', () => {
+  it('renders combined strong emphasis used in documentation prose', () => {
+    const source = 'This is ***important***.'
+    const expected = '<p>This is <em><strong>important</strong></em>.</p>'
+
+    expect(renderHtml(source)).toBe(expected)
+    expect(renderToStaticMarkup(<Markdown>{source}</Markdown>)).toBe(expected)
+  })
+
+  it('preserves escaped type brackets around linked API types when HTML is enabled', () => {
+    const source = '`Partial`\\<[HotkeyOptions](/options)\\>'
+    const expected = '<p><code>Partial</code>&lt;<a href="/options">HotkeyOptions</a>&gt;</p>'
+
+    expect(renderHtml(source, { allowHtml: true })).toBe(expected)
+    expect(renderToStaticMarkup(<Markdown allowHtml>{source}</Markdown>)).toBe(expected)
+  })
+
+  it('resolves collapsed reference links with formatted labels', () => {
+    const source = 'Use [`where`][].\n\n[`where`]: /where/'
+    const expected = '<p>Use <a href="/where/"><code>where</code></a>.</p>'
+
+    expect(renderHtml(source)).toBe(expected)
+    expect(renderToStaticMarkup(<Markdown>{source}</Markdown>)).toBe(expected)
+  })
+
+  it('resolves shortcut reference links used by documentation sites', () => {
+    const source = 'Read [the FAQ].\n\n[the FAQ]: /faq'
+    const expected = '<p>Read <a href="/faq">the FAQ</a>.</p>'
+
+    expect(renderHtml(source)).toBe(expected)
+    expect(renderToStaticMarkup(<Markdown>{source}</Markdown>)).toBe(expected)
+  })
+
+  it('does not treat type syntax as inline HTML', () => {
+    const source = '`Promise`<`void`\\> and <hostIP, hostPort, protocol>'
+    const expected = '<p><code>Promise</code>&lt;<code>void</code>&gt; and &lt;hostIP, hostPort, protocol&gt;</p>'
+
+    expect(renderHtml(source, { allowHtml: true })).toBe(expected)
+    expect(renderToStaticMarkup(<Markdown allowHtml>{source}</Markdown>)).toBe(expected)
+  })
+
+  it('does not pair underscores across identifiers, code, or link destinations', () => {
+    const source = 'The x86_64 target uses `_` with `extern`.\n\n_[Chris Seto](https://twitter.com/_ostriches) works at CockroachDB._'
+    const expected =
+      '<p>The x86_64 target uses <code>_</code> with <code>extern</code>.</p>\n<p><em><a href="https://twitter.com/_ostriches">Chris Seto</a> works at CockroachDB.</em></p>'
+
+    expect(renderHtml(source)).toBe(expected)
+    expect(renderToStaticMarkup(<Markdown>{source}</Markdown>)).toBe(compact(expected))
+  })
+
+  it('does not let an ordered-list-looking year interrupt a paragraph', () => {
+    const source = 'We met at the Contributor Summit in\n2023.'
+    const expected = '<p>We met at the Contributor Summit in\n2023.</p>'
+
+    expect(renderHtml(source)).toBe(expected)
+    expect(renderToStaticMarkup(<Markdown>{source}</Markdown>)).toBe(expected)
+  })
+
   it('renders docs-flavored markdown deterministically', () => {
     const markdown = `---
 title: Example
@@ -152,6 +209,48 @@ export function Demo() {
       },
     ])
     expect(renderHtml(document)).toBe('<h3 id="server-actions-functions">Server <del>Actions</del> Functions</h3>')
+  })
+
+  it('preserves approximation tildes before numbers', () => {
+    const source = 'About ~60 KB, a ~48 KB (~80%) reduction, or ~10.3 KB.'
+    const expected = '<p>About ~60 KB, a ~48 KB (~80%) reduction, or ~10.3 KB.</p>'
+
+    expect(renderHtml(source)).toBe(expected)
+    expect(renderToStaticMarkup(<Markdown>{source}</Markdown>)).toBe(expected)
+  })
+
+  it('keeps hashes that are part of ATX heading text', () => {
+    const source = '#### C#\n\n## Closed heading ###'
+    const expected = '<h4 id="c">C#</h4>\n<h2 id="closed-heading">Closed heading</h2>'
+
+    expect(renderHtml(source)).toBe(expected)
+    expect(renderToStaticMarkup(<Markdown>{source}</Markdown>)).toBe(compact(expected))
+  })
+
+  it('ends raw HTML comments before the following block', () => {
+    const source = `<!-- list note -->
+- one
+- two
+
+<!-- prettier-ignore -->
+\`\`\`svelte
+<div>Example</div>
+\`\`\``
+    const expected = `<!-- list note -->
+<ul>
+<li>one</li>
+<li>two</li>
+</ul>
+<!-- prettier-ignore -->
+<pre class="tm-code" data-lang="svelte"><code class="language-svelte">&lt;div&gt;Example&lt;/div&gt;</code></pre>`
+
+    expect(renderHtml(source, { allowHtml: true })).toBe(expected)
+    const reactHtml = renderToStaticMarkup(<Markdown allowHtml>{source}</Markdown>)
+    expect(reactHtml).toContain('<ul><li>one</li><li>two</li></ul>')
+    expect(reactHtml).toContain(
+      '<pre class="tm-code" data-lang="svelte"><code class="language-svelte">&lt;div&gt;Example&lt;/div&gt;</code></pre>',
+    )
+    expect(reactHtml).not.toContain('```svelte')
   })
 
   it('renders tight list paragraph content directly inside list items', () => {

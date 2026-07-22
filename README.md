@@ -2,10 +2,10 @@
 
 A tiny, fast, deterministic Markdown parser and renderer for blogs and documentation.
 
-- 4.6 KB gzip parser
-- 6.4 KB gzip HTML renderer
-- 6.3 KB gzip React adapter
-- 6.3 KB gzip Octane adapter
+- 4.9 KB gzip parser
+- 6.7 KB gzip HTML renderer
+- 6.7 KB gzip React adapter
+- 6.7 KB gzip Octane adapter
 - zero runtime dependencies
 - serializable AST
 - safe defaults for raw HTML and executable URLs
@@ -66,8 +66,17 @@ MARKDOWN_CORPUS_DIRS=../tanstack.com/src/blog:../tanstack.com/docs \
   pnpm run test:corpus
 ```
 
+To audit practical compatibility across local TanStack repositories and a pinned external docs/blog sample:
+
+```bash
+pnpm run corpus:audit:tanstack
+pnpm run corpus:audit:external
+```
+
 Generated reports:
 
 - [Bundle sizes](./reports/sizes.md)
 - [Benchmarks](./reports/benchmarks.md)
 - [CommonMark compatibility accounting](./reports/conformance.md)
+- [TanStack repository corpus](./reports/tanstack-corpus.md)
+- [External docs and blogs corpus](./reports/external-corpus.md)

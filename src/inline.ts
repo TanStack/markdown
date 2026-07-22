@@ -51,7 +51,7 @@ function parseInlineRaw(
         continue
       }
 
-      if (next && /[\\`*_[\]{}()#+\-.!|~>]/.test(next)) {
+      if (next && /[\\`*_[\]{}()#+\-.!|~<>]/.test(next)) {
         text += next
         index += 2
         continue
@@ -118,8 +118,21 @@ function parseInlineRaw(
       }
     }
 
+    if (char === '*' && next === '*' && value[index + 2] === '*') {
+      const close = findDelimiter(value, index + 3, '***', budget)
+      if (close !== -1) {
+        pushText()
+        nodes.push({
+          type: 'emphasis',
+          children: parseInlineRaw(value.slice(index + 1, close + 2), options, budget),
+        })
+        index = close + 3
+        continue
+      }
+    }
+
     if ((char === '*' && next === '*') || (char === '_' && next === '_')) {
-      const close = findDelimiter(value, index + 2, char + char, budget)
+      const close = char === '_' && !canUseUnderscore(value, index, 2, true) ? -1 : findDelimiter(value, index + 2, char + char, budget)
       if (close !== -1) {
         pushText()
         nodes.push({
@@ -171,8 +184,8 @@ function parseInlineRaw(
     }
 
     if (char === '*' || char === '_') {
-      const close = findDelimiter(value, index + 1, char, budget)
-      if (close !== -1 && !isIntrawordUnderscore(value, index, close, char)) {
+      const close = char === '_' && !canUseUnderscore(value, index, 1, true) ? -1 : findDelimiter(value, index + 1, char, budget)
+      if (close !== -1) {
         pushText()
         nodes.push({
           type: 'emphasis',
@@ -185,7 +198,7 @@ function parseInlineRaw(
 
     if (char === '<' && options.allowHtml) {
       const close = findCharacter(value, index + 1, '>', budget)
-      if (close !== -1) {
+      if (close !== -1 && isInlineHtml(value.slice(index, close + 1))) {
         pushText()
         nodes.push({ type: 'inlineHtml', value: value.slice(index, close + 1) })
         index = close + 1
@@ -271,7 +284,8 @@ function parseLinkish(value: string, open: number, options: ParseOptions, budget
     const closeReference = findBalanced(value, closeBracket + 1, '[', ']', budget)
     if (closeReference === -1) return undefined
 
-    const definition = options.references?.[normalizeReferenceLabel(value.slice(closeBracket + 2, closeReference))]
+    const referenceLabel = value.slice(closeBracket + 2, closeReference)
+    const definition = options.references?.[normalizeReferenceLabel(referenceLabel || label)]
     if (!definition) return undefined
 
     return {
@@ -282,7 +296,24 @@ function parseLinkish(value: string, open: number, options: ParseOptions, budget
     }
   }
 
+  const definition = options.references?.[normalizeReferenceLabel(label)]
+  if (definition) {
+    return {
+      label,
+      href: definition.href,
+      ...(definition.title ? { title: definition.title } : {}),
+      end: closeBracket + 1,
+    }
+  }
+
   return undefined
+}
+
+function isInlineHtml(value: string): boolean {
+  if (/^<!--(?:[\s\S]*--|-?)>$/.test(value)) return true
+  if (/^<\?[\s\S]*\?>$/.test(value) || /^<![A-Z][\s\S]*>$/.test(value) || /^<!\[CDATA\[[\s\S]*\]\]>$/.test(value)) return true
+  if (/^<\/[A-Za-z][\w:-]*\s*>$/.test(value)) return true
+  return /^<[A-Za-z][\w:-]*(?:\s+[A-Za-z_:][\w:.-]*(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s"'=<>`]+))?)*\s*\/?>$/.test(value)
 }
 
 function parseDestination(value: string): { href: string; title?: string } {
@@ -331,13 +362,14 @@ function findDelimiter(value: string, start: number, delimiter: string, budget: 
     if (!takeScan(budget)) return -1
     if (value[index - 1] === '\\') continue
     if (delimiter === '~~' && (value[index - 1] === '~' || value[index + 2] === '~')) continue
+    if (delimiter[0] === '_' && !canUseUnderscore(value, index, delimiter.length, false)) continue
     if (value.startsWith(delimiter, index)) return index
   }
   return -1
 }
 
 function findSingleTildeDelimiter(value: string, start: number, budget: InlineParseBudget): number {
-  if (isWhitespace(value[start] ?? '')) return -1
+  if (isWhitespace(value[start] ?? '') || /\d/.test(value[start] ?? '')) return -1
 
   for (let index = start; index < value.length; index++) {
     if (!takeScan(budget)) return -1
@@ -366,9 +398,20 @@ function takeScan(budget: InlineParseBudget): boolean {
   return true
 }
 
-function isIntrawordUnderscore(value: string, open: number, close: number, delimiter: string): boolean {
-  if (delimiter !== '_') return false
-  return /\w/.test(value[open - 1] ?? '') && /\w/.test(value[close + 1] ?? '')
+function canUseUnderscore(value: string, index: number, size: number, opening: boolean): boolean {
+  const before = value[index - 1]
+  const after = value[index + size]
+  const leftFlanking = !isDelimiterWhitespace(after) && (!isPunctuation(after) || isDelimiterWhitespace(before) || isPunctuation(before))
+  const rightFlanking = !isDelimiterWhitespace(before) && (!isPunctuation(before) || isDelimiterWhitespace(after) || isPunctuation(after))
+  return opening ? leftFlanking && (!rightFlanking || isPunctuation(before)) : rightFlanking && (!leftFlanking || isPunctuation(after))
+}
+
+function isDelimiterWhitespace(value: string | undefined): boolean {
+  return value === undefined || /\s/.test(value)
+}
+
+function isPunctuation(value: string | undefined): boolean {
+  return value !== undefined && /[^\p{L}\p{N}\s]/u.test(value)
 }
 
 function isWhitespace(value: string): boolean {

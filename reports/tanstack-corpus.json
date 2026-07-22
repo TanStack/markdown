@@ -1,0 +1,2308 @@
+{
+  "generatedAt": "2026-07-22T18:10:53.920Z",
+  "name": "TanStack repository corpus",
+  "roots": 25,
+  "durationMs": 4740.735291999999,
+  "totals": {
+    "name": "TanStack repository corpus",
+    "bytes": 18378547,
+    "markdown": 4826,
+    "mdx": 2,
+    "skipped": 7,
+    "errors": 0,
+    "comparisons": {
+      "exact": 3582,
+      "serialization": 287,
+      "structure": 667,
+      "content": 290
+    },
+    "features": {
+      "frontmatter": 2922,
+      "atx-heading": 4453,
+      "task-list": 79,
+      "fenced-code": 3060,
+      "nested-list": 424,
+      "combined-emphasis": 7,
+      "delimiter-edge": 41,
+      "literal-autolink": 392,
+      "reference-link": 165,
+      "four-space-indent": 203,
+      "raw-html": 661,
+      "tab-indentation": 48,
+      "blockquote": 498,
+      "table": 385,
+      "setext-heading": 2,
+      "strikethrough": 39,
+      "callout": 212,
+      "entity-reference": 10,
+      "site-template": 9,
+      "comment-component": 60,
+      "hard-break": 2,
+      "fence-info-edge": 3,
+      "code-metadata": 40,
+      "multiline-link": 1,
+      "section-marker": 146,
+      "angle-autolink": 4,
+      "footnote": 3
+    }
+  },
+  "repositories": [
+    {
+      "name": "ai",
+      "bytes": 1190587,
+      "markdown": 323,
+      "mdx": 0,
+      "skipped": 0,
+      "errors": 0,
+      "comparisons": {
+        "exact": 242,
+        "serialization": 23,
+        "structure": 58,
+        "content": 0
+      },
+      "features": {
+        "frontmatter": 252,
+        "atx-heading": 320,
+        "task-list": 1,
+        "fenced-code": 287,
+        "nested-list": 35,
+        "combined-emphasis": 2,
+        "delimiter-edge": 5,
+        "literal-autolink": 27,
+        "reference-link": 1,
+        "four-space-indent": 20,
+        "raw-html": 52,
+        "tab-indentation": 17,
+        "blockquote": 15,
+        "table": 21,
+        "setext-heading": 1,
+        "strikethrough": 1
+      },
+      "dirty": true,
+      "remote": "https://github.com/tanstack/ai",
+      "revision": "51c66147dd543e0cdd4f35e7970d52bb1cc43add"
+    },
+    {
+      "name": "bling",
+      "bytes": 10458,
+      "markdown": 4,
+      "mdx": 0,
+      "skipped": 7,
+      "errors": 0,
+      "comparisons": {
+        "exact": 3,
+        "serialization": 0,
+        "structure": 1,
+        "content": 0
+      },
+      "features": {
+        "atx-heading": 2,
+        "blockquote": 1,
+        "fenced-code": 2,
+        "four-space-indent": 1,
+        "nested-list": 1,
+        "raw-html": 1,
+        "frontmatter": 2
+      },
+      "dirty": true,
+      "remote": "https://github.com/TanStack/bling.git",
+      "revision": "62703ba3d204a0315ef6043d0f59c5b70c27e73d"
+    },
+    {
+      "name": "cli",
+      "bytes": 472640,
+      "markdown": 111,
+      "mdx": 2,
+      "skipped": 0,
+      "errors": 0,
+      "comparisons": {
+        "exact": 79,
+        "serialization": 0,
+        "structure": 23,
+        "content": 9
+      },
+      "features": {
+        "atx-heading": 93,
+        "fenced-code": 56,
+        "four-space-indent": 5,
+        "nested-list": 10,
+        "table": 19,
+        "frontmatter": 47,
+        "literal-autolink": 14,
+        "raw-html": 8,
+        "blockquote": 3,
+        "callout": 2,
+        "delimiter-edge": 1
+      },
+      "dirty": true,
+      "remote": "https://github.com/TanStack/cli.git",
+      "revision": "8711a8b4428722a417960050871a014b3a9bc839"
+    },
+    {
+      "name": "config",
+      "bytes": 32535,
+      "markdown": 16,
+      "mdx": 0,
+      "skipped": 0,
+      "errors": 0,
+      "comparisons": {
+        "exact": 12,
+        "serialization": 2,
+        "structure": 1,
+        "content": 1
+      },
+      "features": {
+        "frontmatter": 8,
+        "atx-heading": 15,
+        "fenced-code": 5,
+        "table": 2,
+        "task-list": 1,
+        "blockquote": 3,
+        "callout": 1,
+        "four-space-indent": 2,
+        "literal-autolink": 2,
+        "nested-list": 2,
+        "raw-html": 1,
+        "tab-indentation": 1
+      },
+      "remote": "https://github.com/tanstack/config",
+      "revision": "c7356fbf42f988b1b690cc9cf57c55f14ddd3487"
+    },
+    {
+      "name": "db",
+      "bytes": 2481463,
+      "markdown": 547,
+      "mdx": 0,
+      "skipped": 0,
+      "errors": 0,
+      "comparisons": {
+        "exact": 354,
+        "serialization": 14,
+        "structure": 173,
+        "content": 6
+      },
+      "features": {
+        "frontmatter": 471,
+        "task-list": 2,
+        "atx-heading": 546,
+        "literal-autolink": 127,
+        "blockquote": 9,
+        "fenced-code": 494,
+        "four-space-indent": 17,
+        "raw-html": 124,
+        "tab-indentation": 1,
+        "nested-list": 44,
+        "table": 19,
+        "delimiter-edge": 3,
+        "strikethrough": 1,
+        "callout": 3,
+        "entity-reference": 1,
+        "site-template": 1
+      },
+      "remote": "https://github.com/tanstack/db",
+      "revision": "f9b4f34b3eee273bbd956a1a9473fc6af6cad58f"
+    },
+    {
+      "name": "form",
+      "bytes": 524675,
+      "markdown": 186,
+      "mdx": 0,
+      "skipped": 0,
+      "errors": 0,
+      "comparisons": {
+        "exact": 170,
+        "serialization": 3,
+        "structure": 11,
+        "content": 2
+      },
+      "features": {
+        "atx-heading": 171,
+        "blockquote": 20,
+        "callout": 2,
+        "fenced-code": 154,
+        "four-space-indent": 8,
+        "literal-autolink": 9,
+        "nested-list": 2,
+        "raw-html": 80,
+        "strikethrough": 2,
+        "table": 2,
+        "frontmatter": 158,
+        "reference-link": 1,
+        "site-template": 3
+      },
+      "remote": "https://github.com/TanStack/form.git",
+      "revision": "901180274c05ed3672fd280337499f7104fdd8cf"
+    },
+    {
+      "name": "highlight",
+      "bytes": 90142,
+      "markdown": 35,
+      "mdx": 0,
+      "skipped": 0,
+      "errors": 0,
+      "comparisons": {
+        "exact": 29,
+        "serialization": 6,
+        "structure": 0,
+        "content": 0
+      },
+      "features": {
+        "atx-heading": 35,
+        "fenced-code": 29,
+        "table": 15,
+        "frontmatter": 32
+      },
+      "remote": "https://github.com/TanStack/highlight.git",
+      "revision": "a8ed3e6c585165c9166e39afd1bd7d835a0ddf95"
+    },
+    {
+      "name": "hotkeys",
+      "bytes": 690659,
+      "markdown": 329,
+      "mdx": 0,
+      "skipped": 0,
+      "errors": 0,
+      "comparisons": {
+        "exact": 280,
+        "serialization": 10,
+        "structure": 16,
+        "content": 23
+      },
+      "features": {
+        "atx-heading": 329,
+        "task-list": 1,
+        "frontmatter": 299,
+        "literal-autolink": 15,
+        "reference-link": 1,
+        "nested-list": 14,
+        "blockquote": 25,
+        "callout": 23,
+        "four-space-indent": 14,
+        "raw-html": 14,
+        "tab-indentation": 14,
+        "fenced-code": 286,
+        "table": 14,
+        "delimiter-edge": 1,
+        "comment-component": 1,
+        "strikethrough": 2,
+        "hard-break": 1
+      },
+      "remote": "https://github.com/TanStack/hotkeys.git",
+      "revision": "6adcc3a1b0a28350eb421f6aeebcf0f94d177817"
+    },
+    {
+      "name": "intent",
+      "bytes": 176028,
+      "markdown": 24,
+      "mdx": 0,
+      "skipped": 0,
+      "errors": 0,
+      "comparisons": {
+        "exact": 10,
+        "serialization": 3,
+        "structure": 10,
+        "content": 1
+      },
+      "features": {
+        "atx-heading": 24,
+        "task-list": 3,
+        "frontmatter": 20,
+        "literal-autolink": 3,
+        "reference-link": 1,
+        "nested-list": 11,
+        "four-space-indent": 2,
+        "raw-html": 1,
+        "tab-indentation": 1,
+        "fenced-code": 18,
+        "blockquote": 3,
+        "callout": 1,
+        "comment-component": 1,
+        "table": 7,
+        "fence-info-edge": 2
+      },
+      "remote": "https://github.com/tanstack/intent",
+      "revision": "e57454726b97f489336283d30ff7ae43e1817af4"
+    },
+    {
+      "name": "markdown",
+      "bytes": 77469,
+      "markdown": 35,
+      "mdx": 0,
+      "skipped": 0,
+      "errors": 0,
+      "comparisons": {
+        "exact": 25,
+        "serialization": 6,
+        "structure": 4,
+        "content": 0
+      },
+      "features": {
+        "atx-heading": 35,
+        "fenced-code": 25,
+        "frontmatter": 27,
+        "table": 12,
+        "code-metadata": 2,
+        "literal-autolink": 1,
+        "multiline-link": 1,
+        "blockquote": 2,
+        "nested-list": 1
+      },
+      "dirty": true,
+      "remote": "https://github.com/TanStack/markdown.git",
+      "revision": "9bbe1220c5b77ca89cadaa41d83f8172dfc1da82"
+    },
+    {
+      "name": "pacer",
+      "bytes": 978223,
+      "markdown": 334,
+      "mdx": 0,
+      "skipped": 0,
+      "errors": 0,
+      "comparisons": {
+        "exact": 301,
+        "serialization": 1,
+        "structure": 13,
+        "content": 19
+      },
+      "features": {
+        "atx-heading": 333,
+        "task-list": 1,
+        "frontmatter": 205,
+        "literal-autolink": 12,
+        "reference-link": 1,
+        "nested-list": 29,
+        "blockquote": 25,
+        "callout": 19,
+        "four-space-indent": 10,
+        "raw-html": 74,
+        "tab-indentation": 10,
+        "fenced-code": 201,
+        "strikethrough": 30,
+        "combined-emphasis": 1,
+        "delimiter-edge": 1
+      },
+      "remote": "https://github.com/tanstack/pacer",
+      "revision": "556125d73ff020b1f854bded14cb82e58581e3b6"
+    },
+    {
+      "name": "preact",
+      "bytes": 47818,
+      "markdown": 8,
+      "mdx": 0,
+      "skipped": 0,
+      "errors": 0,
+      "comparisons": {
+        "exact": 3,
+        "serialization": 0,
+        "structure": 5,
+        "content": 0
+      },
+      "features": {
+        "atx-heading": 6,
+        "literal-autolink": 4,
+        "reference-link": 3,
+        "frontmatter": 2,
+        "task-list": 1,
+        "blockquote": 2,
+        "fenced-code": 3,
+        "nested-list": 1,
+        "entity-reference": 1,
+        "raw-html": 1
+      },
+      "dirty": true,
+      "remote": "https://github.com/TanStack/preact.git",
+      "revision": "4dc9b508dd37544b858bfa52d28e12d219effdbb"
+    },
+    {
+      "name": "query",
+      "bytes": 1357314,
+      "markdown": 671,
+      "mdx": 0,
+      "skipped": 0,
+      "errors": 0,
+      "comparisons": {
+        "exact": 585,
+        "serialization": 18,
+        "structure": 66,
+        "content": 2
+      },
+      "features": {
+        "frontmatter": 565,
+        "atx-heading": 486,
+        "task-list": 9,
+        "blockquote": 66,
+        "callout": 1,
+        "fenced-code": 471,
+        "four-space-indent": 15,
+        "literal-autolink": 24,
+        "nested-list": 73,
+        "raw-html": 144,
+        "delimiter-edge": 3,
+        "table": 4,
+        "reference-link": 120,
+        "section-marker": 118,
+        "strikethrough": 3,
+        "angle-autolink": 1,
+        "entity-reference": 1
+      },
+      "dirty": true,
+      "remote": "https://github.com/TanStack/query.git",
+      "revision": "f727aa9bcef3b77b086888583ca04f6a19f6bcb9"
+    },
+    {
+      "name": "ranger",
+      "bytes": 17792,
+      "markdown": 20,
+      "mdx": 0,
+      "skipped": 0,
+      "errors": 0,
+      "comparisons": {
+        "exact": 19,
+        "serialization": 0,
+        "structure": 1,
+        "content": 0
+      },
+      "features": {
+        "atx-heading": 17,
+        "literal-autolink": 4,
+        "nested-list": 3,
+        "four-space-indent": 3,
+        "raw-html": 4,
+        "frontmatter": 11,
+        "fenced-code": 7
+      },
+      "remote": "https://github.com/TanStack/ranger.git",
+      "revision": "5bdf486292418cc6e71f72fa023ddb1295051f04"
+    },
+    {
+      "name": "react-charts",
+      "bytes": 19287,
+      "markdown": 10,
+      "mdx": 0,
+      "skipped": 0,
+      "errors": 0,
+      "comparisons": {
+        "exact": 10,
+        "serialization": 0,
+        "structure": 0,
+        "content": 0
+      },
+      "features": {
+        "atx-heading": 6,
+        "four-space-indent": 3,
+        "literal-autolink": 3,
+        "raw-html": 3,
+        "fenced-code": 5,
+        "blockquote": 3,
+        "delimiter-edge": 1,
+        "frontmatter": 7,
+        "nested-list": 2,
+        "site-template": 2
+      },
+      "remote": "https://github.com/TanStack/react-charts.git",
+      "revision": "e4b1c9c6306862847e2a9cfa91fcb3e42163c8d3"
+    },
+    {
+      "name": "redact",
+      "bytes": 38306,
+      "markdown": 3,
+      "mdx": 0,
+      "skipped": 0,
+      "errors": 0,
+      "comparisons": {
+        "exact": 0,
+        "serialization": 2,
+        "structure": 1,
+        "content": 0
+      },
+      "features": {
+        "atx-heading": 3,
+        "delimiter-edge": 1,
+        "fenced-code": 2,
+        "raw-html": 1,
+        "table": 3
+      },
+      "remote": "https://github.com/TanStack/redact.git",
+      "revision": "e1620a13aab8935c806238f117ba58559b7cd002"
+    },
+    {
+      "name": "router",
+      "bytes": 2814559,
+      "markdown": 506,
+      "mdx": 0,
+      "skipped": 0,
+      "errors": 0,
+      "comparisons": {
+        "exact": 308,
+        "serialization": 12,
+        "structure": 88,
+        "content": 98
+      },
+      "features": {
+        "frontmatter": 275,
+        "atx-heading": 464,
+        "literal-autolink": 49,
+        "nested-list": 78,
+        "blockquote": 133,
+        "callout": 71,
+        "fenced-code": 327,
+        "four-space-indent": 23,
+        "raw-html": 39,
+        "tab-indentation": 1,
+        "table": 50,
+        "delimiter-edge": 9,
+        "comment-component": 56,
+        "reference-link": 3,
+        "code-metadata": 37,
+        "task-list": 28,
+        "section-marker": 1
+      },
+      "remote": "https://github.com/tanstack/router.git",
+      "revision": "6f882b7dae8870e0f51791ec89015f75c74e4c9b"
+    },
+    {
+      "name": "select",
+      "bytes": 2715,
+      "markdown": 1,
+      "mdx": 0,
+      "skipped": 0,
+      "errors": 0,
+      "comparisons": {
+        "exact": 1,
+        "serialization": 0,
+        "structure": 0,
+        "content": 0
+      },
+      "features": {
+        "atx-heading": 1,
+        "four-space-indent": 1,
+        "literal-autolink": 1,
+        "raw-html": 1
+      },
+      "dirty": true,
+      "remote": "https://github.com/TanStack/select.git",
+      "revision": "1aa8f85f3312f7f891b8808f1b9688cae4a9ef2a"
+    },
+    {
+      "name": "start-evals",
+      "bytes": 3445858,
+      "markdown": 741,
+      "mdx": 0,
+      "skipped": 0,
+      "errors": 0,
+      "comparisons": {
+        "exact": 474,
+        "serialization": 134,
+        "structure": 103,
+        "content": 30
+      },
+      "features": {
+        "atx-heading": 727,
+        "fenced-code": 103,
+        "table": 146,
+        "literal-autolink": 30,
+        "blockquote": 7,
+        "site-template": 2,
+        "raw-html": 18,
+        "four-space-indent": 27,
+        "nested-list": 35,
+        "entity-reference": 1,
+        "footnote": 1,
+        "frontmatter": 1,
+        "reference-link": 1,
+        "setext-heading": 1
+      },
+      "dirty": true,
+      "remote": "https://github.com/TanStack/start-evals.git",
+      "revision": "cb854d8c8a1a3754880913e99fbf2452c9ea1557"
+    },
+    {
+      "name": "start-rsc",
+      "bytes": 1683806,
+      "markdown": 433,
+      "mdx": 0,
+      "skipped": 0,
+      "errors": 0,
+      "comparisons": {
+        "exact": 290,
+        "serialization": 15,
+        "structure": 46,
+        "content": 82
+      },
+      "features": {
+        "atx-heading": 368,
+        "literal-autolink": 48,
+        "nested-list": 42,
+        "blockquote": 107,
+        "callout": 79,
+        "fenced-code": 296,
+        "four-space-indent": 22,
+        "raw-html": 37,
+        "tab-indentation": 1,
+        "delimiter-edge": 6,
+        "frontmatter": 271,
+        "task-list": 27,
+        "reference-link": 29,
+        "table": 24,
+        "section-marker": 27,
+        "fence-info-edge": 1
+      },
+      "dirty": true,
+      "remote": "https://github.com/tanstack/start-rsc",
+      "revision": "b5ef4abfe883d072b78e5cba24cc321b42faed10"
+    },
+    {
+      "name": "store",
+      "bytes": 49267,
+      "markdown": 49,
+      "mdx": 0,
+      "skipped": 0,
+      "errors": 0,
+      "comparisons": {
+        "exact": 41,
+        "serialization": 5,
+        "structure": 3,
+        "content": 0
+      },
+      "features": {
+        "atx-heading": 42,
+        "task-list": 1,
+        "literal-autolink": 3,
+        "nested-list": 1,
+        "four-space-indent": 2,
+        "raw-html": 10,
+        "tab-indentation": 1,
+        "fenced-code": 34,
+        "frontmatter": 40,
+        "hard-break": 1
+      },
+      "remote": "https://github.com/TanStack/store.git",
+      "revision": "88283a2647a2fb2abb422cb15e3bdc4226853ac4"
+    },
+    {
+      "name": "table",
+      "bytes": 414692,
+      "markdown": 167,
+      "mdx": 0,
+      "skipped": 0,
+      "errors": 0,
+      "comparisons": {
+        "exact": 152,
+        "serialization": 4,
+        "structure": 11,
+        "content": 0
+      },
+      "features": {
+        "atx-heading": 161,
+        "frontmatter": 76,
+        "literal-autolink": 3,
+        "reference-link": 1,
+        "nested-list": 10,
+        "blockquote": 38,
+        "fenced-code": 70,
+        "raw-html": 7,
+        "table": 2,
+        "four-space-indent": 1,
+        "site-template": 1,
+        "combined-emphasis": 2,
+        "delimiter-edge": 2
+      },
+      "remote": "https://github.com/TanStack/table.git",
+      "revision": "965b55ec0bfb3983596d56835bc81a9e29b4ee72"
+    },
+    {
+      "name": "tanstack.com",
+      "bytes": 1027164,
+      "markdown": 80,
+      "mdx": 0,
+      "skipped": 0,
+      "errors": 0,
+      "comparisons": {
+        "exact": 58,
+        "serialization": 10,
+        "structure": 7,
+        "content": 5
+      },
+      "features": {
+        "atx-heading": 79,
+        "fenced-code": 60,
+        "table": 21,
+        "nested-list": 7,
+        "blockquote": 18,
+        "callout": 3,
+        "literal-autolink": 4,
+        "raw-html": 9,
+        "task-list": 2,
+        "frontmatter": 56,
+        "delimiter-edge": 4,
+        "code-metadata": 1,
+        "combined-emphasis": 2,
+        "four-space-indent": 1,
+        "comment-component": 2,
+        "footnote": 2,
+        "reference-link": 2
+      },
+      "remote": "https://github.com/TanStack/tanstack.com.git",
+      "revision": "b0c08c86704b677ab5ed720a2ce27b51db4da1f9"
+    },
+    {
+      "name": "virtual",
+      "bytes": 170732,
+      "markdown": 65,
+      "mdx": 0,
+      "skipped": 0,
+      "errors": 0,
+      "comparisons": {
+        "exact": 52,
+        "serialization": 2,
+        "structure": 10,
+        "content": 1
+      },
+      "features": {
+        "frontmatter": 13,
+        "atx-heading": 64,
+        "task-list": 1,
+        "blockquote": 3,
+        "callout": 1,
+        "fenced-code": 18,
+        "four-space-indent": 5,
+        "literal-autolink": 2,
+        "nested-list": 9,
+        "raw-html": 2,
+        "tab-indentation": 1,
+        "table": 1
+      },
+      "dirty": true,
+      "remote": "https://github.com/TanStack/virtual.git",
+      "revision": "43ef13c5002f64fa7a6f78cc3676670401370f83"
+    },
+    {
+      "name": "workflow",
+      "bytes": 564358,
+      "markdown": 128,
+      "mdx": 0,
+      "skipped": 0,
+      "errors": 0,
+      "comparisons": {
+        "exact": 84,
+        "serialization": 17,
+        "structure": 16,
+        "content": 11
+      },
+      "features": {
+        "frontmatter": 84,
+        "atx-heading": 126,
+        "task-list": 1,
+        "literal-autolink": 7,
+        "reference-link": 1,
+        "nested-list": 14,
+        "fenced-code": 107,
+        "table": 23,
+        "blockquote": 15,
+        "delimiter-edge": 4,
+        "four-space-indent": 21,
+        "raw-html": 30,
+        "angle-autolink": 3,
+        "callout": 6,
+        "entity-reference": 6
+      },
+      "dirty": true,
+      "remote": "https://github.com/TanStack/workflow.git",
+      "revision": "70ced3ccc78c1899a9f2ddfb6e9a2a6243ae973d"
+    }
+  ],
+  "kinds": {
+    "blog": 62,
+    "changes": 196,
+    "docs": 2798,
+    "fixture": 75,
+    "other": 820,
+    "readme": 875
+  },
+  "profileContentDifferences": 30,
+  "targetProfileContentDifferences": 0,
+  "notableFiles": [
+    {
+      "repository": "start-evals",
+      "path": "archive/legacy-harness/runs/2026-05-31T21-11-29-191Z-codex-context-v2-strict-baseline/executions/r2__codex-desktop-gpt-5__agent-native-framework-tools__server-boundary-secret__nextjs-app-router/transcript.md",
+      "kind": "other",
+      "format": "md",
+      "bytes": 6931,
+      "features": [
+        "atx-heading"
+      ],
+      "comparison": "content",
+      "contentDifference": {
+        "actual": "...utions. Commands that traverse upward or list sibling execution folders, such asfind .., are prohibited; usefind .inside this execution workspace instead.\" Started: 2026-06-01T02:49:22.001Z Ended: 2026-06-01T02:58:36.877Z Exit code: 0 Signa...",
+        "reference": "...utions. Commands that traverse upward or list sibling execution folders, such as find .., are prohibited; use find . inside this execution workspace instead.\" Started: 2026-06-01T02:49:22.001Z Ended: 2026-06-01T02:58:36.877Z Exit code: 0 Si..."
+      },
+      "durationMs": 1.2550419999997757
+    },
+    {
+      "repository": "start-evals",
+      "path": "archive/legacy-harness/runs/2026-05-31T21-11-29-191Z-codex-context-v2-strict-baseline/executions/r1__codex-desktop-gpt-5__baseline__protected-settings__nextjs-app-router/transcript.md",
+      "kind": "other",
+      "format": "md",
+      "bytes": 6306,
+      "features": [
+        "atx-heading",
+        "nested-list"
+      ],
+      "comparison": "content",
+      "contentDifference": {
+        "actual": "...utions. Commands that traverse upward or list sibling execution folders, such asfind .., are prohibited; usefind .inside this execution workspace instead.\" Started: 2026-06-01T03:33:27.634Z Ended: 2026-06-01T03:41:45.823Z Exit code: 0 Signa...",
+        "reference": "...utions. Commands that traverse upward or list sibling execution folders, such as find .., are prohibited; use find . inside this execution workspace instead.\" Started: 2026-06-01T03:33:27.634Z Ended: 2026-06-01T03:41:45.823Z Exit code: 0 Si..."
+      },
+      "durationMs": 1.2914579999996931
+    },
+    {
+      "repository": "start-evals",
+      "path": "archive/legacy-harness/runs/2026-05-31T21-11-29-191Z-codex-context-v2-strict-baseline/executions/r1__codex-desktop-gpt-5__agent-native-framework-tools__protected-settings__tanstack-start/transcript.md",
+      "kind": "other",
+      "format": "md",
+      "bytes": 6082,
+      "features": [
+        "atx-heading",
+        "nested-list"
+      ],
+      "comparison": "content",
+      "contentDifference": {
+        "actual": "...utions. Commands that traverse upward or list sibling execution folders, such asfind .., are prohibited; usefind .inside this execution workspace instead.\" Started: 2026-06-01T03:01:09.414Z Ended: 2026-06-01T03:11:59.376Z Exit code: 0 Signa...",
+        "reference": "...utions. Commands that traverse upward or list sibling execution folders, such as find .., are prohibited; use find . inside this execution workspace instead.\" Started: 2026-06-01T03:01:09.414Z Ended: 2026-06-01T03:11:59.376Z Exit code: 0 Si..."
+      },
+      "durationMs": 1.2829999999999018
+    },
+    {
+      "repository": "start-evals",
+      "path": "archive/legacy-harness/runs/2026-05-31T21-11-29-191Z-codex-context-v2-strict-baseline/executions/r1__codex-desktop-gpt-5__agent-native-framework-tools__protected-settings__nextjs-app-router/transcript.md",
+      "kind": "other",
+      "format": "md",
+      "bytes": 5450,
+      "features": [
+        "atx-heading",
+        "nested-list"
+      ],
+      "comparison": "content",
+      "contentDifference": {
+        "actual": "...utions. Commands that traverse upward or list sibling execution folders, such asfind .., are prohibited; usefind .inside this execution workspace instead.\" Started: 2026-06-01T03:15:19.199Z Ended: 2026-06-01T03:30:36.496Z Exit code: 0 Signa...",
+        "reference": "...utions. Commands that traverse upward or list sibling execution folders, such as find .., are prohibited; use find . inside this execution workspace instead.\" Started: 2026-06-01T03:15:19.199Z Ended: 2026-06-01T03:30:36.496Z Exit code: 0 Si..."
+      },
+      "durationMs": 1.1159159999997428
+    },
+    {
+      "repository": "router",
+      "path": "packages/eslint-plugin-start/no-client-code-in-server-component.md",
+      "kind": "other",
+      "format": "md",
+      "bytes": 3939,
+      "features": [
+        "atx-heading",
+        "fenced-code",
+        "nested-list"
+      ],
+      "comparison": "content",
+      "contentDifference": {
+        "actual": "...specific violating node (where possible) and includes a \"Triggered by rendering \\\"X\\\"\" hint naming the entry component. Options type Options = [ { allowedServerHooks?: string[] }, ] allowedServerHooks Add additional hook names that should b...",
+        "reference": "...specific violating node (where possible) and includes a \"Triggered by rendering \"X\"\" hint naming the entry component. Options type Options = [ { allowedServerHooks?: string[] }, ] allowedServerHooks Add additional hook names that should be ..."
+      },
+      "durationMs": 1.0327910000000884
+    },
+    {
+      "repository": "start-rsc",
+      "path": "packages/eslint-plugin-start/no-client-code-in-server-component.md",
+      "kind": "other",
+      "format": "md",
+      "bytes": 3939,
+      "features": [
+        "atx-heading",
+        "fenced-code",
+        "nested-list"
+      ],
+      "comparison": "content",
+      "contentDifference": {
+        "actual": "...specific violating node (where possible) and includes a \"Triggered by rendering \\\"X\\\"\" hint naming the entry component. Options type Options = [ { allowedServerHooks?: string[] }, ] allowedServerHooks Add additional hook names that should b...",
+        "reference": "...specific violating node (where possible) and includes a \"Triggered by rendering \"X\"\" hint naming the entry component. Options type Options = [ { allowedServerHooks?: string[] }, ] allowedServerHooks Add additional hook names that should be ..."
+      },
+      "durationMs": 0.9969590000000608
+    },
+    {
+      "repository": "start-evals",
+      "path": "archive/legacy-harness/runs/2026-05-31T21-11-29-191Z-codex-context-v2-strict-baseline/executions/r1__codex-desktop-gpt-5__official-docs__typed-search-dashboard__nextjs-app-router/transcript.md",
+      "kind": "other",
+      "format": "md",
+      "bytes": 3337,
+      "features": [
+        "atx-heading",
+        "nested-list"
+      ],
+      "comparison": "content",
+      "contentDifference": {
+        "actual": "...utions. Commands that traverse upward or list sibling execution folders, such asfind .., are prohibited; usefind .inside this execution workspace instead.\" Started: 2026-06-01T03:44:40.876Z Ended: 2026-06-01T03:55:53.181Z Exit code: 0 Signa...",
+        "reference": "...utions. Commands that traverse upward or list sibling execution folders, such as find .., are prohibited; use find . inside this execution workspace instead.\" Started: 2026-06-01T03:44:40.876Z Ended: 2026-06-01T03:55:53.181Z Exit code: 0 Si..."
+      },
+      "durationMs": 0.4983750000001237
+    },
+    {
+      "repository": "start-evals",
+      "path": "archive/legacy-harness/runs/2026-06-08T05-58-21-915Z-evidence-debt-replace-codex-desktop-gpt-5__baseline-codex-desktop-gpt-5-baseline/executions/r1__codex-desktop-gpt-5__baseline__error-and-validation-flow__nextjs-app-router/transcript.md",
+      "kind": "other",
+      "format": "md",
+      "bytes": 2797,
+      "features": [
+        "atx-heading"
+      ],
+      "comparison": "content",
+      "contentDifference": {
+        "actual": "...utions. Commands that traverse upward or list sibling execution folders, such asfind .., are prohibited; usefind .inside this execution workspace instead. Workspace-only runner mode: the repository root and sibling run directories are inten...",
+        "reference": "...utions. Commands that traverse upward or list sibling execution folders, such as find .., are prohibited; use find . inside this execution workspace instead. Workspace-only runner mode: the repository root and sibling run directories are in..."
+      },
+      "durationMs": 0.2172499999996944
+    },
+    {
+      "repository": "start-evals",
+      "path": "archive/legacy-harness/runs/2026-06-08T05-58-21-915Z-evidence-debt-replace-codex-desktop-gpt-5__baseline-codex-desktop-gpt-5-baseline/executions/r1__codex-desktop-gpt-5__baseline__server-boundary-secret__nextjs-app-router/transcript.md",
+      "kind": "other",
+      "format": "md",
+      "bytes": 2785,
+      "features": [
+        "atx-heading"
+      ],
+      "comparison": "content",
+      "contentDifference": {
+        "actual": "...utions. Commands that traverse upward or list sibling execution folders, such asfind .., are prohibited; usefind .inside this execution workspace instead. Workspace-only runner mode: the repository root and sibling run directories are inten...",
+        "reference": "...utions. Commands that traverse upward or list sibling execution folders, such as find .., are prohibited; use find . inside this execution workspace instead. Workspace-only runner mode: the repository root and sibling run directories are in..."
+      },
+      "durationMs": 0.219916000000012
+    },
+    {
+      "repository": "start-evals",
+      "path": "archive/legacy-harness/runs/2026-06-08T05-58-21-915Z-evidence-debt-replace-codex-desktop-gpt-5__baseline-codex-desktop-gpt-5-baseline/executions/r2__codex-desktop-gpt-5__baseline__server-boundary-secret__nextjs-app-router/transcript.md",
+      "kind": "other",
+      "format": "md",
+      "bytes": 2785,
+      "features": [
+        "atx-heading"
+      ],
+      "comparison": "content",
+      "contentDifference": {
+        "actual": "...utions. Commands that traverse upward or list sibling execution folders, such asfind .., are prohibited; usefind .inside this execution workspace instead. Workspace-only runner mode: the repository root and sibling run directories are inten...",
+        "reference": "...utions. Commands that traverse upward or list sibling execution folders, such as find .., are prohibited; use find . inside this execution workspace instead. Workspace-only runner mode: the repository root and sibling run directories are in..."
+      },
+      "durationMs": 0.23266599999988102
+    },
+    {
+      "repository": "start-evals",
+      "path": "archive/legacy-harness/runs/2026-06-08T05-58-21-915Z-evidence-debt-replace-codex-desktop-gpt-5__baseline-codex-desktop-gpt-5-baseline/executions/r1__codex-desktop-gpt-5__baseline__error-and-validation-flow__tanstack-start/transcript.md",
+      "kind": "other",
+      "format": "md",
+      "bytes": 2784,
+      "features": [
+        "atx-heading"
+      ],
+      "comparison": "content",
+      "contentDifference": {
+        "actual": "...utions. Commands that traverse upward or list sibling execution folders, such asfind .., are prohibited; usefind .inside this execution workspace instead. Workspace-only runner mode: the repository root and sibling run directories are inten...",
+        "reference": "...utions. Commands that traverse upward or list sibling execution folders, such as find .., are prohibited; use find . inside this execution workspace instead. Workspace-only runner mode: the repository root and sibling run directories are in..."
+      },
+      "durationMs": 0.23549999999977445
+    },
+    {
+      "repository": "start-evals",
+      "path": "archive/legacy-harness/runs/2026-06-06T03-49-20-675Z-publishable-second-topoff-codex-desktop-gpt-5-baseline-robust/executions/r1__codex-desktop-gpt-5__baseline__error-and-validation-flow__nextjs-app-router/transcript.md",
+      "kind": "other",
+      "format": "md",
+      "bytes": 2778,
+      "features": [
+        "atx-heading"
+      ],
+      "comparison": "content",
+      "contentDifference": {
+        "actual": "...utions. Commands that traverse upward or list sibling execution folders, such asfind .., are prohibited; usefind .inside this execution workspace instead. Workspace-only runner mode: the repository root and sibling run directories are inten...",
+        "reference": "...utions. Commands that traverse upward or list sibling execution folders, such as find .., are prohibited; use find . inside this execution workspace instead. Workspace-only runner mode: the repository root and sibling run directories are in..."
+      },
+      "durationMs": 0.24716700000044511
+    },
+    {
+      "repository": "start-evals",
+      "path": "archive/legacy-harness/runs/2026-06-06T03-49-20-675Z-publishable-second-topoff-codex-desktop-gpt-5-baseline-robust/executions/r2__codex-desktop-gpt-5__baseline__error-and-validation-flow__nextjs-app-router/transcript.md",
+      "kind": "other",
+      "format": "md",
+      "bytes": 2778,
+      "features": [
+        "atx-heading"
+      ],
+      "comparison": "content",
+      "contentDifference": {
+        "actual": "...utions. Commands that traverse upward or list sibling execution folders, such asfind .., are prohibited; usefind .inside this execution workspace instead. Workspace-only runner mode: the repository root and sibling run directories are inten...",
+        "reference": "...utions. Commands that traverse upward or list sibling execution folders, such as find .., are prohibited; use find . inside this execution workspace instead. Workspace-only runner mode: the repository root and sibling run directories are in..."
+      },
+      "durationMs": 0.2244170000003578
+    },
+    {
+      "repository": "start-evals",
+      "path": "archive/legacy-harness/runs/2026-06-08T05-58-21-915Z-evidence-debt-replace-codex-desktop-gpt-5__baseline-codex-desktop-gpt-5-baseline/executions/r1__codex-desktop-gpt-5__baseline__server-boundary-secret__tanstack-start/transcript.md",
+      "kind": "other",
+      "format": "md",
+      "bytes": 2772,
+      "features": [
+        "atx-heading"
+      ],
+      "comparison": "content",
+      "contentDifference": {
+        "actual": "...utions. Commands that traverse upward or list sibling execution folders, such asfind .., are prohibited; usefind .inside this execution workspace instead. Workspace-only runner mode: the repository root and sibling run directories are inten...",
+        "reference": "...utions. Commands that traverse upward or list sibling execution folders, such as find .., are prohibited; use find . inside this execution workspace instead. Workspace-only runner mode: the repository root and sibling run directories are in..."
+      },
+      "durationMs": 0.2437500000005457
+    },
+    {
+      "repository": "start-evals",
+      "path": "archive/legacy-harness/runs/2026-06-08T05-58-21-915Z-evidence-debt-replace-codex-desktop-gpt-5__baseline-codex-desktop-gpt-5-baseline/executions/r2__codex-desktop-gpt-5__baseline__server-boundary-secret__tanstack-start/transcript.md",
+      "kind": "other",
+      "format": "md",
+      "bytes": 2772,
+      "features": [
+        "atx-heading"
+      ],
+      "comparison": "content",
+      "contentDifference": {
+        "actual": "...utions. Commands that traverse upward or list sibling execution folders, such asfind .., are prohibited; usefind .inside this execution workspace instead. Workspace-only runner mode: the repository root and sibling run directories are inten...",
+        "reference": "...utions. Commands that traverse upward or list sibling execution folders, such as find .., are prohibited; use find . inside this execution workspace instead. Workspace-only runner mode: the repository root and sibling run directories are in..."
+      },
+      "durationMs": 0.22466699999949924
+    },
+    {
+      "repository": "start-evals",
+      "path": "archive/legacy-harness/runs/2026-06-08T05-58-21-915Z-evidence-debt-replace-codex-desktop-gpt-5__baseline-codex-desktop-gpt-5-baseline/executions/r1__codex-desktop-gpt-5__baseline__protected-settings__nextjs-app-router/transcript.md",
+      "kind": "other",
+      "format": "md",
+      "bytes": 2769,
+      "features": [
+        "atx-heading"
+      ],
+      "comparison": "content",
+      "contentDifference": {
+        "actual": "...utions. Commands that traverse upward or list sibling execution folders, such asfind .., are prohibited; usefind .inside this execution workspace instead. Workspace-only runner mode: the repository root and sibling run directories are inten...",
+        "reference": "...utions. Commands that traverse upward or list sibling execution folders, such as find .., are prohibited; use find . inside this execution workspace instead. Workspace-only runner mode: the repository root and sibling run directories are in..."
+      },
+      "durationMs": 0.22512499999993452
+    },
+    {
+      "repository": "start-evals",
+      "path": "archive/legacy-harness/runs/2026-06-06T03-49-20-675Z-publishable-second-topoff-codex-desktop-gpt-5-baseline-robust/executions/r1__codex-desktop-gpt-5__baseline__server-boundary-secret__nextjs-app-router/transcript.md",
+      "kind": "other",
+      "format": "md",
+      "bytes": 2766,
+      "features": [
+        "atx-heading"
+      ],
+      "comparison": "content",
+      "contentDifference": {
+        "actual": "...utions. Commands that traverse upward or list sibling execution folders, such asfind .., are prohibited; usefind .inside this execution workspace instead. Workspace-only runner mode: the repository root and sibling run directories are inten...",
+        "reference": "...utions. Commands that traverse upward or list sibling execution folders, such as find .., are prohibited; use find . inside this execution workspace instead. Workspace-only runner mode: the repository root and sibling run directories are in..."
+      },
+      "durationMs": 0.2402910000000702
+    },
+    {
+      "repository": "start-evals",
+      "path": "archive/legacy-harness/runs/2026-06-04T15-39-36-840Z-2026-06-04-codex-baseline-publishable-topoff-min/executions/r1__codex-desktop-gpt-5__baseline__error-and-validation-flow__nextjs-app-router/transcript.md",
+      "kind": "other",
+      "format": "md",
+      "bytes": 2765,
+      "features": [
+        "atx-heading"
+      ],
+      "comparison": "content",
+      "contentDifference": {
+        "actual": "...utions. Commands that traverse upward or list sibling execution folders, such asfind .., are prohibited; usefind .inside this execution workspace instead. Workspace-only runner mode: the repository root and sibling run directories are inten...",
+        "reference": "...utions. Commands that traverse upward or list sibling execution folders, such as find .., are prohibited; use find . inside this execution workspace instead. Workspace-only runner mode: the repository root and sibling run directories are in..."
+      },
+      "durationMs": 0.27074999999967986
+    },
+    {
+      "repository": "start-evals",
+      "path": "archive/legacy-harness/runs/2026-06-06T03-49-20-675Z-publishable-second-topoff-codex-desktop-gpt-5-baseline-robust/executions/r1__codex-desktop-gpt-5__baseline__error-and-validation-flow__tanstack-start/transcript.md",
+      "kind": "other",
+      "format": "md",
+      "bytes": 2765,
+      "features": [
+        "atx-heading"
+      ],
+      "comparison": "content",
+      "contentDifference": {
+        "actual": "...utions. Commands that traverse upward or list sibling execution folders, such asfind .., are prohibited; usefind .inside this execution workspace instead. Workspace-only runner mode: the repository root and sibling run directories are inten...",
+        "reference": "...utions. Commands that traverse upward or list sibling execution folders, such as find .., are prohibited; use find . inside this execution workspace instead. Workspace-only runner mode: the repository root and sibling run directories are in..."
+      },
+      "durationMs": 0.2360420000004524
+    },
+    {
+      "repository": "start-evals",
+      "path": "archive/legacy-harness/runs/2026-06-06T03-49-20-675Z-publishable-second-topoff-codex-desktop-gpt-5-baseline-robust/executions/r2__codex-desktop-gpt-5__baseline__error-and-validation-flow__tanstack-start/transcript.md",
+      "kind": "other",
+      "format": "md",
+      "bytes": 2765,
+      "features": [
+        "atx-heading"
+      ],
+      "comparison": "content",
+      "contentDifference": {
+        "actual": "...utions. Commands that traverse upward or list sibling execution folders, such asfind .., are prohibited; usefind .inside this execution workspace instead. Workspace-only runner mode: the repository root and sibling run directories are inten...",
+        "reference": "...utions. Commands that traverse upward or list sibling execution folders, such as find .., are prohibited; use find . inside this execution workspace instead. Workspace-only runner mode: the repository root and sibling run directories are in..."
+      },
+      "durationMs": 0.2509170000002996
+    },
+    {
+      "repository": "start-evals",
+      "path": "archive/legacy-harness/runs/2026-06-08T05-58-21-915Z-evidence-debt-replace-codex-desktop-gpt-5__baseline-codex-desktop-gpt-5-baseline/executions/r1__codex-desktop-gpt-5__baseline__protected-settings__tanstack-start/transcript.md",
+      "kind": "other",
+      "format": "md",
+      "bytes": 2756,
+      "features": [
+        "atx-heading"
+      ],
+      "comparison": "content",
+      "contentDifference": {
+        "actual": "...utions. Commands that traverse upward or list sibling execution folders, such asfind .., are prohibited; usefind .inside this execution workspace instead. Workspace-only runner mode: the repository root and sibling run directories are inten...",
+        "reference": "...utions. Commands that traverse upward or list sibling execution folders, such as find .., are prohibited; use find . inside this execution workspace instead. Workspace-only runner mode: the repository root and sibling run directories are in..."
+      },
+      "durationMs": 0.21774999999979627
+    },
+    {
+      "repository": "start-evals",
+      "path": "archive/legacy-harness/runs/2026-06-04T15-39-36-840Z-2026-06-04-codex-baseline-publishable-topoff-min/executions/r1__codex-desktop-gpt-5__baseline__server-boundary-secret__nextjs-app-router/transcript.md",
+      "kind": "other",
+      "format": "md",
+      "bytes": 2753,
+      "features": [
+        "atx-heading"
+      ],
+      "comparison": "content",
+      "contentDifference": {
+        "actual": "...utions. Commands that traverse upward or list sibling execution folders, such asfind .., are prohibited; usefind .inside this execution workspace instead. Workspace-only runner mode: the repository root and sibling run directories are inten...",
+        "reference": "...utions. Commands that traverse upward or list sibling execution folders, such as find .., are prohibited; use find . inside this execution workspace instead. Workspace-only runner mode: the repository root and sibling run directories are in..."
+      },
+      "durationMs": 0.2727919999997539
+    },
+    {
+      "repository": "start-evals",
+      "path": "archive/legacy-harness/runs/2026-06-04T15-39-36-840Z-2026-06-04-codex-baseline-publishable-topoff-min/executions/r2__codex-desktop-gpt-5__baseline__server-boundary-secret__nextjs-app-router/transcript.md",
+      "kind": "other",
+      "format": "md",
+      "bytes": 2753,
+      "features": [
+        "atx-heading"
+      ],
+      "comparison": "content",
+      "contentDifference": {
+        "actual": "...utions. Commands that traverse upward or list sibling execution folders, such asfind .., are prohibited; usefind .inside this execution workspace instead. Workspace-only runner mode: the repository root and sibling run directories are inten...",
+        "reference": "...utions. Commands that traverse upward or list sibling execution folders, such as find .., are prohibited; use find . inside this execution workspace instead. Workspace-only runner mode: the repository root and sibling run directories are in..."
+      },
+      "durationMs": 0.21883299999990413
+    },
+    {
+      "repository": "start-evals",
+      "path": "archive/legacy-harness/runs/2026-06-06T03-49-20-675Z-publishable-second-topoff-codex-desktop-gpt-5-baseline-robust/executions/r1__codex-desktop-gpt-5__baseline__server-boundary-secret__tanstack-start/transcript.md",
+      "kind": "other",
+      "format": "md",
+      "bytes": 2753,
+      "features": [
+        "atx-heading"
+      ],
+      "comparison": "content",
+      "contentDifference": {
+        "actual": "...utions. Commands that traverse upward or list sibling execution folders, such asfind .., are prohibited; usefind .inside this execution workspace instead. Workspace-only runner mode: the repository root and sibling run directories are inten...",
+        "reference": "...utions. Commands that traverse upward or list sibling execution folders, such as find .., are prohibited; use find . inside this execution workspace instead. Workspace-only runner mode: the repository root and sibling run directories are in..."
+      },
+      "durationMs": 0.2209999999995489
+    },
+    {
+      "repository": "start-evals",
+      "path": "archive/legacy-harness/runs/2026-06-04T15-39-36-840Z-2026-06-04-codex-baseline-publishable-topoff-min/executions/r1__codex-desktop-gpt-5__baseline__error-and-validation-flow__tanstack-start/transcript.md",
+      "kind": "other",
+      "format": "md",
+      "bytes": 2752,
+      "features": [
+        "atx-heading"
+      ],
+      "comparison": "content",
+      "contentDifference": {
+        "actual": "...utions. Commands that traverse upward or list sibling execution folders, such asfind .., are prohibited; usefind .inside this execution workspace instead. Workspace-only runner mode: the repository root and sibling run directories are inten...",
+        "reference": "...utions. Commands that traverse upward or list sibling execution folders, such as find .., are prohibited; use find . inside this execution workspace instead. Workspace-only runner mode: the repository root and sibling run directories are in..."
+      },
+      "durationMs": 0.23624999999992724
+    },
+    {
+      "repository": "start-evals",
+      "path": "archive/legacy-harness/runs/2026-06-04T15-39-36-840Z-2026-06-04-codex-baseline-publishable-topoff-min/executions/r1__codex-desktop-gpt-5__baseline__server-boundary-secret__tanstack-start/transcript.md",
+      "kind": "other",
+      "format": "md",
+      "bytes": 2740,
+      "features": [
+        "atx-heading"
+      ],
+      "comparison": "content",
+      "contentDifference": {
+        "actual": "...utions. Commands that traverse upward or list sibling execution folders, such asfind .., are prohibited; usefind .inside this execution workspace instead. Workspace-only runner mode: the repository root and sibling run directories are inten...",
+        "reference": "...utions. Commands that traverse upward or list sibling execution folders, such as find .., are prohibited; use find . inside this execution workspace instead. Workspace-only runner mode: the repository root and sibling run directories are in..."
+      },
+      "durationMs": 0.23462500000005093
+    },
+    {
+      "repository": "start-evals",
+      "path": "archive/legacy-harness/runs/2026-06-04T15-39-36-840Z-2026-06-04-codex-baseline-publishable-topoff-min/executions/r2__codex-desktop-gpt-5__baseline__server-boundary-secret__tanstack-start/transcript.md",
+      "kind": "other",
+      "format": "md",
+      "bytes": 2740,
+      "features": [
+        "atx-heading"
+      ],
+      "comparison": "content",
+      "contentDifference": {
+        "actual": "...utions. Commands that traverse upward or list sibling execution folders, such asfind .., are prohibited; usefind .inside this execution workspace instead. Workspace-only runner mode: the repository root and sibling run directories are inten...",
+        "reference": "...utions. Commands that traverse upward or list sibling execution folders, such as find .., are prohibited; use find . inside this execution workspace instead. Workspace-only runner mode: the repository root and sibling run directories are in..."
+      },
+      "durationMs": 0.2364159999997355
+    },
+    {
+      "repository": "start-evals",
+      "path": "archive/legacy-harness/runs/2026-06-04T15-39-36-840Z-2026-06-04-codex-baseline-publishable-topoff-min/executions/r1__codex-desktop-gpt-5__baseline__protected-settings__nextjs-app-router/transcript.md",
+      "kind": "other",
+      "format": "md",
+      "bytes": 2737,
+      "features": [
+        "atx-heading"
+      ],
+      "comparison": "content",
+      "contentDifference": {
+        "actual": "...utions. Commands that traverse upward or list sibling execution folders, such asfind .., are prohibited; usefind .inside this execution workspace instead. Workspace-only runner mode: the repository root and sibling run directories are inten...",
+        "reference": "...utions. Commands that traverse upward or list sibling execution folders, such as find .., are prohibited; use find . inside this execution workspace instead. Workspace-only runner mode: the repository root and sibling run directories are in..."
+      },
+      "durationMs": 0.2391250000000582
+    },
+    {
+      "repository": "start-evals",
+      "path": "archive/legacy-harness/runs/2026-06-04T15-39-36-840Z-2026-06-04-codex-baseline-publishable-topoff-min/executions/r1__codex-desktop-gpt-5__baseline__protected-settings__tanstack-start/transcript.md",
+      "kind": "other",
+      "format": "md",
+      "bytes": 2724,
+      "features": [
+        "atx-heading"
+      ],
+      "comparison": "content",
+      "contentDifference": {
+        "actual": "...utions. Commands that traverse upward or list sibling execution folders, such asfind .., are prohibited; usefind .inside this execution workspace instead. Workspace-only runner mode: the repository root and sibling run directories are inten...",
+        "reference": "...utions. Commands that traverse upward or list sibling execution folders, such as find .., are prohibited; use find . inside this execution workspace instead. Workspace-only runner mode: the repository root and sibling run directories are in..."
+      },
+      "durationMs": 0.24250000000029104
+    },
+    {
+      "repository": "start-evals",
+      "path": "archive/legacy-harness/runs/2026-05-31T21-11-29-191Z-codex-context-v2-strict-baseline/executions/r1__codex-desktop-gpt-5__official-docs__typed-search-dashboard__tanstack-start/transcript.md",
+      "kind": "other",
+      "format": "md",
+      "bytes": 1825,
+      "features": [
+        "atx-heading"
+      ],
+      "comparison": "content",
+      "contentDifference": {
+        "actual": "...utions. Commands that traverse upward or list sibling execution folders, such asfind .., are prohibited; usefind .inside this execution workspace instead.\" Started: 2026-06-01T03:58:21.278Z Ended: 2026-06-01T04:10:19.500Z Exit code: 124 Sig...",
+        "reference": "...utions. Commands that traverse upward or list sibling execution folders, such as find .., are prohibited; use find . inside this execution workspace instead.\" Started: 2026-06-01T03:58:21.278Z Ended: 2026-06-01T04:10:19.500Z Exit code: 124 ..."
+      },
+      "durationMs": 0.18283299999984592
+    },
+    {
+      "repository": "db",
+      "path": "packages/react-db/CHANGELOG.md",
+      "kind": "changes",
+      "format": "md",
+      "bytes": 51874,
+      "features": [
+        "atx-heading",
+        "fenced-code",
+        "nested-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 14.497041999999965
+    },
+    {
+      "repository": "db",
+      "path": "packages/vue-db/CHANGELOG.md",
+      "kind": "changes",
+      "format": "md",
+      "bytes": 38607,
+      "features": [
+        "atx-heading",
+        "fenced-code",
+        "nested-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 11.28779099999997
+    },
+    {
+      "repository": "router",
+      "path": "packages/react-start/CHANGELOG.md",
+      "kind": "changes",
+      "format": "md",
+      "bytes": 37934,
+      "features": [
+        "atx-heading",
+        "nested-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 14.179000000000087
+    },
+    {
+      "repository": "db",
+      "path": "docs/collections/powersync-collection.md",
+      "kind": "docs",
+      "format": "md",
+      "bytes": 37385,
+      "features": [
+        "atx-heading",
+        "fenced-code",
+        "frontmatter",
+        "table"
+      ],
+      "comparison": "structure",
+      "durationMs": 6.82808399999999
+    },
+    {
+      "repository": "router",
+      "path": "packages/start-plugin-core/CHANGELOG.md",
+      "kind": "changes",
+      "format": "md",
+      "bytes": 33931,
+      "features": [
+        "atx-heading",
+        "nested-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 11.561750000000302
+    },
+    {
+      "repository": "router",
+      "path": "packages/solid-start/CHANGELOG.md",
+      "kind": "changes",
+      "format": "md",
+      "bytes": 32828,
+      "features": [
+        "atx-heading",
+        "nested-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 12.749458000000232
+    },
+    {
+      "repository": "db",
+      "path": "packages/trailbase-db-collection/CHANGELOG.md",
+      "kind": "changes",
+      "format": "md",
+      "bytes": 30572,
+      "features": [
+        "atx-heading",
+        "fenced-code",
+        "nested-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 9.155749999999898
+    },
+    {
+      "repository": "router",
+      "path": "packages/vue-start/CHANGELOG.md",
+      "kind": "changes",
+      "format": "md",
+      "bytes": 30537,
+      "features": [
+        "atx-heading",
+        "nested-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 11.835415999999896
+    },
+    {
+      "repository": "db",
+      "path": "docs/guides/collection-options-creator.md",
+      "kind": "docs",
+      "format": "md",
+      "bytes": 28909,
+      "features": [
+        "atx-heading",
+        "fenced-code",
+        "frontmatter"
+      ],
+      "comparison": "structure",
+      "durationMs": 4.117124999999987
+    },
+    {
+      "repository": "db",
+      "path": "packages/svelte-db/CHANGELOG.md",
+      "kind": "changes",
+      "format": "md",
+      "bytes": 28654,
+      "features": [
+        "atx-heading",
+        "fenced-code",
+        "nested-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 8.634249999999838
+    },
+    {
+      "repository": "db",
+      "path": "packages/solid-db/CHANGELOG.md",
+      "kind": "changes",
+      "format": "md",
+      "bytes": 28090,
+      "features": [
+        "atx-heading",
+        "fenced-code",
+        "nested-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 7.959999999999809
+    },
+    {
+      "repository": "virtual",
+      "path": "docs/api/virtualizer.md",
+      "kind": "docs",
+      "format": "md",
+      "bytes": 26259,
+      "features": [
+        "atx-heading",
+        "blockquote",
+        "fenced-code",
+        "frontmatter"
+      ],
+      "comparison": "structure",
+      "durationMs": 4.835500000000138
+    },
+    {
+      "repository": "query",
+      "path": "docs/framework/react/guides/ssr.md",
+      "kind": "docs",
+      "format": "md",
+      "bytes": 25342,
+      "features": [
+        "atx-heading",
+        "blockquote",
+        "fenced-code",
+        "frontmatter",
+        "nested-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 3.5062089999996715
+    },
+    {
+      "repository": "router",
+      "path": "packages/react-start-rsc/CHANGELOG.md",
+      "kind": "changes",
+      "format": "md",
+      "bytes": 23084,
+      "features": [
+        "atx-heading",
+        "nested-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 8.286917000000358
+    },
+    {
+      "repository": "db",
+      "path": "packages/angular-db/CHANGELOG.md",
+      "kind": "changes",
+      "format": "md",
+      "bytes": 20580,
+      "features": [
+        "atx-heading",
+        "nested-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 5.467416999999841
+    },
+    {
+      "repository": "router",
+      "path": "packages/start-server-core/CHANGELOG.md",
+      "kind": "changes",
+      "format": "md",
+      "bytes": 19964,
+      "features": [
+        "atx-heading",
+        "nested-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 6.422333999999864
+    },
+    {
+      "repository": "router",
+      "path": "docs/router/how-to/integrate-chakra-ui.md",
+      "kind": "docs",
+      "format": "md",
+      "bytes": 19856,
+      "features": [
+        "atx-heading",
+        "fenced-code",
+        "frontmatter",
+        "task-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 2.188249999999698
+    },
+    {
+      "repository": "start-rsc",
+      "path": "docs/router/framework/react/how-to/integrate-chakra-ui.md",
+      "kind": "docs",
+      "format": "md",
+      "bytes": 19856,
+      "features": [
+        "atx-heading",
+        "fenced-code",
+        "frontmatter",
+        "task-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 2.2557080000005953
+    },
+    {
+      "repository": "db",
+      "path": "packages/rxdb-db-collection/CHANGELOG.md",
+      "kind": "changes",
+      "format": "md",
+      "bytes": 19419,
+      "features": [
+        "atx-heading",
+        "nested-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 5.589666000000079
+    },
+    {
+      "repository": "router",
+      "path": "packages/react-start-server/CHANGELOG.md",
+      "kind": "changes",
+      "format": "md",
+      "bytes": 19043,
+      "features": [
+        "atx-heading",
+        "nested-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 6.603374999999687
+    },
+    {
+      "repository": "start-rsc",
+      "path": "docs/router/framework/react/how-to/use-environment-variables.md",
+      "kind": "docs",
+      "format": "md",
+      "bytes": 18884,
+      "features": [
+        "atx-heading",
+        "fenced-code",
+        "frontmatter",
+        "task-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 2.729833000000326
+    },
+    {
+      "repository": "router",
+      "path": "docs/router/how-to/use-environment-variables.md",
+      "kind": "docs",
+      "format": "md",
+      "bytes": 18872,
+      "features": [
+        "atx-heading",
+        "fenced-code",
+        "frontmatter",
+        "task-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 2.68362500000012
+    },
+    {
+      "repository": "router",
+      "path": "docs/router/how-to/integrate-framer-motion.md",
+      "kind": "docs",
+      "format": "md",
+      "bytes": 18822,
+      "features": [
+        "atx-heading",
+        "fenced-code",
+        "frontmatter",
+        "task-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 2.14712499999996
+    },
+    {
+      "repository": "start-rsc",
+      "path": "docs/router/framework/react/how-to/integrate-framer-motion.md",
+      "kind": "docs",
+      "format": "md",
+      "bytes": 18822,
+      "features": [
+        "atx-heading",
+        "fenced-code",
+        "frontmatter",
+        "task-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 2.3285419999992882
+    },
+    {
+      "repository": "router",
+      "path": "packages/router-plugin/CHANGELOG.md",
+      "kind": "changes",
+      "format": "md",
+      "bytes": 18752,
+      "features": [
+        "atx-heading",
+        "nested-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 6.100458000000344
+    },
+    {
+      "repository": "router",
+      "path": "packages/solid-start-server/CHANGELOG.md",
+      "kind": "changes",
+      "format": "md",
+      "bytes": 18718,
+      "features": [
+        "atx-heading",
+        "nested-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 6.683332999999948
+    },
+    {
+      "repository": "workflow",
+      "path": "research/SRC_SKEW_AND_RESUMPTION.md",
+      "kind": "other",
+      "format": "md",
+      "bytes": 18319,
+      "features": [
+        "atx-heading",
+        "blockquote",
+        "fenced-code",
+        "nested-list",
+        "table"
+      ],
+      "comparison": "structure",
+      "durationMs": 4.149416000000201
+    },
+    {
+      "repository": "router",
+      "path": "docs/router/how-to/migrate-from-react-router.md",
+      "kind": "docs",
+      "format": "md",
+      "bytes": 18078,
+      "features": [
+        "atx-heading",
+        "fenced-code",
+        "frontmatter",
+        "nested-list",
+        "table",
+        "task-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 3.6637080000000424
+    },
+    {
+      "repository": "start-rsc",
+      "path": "docs/router/framework/react/how-to/migrate-from-react-router.md",
+      "kind": "docs",
+      "format": "md",
+      "bytes": 18078,
+      "features": [
+        "atx-heading",
+        "fenced-code",
+        "frontmatter",
+        "nested-list",
+        "table",
+        "task-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 3.5244999999995343
+    },
+    {
+      "repository": "router",
+      "path": "packages/vue-start-server/CHANGELOG.md",
+      "kind": "changes",
+      "format": "md",
+      "bytes": 17531,
+      "features": [
+        "atx-heading",
+        "nested-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 6.158957999999984
+    },
+    {
+      "repository": "router",
+      "path": "docs/router/how-to/integrate-material-ui.md",
+      "kind": "docs",
+      "format": "md",
+      "bytes": 17408,
+      "features": [
+        "atx-heading",
+        "fenced-code",
+        "frontmatter",
+        "task-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 2.198707999999897
+    },
+    {
+      "repository": "start-rsc",
+      "path": "docs/router/framework/react/how-to/integrate-material-ui.md",
+      "kind": "docs",
+      "format": "md",
+      "bytes": 17408,
+      "features": [
+        "atx-heading",
+        "fenced-code",
+        "frontmatter",
+        "task-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 2.196708999999828
+    },
+    {
+      "repository": "db",
+      "path": "packages/offline-transactions/CHANGELOG.md",
+      "kind": "changes",
+      "format": "md",
+      "bytes": 17284,
+      "features": [
+        "atx-heading",
+        "fenced-code",
+        "nested-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 4.674584000000095
+    },
+    {
+      "repository": "router",
+      "path": "packages/react-start-client/CHANGELOG.md",
+      "kind": "changes",
+      "format": "md",
+      "bytes": 16772,
+      "features": [
+        "atx-heading",
+        "nested-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 5.810875000000124
+    },
+    {
+      "repository": "router",
+      "path": "packages/solid-start-client/CHANGELOG.md",
+      "kind": "changes",
+      "format": "md",
+      "bytes": 16563,
+      "features": [
+        "atx-heading",
+        "nested-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 5.851249999999709
+    },
+    {
+      "repository": "preact",
+      "path": "CONTRIBUTING.md",
+      "kind": "other",
+      "format": "md",
+      "bytes": 15457,
+      "features": [
+        "atx-heading",
+        "blockquote",
+        "fenced-code",
+        "nested-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 3.3512919999998303
+    },
+    {
+      "repository": "router",
+      "path": "packages/react-router/CHANGELOG.md",
+      "kind": "changes",
+      "format": "md",
+      "bytes": 15119,
+      "features": [
+        "atx-heading",
+        "nested-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 4.2952909999999065
+    },
+    {
+      "repository": "table",
+      "path": "docs/guide/column-filtering.md",
+      "kind": "docs",
+      "format": "md",
+      "bytes": 14898,
+      "features": [
+        "atx-heading",
+        "blockquote",
+        "fenced-code",
+        "frontmatter"
+      ],
+      "comparison": "structure",
+      "durationMs": 2.4047499999996944
+    },
+    {
+      "repository": "db",
+      "path": "packages/powersync-db-collection/CHANGELOG.md",
+      "kind": "changes",
+      "format": "md",
+      "bytes": 14576,
+      "features": [
+        "atx-heading",
+        "fenced-code",
+        "nested-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 3.8635000000001583
+    },
+    {
+      "repository": "start-rsc",
+      "path": "docs/router/framework/react/routing/routing-concepts.md",
+      "kind": "docs",
+      "format": "md",
+      "bytes": 14428,
+      "features": [
+        "atx-heading",
+        "blockquote",
+        "fenced-code",
+        "frontmatter",
+        "table"
+      ],
+      "comparison": "structure",
+      "durationMs": 2.724124999999731
+    },
+    {
+      "repository": "router",
+      "path": "packages/start-client-core/CHANGELOG.md",
+      "kind": "changes",
+      "format": "md",
+      "bytes": 14373,
+      "features": [
+        "atx-heading",
+        "nested-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 4.949791000000005
+    },
+    {
+      "repository": "router",
+      "path": "packages/vue-start-client/CHANGELOG.md",
+      "kind": "changes",
+      "format": "md",
+      "bytes": 14359,
+      "features": [
+        "atx-heading",
+        "nested-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 4.9730829999998605
+    },
+    {
+      "repository": "router",
+      "path": "docs/router/api/router/RouterOptionsType.md",
+      "kind": "docs",
+      "format": "md",
+      "bytes": 14138,
+      "features": [
+        "atx-heading",
+        "fenced-code",
+        "frontmatter",
+        "nested-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 4.068250000000262
+    },
+    {
+      "repository": "router",
+      "path": "packages/solid-router/CHANGELOG.md",
+      "kind": "changes",
+      "format": "md",
+      "bytes": 14112,
+      "features": [
+        "atx-heading",
+        "nested-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 4.122791000000234
+    },
+    {
+      "repository": "ai",
+      "path": "CHANGELOG.md",
+      "kind": "changes",
+      "format": "md",
+      "bytes": 13732,
+      "features": [
+        "atx-heading",
+        "fenced-code",
+        "nested-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 12.674874999999929
+    },
+    {
+      "repository": "router",
+      "path": "packages/router-core/skills/router-core/ssr/SKILL.md",
+      "kind": "other",
+      "format": "md",
+      "bytes": 13478,
+      "features": [
+        "atx-heading",
+        "blockquote",
+        "fenced-code",
+        "frontmatter"
+      ],
+      "comparison": "structure",
+      "durationMs": 1.7465420000003178
+    },
+    {
+      "repository": "router",
+      "path": "packages/vue-router/CHANGELOG.md",
+      "kind": "changes",
+      "format": "md",
+      "bytes": 13420,
+      "features": [
+        "atx-heading",
+        "nested-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 3.9356250000000728
+    },
+    {
+      "repository": "pacer",
+      "path": "docs/guides/async-rate-limiting.md",
+      "kind": "docs",
+      "format": "md",
+      "bytes": 13060,
+      "features": [
+        "atx-heading",
+        "blockquote",
+        "fenced-code",
+        "frontmatter",
+        "nested-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 2.2150000000001455
+    },
+    {
+      "repository": "pacer",
+      "path": "docs/guides/async-throttling.md",
+      "kind": "docs",
+      "format": "md",
+      "bytes": 12727,
+      "features": [
+        "atx-heading",
+        "blockquote",
+        "fenced-code",
+        "frontmatter",
+        "nested-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 2.0933749999999236
+    },
+    {
+      "repository": "pacer",
+      "path": "packages/react-pacer/CHANGELOG.md",
+      "kind": "changes",
+      "format": "md",
+      "bytes": 12694,
+      "features": [
+        "atx-heading",
+        "nested-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 3.590874999999869
+    },
+    {
+      "repository": "start-rsc",
+      "path": "docs/router/framework/react/routing/virtual-file-routes.md",
+      "kind": "docs",
+      "format": "md",
+      "bytes": 12647,
+      "features": [
+        "atx-heading",
+        "blockquote",
+        "fenced-code",
+        "frontmatter"
+      ],
+      "comparison": "structure",
+      "durationMs": 1.829541999999492
+    },
+    {
+      "repository": "pacer",
+      "path": "docs/guides/async-debouncing.md",
+      "kind": "docs",
+      "format": "md",
+      "bytes": 12589,
+      "features": [
+        "atx-heading",
+        "blockquote",
+        "fenced-code",
+        "frontmatter",
+        "nested-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 2.275916999999936
+    },
+    {
+      "repository": "router",
+      "path": "packages/react-router/skills/compositions/router-query/SKILL.md",
+      "kind": "other",
+      "format": "md",
+      "bytes": 12436,
+      "features": [
+        "atx-heading",
+        "blockquote",
+        "fenced-code",
+        "frontmatter"
+      ],
+      "comparison": "structure",
+      "durationMs": 1.444416000000274
+    },
+    {
+      "repository": "pacer",
+      "path": "packages/solid-pacer/CHANGELOG.md",
+      "kind": "changes",
+      "format": "md",
+      "bytes": 12267,
+      "features": [
+        "atx-heading",
+        "nested-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 3.573790999999801
+    },
+    {
+      "repository": "query",
+      "path": "packages/query-async-storage-persister/CHANGELOG.md",
+      "kind": "changes",
+      "format": "md",
+      "bytes": 12266,
+      "features": [
+        "atx-heading",
+        "nested-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 4.61220800000001
+    },
+    {
+      "repository": "query",
+      "path": "packages/query-sync-storage-persister/CHANGELOG.md",
+      "kind": "changes",
+      "format": "md",
+      "bytes": 12265,
+      "features": [
+        "atx-heading",
+        "nested-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 4.6050420000001395
+    },
+    {
+      "repository": "router",
+      "path": "packages/router-generator/CHANGELOG.md",
+      "kind": "changes",
+      "format": "md",
+      "bytes": 12261,
+      "features": [
+        "atx-heading",
+        "nested-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 3.879374999999982
+    },
+    {
+      "repository": "router",
+      "path": "docs/router/how-to/integrate-shadcn-ui.md",
+      "kind": "docs",
+      "format": "md",
+      "bytes": 12055,
+      "features": [
+        "atx-heading",
+        "fenced-code",
+        "frontmatter",
+        "task-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 1.58916599999975
+    },
+    {
+      "repository": "start-rsc",
+      "path": "docs/router/framework/react/how-to/integrate-shadcn-ui.md",
+      "kind": "docs",
+      "format": "md",
+      "bytes": 12055,
+      "features": [
+        "atx-heading",
+        "fenced-code",
+        "frontmatter",
+        "task-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 1.60162500000024
+    },
+    {
+      "repository": "router",
+      "path": "packages/start-static-server-functions/CHANGELOG.md",
+      "kind": "changes",
+      "format": "md",
+      "bytes": 11726,
+      "features": [
+        "atx-heading",
+        "nested-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 4.824082999999973
+    },
+    {
+      "repository": "ai",
+      "path": "docs/guides/tool-architecture.md",
+      "kind": "docs",
+      "format": "md",
+      "bytes": 11554,
+      "features": [
+        "atx-heading",
+        "fenced-code",
+        "frontmatter",
+        "nested-list",
+        "table"
+      ],
+      "comparison": "structure",
+      "durationMs": 2.35120900000004
+    },
+    {
+      "repository": "query",
+      "path": "packages/vue-query/CHANGELOG.md",
+      "kind": "changes",
+      "format": "md",
+      "bytes": 11525,
+      "features": [
+        "atx-heading",
+        "nested-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 4.392249999999876
+    },
+    {
+      "repository": "ai",
+      "path": "docs/guides/client-tools.md",
+      "kind": "docs",
+      "format": "md",
+      "bytes": 11208,
+      "features": [
+        "atx-heading",
+        "fenced-code",
+        "frontmatter",
+        "nested-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 1.8804580000000897
+    },
+    {
+      "repository": "start-rsc",
+      "path": "docs/router/framework/react/api/router/RouterOptionsType.md",
+      "kind": "docs",
+      "format": "md",
+      "bytes": 11171,
+      "features": [
+        "atx-heading",
+        "fenced-code",
+        "frontmatter"
+      ],
+      "comparison": "structure",
+      "durationMs": 3.0974169999999503
+    },
+    {
+      "repository": "router",
+      "path": "packages/react-start/skills/lifecycle/migrate-from-nextjs/SKILL.md",
+      "kind": "other",
+      "format": "md",
+      "bytes": 11164,
+      "features": [
+        "atx-heading",
+        "blockquote",
+        "fenced-code",
+        "frontmatter",
+        "table",
+        "task-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 1.8556250000001455
+    },
+    {
+      "repository": "router",
+      "path": "packages/router-core/CHANGELOG.md",
+      "kind": "changes",
+      "format": "md",
+      "bytes": 11147,
+      "features": [
+        "atx-heading",
+        "nested-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 2.7304579999999987
+    },
+    {
+      "repository": "tanstack.com",
+      "path": "docs/cloudflare-workers-migration.md",
+      "kind": "docs",
+      "format": "md",
+      "bytes": 10489,
+      "features": [
+        "atx-heading",
+        "fenced-code",
+        "nested-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 2.057166999999936
+    },
+    {
+      "repository": "query",
+      "path": "packages/solid-query/CHANGELOG.md",
+      "kind": "changes",
+      "format": "md",
+      "bytes": 10341,
+      "features": [
+        "atx-heading",
+        "nested-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 4.286707999999635
+    },
+    {
+      "repository": "query",
+      "path": "packages/angular-query-persist-client/CHANGELOG.md",
+      "kind": "changes",
+      "format": "md",
+      "bytes": 10125,
+      "features": [
+        "atx-heading",
+        "nested-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 4.913874999999734
+    },
+    {
+      "repository": "router",
+      "path": "packages/vue-router/skills/vue-router/SKILL.md",
+      "kind": "other",
+      "format": "md",
+      "bytes": 10103,
+      "features": [
+        "atx-heading",
+        "blockquote",
+        "fenced-code",
+        "frontmatter"
+      ],
+      "comparison": "structure",
+      "durationMs": 1.8760829999996531
+    }
+  ]
+}

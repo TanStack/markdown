@@ -1,0 +1,122 @@
+[
+  {
+    "name": "vite",
+    "repository": "vitejs/vite",
+    "commit": "428bda3b98886708006f4f2f409095f89d705df1",
+    "paths": ["docs"]
+  },
+  {
+    "name": "vue-docs",
+    "repository": "vuejs/docs",
+    "commit": "01e098a967951ea92d09b100b8e7d82c7a3369a2",
+    "paths": ["src"]
+  },
+  {
+    "name": "react-dev",
+    "repository": "reactjs/react.dev",
+    "commit": "7b6c3ceb9dd97249e9dce4a8a94e61aed6424698",
+    "paths": ["src/content"]
+  },
+  {
+    "name": "rust-book",
+    "repository": "rust-lang/book",
+    "commit": "917544888a55e4da7109bdba8c88c893c0da70f4",
+    "paths": ["src"]
+  },
+  {
+    "name": "docusaurus",
+    "repository": "facebook/docusaurus",
+    "commit": "a0bc32214436d52a5ac9de9be1a515d872987366",
+    "paths": ["website/docs", "website/blog"]
+  },
+  {
+    "name": "astro-docs",
+    "repository": "withastro/docs",
+    "commit": "c316ac570277bd5abd36a237c97adad8cede0c1b",
+    "paths": ["src/content/docs/en"]
+  },
+  {
+    "name": "tailwind-site",
+    "repository": "tailwindlabs/tailwindcss.com",
+    "commit": "1e700c43f5f270a1a55c4a33e71f01952f24b8c2",
+    "paths": ["src"]
+  },
+  {
+    "name": "svelte-dev",
+    "repository": "sveltejs/svelte.dev",
+    "commit": "2f9fc2a2431dd74b25eb9b6ae5d9051b45635f57",
+    "paths": ["apps/svelte.dev/content/docs", "apps/svelte.dev/content/blog"]
+  },
+  {
+    "name": "overreacted",
+    "repository": "gaearon/overreacted.io",
+    "commit": "ac1ad4fe9168b350d3dc59ac0cbe0d53405702bf",
+    "paths": ["public"]
+  },
+  {
+    "name": "github-docs",
+    "repository": "github/docs",
+    "commit": "f455adb9ecb48ec7212177af292758bb2f32c1d7",
+    "paths": ["content"]
+  },
+  {
+    "name": "node-docs",
+    "repository": "nodejs/node",
+    "commit": "2deb0a1b0f542c4b7fedc16dda1149c65e546f0d",
+    "paths": ["doc/api"]
+  },
+  {
+    "name": "kubernetes-docs",
+    "repository": "kubernetes/website",
+    "commit": "f2987ba1cceaa85fcd44cd1a221010d745d7335c",
+    "paths": ["content/en/docs", "content/en/blog"]
+  },
+  {
+    "name": "docker-docs",
+    "repository": "docker/docs",
+    "commit": "d19a384f8dd3b16ab3a4b5f3885b398e76f8638c",
+    "paths": ["content/manuals"]
+  },
+  {
+    "name": "laravel-docs",
+    "repository": "laravel/docs",
+    "commit": "ce4a1bf093c2c09e3a029090136d6bea88b07d48",
+    "paths": ["."]
+  },
+  {
+    "name": "typescript-docs",
+    "repository": "microsoft/TypeScript-Website",
+    "commit": "c8170c35bda4811c9516cbb69c39241ae4beb6d9",
+    "paths": ["packages/documentation/copy/en"]
+  },
+  {
+    "name": "pnpm-site",
+    "repository": "pnpm/pnpm.io",
+    "commit": "ff58b98362334807536e91e38ed66d0f14a87576",
+    "paths": ["docs", "blog"]
+  },
+  {
+    "name": "deno-docs",
+    "repository": "denoland/docs",
+    "commit": "bcefb75f3e49e19af0ac9d79b436df346a3b477b",
+    "paths": ["runtime", "deploy", "lint", "sandbox", "subhosting", "styleguide"]
+  },
+  {
+    "name": "hugo-docs",
+    "repository": "gohugoio/hugoDocs",
+    "commit": "620696ab3b07f66262e860e84b3793946d1660bc",
+    "paths": ["content/en"]
+  },
+  {
+    "name": "rust-blog",
+    "repository": "rust-lang/blog.rust-lang.org",
+    "commit": "f35e1174d2c15be7b692863b874a8a0046722081",
+    "paths": ["content"]
+  },
+  {
+    "name": "mdn-guides",
+    "repository": "mdn/content",
+    "commit": "3b763f8f076c053b7a44e261c3a19a1879bc11ff",
+    "paths": ["files/en-us/web/javascript/guide", "files/en-us/web/http/guides"]
+  }
+]

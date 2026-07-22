@@ -167,11 +167,13 @@ class BlockParser {
   }
 
   private parseHeading(): HeadingNode | undefined {
-    const match = this.current().match(/^ {0,3}(#{1,6})(?:\s+|$)(.*?)\s*#*\s*$/)
+    const match = this.current().match(/^ {0,3}(#{1,6})(?:[ \t]+(.*)|[ \t]*)$/)
     if (!match) return undefined
 
     const depth = match[1]!.length as HeadingNode['depth']
-    const children = parseInline(match[2]!.trim(), this.options)
+    const rawValue = match[2] ?? ''
+    const value = (/^#+[ \t]*$/.test(rawValue) ? '' : rawValue.replace(/[ \t]+#+[ \t]*$/, '')).trim()
+    const children = parseInline(value, this.options)
     const id = this.createHeadingId(children)
     this.index++
 
@@ -311,6 +313,16 @@ class BlockParser {
     if (!this.options.allowHtml || !/^ {0,3}<([A-Za-z][\w:-]*|!--|\/[A-Za-z])/.test(this.current())) return undefined
 
     const html: string[] = []
+    if (/^ {0,3}<!--/.test(this.current())) {
+      while (this.index < this.lines.length) {
+        const line = this.current()
+        html.push(line)
+        this.index++
+        if (line.includes('-->')) break
+      }
+      return { type: 'html', value: html.join('\n') }
+    }
+
     while (this.index < this.lines.length && !isBlank(this.current())) {
       html.push(this.current())
       this.index++
@@ -514,12 +526,13 @@ function leadingSpaces(line: string): number {
 }
 
 function isBlockStart(line: string, next?: string): boolean {
+  const marker = listMarker(line)
   return (
     /^ {0,3}(`{3,}|~{3,})/.test(line) ||
     /^ {0,3}#{1,6}(?:\s+|$)/.test(line) ||
     /^ {0,3}([-*_])(?:\s*\1){2,}\s*$/.test(line) ||
     /^ {0,3}>\s?/.test(line) ||
-    listMarker(line) !== undefined ||
+    (marker !== undefined && (!marker.ordered || marker.number === 1)) ||
     (!!next && looksLikeTableHeader(line, next))
   )
 }

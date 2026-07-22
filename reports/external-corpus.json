@@ -1,0 +1,2176 @@
+{
+  "generatedAt": "2026-07-22T18:11:02.179Z",
+  "name": "Representative external docs and blogs corpus",
+  "roots": 20,
+  "durationMs": 13442.426666000001,
+  "totals": {
+    "name": "Representative external docs and blogs corpus",
+    "bytes": 87469380,
+    "markdown": 10517,
+    "mdx": 813,
+    "skipped": 0,
+    "errors": 0,
+    "comparisons": {
+      "exact": 5296,
+      "serialization": 600,
+      "structure": 1857,
+      "content": 2764
+    },
+    "features": {
+      "atx-heading": 7353,
+      "blockquote": 2474,
+      "callout": 2074,
+      "fenced-code": 4770,
+      "four-space-indent": 1481,
+      "literal-autolink": 1984,
+      "nested-list": 1521,
+      "raw-html": 1986,
+      "table": 859,
+      "frontmatter": 9118,
+      "site-template": 4932,
+      "code-metadata": 984,
+      "fence-info-edge": 104,
+      "angle-autolink": 141,
+      "reference-link": 1178,
+      "delimiter-edge": 105,
+      "entity-reference": 659,
+      "footnote": 94,
+      "section-marker": 2,
+      "ordered-paren-list": 12,
+      "setext-heading": 27,
+      "tab-indentation": 51,
+      "task-list": 12,
+      "strikethrough": 14,
+      "hard-break": 41,
+      "combined-emphasis": 18,
+      "multiline-link": 12
+    }
+  },
+  "repositories": [
+    {
+      "name": "vite",
+      "bytes": 579334,
+      "markdown": 59,
+      "mdx": 0,
+      "skipped": 0,
+      "errors": 0,
+      "comparisons": {
+        "exact": 39,
+        "serialization": 5,
+        "structure": 11,
+        "content": 4
+      },
+      "features": {
+        "atx-heading": 56,
+        "blockquote": 5,
+        "callout": 2,
+        "fenced-code": 39,
+        "four-space-indent": 10,
+        "literal-autolink": 13,
+        "nested-list": 10,
+        "raw-html": 23,
+        "table": 7,
+        "frontmatter": 18,
+        "site-template": 1,
+        "code-metadata": 25,
+        "fence-info-edge": 2,
+        "angle-autolink": 1
+      },
+      "remote": "https://github.com/vitejs/vite.git",
+      "revision": "428bda3b98886708006f4f2f409095f89d705df1"
+    },
+    {
+      "name": "vue-docs",
+      "bytes": 1029613,
+      "markdown": 120,
+      "mdx": 0,
+      "skipped": 0,
+      "errors": 0,
+      "comparisons": {
+        "exact": 75,
+        "serialization": 20,
+        "structure": 19,
+        "content": 6
+      },
+      "features": {
+        "atx-heading": 111,
+        "fenced-code": 99,
+        "literal-autolink": 27,
+        "reference-link": 1,
+        "frontmatter": 29,
+        "blockquote": 27,
+        "nested-list": 32,
+        "raw-html": 93,
+        "site-template": 7,
+        "delimiter-edge": 3,
+        "code-metadata": 20,
+        "fence-info-edge": 26,
+        "four-space-indent": 16,
+        "table": 1,
+        "angle-autolink": 1,
+        "entity-reference": 1
+      },
+      "remote": "https://github.com/vuejs/docs.git",
+      "revision": "01e098a967951ea92d09b100b8e7d82c7a3369a2"
+    },
+    {
+      "name": "react-dev",
+      "bytes": 3942207,
+      "markdown": 227,
+      "mdx": 0,
+      "skipped": 0,
+      "errors": 0,
+      "comparisons": {
+        "exact": 149,
+        "serialization": 12,
+        "structure": 46,
+        "content": 20
+      },
+      "features": {
+        "atx-heading": 218,
+        "fenced-code": 182,
+        "literal-autolink": 11,
+        "raw-html": 216,
+        "reference-link": 7,
+        "four-space-indent": 12,
+        "nested-list": 42,
+        "frontmatter": 219,
+        "site-template": 215,
+        "fence-info-edge": 4,
+        "blockquote": 4,
+        "code-metadata": 127,
+        "footnote": 1,
+        "entity-reference": 3,
+        "delimiter-edge": 7,
+        "table": 6,
+        "section-marker": 2,
+        "ordered-paren-list": 1,
+        "setext-heading": 3,
+        "tab-indentation": 2
+      },
+      "remote": "https://github.com/reactjs/react.dev.git",
+      "revision": "7b6c3ceb9dd97249e9dce4a8a94e61aed6424698"
+    },
+    {
+      "name": "rust-book",
+      "bytes": 1238175,
+      "markdown": 117,
+      "mdx": 0,
+      "skipped": 0,
+      "errors": 0,
+      "comparisons": {
+        "exact": 29,
+        "serialization": 11,
+        "structure": 68,
+        "content": 9
+      },
+      "features": {
+        "atx-heading": 117,
+        "fenced-code": 85,
+        "four-space-indent": 5,
+        "literal-autolink": 24,
+        "nested-list": 5,
+        "reference-link": 72,
+        "tab-indentation": 1,
+        "task-list": 1,
+        "fence-info-edge": 66,
+        "raw-html": 88,
+        "entity-reference": 2,
+        "table": 3,
+        "blockquote": 37,
+        "footnote": 1,
+        "delimiter-edge": 1,
+        "angle-autolink": 1
+      },
+      "remote": "https://github.com/rust-lang/book.git",
+      "revision": "917544888a55e4da7109bdba8c88c893c0da70f4"
+    },
+    {
+      "name": "docusaurus",
+      "bytes": 1889771,
+      "markdown": 7,
+      "mdx": 123,
+      "skipped": 0,
+      "errors": 0,
+      "comparisons": {
+        "exact": 2,
+        "serialization": 0,
+        "structure": 4,
+        "content": 1
+      },
+      "features": {
+        "atx-heading": 7,
+        "nested-list": 4,
+        "fenced-code": 3,
+        "four-space-indent": 2,
+        "literal-autolink": 4,
+        "blockquote": 2,
+        "callout": 1,
+        "raw-html": 1
+      },
+      "remote": "https://github.com/facebook/docusaurus.git",
+      "revision": "a0bc32214436d52a5ac9de9be1a515d872987366"
+    },
+    {
+      "name": "astro-docs",
+      "bytes": 2901456,
+      "markdown": 2,
+      "mdx": 417,
+      "skipped": 0,
+      "errors": 0,
+      "comparisons": {
+        "exact": 0,
+        "serialization": 0,
+        "structure": 2,
+        "content": 0
+      },
+      "features": {
+        "atx-heading": 2,
+        "blockquote": 2,
+        "delimiter-edge": 1,
+        "fenced-code": 1,
+        "raw-html": 2,
+        "literal-autolink": 1
+      },
+      "remote": "https://github.com/withastro/docs.git",
+      "revision": "c316ac570277bd5abd36a237c97adad8cede0c1b"
+    },
+    {
+      "name": "tailwind-site",
+      "bytes": 2276586,
+      "markdown": 1,
+      "mdx": 262,
+      "skipped": 0,
+      "errors": 0,
+      "comparisons": {
+        "exact": 1,
+        "serialization": 0,
+        "structure": 0,
+        "content": 0
+      },
+      "features": {
+        "atx-heading": 1,
+        "fenced-code": 1
+      },
+      "remote": "https://github.com/tailwindlabs/tailwindcss.com.git",
+      "revision": "1e700c43f5f270a1a55c4a33e71f01952f24b8c2"
+    },
+    {
+      "name": "svelte-dev",
+      "bytes": 2184341,
+      "markdown": 349,
+      "mdx": 0,
+      "skipped": 0,
+      "errors": 0,
+      "comparisons": {
+        "exact": 185,
+        "serialization": 19,
+        "structure": 52,
+        "content": 93
+      },
+      "features": {
+        "atx-heading": 269,
+        "fenced-code": 210,
+        "literal-autolink": 30,
+        "blockquote": 94,
+        "frontmatter": 331,
+        "raw-html": 75,
+        "tab-indentation": 25,
+        "nested-list": 28,
+        "strikethrough": 3,
+        "delimiter-edge": 2,
+        "callout": 88,
+        "entity-reference": 3,
+        "angle-autolink": 2,
+        "four-space-indent": 2,
+        "site-template": 4,
+        "table": 6,
+        "setext-heading": 1
+      },
+      "remote": "https://github.com/sveltejs/svelte.dev.git",
+      "revision": "2f9fc2a2431dd74b25eb9b6ae5d9051b45635f57"
+    },
+    {
+      "name": "overreacted",
+      "bytes": 1166495,
+      "markdown": 59,
+      "mdx": 0,
+      "skipped": 0,
+      "errors": 0,
+      "comparisons": {
+        "exact": 40,
+        "serialization": 1,
+        "structure": 13,
+        "content": 5
+      },
+      "features": {
+        "atx-heading": 35,
+        "fenced-code": 41,
+        "code-metadata": 33,
+        "frontmatter": 58,
+        "blockquote": 8,
+        "nested-list": 6,
+        "literal-autolink": 7,
+        "raw-html": 24,
+        "table": 1,
+        "site-template": 3,
+        "delimiter-edge": 4,
+        "four-space-indent": 1
+      },
+      "remote": "https://github.com/gaearon/overreacted.io.git",
+      "revision": "ac1ad4fe9168b350d3dc59ac0cbe0d53405702bf"
+    },
+    {
+      "name": "github-docs",
+      "bytes": 19784949,
+      "markdown": 3723,
+      "mdx": 0,
+      "skipped": 0,
+      "errors": 0,
+      "comparisons": {
+        "exact": 2045,
+        "serialization": 71,
+        "structure": 262,
+        "content": 1345
+      },
+      "features": {
+        "atx-heading": 2737,
+        "nested-list": 571,
+        "raw-html": 338,
+        "blockquote": 1292,
+        "fenced-code": 904,
+        "four-space-indent": 384,
+        "literal-autolink": 161,
+        "table": 383,
+        "callout": 1277,
+        "frontmatter": 3717,
+        "site-template": 2867,
+        "code-metadata": 417,
+        "delimiter-edge": 23,
+        "hard-break": 8,
+        "reference-link": 12,
+        "task-list": 3,
+        "entity-reference": 26,
+        "tab-indentation": 3,
+        "angle-autolink": 12,
+        "footnote": 9,
+        "fence-info-edge": 1,
+        "combined-emphasis": 5,
+        "strikethrough": 1
+      },
+      "remote": "https://github.com/github/docs.git",
+      "revision": "f455adb9ecb48ec7212177af292758bb2f32c1d7"
+    },
+    {
+      "name": "node-docs",
+      "bytes": 4581436,
+      "markdown": 80,
+      "mdx": 0,
+      "skipped": 0,
+      "errors": 0,
+      "comparisons": {
+        "exact": 14,
+        "serialization": 1,
+        "structure": 39,
+        "content": 26
+      },
+      "features": {
+        "angle-autolink": 10,
+        "atx-heading": 80,
+        "blockquote": 67,
+        "fenced-code": 73,
+        "footnote": 3,
+        "four-space-indent": 69,
+        "literal-autolink": 72,
+        "nested-list": 70,
+        "raw-html": 34,
+        "reference-link": 70,
+        "table": 13,
+        "delimiter-edge": 4,
+        "hard-break": 1,
+        "strikethrough": 1
+      },
+      "remote": "https://github.com/nodejs/node.git",
+      "revision": "2deb0a1b0f542c4b7fedc16dda1149c65e546f0d"
+    },
+    {
+      "name": "kubernetes-docs",
+      "bytes": 22771109,
+      "markdown": 2430,
+      "mdx": 0,
+      "skipped": 0,
+      "errors": 0,
+      "comparisons": {
+        "exact": 1249,
+        "serialization": 226,
+        "structure": 705,
+        "content": 250
+      },
+      "features": {
+        "atx-heading": 1526,
+        "raw-html": 618,
+        "angle-autolink": 7,
+        "blockquote": 46,
+        "callout": 1,
+        "fenced-code": 981,
+        "literal-autolink": 500,
+        "nested-list": 297,
+        "table": 125,
+        "reference-link": 70,
+        "frontmatter": 2276,
+        "site-template": 1008,
+        "entity-reference": 479,
+        "ordered-paren-list": 4,
+        "delimiter-edge": 23,
+        "four-space-indent": 431,
+        "tab-indentation": 8,
+        "setext-heading": 19,
+        "combined-emphasis": 6,
+        "multiline-link": 9,
+        "hard-break": 8,
+        "strikethrough": 3,
+        "footnote": 3,
+        "task-list": 4,
+        "code-metadata": 1,
+        "fence-info-edge": 1
+      },
+      "remote": "https://github.com/kubernetes/website.git",
+      "revision": "f2987ba1cceaa85fcd44cd1a221010d745d7335c"
+    },
+    {
+      "name": "docker-docs",
+      "bytes": 6024735,
+      "markdown": 754,
+      "mdx": 0,
+      "skipped": 0,
+      "errors": 0,
+      "comparisons": {
+        "exact": 271,
+        "serialization": 24,
+        "structure": 72,
+        "content": 387
+      },
+      "features": {
+        "atx-heading": 653,
+        "fenced-code": 428,
+        "four-space-indent": 153,
+        "literal-autolink": 130,
+        "table": 159,
+        "site-template": 276,
+        "angle-autolink": 4,
+        "blockquote": 399,
+        "callout": 383,
+        "raw-html": 68,
+        "nested-list": 152,
+        "frontmatter": 747,
+        "code-metadata": 44,
+        "reference-link": 21,
+        "hard-break": 10,
+        "entity-reference": 4,
+        "fence-info-edge": 1,
+        "setext-heading": 1,
+        "combined-emphasis": 1,
+        "delimiter-edge": 2,
+        "multiline-link": 2,
+        "tab-indentation": 3,
+        "ordered-paren-list": 1
+      },
+      "remote": "https://github.com/docker/docs.git",
+      "revision": "d19a384f8dd3b16ab3a4b5f3885b398e76f8638c"
+    },
+    {
+      "name": "laravel-docs",
+      "bytes": 3396902,
+      "markdown": 104,
+      "mdx": 0,
+      "skipped": 0,
+      "errors": 0,
+      "comparisons": {
+        "exact": 2,
+        "serialization": 1,
+        "structure": 0,
+        "content": 101
+      },
+      "features": {
+        "atx-heading": 102,
+        "blockquote": 87,
+        "callout": 87,
+        "fenced-code": 99,
+        "four-space-indent": 99,
+        "nested-list": 97,
+        "raw-html": 101,
+        "site-template": 96,
+        "table": 17,
+        "code-metadata": 25,
+        "entity-reference": 4,
+        "literal-autolink": 6
+      },
+      "remote": "https://github.com/laravel/docs.git",
+      "revision": "ce4a1bf093c2c09e3a029090136d6bea88b07d48"
+    },
+    {
+      "name": "typescript-docs",
+      "bytes": 1940223,
+      "markdown": 135,
+      "mdx": 0,
+      "skipped": 0,
+      "errors": 0,
+      "comparisons": {
+        "exact": 96,
+        "serialization": 14,
+        "structure": 18,
+        "content": 7
+      },
+      "features": {
+        "atx-heading": 126,
+        "fenced-code": 127,
+        "frontmatter": 132,
+        "literal-autolink": 14,
+        "nested-list": 7,
+        "blockquote": 30,
+        "code-metadata": 65,
+        "entity-reference": 13,
+        "raw-html": 23,
+        "table": 9,
+        "four-space-indent": 13,
+        "angle-autolink": 1,
+        "delimiter-edge": 6,
+        "strikethrough": 2,
+        "footnote": 2,
+        "reference-link": 2,
+        "combined-emphasis": 2
+      },
+      "remote": "https://github.com/microsoft/TypeScript-Website.git",
+      "revision": "c8170c35bda4811c9516cbb69c39241ae4beb6d9"
+    },
+    {
+      "name": "pnpm-site",
+      "bytes": 561499,
+      "markdown": 162,
+      "mdx": 9,
+      "skipped": 0,
+      "errors": 0,
+      "comparisons": {
+        "exact": 86,
+        "serialization": 5,
+        "structure": 26,
+        "content": 45
+      },
+      "features": {
+        "atx-heading": 138,
+        "fenced-code": 115,
+        "literal-autolink": 24,
+        "blockquote": 5,
+        "frontmatter": 161,
+        "four-space-indent": 3,
+        "reference-link": 36,
+        "code-metadata": 23,
+        "combined-emphasis": 1,
+        "delimiter-edge": 6,
+        "table": 13,
+        "nested-list": 7,
+        "raw-html": 9,
+        "entity-reference": 45,
+        "strikethrough": 1,
+        "fence-info-edge": 1
+      },
+      "remote": "https://github.com/pnpm/pnpm.io.git",
+      "revision": "ff58b98362334807536e91e38ed66d0f14a87576"
+    },
+    {
+      "name": "deno-docs",
+      "bytes": 1857664,
+      "markdown": 361,
+      "mdx": 2,
+      "skipped": 0,
+      "errors": 0,
+      "comparisons": {
+        "exact": 245,
+        "serialization": 3,
+        "structure": 106,
+        "content": 7
+      },
+      "features": {
+        "atx-heading": 229,
+        "fenced-code": 311,
+        "four-space-indent": 15,
+        "nested-list": 20,
+        "frontmatter": 357,
+        "literal-autolink": 49,
+        "raw-html": 89,
+        "reference-link": 21,
+        "code-metadata": 77,
+        "blockquote": 21,
+        "table": 65,
+        "hard-break": 2,
+        "entity-reference": 2,
+        "delimiter-edge": 10,
+        "fence-info-edge": 2,
+        "angle-autolink": 1,
+        "site-template": 1
+      },
+      "remote": "https://github.com/denoland/docs.git",
+      "revision": "bcefb75f3e49e19af0ac9d79b436df346a3b477b"
+    },
+    {
+      "name": "hugo-docs",
+      "bytes": 1706729,
+      "markdown": 993,
+      "mdx": 0,
+      "skipped": 0,
+      "errors": 0,
+      "comparisons": {
+        "exact": 625,
+        "serialization": 80,
+        "structure": 73,
+        "content": 215
+      },
+      "features": {
+        "atx-heading": 309,
+        "literal-autolink": 210,
+        "nested-list": 26,
+        "fenced-code": 673,
+        "raw-html": 17,
+        "reference-link": 301,
+        "four-space-indent": 37,
+        "frontmatter": 988,
+        "site-template": 373,
+        "blockquote": 206,
+        "callout": 185,
+        "angle-autolink": 8,
+        "table": 10,
+        "code-metadata": 106,
+        "tab-indentation": 8,
+        "footnote": 12,
+        "entity-reference": 39,
+        "hard-break": 5
+      },
+      "remote": "https://github.com/gohugoio/hugoDocs.git",
+      "revision": "620696ab3b07f66262e860e84b3793946d1660bc"
+    },
+    {
+      "name": "rust-blog",
+      "bytes": 6284606,
+      "markdown": 743,
+      "mdx": 0,
+      "skipped": 0,
+      "errors": 0,
+      "comparisons": {
+        "exact": 111,
+        "serialization": 107,
+        "structure": 333,
+        "content": 192
+      },
+      "features": {
+        "atx-heading": 547,
+        "literal-autolink": 694,
+        "raw-html": 142,
+        "reference-link": 562,
+        "fenced-code": 324,
+        "four-space-indent": 209,
+        "blockquote": 92,
+        "entity-reference": 32,
+        "table": 23,
+        "footnote": 60,
+        "nested-list": 108,
+        "multiline-link": 1,
+        "angle-autolink": 86,
+        "ordered-paren-list": 6,
+        "delimiter-edge": 9,
+        "task-list": 4,
+        "tab-indentation": 1,
+        "hard-break": 7,
+        "combined-emphasis": 3,
+        "strikethrough": 3,
+        "setext-heading": 3
+      },
+      "remote": "https://github.com/rust-lang/blog.rust-lang.org.git",
+      "revision": "f35e1174d2c15be7b692863b874a8a0046722081"
+    },
+    {
+      "name": "mdn-guides",
+      "bytes": 1351550,
+      "markdown": 91,
+      "mdx": 0,
+      "skipped": 0,
+      "errors": 0,
+      "comparisons": {
+        "exact": 32,
+        "serialization": 0,
+        "structure": 8,
+        "content": 51
+      },
+      "features": {
+        "atx-heading": 90,
+        "blockquote": 50,
+        "callout": 50,
+        "delimiter-edge": 4,
+        "fenced-code": 74,
+        "literal-autolink": 7,
+        "reference-link": 3,
+        "four-space-indent": 20,
+        "nested-list": 39,
+        "angle-autolink": 7,
+        "raw-html": 25,
+        "code-metadata": 21,
+        "frontmatter": 85,
+        "site-template": 81,
+        "table": 18,
+        "entity-reference": 6,
+        "footnote": 3
+      },
+      "remote": "https://github.com/mdn/content.git",
+      "revision": "3b763f8f076c053b7a44e261c3a19a1879bc11ff"
+    }
+  ],
+  "kinds": {
+    "blog": 935,
+    "changes": 26,
+    "docs": 8778,
+    "fixture": 14,
+    "other": 735,
+    "readme": 29
+  },
+  "profileContentDifferences": 2,
+  "targetProfileContentDifferences": 0,
+  "notableFiles": [
+    {
+      "repository": "kubernetes-docs",
+      "path": "content/en/blog/_posts/2026/ingress-nginx-before-you-migrate.md",
+      "kind": "blog",
+      "format": "md",
+      "bytes": 17971,
+      "features": [
+        "atx-heading",
+        "fenced-code",
+        "footnote",
+        "frontmatter",
+        "reference-link"
+      ],
+      "comparison": "content",
+      "contentDifference": {
+        "actual": "...pression matching. Popular Envoy-based Gateway API implementations such as Istio1, Envoy Gateway, and Kgateway do a full case-sensitive match. Thus, if you are unaware that Ingress-NGINX patterns are prefix and case-insensitive, and, unbekn...",
+        "reference": "...pression matching. Popular Envoy-based Gateway API implementations such as Istio[^1], Envoy Gateway, and Kgateway do a full case-sensitive match. Thus, if you are unaware that Ingress-NGINX patterns are prefix and case-insensitive, and, unb..."
+      },
+      "durationMs": 2.2245419999999285
+    },
+    {
+      "repository": "rust-blog",
+      "path": "content/inside-rust/governance-update@0.md",
+      "kind": "docs",
+      "format": "md",
+      "bytes": 17607,
+      "features": [
+        "blockquote",
+        "footnote",
+        "hard-break",
+        "reference-link"
+      ],
+      "comparison": "content",
+      "contentDifference": {
+        "actual": "... fixes have been made since the original post, the text is otherwise unaltered. 1 As is noted in the summary, the next steps are to take the findings we have so far and begin crafting proposals for how the Rust project will be governed in t...",
+        "reference": "... fixes have been made since the original post, the text is otherwise unaltered. [^1] As is noted in the summary, the next steps are to take the findings we have so far and begin crafting proposals for how the Rust project will be governed i..."
+      },
+      "durationMs": 2.8050830000011047
+    },
+    {
+      "repository": "overreacted",
+      "path": "public/a-complete-guide-to-useeffect/index.md",
+      "kind": "other",
+      "format": "md",
+      "bytes": 70001,
+      "features": [
+        "atx-heading",
+        "blockquote",
+        "code-metadata",
+        "fenced-code",
+        "frontmatter",
+        "nested-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 11.481458999999631
+    },
+    {
+      "repository": "github-docs",
+      "path": "content/site-policy/github-terms/github-marketplace-developer-agreement.md",
+      "kind": "docs",
+      "format": "md",
+      "bytes": 36626,
+      "features": [
+        "atx-heading",
+        "frontmatter",
+        "nested-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 4.861625000000458
+    },
+    {
+      "repository": "overreacted",
+      "path": "public/a-lean-syntax-primer/index.md",
+      "kind": "other",
+      "format": "md",
+      "bytes": 36460,
+      "features": [
+        "atx-heading",
+        "code-metadata",
+        "fenced-code",
+        "frontmatter"
+      ],
+      "comparison": "structure",
+      "durationMs": 7.067332999999962
+    },
+    {
+      "repository": "deno-docs",
+      "path": "runtime/fundamentals/workspaces.md",
+      "kind": "other",
+      "format": "md",
+      "bytes": 35598,
+      "features": [
+        "atx-heading",
+        "code-metadata",
+        "fenced-code",
+        "frontmatter",
+        "table"
+      ],
+      "comparison": "structure",
+      "durationMs": 5.566790999999284
+    },
+    {
+      "repository": "kubernetes-docs",
+      "path": "content/en/blog/_posts/2020/deploying-external-openstack-cloud-provider-with-kubeadm.md",
+      "kind": "blog",
+      "format": "md",
+      "bytes": 34890,
+      "features": [
+        "atx-heading",
+        "fenced-code",
+        "frontmatter",
+        "table"
+      ],
+      "comparison": "structure",
+      "durationMs": 6.019666000000143
+    },
+    {
+      "repository": "typescript-docs",
+      "path": "packages/documentation/copy/en/release-notes/TypeScript 5.6.md",
+      "kind": "docs",
+      "format": "md",
+      "bytes": 30679,
+      "features": [
+        "atx-heading",
+        "fenced-code",
+        "frontmatter"
+      ],
+      "comparison": "structure",
+      "durationMs": 3.929666999998517
+    },
+    {
+      "repository": "overreacted",
+      "path": "public/why-do-hooks-rely-on-call-order/index.md",
+      "kind": "other",
+      "format": "md",
+      "bytes": 29680,
+      "features": [
+        "atx-heading",
+        "code-metadata",
+        "fenced-code",
+        "frontmatter"
+      ],
+      "comparison": "structure",
+      "durationMs": 4.029667000000245
+    },
+    {
+      "repository": "docker-docs",
+      "path": "content/manuals/desktop/previous-versions/2.x-mac.md",
+      "kind": "docs",
+      "format": "md",
+      "bytes": 28587,
+      "features": [
+        "atx-heading",
+        "blockquote",
+        "frontmatter",
+        "nested-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 5.502709000000323
+    },
+    {
+      "repository": "kubernetes-docs",
+      "path": "content/en/blog/_posts/2025/gateway-api-v1-4/index.md",
+      "kind": "blog",
+      "format": "md",
+      "bytes": 26384,
+      "features": [
+        "atx-heading",
+        "fenced-code",
+        "frontmatter"
+      ],
+      "comparison": "structure",
+      "durationMs": 4.599500000000262
+    },
+    {
+      "repository": "kubernetes-docs",
+      "path": "content/en/blog/_posts/2020/two-phased-canary-rollout-with-gloo.md",
+      "kind": "blog",
+      "format": "md",
+      "bytes": 25504,
+      "features": [
+        "atx-heading",
+        "fenced-code",
+        "frontmatter"
+      ],
+      "comparison": "structure",
+      "durationMs": 3.0507079999997586
+    },
+    {
+      "repository": "github-docs",
+      "path": "content/site-policy/github-terms/github-secret-scanning-partner-program-agreement.md",
+      "kind": "docs",
+      "format": "md",
+      "bytes": 25447,
+      "features": [
+        "atx-heading",
+        "frontmatter"
+      ],
+      "comparison": "structure",
+      "durationMs": 3.313333000000057
+    },
+    {
+      "repository": "kubernetes-docs",
+      "path": "content/en/blog/_posts/2020/wsl2-dockerdesktop-k8s.md",
+      "kind": "blog",
+      "format": "md",
+      "bytes": 24234,
+      "features": [
+        "atx-heading",
+        "blockquote",
+        "fenced-code",
+        "frontmatter",
+        "nested-list",
+        "table"
+      ],
+      "comparison": "structure",
+      "durationMs": 2.899999999999636
+    },
+    {
+      "repository": "overreacted",
+      "path": "public/how-does-react-tell-a-class-from-a-function/index.md",
+      "kind": "other",
+      "format": "md",
+      "bytes": 22657,
+      "features": [
+        "code-metadata",
+        "fenced-code",
+        "frontmatter",
+        "table"
+      ],
+      "comparison": "structure",
+      "durationMs": 3.9387499999998
+    },
+    {
+      "repository": "docker-docs",
+      "path": "STYLE.md",
+      "kind": "other",
+      "format": "md",
+      "bytes": 22199,
+      "features": [
+        "atx-heading",
+        "blockquote",
+        "fenced-code",
+        "nested-list",
+        "table"
+      ],
+      "comparison": "structure",
+      "durationMs": 5.359749999999622
+    },
+    {
+      "repository": "pnpm-site",
+      "path": "docs/pnpmfile.md",
+      "kind": "docs",
+      "format": "md",
+      "bytes": 21776,
+      "features": [
+        "atx-heading",
+        "code-metadata",
+        "fenced-code",
+        "frontmatter",
+        "nested-list",
+        "reference-link",
+        "table"
+      ],
+      "comparison": "structure",
+      "durationMs": 3.3477079999993293
+    },
+    {
+      "repository": "typescript-docs",
+      "path": "packages/documentation/copy/en/release-notes/TypeScript 5.4.md",
+      "kind": "docs",
+      "format": "md",
+      "bytes": 21498,
+      "features": [
+        "atx-heading",
+        "fenced-code",
+        "frontmatter"
+      ],
+      "comparison": "structure",
+      "durationMs": 3.0200409999997646
+    },
+    {
+      "repository": "deno-docs",
+      "path": "deploy/reference/databases.md",
+      "kind": "other",
+      "format": "md",
+      "bytes": 20873,
+      "features": [
+        "atx-heading",
+        "fenced-code",
+        "frontmatter"
+      ],
+      "comparison": "structure",
+      "durationMs": 3.128541000000041
+    },
+    {
+      "repository": "deno-docs",
+      "path": "runtime/test/index.md",
+      "kind": "fixture",
+      "format": "md",
+      "bytes": 20162,
+      "features": [
+        "atx-heading",
+        "code-metadata",
+        "fenced-code",
+        "frontmatter"
+      ],
+      "comparison": "structure",
+      "durationMs": 2.4671670000006998
+    },
+    {
+      "repository": "vite",
+      "path": "docs/config/server-options.md",
+      "kind": "docs",
+      "format": "md",
+      "bytes": 19967,
+      "features": [
+        "atx-heading",
+        "code-metadata",
+        "fenced-code",
+        "nested-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 4.630416999999994
+    },
+    {
+      "repository": "overreacted",
+      "path": "public/how-are-function-components-different-from-classes/index.md",
+      "kind": "other",
+      "format": "md",
+      "bytes": 19353,
+      "features": [
+        "blockquote",
+        "code-metadata",
+        "fenced-code",
+        "frontmatter"
+      ],
+      "comparison": "structure",
+      "durationMs": 3.2066670000003796
+    },
+    {
+      "repository": "deno-docs",
+      "path": "runtime/fundamentals/debugging.md",
+      "kind": "other",
+      "format": "md",
+      "bytes": 17780,
+      "features": [
+        "atx-heading",
+        "code-metadata",
+        "fenced-code",
+        "frontmatter"
+      ],
+      "comparison": "structure",
+      "durationMs": 2.9343749999989086
+    },
+    {
+      "repository": "kubernetes-docs",
+      "path": "content/en/blog/_posts/2016/statefulset-run-scale-stateful-applications-in-kubernetes.md",
+      "kind": "blog",
+      "format": "md",
+      "bytes": 17229,
+      "features": [
+        "fenced-code",
+        "frontmatter"
+      ],
+      "comparison": "structure",
+      "durationMs": 2.0450000000000728
+    },
+    {
+      "repository": "kubernetes-docs",
+      "path": "content/en/blog/_posts/2021/kubernetes-release-1.22.md",
+      "kind": "blog",
+      "format": "md",
+      "bytes": 16698,
+      "features": [
+        "atx-heading",
+        "frontmatter"
+      ],
+      "comparison": "structure",
+      "durationMs": 2.2767909999993208
+    },
+    {
+      "repository": "deno-docs",
+      "path": "deploy/privacy_policy.md",
+      "kind": "other",
+      "format": "md",
+      "bytes": 16648,
+      "features": [
+        "frontmatter",
+        "hard-break"
+      ],
+      "comparison": "structure",
+      "durationMs": 2.294541000001118
+    },
+    {
+      "repository": "deno-docs",
+      "path": "runtime/fundamentals/typescript.md",
+      "kind": "other",
+      "format": "md",
+      "bytes": 16645,
+      "features": [
+        "atx-heading",
+        "code-metadata",
+        "fenced-code",
+        "frontmatter",
+        "table"
+      ],
+      "comparison": "structure",
+      "durationMs": 2.3195830000004207
+    },
+    {
+      "repository": "kubernetes-docs",
+      "path": "content/en/blog/_posts/2019/kubernetes-1-15-release-announcement.md",
+      "kind": "blog",
+      "format": "md",
+      "bytes": 15687,
+      "features": [
+        "atx-heading",
+        "frontmatter",
+        "nested-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 2.634208000000399
+    },
+    {
+      "repository": "kubernetes-docs",
+      "path": "content/en/blog/_posts/2025/gateway-api-v1-3/index.md",
+      "kind": "blog",
+      "format": "md",
+      "bytes": 15549,
+      "features": [
+        "atx-heading",
+        "fenced-code",
+        "frontmatter",
+        "nested-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 1.9814160000005359
+    },
+    {
+      "repository": "kubernetes-docs",
+      "path": "content/en/blog/_posts/2017/using-ebpf-in-kubernetes.md",
+      "kind": "blog",
+      "format": "md",
+      "bytes": 15445,
+      "features": [
+        "atx-heading",
+        "fenced-code",
+        "frontmatter",
+        "nested-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 2.1583330000003116
+    },
+    {
+      "repository": "docker-docs",
+      "path": "content/manuals/build/policies/examples.md",
+      "kind": "docs",
+      "format": "md",
+      "bytes": 15360,
+      "features": [
+        "atx-heading",
+        "fenced-code",
+        "frontmatter"
+      ],
+      "comparison": "structure",
+      "durationMs": 1.7044589999986783
+    },
+    {
+      "repository": "rust-blog",
+      "path": "content/Rust-1.87.0/index.md",
+      "kind": "docs",
+      "format": "md",
+      "bytes": 15168,
+      "features": [
+        "atx-heading",
+        "fenced-code"
+      ],
+      "comparison": "structure",
+      "durationMs": 2.3832500000007713
+    },
+    {
+      "repository": "rust-blog",
+      "path": "content/State-of-Rust-Survey-2016/index.md",
+      "kind": "docs",
+      "format": "md",
+      "bytes": 15117,
+      "features": [
+        "atx-heading",
+        "blockquote",
+        "reference-link"
+      ],
+      "comparison": "structure",
+      "durationMs": 2.0585420000006707
+    },
+    {
+      "repository": "kubernetes-docs",
+      "path": "content/en/blog/_posts/2016/stateful-applications-using-kubernetes-datera.md",
+      "kind": "blog",
+      "format": "md",
+      "bytes": 15105,
+      "features": [
+        "fenced-code",
+        "frontmatter"
+      ],
+      "comparison": "structure",
+      "durationMs": 1.4957500000000437
+    },
+    {
+      "repository": "overreacted",
+      "path": "public/how-to-fix-any-bug/index.md",
+      "kind": "other",
+      "format": "md",
+      "bytes": 14929,
+      "features": [
+        "atx-heading",
+        "fenced-code",
+        "frontmatter"
+      ],
+      "comparison": "structure",
+      "durationMs": 2.572708000000148
+    },
+    {
+      "repository": "github-docs",
+      "path": "content/site-policy/other-site-policies/github-and-trade-controls.md",
+      "kind": "docs",
+      "format": "md",
+      "bytes": 14556,
+      "features": [
+        "atx-heading",
+        "frontmatter"
+      ],
+      "comparison": "structure",
+      "durationMs": 1.4981250000000728
+    },
+    {
+      "repository": "kubernetes-docs",
+      "path": "content/en/blog/_posts/2018/kubevirt-crds-for-virtualization.md",
+      "kind": "blog",
+      "format": "md",
+      "bytes": 14286,
+      "features": [
+        "atx-heading",
+        "fenced-code",
+        "frontmatter"
+      ],
+      "comparison": "structure",
+      "durationMs": 1.6923750000005384
+    },
+    {
+      "repository": "deno-docs",
+      "path": "runtime/fundamentals/http_server.md",
+      "kind": "other",
+      "format": "md",
+      "bytes": 14222,
+      "features": [
+        "atx-heading",
+        "code-metadata",
+        "fenced-code",
+        "frontmatter"
+      ],
+      "comparison": "structure",
+      "durationMs": 2.0724580000005517
+    },
+    {
+      "repository": "kubernetes-docs",
+      "path": "content/en/blog/_posts/2017/multi-stage-canary-deployments-with-kubernetes-in-the-cloud-onprem.md",
+      "kind": "blog",
+      "format": "md",
+      "bytes": 14179,
+      "features": [
+        "fenced-code",
+        "frontmatter"
+      ],
+      "comparison": "structure",
+      "durationMs": 1.9647910000003321
+    },
+    {
+      "repository": "overreacted",
+      "path": "public/the-math-is-haunted/index.md",
+      "kind": "other",
+      "format": "md",
+      "bytes": 13997,
+      "features": [
+        "atx-heading",
+        "code-metadata",
+        "fenced-code",
+        "frontmatter"
+      ],
+      "comparison": "structure",
+      "durationMs": 2.547917000000325
+    },
+    {
+      "repository": "rust-blog",
+      "path": "content/Rust-survey-2019/index.md",
+      "kind": "docs",
+      "format": "md",
+      "bytes": 13977,
+      "features": [
+        "atx-heading",
+        "blockquote"
+      ],
+      "comparison": "structure",
+      "durationMs": 2.4885839999988093
+    },
+    {
+      "repository": "kubernetes-docs",
+      "path": "content/en/blog/_posts/2025/kubernetes-v1-35-sneak-peek.md",
+      "kind": "blog",
+      "format": "md",
+      "bytes": 13551,
+      "features": [
+        "atx-heading",
+        "frontmatter"
+      ],
+      "comparison": "structure",
+      "durationMs": 1.7772919999997612
+    },
+    {
+      "repository": "kubernetes-docs",
+      "path": "content/en/blog/_posts/2018/zero-downtime-deployment-kubernetes-jenkins.md",
+      "kind": "blog",
+      "format": "md",
+      "bytes": 13418,
+      "features": [
+        "atx-heading",
+        "blockquote",
+        "fenced-code",
+        "frontmatter",
+        "nested-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 1.8238750000000437
+    },
+    {
+      "repository": "kubernetes-docs",
+      "path": "content/en/blog/_posts/2018/kubernetes-1-11-release-announcement.md",
+      "kind": "blog",
+      "format": "md",
+      "bytes": 13403,
+      "features": [
+        "atx-heading",
+        "frontmatter"
+      ],
+      "comparison": "structure",
+      "durationMs": 1.828750000000582
+    },
+    {
+      "repository": "svelte-dev",
+      "path": "apps/svelte.dev/content/docs/kit/60-appendix/30-migrating-to-sveltekit-2.md",
+      "kind": "docs",
+      "format": "md",
+      "bytes": 13233,
+      "features": [
+        "atx-heading",
+        "fenced-code",
+        "frontmatter"
+      ],
+      "comparison": "structure",
+      "durationMs": 2.0671250000000327
+    },
+    {
+      "repository": "kubernetes-docs",
+      "path": "content/en/blog/_posts/2025/start-sidecar-first/index.md",
+      "kind": "blog",
+      "format": "md",
+      "bytes": 13166,
+      "features": [
+        "atx-heading",
+        "fenced-code",
+        "frontmatter",
+        "table"
+      ],
+      "comparison": "structure",
+      "durationMs": 1.500915999999961
+    },
+    {
+      "repository": "kubernetes-docs",
+      "path": "content/en/blog/_posts/2025/seven-kubernetes-pitfalls-and-how-to-avoid.md",
+      "kind": "blog",
+      "format": "md",
+      "bytes": 12875,
+      "features": [
+        "atx-heading",
+        "frontmatter"
+      ],
+      "comparison": "structure",
+      "durationMs": 1.950832999999875
+    },
+    {
+      "repository": "deno-docs",
+      "path": "runtime/reference/cli/compile.md",
+      "kind": "other",
+      "format": "md",
+      "bytes": 12849,
+      "features": [
+        "atx-heading",
+        "code-metadata",
+        "fenced-code",
+        "frontmatter",
+        "nested-list",
+        "table"
+      ],
+      "comparison": "structure",
+      "durationMs": 2.3212080000012065
+    },
+    {
+      "repository": "deno-docs",
+      "path": "runtime/reference/wasm.md",
+      "kind": "other",
+      "format": "md",
+      "bytes": 12771,
+      "features": [
+        "atx-heading",
+        "code-metadata",
+        "fenced-code",
+        "frontmatter"
+      ],
+      "comparison": "structure",
+      "durationMs": 1.6402080000007118
+    },
+    {
+      "repository": "kubernetes-docs",
+      "path": "content/en/blog/_posts/2016/autoscaling-in-kubernetes.md",
+      "kind": "blog",
+      "format": "md",
+      "bytes": 12761,
+      "features": [
+        "atx-heading",
+        "fenced-code",
+        "frontmatter"
+      ],
+      "comparison": "structure",
+      "durationMs": 1.3635839999997188
+    },
+    {
+      "repository": "kubernetes-docs",
+      "path": "content/en/blog/_posts/2017/request-routing-and-policy-management.md",
+      "kind": "blog",
+      "format": "md",
+      "bytes": 12715,
+      "features": [
+        "atx-heading",
+        "fenced-code",
+        "frontmatter"
+      ],
+      "comparison": "structure",
+      "durationMs": 1.683999999999287
+    },
+    {
+      "repository": "kubernetes-docs",
+      "path": "content/en/blog/_posts/2018/introducing-container-storage-interface.md",
+      "kind": "blog",
+      "format": "md",
+      "bytes": 12301,
+      "features": [
+        "atx-heading",
+        "fenced-code",
+        "frontmatter",
+        "nested-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 1.6124170000002778
+    },
+    {
+      "repository": "github-docs",
+      "path": "content/site-policy/acceptable-use-policies/github-acceptable-use-policies.md",
+      "kind": "docs",
+      "format": "md",
+      "bytes": 12171,
+      "features": [
+        "atx-heading",
+        "frontmatter",
+        "nested-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 1.8286669999997684
+    },
+    {
+      "repository": "kubernetes-docs",
+      "path": "content/en/blog/_posts/2016/cluster-federation-in-kubernetes-1-5.md",
+      "kind": "blog",
+      "format": "md",
+      "bytes": 12133,
+      "features": [
+        "fenced-code",
+        "frontmatter"
+      ],
+      "comparison": "structure",
+      "durationMs": 1.6356660000001284
+    },
+    {
+      "repository": "rust-blog",
+      "path": "content/Rust-survey-2018/index.md",
+      "kind": "docs",
+      "format": "md",
+      "bytes": 12064,
+      "features": [
+        "atx-heading",
+        "blockquote"
+      ],
+      "comparison": "structure",
+      "durationMs": 1.868625000000975
+    },
+    {
+      "repository": "kubernetes-docs",
+      "path": "content/en/blog/_posts/2022/kubernetes-1-24-removals-and-deprecations.md",
+      "kind": "blog",
+      "format": "md",
+      "bytes": 12060,
+      "features": [
+        "atx-heading",
+        "blockquote",
+        "frontmatter"
+      ],
+      "comparison": "structure",
+      "durationMs": 1.5516660000002958
+    },
+    {
+      "repository": "kubernetes-docs",
+      "path": "content/en/blog/_posts/2017/advanced-scheduling-in-kubernetes.md",
+      "kind": "blog",
+      "format": "md",
+      "bytes": 11924,
+      "features": [
+        "fenced-code",
+        "frontmatter"
+      ],
+      "comparison": "structure",
+      "durationMs": 1.8036249999995562
+    },
+    {
+      "repository": "kubernetes-docs",
+      "path": "content/en/blog/_posts/2020/kong-ingress-controller-and-service-mesh.md",
+      "kind": "blog",
+      "format": "md",
+      "bytes": 11904,
+      "features": [
+        "atx-heading",
+        "fenced-code",
+        "frontmatter"
+      ],
+      "comparison": "structure",
+      "durationMs": 1.3873329999996713
+    },
+    {
+      "repository": "kubernetes-docs",
+      "path": "content/en/blog/_posts/2025/kubernetes-configuration-best-practices/index.md",
+      "kind": "blog",
+      "format": "md",
+      "bytes": 11697,
+      "features": [
+        "atx-heading",
+        "fenced-code",
+        "frontmatter",
+        "nested-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 1.743916999999783
+    },
+    {
+      "repository": "kubernetes-docs",
+      "path": "content/en/blog/_posts/2026/kubernetes-v1-36-sneak-peak.md",
+      "kind": "blog",
+      "format": "md",
+      "bytes": 11677,
+      "features": [
+        "atx-heading",
+        "frontmatter"
+      ],
+      "comparison": "structure",
+      "durationMs": 1.5467090000001917
+    },
+    {
+      "repository": "kubernetes-docs",
+      "path": "content/en/blog/_posts/2025/kubernetes-v1.34-sneak-peek.md",
+      "kind": "blog",
+      "format": "md",
+      "bytes": 11571,
+      "features": [
+        "atx-heading",
+        "frontmatter"
+      ],
+      "comparison": "structure",
+      "durationMs": 1.5850000000000364
+    },
+    {
+      "repository": "kubernetes-docs",
+      "path": "content/en/blog/_posts/2017/kubeadm-v18-released.md",
+      "kind": "blog",
+      "format": "md",
+      "bytes": 11398,
+      "features": [
+        "atx-heading",
+        "fenced-code",
+        "frontmatter"
+      ],
+      "comparison": "structure",
+      "durationMs": 1.687249999999949
+    },
+    {
+      "repository": "kubernetes-docs",
+      "path": "content/en/blog/_posts/2022/introducing-kueue.md",
+      "kind": "blog",
+      "format": "md",
+      "bytes": 11341,
+      "features": [
+        "atx-heading",
+        "fenced-code",
+        "frontmatter"
+      ],
+      "comparison": "structure",
+      "durationMs": 1.5474999999996726
+    },
+    {
+      "repository": "svelte-dev",
+      "path": "apps/svelte.dev/content/blog/2026-07-01-whats-new-in-svelte-july-2026.md",
+      "kind": "blog",
+      "format": "md",
+      "bytes": 11280,
+      "features": [
+        "atx-heading",
+        "frontmatter"
+      ],
+      "comparison": "structure",
+      "durationMs": 2.270958000000064
+    },
+    {
+      "repository": "kubernetes-docs",
+      "path": "content/en/blog/_posts/2020/k8s-kpis-with-kuberhealthy.md",
+      "kind": "blog",
+      "format": "md",
+      "bytes": 11267,
+      "features": [
+        "atx-heading",
+        "fenced-code",
+        "frontmatter",
+        "nested-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 1.3856249999998909
+    },
+    {
+      "repository": "kubernetes-docs",
+      "path": "content/en/blog/_posts/2016/kubernetes-in-rancher-further-evolution.md",
+      "kind": "blog",
+      "format": "md",
+      "bytes": 11140,
+      "features": [
+        "atx-heading",
+        "fenced-code",
+        "frontmatter"
+      ],
+      "comparison": "structure",
+      "durationMs": 1.4268750000001091
+    },
+    {
+      "repository": "kubernetes-docs",
+      "path": "content/en/blog/_posts/2022/live-and-let-live-with-kluctl-and-ssa.md",
+      "kind": "blog",
+      "format": "md",
+      "bytes": 11119,
+      "features": [
+        "atx-heading",
+        "frontmatter"
+      ],
+      "comparison": "structure",
+      "durationMs": 1.3669589999999516
+    },
+    {
+      "repository": "svelte-dev",
+      "path": "apps/svelte.dev/content/blog/2026-06-01-whats-new-in-svelte-june-2026.md",
+      "kind": "blog",
+      "format": "md",
+      "bytes": 11109,
+      "features": [
+        "atx-heading",
+        "frontmatter"
+      ],
+      "comparison": "structure",
+      "durationMs": 2.134832999999844
+    },
+    {
+      "repository": "kubernetes-docs",
+      "path": "content/en/blog/_posts/2026/restart-all-containers.md",
+      "kind": "blog",
+      "format": "md",
+      "bytes": 10937,
+      "features": [
+        "atx-heading",
+        "fenced-code",
+        "frontmatter"
+      ],
+      "comparison": "structure",
+      "durationMs": 1.3659580000003189
+    },
+    {
+      "repository": "kubernetes-docs",
+      "path": "content/en/blog/_posts/2017/dynamic-provisioning-and-storage-classes-kubernetes.md",
+      "kind": "blog",
+      "format": "md",
+      "bytes": 10807,
+      "features": [
+        "fenced-code",
+        "frontmatter",
+        "nested-list",
+        "table"
+      ],
+      "comparison": "structure",
+      "durationMs": 1.6466669999999795
+    },
+    {
+      "repository": "kubernetes-docs",
+      "path": "content/en/blog/_posts/2025/image-compatibility-in-cloud-native-environments/index.md",
+      "kind": "blog",
+      "format": "md",
+      "bytes": 10802,
+      "features": [
+        "atx-heading",
+        "fenced-code",
+        "frontmatter",
+        "nested-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 1.7067919999999503
+    },
+    {
+      "repository": "svelte-dev",
+      "path": "apps/svelte.dev/content/blog/2023-12-01-whats-new-in-svelte-december-2023.md",
+      "kind": "blog",
+      "format": "md",
+      "bytes": 10794,
+      "features": [
+        "atx-heading",
+        "frontmatter",
+        "nested-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 2.2020840000000135
+    },
+    {
+      "repository": "kubernetes-docs",
+      "path": "content/en/blog/_posts/2018/kubedirector.md",
+      "kind": "blog",
+      "format": "md",
+      "bytes": 10749,
+      "features": [
+        "atx-heading",
+        "fenced-code",
+        "frontmatter"
+      ],
+      "comparison": "structure",
+      "durationMs": 1.125583000000006
+    },
+    {
+      "repository": "deno-docs",
+      "path": "runtime/desktop/webgpu.md",
+      "kind": "other",
+      "format": "md",
+      "bytes": 10723,
+      "features": [
+        "atx-heading",
+        "code-metadata",
+        "fenced-code",
+        "frontmatter"
+      ],
+      "comparison": "structure",
+      "durationMs": 1.1272079999998823
+    },
+    {
+      "repository": "deno-docs",
+      "path": "runtime/desktop/auto_update.md",
+      "kind": "other",
+      "format": "md",
+      "bytes": 10668,
+      "features": [
+        "atx-heading",
+        "fenced-code",
+        "frontmatter",
+        "table"
+      ],
+      "comparison": "structure",
+      "durationMs": 1.789958999999726
+    },
+    {
+      "repository": "svelte-dev",
+      "path": "apps/svelte.dev/content/blog/2023-05-01-whats-new-in-svelte-may-2023.md",
+      "kind": "blog",
+      "format": "md",
+      "bytes": 10662,
+      "features": [
+        "atx-heading",
+        "frontmatter",
+        "nested-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 2.1802500000001146
+    },
+    {
+      "repository": "kubernetes-docs",
+      "path": "content/en/blog/_posts/2026/staleness-mitigation-for-controllers.md",
+      "kind": "blog",
+      "format": "md",
+      "bytes": 10597,
+      "features": [
+        "atx-heading",
+        "fenced-code",
+        "frontmatter"
+      ],
+      "comparison": "structure",
+      "durationMs": 1.1205840000002354
+    },
+    {
+      "repository": "svelte-dev",
+      "path": "apps/svelte.dev/content/blog/2022-06-01-whats-new-in-svelte-june-2022.md",
+      "kind": "blog",
+      "format": "md",
+      "bytes": 10493,
+      "features": [
+        "atx-heading",
+        "frontmatter",
+        "nested-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 2.2447919999999613
+    },
+    {
+      "repository": "kubernetes-docs",
+      "path": "content/en/blog/_posts/2025/dra-consumable-capacity.md",
+      "kind": "blog",
+      "format": "md",
+      "bytes": 10283,
+      "features": [
+        "atx-heading",
+        "fenced-code",
+        "frontmatter",
+        "nested-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 1.4435000000003129
+    },
+    {
+      "repository": "kubernetes-docs",
+      "path": "content/en/blog/_posts/2017/kubernetes-meets-high-performance.md",
+      "kind": "blog",
+      "format": "md",
+      "bytes": 10211,
+      "features": [
+        "atx-heading",
+        "frontmatter"
+      ],
+      "comparison": "structure",
+      "durationMs": 1.154457999999977
+    },
+    {
+      "repository": "deno-docs",
+      "path": "runtime/reference/lint_plugins.md",
+      "kind": "other",
+      "format": "md",
+      "bytes": 10150,
+      "features": [
+        "atx-heading",
+        "code-metadata",
+        "fenced-code",
+        "frontmatter",
+        "table"
+      ],
+      "comparison": "structure",
+      "durationMs": 1.3920410000009724
+    },
+    {
+      "repository": "svelte-dev",
+      "path": "apps/svelte.dev/content/blog/2025-10-01-whats-new-in-svelte-october-2025.md",
+      "kind": "blog",
+      "format": "md",
+      "bytes": 10090,
+      "features": [
+        "atx-heading",
+        "frontmatter"
+      ],
+      "comparison": "structure",
+      "durationMs": 2.042208999999957
+    },
+    {
+      "repository": "svelte-dev",
+      "path": "apps/svelte.dev/content/blog/2024-01-01-whats-new-in-svelte-january-2024.md",
+      "kind": "blog",
+      "format": "md",
+      "bytes": 10042,
+      "features": [
+        "atx-heading",
+        "frontmatter",
+        "nested-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 2.0688749999999345
+    },
+    {
+      "repository": "kubernetes-docs",
+      "path": "content/en/blog/_posts/2020/third-party-device-metrics-hits-ga.md",
+      "kind": "blog",
+      "format": "md",
+      "bytes": 10020,
+      "features": [
+        "atx-heading",
+        "fenced-code",
+        "frontmatter",
+        "table"
+      ],
+      "comparison": "structure",
+      "durationMs": 1.158792000000176
+    },
+    {
+      "repository": "svelte-dev",
+      "path": "apps/svelte.dev/content/blog/2023-07-01-whats-new-in-svelte-july-2023.md",
+      "kind": "blog",
+      "format": "md",
+      "bytes": 9994,
+      "features": [
+        "atx-heading",
+        "frontmatter",
+        "nested-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 1.9784159999999247
+    },
+    {
+      "repository": "svelte-dev",
+      "path": "apps/svelte.dev/content/blog/2023-06-01-whats-new-in-svelte-june-2023.md",
+      "kind": "blog",
+      "format": "md",
+      "bytes": 9971,
+      "features": [
+        "atx-heading",
+        "frontmatter",
+        "nested-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 2.0502080000001115
+    },
+    {
+      "repository": "docker-docs",
+      "path": "content/manuals/enterprise/security/single-sign-on/troubleshoot-sso.md",
+      "kind": "docs",
+      "format": "md",
+      "bytes": 9917,
+      "features": [
+        "atx-heading",
+        "fenced-code",
+        "frontmatter",
+        "nested-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 1.8656250000003638
+    },
+    {
+      "repository": "kubernetes-docs",
+      "path": "content/en/blog/_posts/2021/three-tenancy-models-for-kubernetes.md",
+      "kind": "blog",
+      "format": "md",
+      "bytes": 9911,
+      "features": [
+        "atx-heading",
+        "frontmatter"
+      ],
+      "comparison": "structure",
+      "durationMs": 1.205500000000029
+    },
+    {
+      "repository": "docker-docs",
+      "path": "content/manuals/engine/swarm/swarm-mode.md",
+      "kind": "docs",
+      "format": "md",
+      "bytes": 9893,
+      "features": [
+        "atx-heading",
+        "fenced-code",
+        "frontmatter"
+      ],
+      "comparison": "structure",
+      "durationMs": 1.284750000000713
+    },
+    {
+      "repository": "kubernetes-docs",
+      "path": "content/en/blog/_posts/2025/pod-level-resources.md",
+      "kind": "blog",
+      "format": "md",
+      "bytes": 9837,
+      "features": [
+        "atx-heading",
+        "fenced-code",
+        "frontmatter"
+      ],
+      "comparison": "structure",
+      "durationMs": 1.2829160000001139
+    },
+    {
+      "repository": "svelte-dev",
+      "path": "apps/svelte.dev/content/blog/2024-05-01-whats-new-in-svelte-may-2024.md",
+      "kind": "blog",
+      "format": "md",
+      "bytes": 9801,
+      "features": [
+        "atx-heading",
+        "frontmatter",
+        "nested-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 2.0405000000000655
+    },
+    {
+      "repository": "deno-docs",
+      "path": "runtime/reference/cli/install.md",
+      "kind": "other",
+      "format": "md",
+      "bytes": 9762,
+      "features": [
+        "atx-heading",
+        "code-metadata",
+        "fenced-code",
+        "frontmatter"
+      ],
+      "comparison": "structure",
+      "durationMs": 1.642874999999549
+    },
+    {
+      "repository": "kubernetes-docs",
+      "path": "content/en/blog/_posts/2018/current-status-and-future-roadmap.md",
+      "kind": "blog",
+      "format": "md",
+      "bytes": 9665,
+      "features": [
+        "atx-heading",
+        "frontmatter",
+        "table"
+      ],
+      "comparison": "structure",
+      "durationMs": 1.0889170000000377
+    },
+    {
+      "repository": "svelte-dev",
+      "path": "apps/svelte.dev/content/blog/2024-08-01-whats-new-in-svelte-august-2024.md",
+      "kind": "blog",
+      "format": "md",
+      "bytes": 9654,
+      "features": [
+        "atx-heading",
+        "frontmatter",
+        "nested-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 1.9113749999999072
+    },
+    {
+      "repository": "kubernetes-docs",
+      "path": "content/en/blog/_posts/2024/kubernetes-1-31-deprecations-and-removals.md",
+      "kind": "blog",
+      "format": "md",
+      "bytes": 9558,
+      "features": [
+        "atx-heading",
+        "frontmatter"
+      ],
+      "comparison": "structure",
+      "durationMs": 1.2163329999993948
+    },
+    {
+      "repository": "docker-docs",
+      "path": "content/manuals/build/policies/validate-git.md",
+      "kind": "docs",
+      "format": "md",
+      "bytes": 9497,
+      "features": [
+        "atx-heading",
+        "code-metadata",
+        "fenced-code",
+        "frontmatter"
+      ],
+      "comparison": "structure",
+      "durationMs": 1.4286659999997937
+    },
+    {
+      "repository": "kubernetes-docs",
+      "path": "content/en/blog/_posts/2019/kubernetes-setup-using-ansible-and-vagrant.md",
+      "kind": "blog",
+      "format": "md",
+      "bytes": 9458,
+      "features": [
+        "atx-heading",
+        "fenced-code",
+        "frontmatter"
+      ],
+      "comparison": "structure",
+      "durationMs": 1.0129170000000158
+    },
+    {
+      "repository": "kubernetes-docs",
+      "path": "content/en/blog/_posts/2017/kubernetes-18-security-workloads-and.md",
+      "kind": "blog",
+      "format": "md",
+      "bytes": 9354,
+      "features": [
+        "atx-heading",
+        "frontmatter"
+      ],
+      "comparison": "structure",
+      "durationMs": 1.3097920000000158
+    },
+    {
+      "repository": "kubernetes-docs",
+      "path": "content/en/blog/_posts/2018/kubernetes-testing-ci-automating-contributor-experience.md",
+      "kind": "blog",
+      "format": "md",
+      "bytes": 9304,
+      "features": [
+        "atx-heading",
+        "frontmatter",
+        "nested-list"
+      ],
+      "comparison": "structure",
+      "durationMs": 1.5318749999996726
+    },
+    {
+      "repository": "deno-docs",
+      "path": "runtime/desktop/distribution.md",
+      "kind": "other",
+      "format": "md",
+      "bytes": 9303,
+      "features": [
+        "atx-heading",
+        "code-metadata",
+        "fenced-code",
+        "frontmatter",
+        "table"
+      ],
+      "comparison": "structure",
+      "durationMs": 1.4168339999996533
+    }
+  ]
+}

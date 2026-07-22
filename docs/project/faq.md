@@ -6,7 +6,7 @@ title: FAQ
 
 ## Is TanStack Markdown CommonMark compliant?
 
-No. It continuously measures CommonMark behavior and preserves established matches, but full conformance is not the product goal. The current generated report matches 287 of 652 CommonMark 0.31.2 examples after output normalization.
+No. It continuously measures CommonMark behavior and preserves established matches, but full conformance is not the product goal. The current generated report matches 348 of 652 CommonMark 0.31.2 examples after output normalization.
 
 ## Is it GFM compliant?
 
