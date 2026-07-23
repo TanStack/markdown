@@ -11,6 +11,7 @@ import rehypeStringify from 'rehype-stringify'
 import remarkParse from 'remark-parse'
 import remarkRehype from 'remark-rehype'
 import { unified } from 'unified'
+import { streamingMarkdownExtension } from '../src/extensions/streaming.js'
 import { parseMarkdown, renderHtml } from '../src/index.js'
 
 const root = process.cwd()
@@ -91,6 +92,25 @@ async function main() {
     }
   }
 
+  const streamingFixture = fixtures.find(fixture => fixture.name === 'ai-response.md')
+  if (streamingFixture) {
+    const streamingExtensions = [streamingMarkdownExtension()]
+    const streamingRenderers = [
+      {
+        name: '@tanstack/markdown streaming profile',
+        run: (source: string) => replayStream(source, prefix => renderHtml(prefix, { extensions: streamingExtensions, frontmatter: false, headingIds: false })),
+      },
+      {
+        name: 'marked progressive parse+render',
+        run: (source: string) => replayStream(source, prefix => String(marked.parse(prefix))),
+      },
+    ]
+
+    for (const renderer of streamingRenderers) {
+      results.push(bench('streaming', renderer.name, streamingFixture.name, streamingFixture.source, 250, renderer.run))
+    }
+  }
+
   await writeFile(join(reportsDir, 'benchmarks.json'), JSON.stringify({ generatedAt: new Date().toISOString(), sink, results }, null, 2))
   await writeFile(join(reportsDir, 'benchmarks.md'), renderMarkdownReport(results))
 }
@@ -131,17 +151,24 @@ function markdownIterations(bytes: number): number {
   return 500
 }
 
+function replayStream(source: string, render: (prefix: string) => string): string {
+  const chunkSize = 32
+  let output = ''
+  for (let end = chunkSize; end < source.length; end += chunkSize) output = render(source.slice(0, end))
+  return render(source)
+}
+
 function renderMarkdownReport(results: BenchResult[]): string {
   const lines = [
     '# Benchmark Results',
     '',
     `Generated: ${new Date().toISOString()}`,
     '',
-    'Lower `ms/op` is better. Benchmarks run in Node with production package builds where available; heap delta is a coarse process-level signal, not an allocation profiler.',
+    'Lower `ms/op` is better. Benchmarks run in Node with production package builds where available; heap delta is a coarse process-level signal, not an allocation profiler. Streaming rows replay the complete response in 32-character chunks, so one operation is one progressive response.',
     '',
   ]
 
-  for (const group of ['markdown']) {
+  for (const group of ['markdown', 'streaming']) {
     lines.push(`## ${title(group)}`, '')
     lines.push('| Name | Fixture | Bytes | Iterations | ms/op | Output bytes | Heap delta KB |')
     lines.push('| :--- | :--- | ---: | ---: | ---: | ---: | ---: |')

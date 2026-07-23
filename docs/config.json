@@ -30,6 +30,7 @@
       "children": [
         { "label": "React", "to": "guides/react" },
         { "label": "Octane", "to": "guides/octane" },
+        { "label": "AI Streaming", "to": "guides/ai-streaming" },
         { "label": "Syntax Highlighting", "to": "guides/syntax-highlighting" },
         { "label": "Extensions", "to": "guides/extensions" },
         { "label": "Docs Preset", "to": "guides/docs-preset" },

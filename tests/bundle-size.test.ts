@@ -9,12 +9,19 @@ describe('bundle budgets', () => {
     const react = await bundle("import { Markdown } from './src/react.ts'; console.log(Markdown)", ['react'])
     const octane = await bundle("import { Markdown } from './src/octane.ts'; console.log(Markdown)", ['octane'])
     const pluggable = await bundle("import { renderHtml } from './src/html.ts'; const highlighter = (code) => code; console.log(renderHtml('# x', { highlighter }))")
+    const streaming = await bundle("import { streamingMarkdownExtension } from './src/extensions/streaming.ts'; console.log(streamingMarkdownExtension)")
+    const reactStreaming = await bundle(
+      "import { Markdown } from './src/react.ts'; import { streamingMarkdownExtension } from './src/extensions/streaming.ts'; console.log(Markdown, streamingMarkdownExtension)",
+      ['react'],
+    )
 
     expect(parser.gzipBytes).toBeLessThan(4_975)
     expect(html.gzipBytes).toBeLessThan(6_775)
     expect(react.gzipBytes).toBeLessThan(6_700)
     expect(octane.gzipBytes).toBeLessThan(6_700)
     expect(pluggable.gzipBytes).toBeLessThan(6_800)
+    expect(streaming.gzipBytes).toBeLessThan(400)
+    expect(reactStreaming.gzipBytes).toBeLessThan(7_000)
     expect(html.code).not.toContain('external-line')
   })
 })

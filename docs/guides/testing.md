@@ -64,6 +64,8 @@ Selected official GFM examples separately cover tables, task lists, and striketh
 
 The suite includes fixed-seed generated malformed documents and adversarial cases such as unmatched delimiters, deep blockquotes, nested lists, and parser depth exhaustion. Performance thresholds are generous enough for CI variation but strict enough to catch accidental superlinear behavior.
 
+The AI streaming profile renders every character prefix of a representative response and verifies deterministic output, React/HTML parity, safe handling of executable URLs and raw HTML, unfinished-fence behavior, trailing-placeholder suppression, and bounded progressive rendering.
+
 ## Documentation coverage
 
 `pnpm run docs:verify` checks that:

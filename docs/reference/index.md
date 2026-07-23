@@ -18,6 +18,7 @@ TanStack Markdown uses explicit subpath exports so applications can import only 
 | `@tanstack/markdown/extensions/docs` | composed docs extension preset |
 | `@tanstack/markdown/extensions/framework` | framework component transform |
 | `@tanstack/markdown/extensions/headings` | heading collection transform |
+| `@tanstack/markdown/extensions/streaming` | incomplete-response placeholder transform |
 | `@tanstack/markdown/extensions/tabs` | tab component transforms |
 
 ## Reference pages

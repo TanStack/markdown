@@ -60,6 +60,7 @@ const apiDocuments = new Map([
   ['./extensions/docs', 'docs/reference/extensions.md'],
   ['./extensions/framework', 'docs/reference/extensions.md'],
   ['./extensions/headings', 'docs/reference/extensions.md'],
+  ['./extensions/streaming', 'docs/reference/extensions.md'],
   ['./extensions/tabs', 'docs/reference/extensions.md'],
 ])
 const referenceIndex = await fs.readFile(

@@ -43,6 +43,7 @@ These repository benchmarks bundle representative browser entry points from pinn
 | `@tanstack/markdown/parser` | 4.9 KB | 4.6 KB |
 | `@tanstack/markdown/html` | 6.7 KB | 6.2 KB |
 | `@tanstack/markdown/react` | 6.7 KB | 6.1 KB |
+| React with streaming extension | 6.8 KB | 6.3 KB |
 | `@tanstack/markdown/octane` | 6.7 KB | 6.1 KB |
 | Marked | 12.5 KB | 11.5 KB |
 | micromark | 15.4 KB | 13.7 KB |

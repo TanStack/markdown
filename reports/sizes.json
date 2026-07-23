@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-22T18:10:09.788Z",
+  "generatedAt": "2026-07-23T22:04:26.250Z",
   "results": [
     {
       "group": "tanstack",
@@ -49,6 +49,20 @@
       "minBytes": 556,
       "gzipBytes": 372,
       "brotliBytes": 329
+    },
+    {
+      "group": "tanstack",
+      "name": "streaming extension",
+      "minBytes": 699,
+      "gzipBytes": 311,
+      "brotliBytes": 253
+    },
+    {
+      "group": "tanstack",
+      "name": "react adapter with streaming extension",
+      "minBytes": 19703,
+      "gzipBytes": 6843,
+      "brotliBytes": 6275
     },
     {
       "group": "tanstack",

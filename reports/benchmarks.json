@@ -1,16 +1,126 @@
 {
-  "generatedAt": "2026-07-22T18:10:12.742Z",
-  "sink": 89757680,
+  "generatedAt": "2026-07-23T22:04:30.692Z",
+  "sink": 112177610,
   "results": [
     {
       "group": "markdown",
       "name": "@tanstack/markdown parse",
+      "fixture": "ai-response.md",
+      "bytes": 652,
+      "iterations": 2000,
+      "msPerOp": 0.020226146,
+      "outputBytes": 15,
+      "heapDeltaKb": 1651.7265625
+    },
+    {
+      "group": "markdown",
+      "name": "@tanstack/markdown render AST with external highlighter",
+      "fixture": "ai-response.md",
+      "bytes": 652,
+      "iterations": 2000,
+      "msPerOp": 0.004293312499999999,
+      "outputBytes": 1399,
+      "heapDeltaKb": -2358.53125
+    },
+    {
+      "group": "markdown",
+      "name": "@tanstack/markdown render AST",
+      "fixture": "ai-response.md",
+      "bytes": 652,
+      "iterations": 2000,
+      "msPerOp": 0.003573750000000004,
+      "outputBytes": 1143,
+      "heapDeltaKb": 767.0703125
+    },
+    {
+      "group": "markdown",
+      "name": "@tanstack/markdown parse+render with external highlighter",
+      "fixture": "ai-response.md",
+      "bytes": 652,
+      "iterations": 2000,
+      "msPerOp": 0.023516437499999994,
+      "outputBytes": 1399,
+      "heapDeltaKb": 2092.3828125
+    },
+    {
+      "group": "markdown",
+      "name": "@tanstack/markdown parse+render",
+      "fixture": "ai-response.md",
+      "bytes": 652,
+      "iterations": 2000,
+      "msPerOp": 0.022227604499999998,
+      "outputBytes": 1143,
+      "heapDeltaKb": 3127.484375
+    },
+    {
+      "group": "markdown",
+      "name": "marked parse+render",
+      "fixture": "ai-response.md",
+      "bytes": 652,
+      "iterations": 2000,
+      "msPerOp": 0.026204687500000004,
+      "outputBytes": 1035,
+      "heapDeltaKb": -467.9375
+    },
+    {
+      "group": "markdown",
+      "name": "markdown-it parse+render",
+      "fixture": "ai-response.md",
+      "bytes": 652,
+      "iterations": 2000,
+      "msPerOp": 0.01690629150000001,
+      "outputBytes": 1087,
+      "heapDeltaKb": -3715.078125
+    },
+    {
+      "group": "markdown",
+      "name": "micromark render",
+      "fixture": "ai-response.md",
+      "bytes": 652,
+      "iterations": 2000,
+      "msPerOp": 0.1507896665,
+      "outputBytes": 825,
+      "heapDeltaKb": 8848.640625
+    },
+    {
+      "group": "markdown",
+      "name": "commonmark parse+render",
+      "fixture": "ai-response.md",
+      "bytes": 652,
+      "iterations": 2000,
+      "msPerOp": 0.012273646000000043,
+      "outputBytes": 825,
+      "heapDeltaKb": 114.8125
+    },
+    {
+      "group": "markdown",
+      "name": "markdown-wasm render",
+      "fixture": "ai-response.md",
+      "bytes": 652,
+      "iterations": 2000,
+      "msPerOp": 0.007804124999999999,
+      "outputBytes": 1117,
+      "heapDeltaKb": -11978.6171875
+    },
+    {
+      "group": "markdown",
+      "name": "unified remark+rehype render",
+      "fixture": "ai-response.md",
+      "bytes": 652,
+      "iterations": 2000,
+      "msPerOp": 0.18349308300000006,
+      "outputBytes": 824,
+      "heapDeltaKb": -1359.7265625
+    },
+    {
+      "group": "markdown",
+      "name": "@tanstack/markdown parse",
       "fixture": "code-heavy.md",
       "bytes": 1011,
       "iterations": 1000,
-      "msPerOp": 0.008744249999999993,
+      "msPerOp": 0.006493750000000091,
       "outputBytes": 15,
-      "heapDeltaKb": -414.15625
+      "heapDeltaKb": 28647.6015625
     },
     {
       "group": "markdown",
@@ -18,9 +128,9 @@
       "fixture": "code-heavy.md",
       "bytes": 1011,
       "iterations": 1000,
-      "msPerOp": 0.008905416000000003,
+      "msPerOp": 0.007468458000000055,
       "outputBytes": 4504,
-      "heapDeltaKb": 3834.4453125
+      "heapDeltaKb": -30785.3359375
     },
     {
       "group": "markdown",
@@ -28,9 +138,9 @@
       "fixture": "code-heavy.md",
       "bytes": 1011,
       "iterations": 1000,
-      "msPerOp": 0.003893166000000008,
+      "msPerOp": 0.00350004100000001,
       "outputBytes": 1835,
-      "heapDeltaKb": -1169.15625
+      "heapDeltaKb": 13767.015625
     },
     {
       "group": "markdown",
@@ -38,9 +148,9 @@
       "fixture": "code-heavy.md",
       "bytes": 1011,
       "iterations": 1000,
-      "msPerOp": 0.017667625,
+      "msPerOp": 0.015240375000000085,
       "outputBytes": 4504,
-      "heapDeltaKb": -356.6796875
+      "heapDeltaKb": -1346.546875
     },
     {
       "group": "markdown",
@@ -48,9 +158,9 @@
       "fixture": "code-heavy.md",
       "bytes": 1011,
       "iterations": 1000,
-      "msPerOp": 0.011792916999999988,
+      "msPerOp": 0.010502500000000055,
       "outputBytes": 1835,
-      "heapDeltaKb": -6238.03125
+      "heapDeltaKb": 9661.7265625
     },
     {
       "group": "markdown",
@@ -58,9 +168,9 @@
       "fixture": "code-heavy.md",
       "bytes": 1011,
       "iterations": 1000,
-      "msPerOp": 0.008014708000000013,
+      "msPerOp": 0.005994333000000097,
       "outputBytes": 1330,
-      "heapDeltaKb": 4941.7734375
+      "heapDeltaKb": -19739.1796875
     },
     {
       "group": "markdown",
@@ -68,9 +178,9 @@
       "fixture": "code-heavy.md",
       "bytes": 1011,
       "iterations": 1000,
-      "msPerOp": 0.011102708000000006,
+      "msPerOp": 0.008438499999999976,
       "outputBytes": 1330,
-      "heapDeltaKb": -5054.296875
+      "heapDeltaKb": -5350.484375
     },
     {
       "group": "markdown",
@@ -78,9 +188,9 @@
       "fixture": "code-heavy.md",
       "bytes": 1011,
       "iterations": 1000,
-      "msPerOp": 0.12185479199999998,
+      "msPerOp": 0.13400700000000007,
       "outputBytes": 1330,
-      "heapDeltaKb": -825.15625
+      "heapDeltaKb": -11684.140625
     },
     {
       "group": "markdown",
@@ -88,9 +198,9 @@
       "fixture": "code-heavy.md",
       "bytes": 1011,
       "iterations": 1000,
-      "msPerOp": 0.009774375000000021,
+      "msPerOp": 0.009069042000000081,
       "outputBytes": 1330,
-      "heapDeltaKb": 8180.1484375
+      "heapDeltaKb": 24577.8125
     },
     {
       "group": "markdown",
@@ -98,9 +208,9 @@
       "fixture": "code-heavy.md",
       "bytes": 1011,
       "iterations": 1000,
-      "msPerOp": 0.00734129200000001,
+      "msPerOp": 0.004366999999999962,
       "outputBytes": 1512,
-      "heapDeltaKb": 2592.09375
+      "heapDeltaKb": 2558.5078125
     },
     {
       "group": "markdown",
@@ -108,9 +218,9 @@
       "fixture": "code-heavy.md",
       "bytes": 1011,
       "iterations": 1000,
-      "msPerOp": 0.11972420800000003,
+      "msPerOp": 0.147101625,
       "outputBytes": 1200,
-      "heapDeltaKb": -2376.5546875
+      "heapDeltaKb": -7131.9453125
     },
     {
       "group": "markdown",
@@ -118,9 +228,9 @@
       "fixture": "malformed.md",
       "bytes": 237,
       "iterations": 2000,
-      "msPerOp": 0.0043963330000000266,
+      "msPerOp": 0.00333624999999995,
       "outputBytes": 15,
-      "heapDeltaKb": -6991.421875
+      "heapDeltaKb": 24361.75
     },
     {
       "group": "markdown",
@@ -128,9 +238,9 @@
       "fixture": "malformed.md",
       "bytes": 237,
       "iterations": 2000,
-      "msPerOp": 0.001632541500000002,
+      "msPerOp": 0.0019312289999999165,
       "outputBytes": 1067,
-      "heapDeltaKb": 803.828125
+      "heapDeltaKb": -15518.3359375
     },
     {
       "group": "markdown",
@@ -138,9 +248,9 @@
       "fixture": "malformed.md",
       "bytes": 237,
       "iterations": 2000,
-      "msPerOp": 0.0007268960000000106,
+      "msPerOp": 0.0008515625,
       "outputBytes": 361,
-      "heapDeltaKb": 6929.875
+      "heapDeltaKb": 6923.6875
     },
     {
       "group": "markdown",
@@ -148,9 +258,9 @@
       "fixture": "malformed.md",
       "bytes": 237,
       "iterations": 2000,
-      "msPerOp": 0.004814395999999988,
+      "msPerOp": 0.0052618124999999055,
       "outputBytes": 1067,
-      "heapDeltaKb": -7606.9375
+      "heapDeltaKb": 8027.34375
     },
     {
       "group": "markdown",
@@ -158,9 +268,9 @@
       "fixture": "malformed.md",
       "bytes": 237,
       "iterations": 2000,
-      "msPerOp": 0.0037174579999999934,
+      "msPerOp": 0.004421792000000096,
       "outputBytes": 361,
-      "heapDeltaKb": -1790.625
+      "heapDeltaKb": -2179.140625
     },
     {
       "group": "markdown",
@@ -168,9 +278,9 @@
       "fixture": "malformed.md",
       "bytes": 237,
       "iterations": 2000,
-      "msPerOp": 0.004737187500000004,
+      "msPerOp": 0.005098791499999948,
       "outputBytes": 350,
-      "heapDeltaKb": 270.859375
+      "heapDeltaKb": -15987.359375
     },
     {
       "group": "markdown",
@@ -178,9 +288,9 @@
       "fixture": "malformed.md",
       "bytes": 237,
       "iterations": 2000,
-      "msPerOp": 0.004775082999999995,
+      "msPerOp": 0.00432283300000006,
       "outputBytes": 300,
-      "heapDeltaKb": 8729.9140625
+      "heapDeltaKb": -7889.0546875
     },
     {
       "group": "markdown",
@@ -188,9 +298,9 @@
       "fixture": "malformed.md",
       "bytes": 237,
       "iterations": 2000,
-      "msPerOp": 0.04177691649999997,
+      "msPerOp": 0.04838487500000008,
       "outputBytes": 300,
-      "heapDeltaKb": 9444.4375
+      "heapDeltaKb": 7823.28125
     },
     {
       "group": "markdown",
@@ -198,9 +308,9 @@
       "fixture": "malformed.md",
       "bytes": 237,
       "iterations": 2000,
-      "msPerOp": 0.004104354000000001,
+      "msPerOp": 0.003601541999999995,
       "outputBytes": 300,
-      "heapDeltaKb": -8779.6015625
+      "heapDeltaKb": -9657.703125
     },
     {
       "group": "markdown",
@@ -208,9 +318,9 @@
       "fixture": "malformed.md",
       "bytes": 237,
       "iterations": 2000,
-      "msPerOp": 0.0017331664999999817,
+      "msPerOp": 0.0017919165000000704,
       "outputBytes": 408,
-      "heapDeltaKb": 2953.484375
+      "heapDeltaKb": 2938.7109375
     },
     {
       "group": "markdown",
@@ -218,9 +328,9 @@
       "fixture": "malformed.md",
       "bytes": 237,
       "iterations": 2000,
-      "msPerOp": 0.043081353999999975,
+      "msPerOp": 0.05201047900000003,
       "outputBytes": 297,
-      "heapDeltaKb": 3229.03125
+      "heapDeltaKb": 2198.7109375
     },
     {
       "group": "markdown",
@@ -228,9 +338,9 @@
       "fixture": "prose-heavy.md",
       "bytes": 1700,
       "iterations": 1000,
-      "msPerOp": 0.02262541699999997,
+      "msPerOp": 0.0246712500000001,
       "outputBytes": 15,
-      "heapDeltaKb": 1770.203125
+      "heapDeltaKb": 1524.1796875
     },
     {
       "group": "markdown",
@@ -238,9 +348,9 @@
       "fixture": "prose-heavy.md",
       "bytes": 1700,
       "iterations": 1000,
-      "msPerOp": 0.002296666000000073,
+      "msPerOp": 0.002283999999999878,
       "outputBytes": 1903,
-      "heapDeltaKb": -4262.2265625
+      "heapDeltaKb": 11786.2265625
     },
     {
       "group": "markdown",
@@ -248,9 +358,9 @@
       "fixture": "prose-heavy.md",
       "bytes": 1700,
       "iterations": 1000,
-      "msPerOp": 0.0022361250000000154,
+      "msPerOp": 0.0023624160000001665,
       "outputBytes": 1903,
-      "heapDeltaKb": -4328.96875
+      "heapDeltaKb": -20926.40625
     },
     {
       "group": "markdown",
@@ -258,9 +368,9 @@
       "fixture": "prose-heavy.md",
       "bytes": 1700,
       "iterations": 1000,
-      "msPerOp": 0.02343324999999993,
+      "msPerOp": 0.028720416000000113,
       "outputBytes": 1903,
-      "heapDeltaKb": -1547.5703125
+      "heapDeltaKb": 15101.3671875
     },
     {
       "group": "markdown",
@@ -268,9 +378,9 @@
       "fixture": "prose-heavy.md",
       "bytes": 1700,
       "iterations": 1000,
-      "msPerOp": 0.02379612499999996,
+      "msPerOp": 0.028860374999999976,
       "outputBytes": 1903,
-      "heapDeltaKb": -1655.515625
+      "heapDeltaKb": -17679.5625
     },
     {
       "group": "markdown",
@@ -278,9 +388,9 @@
       "fixture": "prose-heavy.md",
       "bytes": 1700,
       "iterations": 1000,
-      "msPerOp": 0.032463457999999945,
+      "msPerOp": 0.03564474999999993,
       "outputBytes": 1860,
-      "heapDeltaKb": -9294.5546875
+      "heapDeltaKb": 6714.1640625
     },
     {
       "group": "markdown",
@@ -288,9 +398,9 @@
       "fixture": "prose-heavy.md",
       "bytes": 1700,
       "iterations": 1000,
-      "msPerOp": 0.017179374999999938,
+      "msPerOp": 0.017011957999999824,
       "outputBytes": 1860,
-      "heapDeltaKb": 13230.7421875
+      "heapDeltaKb": -18454.453125
     },
     {
       "group": "markdown",
@@ -298,9 +408,9 @@
       "fixture": "prose-heavy.md",
       "bytes": 1700,
       "iterations": 1000,
-      "msPerOp": 0.2139636250000001,
+      "msPerOp": 0.24335829200000011,
       "outputBytes": 1862,
-      "heapDeltaKb": -7081.703125
+      "heapDeltaKb": 36817.5
     },
     {
       "group": "markdown",
@@ -308,9 +418,9 @@
       "fixture": "prose-heavy.md",
       "bytes": 1700,
       "iterations": 1000,
-      "msPerOp": 0.012734459000000016,
+      "msPerOp": 0.012954416999999921,
       "outputBytes": 1862,
-      "heapDeltaKb": 48078.9609375
+      "heapDeltaKb": -16195.5859375
     },
     {
       "group": "markdown",
@@ -318,9 +428,9 @@
       "fixture": "prose-heavy.md",
       "bytes": 1700,
       "iterations": 1000,
-      "msPerOp": 0.006130583999999999,
+      "msPerOp": 0.006491125000000011,
       "outputBytes": 2340,
-      "heapDeltaKb": 3369.703125
+      "heapDeltaKb": 3369.8203125
     },
     {
       "group": "markdown",
@@ -328,9 +438,9 @@
       "fixture": "prose-heavy.md",
       "bytes": 1700,
       "iterations": 1000,
-      "msPerOp": 0.226756083,
+      "msPerOp": 0.26396950000000013,
       "outputBytes": 1859,
-      "heapDeltaKb": 52596.359375
+      "heapDeltaKb": -9381.2578125
     },
     {
       "group": "markdown",
@@ -338,9 +448,9 @@
       "fixture": "small-doc.md",
       "bytes": 432,
       "iterations": 2000,
-      "msPerOp": 0.008691958,
+      "msPerOp": 0.011537541500000088,
       "outputBytes": 15,
-      "heapDeltaKb": 23523.171875
+      "heapDeltaKb": 22706.2265625
     },
     {
       "group": "markdown",
@@ -348,9 +458,9 @@
       "fixture": "small-doc.md",
       "bytes": 432,
       "iterations": 2000,
-      "msPerOp": 0.0031884999999999765,
+      "msPerOp": 0.004156041500000128,
       "outputBytes": 1328,
-      "heapDeltaKb": -32785.7109375
+      "heapDeltaKb": 31671.1171875
     },
     {
       "group": "markdown",
@@ -358,9 +468,9 @@
       "fixture": "small-doc.md",
       "bytes": 432,
       "iterations": 2000,
-      "msPerOp": 0.002461896000000024,
+      "msPerOp": 0.0030612085000000207,
       "outputBytes": 1002,
-      "heapDeltaKb": 25865.78125
+      "heapDeltaKb": -39114.40625
     },
     {
       "group": "markdown",
@@ -368,9 +478,9 @@
       "fixture": "small-doc.md",
       "bytes": 432,
       "iterations": 2000,
-      "msPerOp": 0.012085979500000007,
+      "msPerOp": 0.015502833500000179,
       "outputBytes": 1328,
-      "heapDeltaKb": -14525.9453125
+      "heapDeltaKb": -14484.265625
     },
     {
       "group": "markdown",
@@ -378,9 +488,9 @@
       "fixture": "small-doc.md",
       "bytes": 432,
       "iterations": 2000,
-      "msPerOp": 0.011430292000000009,
+      "msPerOp": 0.015056228999999803,
       "outputBytes": 1002,
-      "heapDeltaKb": -20062.1640625
+      "heapDeltaKb": 44889.1875
     },
     {
       "group": "markdown",
@@ -388,9 +498,9 @@
       "fixture": "small-doc.md",
       "bytes": 432,
       "iterations": 2000,
-      "msPerOp": 0.011257687499999974,
+      "msPerOp": 0.01338283350000006,
       "outputBytes": 724,
-      "heapDeltaKb": 49472.765625
+      "heapDeltaKb": -14855.796875
     },
     {
       "group": "markdown",
@@ -398,9 +508,9 @@
       "fixture": "small-doc.md",
       "bytes": 432,
       "iterations": 2000,
-      "msPerOp": 0.007509916500000031,
+      "msPerOp": 0.010010062500000003,
       "outputBytes": 776,
-      "heapDeltaKb": 1534.2109375
+      "heapDeltaKb": 3151.8203125
     },
     {
       "group": "markdown",
@@ -408,9 +518,9 @@
       "fixture": "small-doc.md",
       "bytes": 432,
       "iterations": 2000,
-      "msPerOp": 0.08685604149999995,
+      "msPerOp": 0.10596406249999996,
       "outputBytes": 535,
-      "heapDeltaKb": 44657.0390625
+      "heapDeltaKb": -20894.296875
     },
     {
       "group": "markdown",
@@ -418,9 +528,9 @@
       "fixture": "small-doc.md",
       "bytes": 432,
       "iterations": 2000,
-      "msPerOp": 0.005594562500000052,
+      "msPerOp": 0.006100187499999948,
       "outputBytes": 535,
-      "heapDeltaKb": -15027.578125
+      "heapDeltaKb": -15135.84375
     },
     {
       "group": "markdown",
@@ -428,9 +538,9 @@
       "fixture": "small-doc.md",
       "bytes": 432,
       "iterations": 2000,
-      "msPerOp": 0.0031661249999999654,
+      "msPerOp": 0.0034391665000000557,
       "outputBytes": 854,
-      "heapDeltaKb": 3637.734375
+      "heapDeltaKb": 3619.6015625
     },
     {
       "group": "markdown",
@@ -438,9 +548,9 @@
       "fixture": "small-doc.md",
       "bytes": 432,
       "iterations": 2000,
-      "msPerOp": 0.09927356250000002,
+      "msPerOp": 0.11185512500000004,
       "outputBytes": 534,
-      "heapDeltaKb": 4475.703125
+      "heapDeltaKb": 3891.1796875
     },
     {
       "group": "markdown",
@@ -448,9 +558,9 @@
       "fixture": "tables-lists.md",
       "bytes": 454,
       "iterations": 2000,
-      "msPerOp": 0.022886041500000034,
+      "msPerOp": 0.025076854000000138,
       "outputBytes": 15,
-      "heapDeltaKb": -16469.0703125
+      "heapDeltaKb": -16620.21875
     },
     {
       "group": "markdown",
@@ -458,9 +568,9 @@
       "fixture": "tables-lists.md",
       "bytes": 454,
       "iterations": 2000,
-      "msPerOp": 0.004225270499999965,
+      "msPerOp": 0.004303478999999924,
       "outputBytes": 1315,
-      "heapDeltaKb": -17045.6875
+      "heapDeltaKb": -17646.390625
     },
     {
       "group": "markdown",
@@ -468,9 +578,9 @@
       "fixture": "tables-lists.md",
       "bytes": 454,
       "iterations": 2000,
-      "msPerOp": 0.0038538959999999635,
+      "msPerOp": 0.0039790000000000415,
       "outputBytes": 1315,
-      "heapDeltaKb": -17825.375
+      "heapDeltaKb": 47794.3515625
     },
     {
       "group": "markdown",
@@ -478,9 +588,9 @@
       "fixture": "tables-lists.md",
       "bytes": 454,
       "iterations": 2000,
-      "msPerOp": 0.026604917,
+      "msPerOp": 0.02985266699999988,
       "outputBytes": 1315,
-      "heapDeltaKb": 30703.90625
+      "heapDeltaKb": -34785.484375
     },
     {
       "group": "markdown",
@@ -488,9 +598,9 @@
       "fixture": "tables-lists.md",
       "bytes": 454,
       "iterations": 2000,
-      "msPerOp": 0.026326853999999913,
+      "msPerOp": 0.02884072900000001,
       "outputBytes": 1315,
-      "heapDeltaKb": -34852.1953125
+      "heapDeltaKb": 30924.1015625
     },
     {
       "group": "markdown",
@@ -498,9 +608,9 @@
       "fixture": "tables-lists.md",
       "bytes": 454,
       "iterations": 2000,
-      "msPerOp": 0.025722395499999946,
+      "msPerOp": 0.027959729000000152,
       "outputBytes": 1102,
-      "heapDeltaKb": 46341.453125
+      "heapDeltaKb": -14243.8125
     },
     {
       "group": "markdown",
@@ -508,9 +618,9 @@
       "fixture": "tables-lists.md",
       "bytes": 454,
       "iterations": 2000,
-      "msPerOp": 0.016733957999999917,
+      "msPerOp": 0.01813470849999999,
       "outputBytes": 1325,
-      "heapDeltaKb": -42428.25
+      "heapDeltaKb": -39103.109375
     },
     {
       "group": "markdown",
@@ -518,9 +628,9 @@
       "fixture": "tables-lists.md",
       "bytes": 454,
       "iterations": 2000,
-      "msPerOp": 0.14708462499999997,
+      "msPerOp": 0.1647125205,
       "outputBytes": 627,
-      "heapDeltaKb": 26931.59375
+      "heapDeltaKb": 26083.0859375
     },
     {
       "group": "markdown",
@@ -528,9 +638,9 @@
       "fixture": "tables-lists.md",
       "bytes": 454,
       "iterations": 2000,
-      "msPerOp": 0.01108352049999985,
+      "msPerOp": 0.011367958499999987,
       "outputBytes": 627,
-      "heapDeltaKb": -35659.109375
+      "heapDeltaKb": -37034.359375
     },
     {
       "group": "markdown",
@@ -538,9 +648,9 @@
       "fixture": "tables-lists.md",
       "bytes": 454,
       "iterations": 2000,
-      "msPerOp": 0.005583125000000109,
+      "msPerOp": 0.005780499999999847,
       "outputBytes": 1202,
-      "heapDeltaKb": 4504.421875
+      "heapDeltaKb": 4505.2578125
     },
     {
       "group": "markdown",
@@ -548,9 +658,29 @@
       "fixture": "tables-lists.md",
       "bytes": 454,
       "iterations": 2000,
-      "msPerOp": 0.1729127085,
+      "msPerOp": 0.19502033299999993,
       "outputBytes": 622,
-      "heapDeltaKb": 6602.5546875
+      "heapDeltaKb": 7804.796875
+    },
+    {
+      "group": "streaming",
+      "name": "@tanstack/markdown streaming profile",
+      "fixture": "ai-response.md",
+      "bytes": 652,
+      "iterations": 250,
+      "msPerOp": 0.2652343359999995,
+      "outputBytes": 1112,
+      "heapDeltaKb": -22832.921875
+    },
+    {
+      "group": "streaming",
+      "name": "marked progressive parse+render",
+      "fixture": "ai-response.md",
+      "bytes": 652,
+      "iterations": 250,
+      "msPerOp": 0.28952133600000163,
+      "outputBytes": 1035,
+      "heapDeltaKb": 3180.7578125
     }
   ]
 }

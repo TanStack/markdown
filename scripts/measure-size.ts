@@ -46,6 +46,18 @@ const entries = [
   },
   {
     group: 'tanstack',
+    name: 'streaming extension',
+    contents: "import { streamingMarkdownExtension } from './src/extensions/streaming.ts'; console.log(streamingMarkdownExtension)",
+  },
+  {
+    group: 'tanstack',
+    name: 'react adapter with streaming extension',
+    external: ['react'],
+    contents:
+      "import { Markdown } from './src/react.ts'; import { streamingMarkdownExtension } from './src/extensions/streaming.ts'; console.log(Markdown, streamingMarkdownExtension)",
+  },
+  {
+    group: 'tanstack',
     name: 'tabs transforms',
     contents: "import { transformTabsComponent } from './src/extensions/tabs.ts'; console.log(transformTabsComponent)",
   },

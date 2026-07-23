@@ -11,6 +11,7 @@ It provides independently importable paths for each layer:
 - A parser that produces a deterministic, serializable AST
 - An HTML renderer with safe defaults
 - React and Octane renderers with the same core output semantics
+- An optional profile for accumulated AI response streams
 
 The package has no runtime dependencies. React and Octane are optional peer dependencies used only by their matching adapter entry points, and syntax highlighting stays outside the Markdown bundle.
 
@@ -43,6 +44,10 @@ Raw HTML is escaped unless `allowHtml` is enabled. Executable URL protocols such
 ### Focused compatibility
 
 The supported contract is the [TanStack docs syntax profile](core-concepts/syntax-profile), not full CommonMark or GFM. Compatibility is continuously measured so established behavior cannot regress silently.
+
+### AI streaming without parser state
+
+The optional [AI streaming profile](guides/ai-streaming) reparses accumulated response text and suppresses incomplete trailing block placeholders. It adds 0.2 KB gzip to the React path while leaving the core parser and renderers unchanged.
 
 ## Choose your starting point
 

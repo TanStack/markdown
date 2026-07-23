@@ -137,6 +137,18 @@ function collectMarkdownHeadings(
 
 Collects headings recursively through lists, blockquotes, callouts, and components while respecting skipped component names and framework labels.
 
+## Streaming
+
+Import from `@tanstack/markdown/extensions/streaming`.
+
+### `streamingMarkdownExtension`
+
+```ts
+function streamingMarkdownExtension(): MarkdownExtension
+```
+
+Creates a document transform for accumulated AI responses. The transform removes an empty trailing heading, blockquote, or list item that is likely to be an incomplete block marker. All completed content keeps the core parser's normal output.
+
 ## Tab transforms
 
 Import from `@tanstack/markdown/extensions/tabs`.

@@ -1,6 +1,6 @@
 # Bundle Size Results
 
-Generated: 2026-07-22T18:10:09.789Z
+Generated: 2026-07-23T22:04:26.251Z
 
 Bundles are ESM, browser-targeted, minified with esbuild, then gzip and brotli compressed. Framework runtimes are externalized for the React and Octane adapters.
 
@@ -13,6 +13,8 @@ Bundles are ESM, browser-targeted, minified with esbuild, then gzip and brotli c
 | tanstack | octane adapter | 19015 | 6661 | 6125 |
 | tanstack | docs extension preset | 6792 | 2398 | 2188 |
 | tanstack | callouts extension | 556 | 372 | 329 |
+| tanstack | streaming extension | 699 | 311 | 253 |
+| tanstack | react adapter with streaming extension | 19703 | 6843 | 6275 |
 | tanstack | tabs transforms | 3398 | 1255 | 1103 |
 | markdown | marked | 41415 | 12548 | 11509 |
 | markdown | markdown-it | 148242 | 52655 | 44023 |

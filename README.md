@@ -10,6 +10,7 @@ A tiny, fast, deterministic Markdown parser and renderer for blogs and documenta
 - serializable AST
 - safe defaults for raw HTML and executable URLs
 - optional docs extensions and external syntax highlighting
+- optional AI streaming profile
 
 ```bash
 pnpm add @tanstack/markdown
@@ -50,6 +51,7 @@ TanStack Markdown targets controlled technical content. It supports the Markdown
 - [Syntax Profile](./docs/core-concepts/syntax-profile.md)
 - [React Guide](./docs/guides/react.md)
 - [Octane Guide](./docs/guides/octane.md)
+- [AI Streaming](./docs/guides/ai-streaming.md)
 - [Syntax Highlighting](./docs/guides/syntax-highlighting.md)
 - [Extensions](./docs/guides/extensions.md)
 - [API Reference](./docs/reference/index.md)
