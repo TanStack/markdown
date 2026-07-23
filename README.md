@@ -15,6 +15,8 @@ A tiny, fast, deterministic Markdown parser and renderer for blogs and documenta
 pnpm add @tanstack/markdown
 ```
 
+If you use an AI agent, run `npx @tanstack/intent@latest install` so it can discover the package's task-specific skills.
+
 ```ts
 import { renderHtml } from '@tanstack/markdown/html'
 
