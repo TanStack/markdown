@@ -38,12 +38,15 @@ const one = 1
 const two = 2
 \`\`\``
     const options = {
+      codeLineNumbers: true,
       extensions: docsMarkdownExtensions(),
       headingAnchors: true,
       highlighter: externalHighlighter,
     }
 
-    expect(normalizeStaticMarkup(renderOctane(source, options))).toBe(normalizeStaticMarkup(renderHtml(source, options)))
+    const html = renderHtml(source, options)
+    expect(html).toContain('class="tm-code tm-code--line-numbers"')
+    expect(normalizeStaticMarkup(renderOctane(source, options))).toBe(normalizeStaticMarkup(html))
   })
 
   it('renders trusted raw HTML through Octane dangerous HTML props', () => {

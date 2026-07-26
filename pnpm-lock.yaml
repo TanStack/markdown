@@ -8,6 +8,9 @@ importers:
 
   .:
     devDependencies:
+      '@tanstack/highlight':
+        specifier: 0.0.6
+        version: 0.0.6
       '@tanstack/intent':
         specifier: ^0.3.6
         version: 0.3.6
@@ -691,6 +694,10 @@ packages:
     resolution: {integrity: sha512-LFuZUkjJ9iF7JZye/aG5XM0SFcQ5VyL0oVX4WJ9dc0Va3R3s0OauX1BESVCb+YN/ol8TAfqGDDAQsTG627Y5kw==}
     peerDependencies:
       acorn: ^8.9.0
+
+  '@tanstack/highlight@0.0.6':
+    resolution: {integrity: sha512-thgHLjw2QWtV7ZBwce+3dL33hkgKKivpfqSMKOR5ILiAEV2lc90af8UpJVMY/hmeXVGseoxjbB134PRf85p8gQ==}
+    engines: {node: '>=18'}
 
   '@tanstack/intent@0.3.6':
     resolution: {integrity: sha512-ylew/4T3layUXSfE/SDGUSAi1B3U/wuoNUE0adC3j/s6wzX7omV6e6hAv0WyMC52Inren8kqvwpHj+G/ZBbQHQ==}
@@ -1608,6 +1615,8 @@ snapshots:
   '@sveltejs/acorn-typescript@1.0.11(acorn@8.17.0)':
     dependencies:
       acorn: 8.17.0
+
+  '@tanstack/highlight@0.0.6': {}
 
   '@tanstack/intent@0.3.6':
     dependencies:

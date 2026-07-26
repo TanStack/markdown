@@ -37,6 +37,8 @@ renderHtml(source, { highlighter })
 
 Only use a highlighter that escapes source code and returns trusted markup. TanStack Markdown cannot distinguish token markup from an injection in the returned string.
 
+The tested [TanStack Highlight adapter](../guides/syntax-highlighting#tanstack-highlight-adapter) returns escaped inner token markup without duplicating Markdown's `<pre><code>` containers.
+
 ## Extensions
 
 An extension `renderHtml` hook also returns trusted HTML. React and Octane component replacements can enforce application-specific link, image, and navigation policies, but those replacements are outside core renderer parity.

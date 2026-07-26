@@ -42,6 +42,8 @@ export function Article({ source }: { source: string }) @{
 
 TanStack Markdown targets controlled technical content. It supports the Markdown used by blogs and docs, then spends its remaining complexity budget on deterministic output, renderer parity, malformed-input resilience, and small entry points. It is intentionally not a complete CommonMark, GFM, MDX, or general content-processing implementation.
 
+For syntax highlighting, use the tested [TanStack Highlight adapter](./docs/guides/syntax-highlighting.md#tanstack-highlight-adapter). It registers only the languages you choose and returns escaped token markup inside Markdown-owned code containers.
+
 ## Documentation
 
 - [Overview](./docs/overview.md)

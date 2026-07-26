@@ -9,7 +9,7 @@ metadata:
   type: framework
   library: '@tanstack/markdown'
   framework: 'react'
-  library_version: '0.0.10'
+  library_version: '0.0.12'
 requires:
   - 'render-markdown'
 sources:
@@ -48,31 +48,34 @@ export function Article({ source }: { source: string }) {
 ### Replace emitted links with an application component
 
 ```tsx
-import type { ComponentProps } from 'react'
-import { Markdown } from '@tanstack/markdown/react'
+import {
+  Markdown,
+  type MarkdownComponents,
+} from '@tanstack/markdown/react'
 
-function ArticleLink(props: ComponentProps<'a'>) {
-  const external = props.href?.startsWith('http') ?? false
-
-  return (
-    <a
-      {...props}
-      rel={external ? 'noreferrer' : props.rel}
-      target={external ? '_blank' : props.target}
-    />
-  )
-}
+const components = {
+  a(props) {
+    const external = props.href?.startsWith('http') ?? false
+    return (
+      <a
+        {...props}
+        rel={external ? 'nofollow noopener noreferrer' : props.rel}
+        target={external ? '_blank' : props.target}
+      />
+    )
+  },
+} satisfies MarkdownComponents
 
 export function Article({ source }: { source: string }) {
   return (
     <article>
-      <Markdown components={{ a: ArticleLink }}>{source}</Markdown>
+      <Markdown components={components}>{source}</Markdown>
     </article>
   )
 }
 ```
 
-`components` is keyed by emitted intrinsic or custom-element tag names.
+Known intrinsic keys infer their matching React props. Arbitrary extension component tag names remain supported.
 
 ### Parse once before repeated React rendering
 

@@ -12,10 +12,20 @@ import {
   renderBlockReact,
   renderInlineReact,
   renderMarkdownReact,
+  type MarkdownComponentProps,
+  type MarkdownComponents,
   type MarkdownProps,
   type MarkdownReactOptions,
 } from '@tanstack/markdown/react'
 ```
+
+## `MarkdownComponentProps`
+
+Returns `React.ComponentPropsWithoutRef<TagName>` for an intrinsic tag name. Use it when declaring a replacement separately from a component map.
+
+## `MarkdownComponents`
+
+An opt-in authoring type that maps known intrinsic tag names to another tag or a component with matching intrinsic props. It also accepts arbitrary string keys for extension component tags. Use it with `satisfies` to get element-specific inference without narrowing the renderer's backwards-compatible input contract.
 
 ## `MarkdownReactOptions`
 
@@ -29,7 +39,7 @@ interface MarkdownReactOptions extends RenderOptions {
 }
 ```
 
-`components` replaces an emitted intrinsic or custom element by tag name.
+`components` replaces an emitted intrinsic or custom element by tag name. Its accepted input remains permissive for backwards compatibility; `MarkdownComponents` provides stricter opt-in validation.
 
 ## `MarkdownProps`
 

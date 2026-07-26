@@ -66,7 +66,7 @@ Runs extension HTML hooks, then renders one inline node.
 | Option | Default | Behavior |
 | --- | --- | --- |
 | `highlighter` | none | Return trusted HTML for code contents |
-| `codeLineNumbers` | unset | Forward the line-number preference to the highlighter |
+| `codeLineNumbers` | unset | Forward the preference and add `tm-code--line-numbers` when true |
 | `headingAnchors` | `false` | Append default or configured links to headings with IDs |
 
 When rendering a pre-parsed document, parse-only options do not retroactively change its AST. Renderer options and extension `renderHtml` hooks still apply.

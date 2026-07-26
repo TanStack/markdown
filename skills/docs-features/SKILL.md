@@ -9,7 +9,7 @@ description: >
 metadata:
   type: core
   library: '@tanstack/markdown'
-  library_version: '0.0.10'
+  library_version: '0.0.12'
 requires:
   - 'render-markdown'
 sources:
@@ -392,11 +392,10 @@ export const html = renderHtml(source)
 Correct:
 
 ````ts
-import {
-  renderNodesToHtml,
-  renderTokens,
-  tokenize,
-} from '@tanstack/highlight'
+import { createHighlighter } from '@tanstack/highlight/core'
+import { plaintext } from '@tanstack/highlight/languages/plaintext'
+import { ts } from '@tanstack/highlight/languages/ts'
+import { createTanStackMarkdownHighlighter } from '@tanstack/highlight/markdown'
 import { renderHtml } from '@tanstack/markdown/html'
 
 const source = `\`\`\`ts file="app.ts" {2}
@@ -404,18 +403,12 @@ const one = 1
 const two = 2
 \`\`\``
 
+const highlighter = createHighlighter({
+  languages: [plaintext, ts],
+})
+
 export const html = renderHtml(source, {
-  highlighter(code, lang, options) {
-    const result = tokenize(code, { lang })
-    return renderNodesToHtml(
-      renderTokens(result.tokens, {
-        decorations: options?.highlightLines?.map((line) => ({
-          lines: line,
-          className: 'is-highlighted',
-        })),
-      }),
-    )
-  },
+  highlighter: createTanStackMarkdownHighlighter(highlighter),
 })
 ````
 

@@ -78,3 +78,9 @@ The AI streaming profile renders every character prefix of a representative resp
 - every exported declaration name appears in its reference page
 
 When adding public API, update declarations and reference documentation in the same change.
+
+## Skill version coverage
+
+`pnpm run test:skills` validates each shipped Intent skill and requires its embedded package metadata, package-qualified examples, cache keys, and source artifacts to match `package.json`.
+
+`pnpm version` runs `pnpm run skills:sync-version` after changing the package version. The normal verification gate fails instead of publishing stale skill guidance when those files drift.

@@ -90,7 +90,7 @@ function renderInlines(nodes: InlineNode[], options: RenderOptions): string {
 function renderCodeBlock(node: Extract<BlockNode, { type: 'code' }>, options: RenderOptions): string {
   const lang = node.lang ?? 'plaintext'
   const preAttrs = [
-    'class="tm-code"',
+    `class="tm-code${options.codeLineNumbers ? ' tm-code--line-numbers' : ''}"`,
     `data-lang="${escapeAttr(lang)}"`,
     node.title ? `data-code-title="${escapeAttr(node.title)}"` : '',
     node.file ? `data-filename="${escapeAttr(node.file)}"` : '',

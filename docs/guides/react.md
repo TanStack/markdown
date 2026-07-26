@@ -23,24 +23,37 @@ export function Article({ source }: { source: string }) {
 Map an HTML tag name to a component or another tag:
 
 ```tsx
-import type { ComponentProps } from 'react'
-import { Markdown } from '@tanstack/markdown/react'
+import {
+  Markdown,
+  type MarkdownComponents,
+} from '@tanstack/markdown/react'
 
-function ExternalLink(props: ComponentProps<'a'>) {
-  const external = props.href?.startsWith('http')
-  return (
-    <a
-      {...props}
-      rel={external ? 'noreferrer' : props.rel}
-      target={external ? '_blank' : props.target}
-    />
-  )
-}
+const components = {
+  a(props) {
+    const hasProtocol = /^[a-z][a-z0-9+.-]*:/i.test(props.href || '')
+    const allowed =
+      !hasProtocol || /^(https?:|mailto:)/i.test(props.href || '')
+    const href = allowed ? props.href : undefined
+    const external = /^https?:\/\//i.test(href || '')
 
-<Markdown components={{ a: ExternalLink }}>{source}</Markdown>
+    return (
+      <a
+        {...props}
+        href={href}
+        rel={external ? 'nofollow noopener noreferrer' : props.rel}
+        target={external ? '_blank' : props.target}
+      />
+    )
+  },
+  img({ alt }) {
+    return <span role="img">Image: {alt || 'No description'}</span>
+  },
+} satisfies MarkdownComponents
+
+<Markdown components={components}>{source}</Markdown>
 ```
 
-Mappings apply to every intrinsic tag emitted through the React renderer, including extension component tag names.
+Known intrinsic keys receive their matching React props by inference, so `a` exposes anchor props and `img` exposes image props. Arbitrary extension component tag names remain supported. Mappings apply to every intrinsic tag emitted through the React renderer.
 
 ## Pre-parse for SSR
 

@@ -153,7 +153,7 @@ function renderCodeBlockOctane(node: Extract<BlockNode, { type: 'code' }>, optio
     options,
     'pre',
     {
-      className: 'tm-code',
+      className: `tm-code${options.codeLineNumbers ? ' tm-code--line-numbers' : ''}`,
       'data-lang': lang,
       ...(node.title ? { 'data-code-title': node.title } : {}),
       ...(node.file ? { 'data-filename': node.file } : {}),

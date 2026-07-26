@@ -114,6 +114,12 @@ const html = renderHtml(document, options)
 
 The preset adds callouts, heading collection, and TanStack-style comment components without changing the core entry points. See the [Docs Preset](guides/docs-preset) guide.
 
+## Highlight code
+
+TanStack Markdown owns each `<pre><code>` tree and accepts trusted inner token markup through its `highlighter` callback. TanStack Highlight provides `createTanStackMarkdownHighlighter()` for this boundary; do not pass a high-level method that returns another code-block wrapper.
+
+See [Syntax Highlighting](guides/syntax-highlighting) for the complete React and HTML setup, explicit language registration, light and dark themes, line numbers, and security boundary.
+
 ## Next steps
 
 - Confirm your content fits the [Syntax Profile](core-concepts/syntax-profile).

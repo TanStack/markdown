@@ -1,9 +1,17 @@
 import { Fragment, createElement } from 'react'
-import type { ComponentType, ReactElement, ReactNode } from 'react'
+import type { ComponentPropsWithoutRef, ComponentType, JSX, ReactElement, ReactNode } from 'react'
 import { parseMarkdown } from './parser.js'
 import type { BlockNode, ComponentNode, FootnoteItemNode, InlineNode, MarkdownInput, RenderOptions, TableCellNode } from './types.js'
 
+type IntrinsicElementName = keyof JSX.IntrinsicElements
 type ComponentMap = Partial<Record<string, string | ComponentType<any>>>
+
+export type MarkdownComponentProps<TagName extends IntrinsicElementName> = ComponentPropsWithoutRef<TagName>
+
+export type MarkdownComponents = Partial<{
+  [TagName in IntrinsicElementName]: IntrinsicElementName | ComponentType<MarkdownComponentProps<TagName>>
+}> &
+  Record<string, string | ComponentType<any> | undefined>
 
 export interface MarkdownReactOptions extends RenderOptions {
   components?: ComponentMap
@@ -159,7 +167,7 @@ function renderCodeBlockReact(node: Extract<BlockNode, { type: 'code' }>, option
     options,
     'pre',
     {
-      className: 'tm-code',
+      className: `tm-code${options.codeLineNumbers ? ' tm-code--line-numbers' : ''}`,
       'data-lang': lang,
       ...(node.title ? { 'data-code-title': node.title } : {}),
       ...(node.file ? { 'data-filename': node.file } : {}),

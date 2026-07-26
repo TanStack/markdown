@@ -8,7 +8,7 @@ description: >
 metadata:
   type: lifecycle
   library: '@tanstack/markdown'
-  library_version: '0.0.10'
+  library_version: '0.0.12'
 requires:
   - 'render-markdown'
 sources:
@@ -58,23 +58,15 @@ Fix: Separate trusted and untrusted entry points, keep trusted callbacks disable
 ### Check: Return trusted code contents only
 
 Expected:
-
 ```ts
 import { renderHtml } from '@tanstack/markdown/html'
-import {
-  renderNodesToHtml,
-  renderTokens,
-  tokenize,
-} from '@tanstack/highlight'
-
-const source = '```ts {1}\nconst answer = 42\n```'
-
-export const html = renderHtml(source, {
-  highlighter(code, lang, options) {
-    const result = tokenize(code, { lang: lang ?? 'plaintext' })
-    const decorations = options?.highlightLines?.map((lines) => ({ lines, className: 'is-highlighted' }))
-    return renderNodesToHtml(renderTokens(result.tokens, { lineNumbers: options?.lineNumbers, decorations }))
-  },
+import { createHighlighter } from '@tanstack/highlight/core'
+import { plaintext } from '@tanstack/highlight/languages/plaintext'
+import { ts } from '@tanstack/highlight/languages/ts'
+import { createTanStackMarkdownHighlighter } from '@tanstack/highlight/markdown'
+const highlighter = createHighlighter({ languages: [plaintext, ts] })
+export const html = renderHtml('```ts {1}\nconst answer = 42\n```', {
+  highlighter: createTanStackMarkdownHighlighter(highlighter),
 })
 ```
 
@@ -135,7 +127,7 @@ import { parseMarkdown } from '@tanstack/markdown/parser'
 const cache = new Map<string, MarkdownDocument>()
 
 export function renderCachedArticle(key: string, source: string): string {
-  const cacheKey = `markdown-0.0.10:${key}`
+  const cacheKey = `markdown-0.0.12:${key}`
   let document = cache.get(cacheKey)
   if (!document) {
     document = parseMarkdown(source, {

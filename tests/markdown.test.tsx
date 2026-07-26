@@ -376,6 +376,7 @@ describe('pluggable code highlighting', () => {
     })
 
     expect(html).toContain('data-lang="ts"')
+    expect(html).toContain('class="tm-code tm-code--line-numbers"')
     expect(html).toContain('external-line-number')
     expect(html).toContain('external-line-highlight')
   })

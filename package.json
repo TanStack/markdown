@@ -1,6 +1,6 @@
 {
   "name": "@tanstack/markdown",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "type": "module",
   "description": "A tiny, fast, deterministic Markdown renderer for blogs and documentation.",
   "license": "MIT",
@@ -80,14 +80,17 @@
     "corpus:audit:tanstack": "tsx scripts/audit-tanstack-corpus.ts",
     "corpus:audit:external": "tsx scripts/audit-external-corpus.ts",
     "docs:verify": "node scripts/verify-docs.mjs",
-    "test:skills": "intent validate skills --check",
+    "test:skills": "intent validate skills --check && pnpm run skills:check-version",
+    "skills:check-version": "node scripts/sync-skill-version.mjs --check",
+    "skills:sync-version": "node scripts/sync-skill-version.mjs",
     "skills:stale": "intent stale",
     "conformance": "tsx scripts/conformance.ts",
     "bench": "tsx scripts/bench.ts",
     "size": "tsx scripts/measure-size.ts",
     "research": "pnpm run conformance && pnpm run size && pnpm run bench",
     "verify": "pnpm test && pnpm run typecheck && pnpm run build && pnpm run docs:verify && pnpm run test:skills && pnpm run research && pnpm pack --dry-run",
-    "prepublishOnly": "pnpm run verify"
+    "prepublishOnly": "pnpm run verify",
+    "version": "pnpm run skills:sync-version"
   },
   "publishConfig": {
     "access": "public"
@@ -105,6 +108,7 @@
     }
   },
   "devDependencies": {
+    "@tanstack/highlight": "0.0.6",
     "@tanstack/intent": "^0.3.6",
     "@types/node": "^24.0.0",
     "@types/react": "^19.0.0",
