@@ -17,6 +17,20 @@ describe('TanStack Markdown', () => {
     expect(renderToStaticMarkup(<Markdown>{source}</Markdown>)).toBe(expected)
   })
 
+  it('nests strong inside emphasis', () => {
+    const cases = [
+      ['*a **b** c*', '<p><em>a <strong>b</strong> c</em></p>'],
+      ['*see **the docs** here*', '<p><em>see <strong>the docs</strong> here</em></p>'],
+      ['_italic __bold__ tail_', '<p><em>italic <strong>bold</strong> tail</em></p>'],
+      ['*outer **inner***', '<p><em>outer <strong>inner</strong></em></p>'],
+    ]
+
+    for (const [source, expected] of cases) {
+      expect(renderHtml(source!)).toBe(expected)
+      expect(renderToStaticMarkup(<Markdown>{source!}</Markdown>)).toBe(expected)
+    }
+  })
+
   it('preserves escaped type brackets around linked API types when HTML is enabled', () => {
     const source = '`Partial`\\<[HotkeyOptions](/options)\\>'
     const expected = '<p><code>Partial</code>&lt;<a href="/options">HotkeyOptions</a>&gt;</p>'

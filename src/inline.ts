@@ -361,6 +361,13 @@ function findDelimiter(value: string, start: number, delimiter: string, budget: 
   for (let index = start; index < value.length; index++) {
     if (!takeScan(budget)) return -1
     if (value[index - 1] === '\\') continue
+    if (!delimiter[1] && value[index + 1] === delimiter) {
+      const close = value.indexOf(delimiter + delimiter, index + 2)
+      if (close > index + 2) {
+        index = close + 1
+        continue
+      }
+    }
     if (delimiter === '~~' && (value[index - 1] === '~' || value[index + 2] === '~')) continue
     if (delimiter[0] === '_' && !canUseUnderscore(value, index, delimiter.length, false)) continue
     if (value.startsWith(delimiter, index)) return index
@@ -369,7 +376,7 @@ function findDelimiter(value: string, start: number, delimiter: string, budget: 
 }
 
 function findSingleTildeDelimiter(value: string, start: number, budget: InlineParseBudget): number {
-  if (isWhitespace(value[start] ?? '') || /\d/.test(value[start] ?? '')) return -1
+  if (isDelimiterWhitespace(value[start]) || /\d/.test(value[start]!)) return -1
 
   for (let index = start; index < value.length; index++) {
     if (!takeScan(budget)) return -1
@@ -377,7 +384,7 @@ function findSingleTildeDelimiter(value: string, start: number, budget: InlinePa
     if (value[index] !== '~') continue
     if (value[index - 1] === '~') continue
     if (value[index + 1] === '~') continue
-    if (isWhitespace(value[index - 1] ?? '')) return -1
+    if (isDelimiterWhitespace(value[index - 1])) return -1
     return index
   }
 
@@ -412,10 +419,6 @@ function isDelimiterWhitespace(value: string | undefined): boolean {
 
 function isPunctuation(value: string | undefined): boolean {
   return value !== undefined && /[^\p{L}\p{N}\s]/u.test(value)
-}
-
-function isWhitespace(value: string): boolean {
-  return /\s/.test(value)
 }
 
 function textFromMarkdown(value: string, budget: InlineParseBudget): string {
