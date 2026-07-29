@@ -362,7 +362,7 @@ function findDelimiter(value: string, start: number, delimiter: string, budget: 
     if (!takeScan(budget)) return -1
     if (value[index - 1] === '\\') continue
     if (!delimiter[1] && value[index + 1] === delimiter) {
-      const close = value.indexOf(delimiter + delimiter, index + 2)
+      const close = findDelimiter(value, index + 2, delimiter + delimiter, budget)
       if (close > index + 2) {
         index = close + 1
         continue

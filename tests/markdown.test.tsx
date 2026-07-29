@@ -23,6 +23,7 @@ describe('TanStack Markdown', () => {
       ['*see **the docs** here*', '<p><em>see <strong>the docs</strong> here</em></p>'],
       ['_italic __bold__ tail_', '<p><em>italic <strong>bold</strong> tail</em></p>'],
       ['*outer **inner***', '<p><em>outer <strong>inner</strong></em></p>'],
+      ['*a **b\\** c*', '<p><em>a </em><em>b*</em> c*</p>'],
     ]
 
     for (const [source, expected] of cases) {

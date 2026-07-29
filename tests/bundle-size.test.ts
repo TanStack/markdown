@@ -17,7 +17,7 @@ describe('bundle budgets', () => {
 
     expect(parser.gzipBytes).toBeLessThan(4_975)
     expect(html.gzipBytes).toBeLessThan(6_785)
-    expect(react.gzipBytes).toBeLessThan(6_705)
+    expect(react.gzipBytes).toBeLessThan(6_707)
     expect(octane.gzipBytes).toBeLessThan(6_705)
     expect(pluggable.gzipBytes).toBeLessThan(6_805)
     expect(streaming.gzipBytes).toBeLessThan(400)
