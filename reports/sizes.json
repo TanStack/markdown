@@ -1,40 +1,40 @@
 {
-  "generatedAt": "2026-07-26T03:30:47.396Z",
+  "generatedAt": "2026-08-04T22:15:32.985Z",
   "results": [
     {
       "group": "tanstack",
       "name": "parser only",
-      "minBytes": 14017,
-      "gzipBytes": 4942,
-      "brotliBytes": 4549
+      "minBytes": 14124,
+      "gzipBytes": 4983,
+      "brotliBytes": 4588
     },
     {
       "group": "tanstack",
       "name": "html renderer no highlighter",
-      "minBytes": 19095,
-      "gzipBytes": 6765,
-      "brotliBytes": 6191
+      "minBytes": 19202,
+      "gzipBytes": 6805,
+      "brotliBytes": 6224
     },
     {
       "group": "tanstack",
       "name": "html renderer with external highlighter stub",
-      "minBytes": 19131,
-      "gzipBytes": 6786,
-      "brotliBytes": 6210
+      "minBytes": 19238,
+      "gzipBytes": 6826,
+      "brotliBytes": 6243
     },
     {
       "group": "tanstack",
       "name": "react adapter",
-      "minBytes": 19060,
-      "gzipBytes": 6681,
-      "brotliBytes": 6141
+      "minBytes": 19167,
+      "gzipBytes": 6721,
+      "brotliBytes": 6175
     },
     {
       "group": "tanstack",
       "name": "octane adapter",
-      "minBytes": 19063,
-      "gzipBytes": 6680,
-      "brotliBytes": 6144
+      "minBytes": 19170,
+      "gzipBytes": 6720,
+      "brotliBytes": 6180
     },
     {
       "group": "tanstack",
@@ -60,9 +60,9 @@
     {
       "group": "tanstack",
       "name": "react adapter with streaming extension",
-      "minBytes": 19751,
-      "gzipBytes": 6862,
-      "brotliBytes": 6295
+      "minBytes": 19858,
+      "gzipBytes": 6904,
+      "brotliBytes": 6338
     },
     {
       "group": "tanstack",

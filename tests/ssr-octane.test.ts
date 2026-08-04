@@ -11,6 +11,7 @@ import { normalizeStaticMarkup } from './helpers/normalize-html.js'
 
 const fixtures = [
   '# Title\n\nParagraph with **strong**, _em_, ~~strike~~, and `code`.',
+  '*a **b** c*',
   '```ts title="demo.ts" {1}\nconst value = 1\n```',
   '| A | B |\n| :--- | ---: |\n| one | two |',
   '- [x] done\n- [ ] todo',

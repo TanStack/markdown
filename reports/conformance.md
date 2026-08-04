@@ -1,12 +1,12 @@
 # Conformance Report
 
-Generated: 2026-07-26T03:30:46.542Z
+Generated: 2026-08-04T22:15:31.716Z
 
 This is compatibility accounting against CommonMark 0.31.2, not a claim of CommonMark conformance.
 
-- exact normalized matches: 348/652 (53.4%)
+- exact normalized matches: 358/652 (54.9%)
 - preserved baseline examples: 287/287
-- newly matching examples: 61
+- newly matching examples: 71
 
 | Section | Passing | Total | Percent |
 | :--- | ---: | ---: | ---: |
@@ -28,8 +28,8 @@ This is compatibility accounting against CommonMark 0.31.2, not a claim of Commo
 | Lists | 18 | 26 | 69.2% |
 | Inlines | 1 | 1 | 100% |
 | Code spans | 8 | 22 | 36.4% |
-| Emphasis and strong emphasis | 72 | 132 | 54.5% |
-| Links | 45 | 90 | 50% |
+| Emphasis and strong emphasis | 80 | 132 | 60.6% |
+| Links | 47 | 90 | 52.2% |
 | Images | 15 | 22 | 68.2% |
 | Autolinks | 4 | 19 | 21.1% |
 | Raw HTML | 9 | 20 | 45% |

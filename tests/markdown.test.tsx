@@ -1,6 +1,6 @@
 import { renderToStaticMarkup } from 'react-dom/server'
 import { describe, expect, it } from 'vitest'
-import { parseMarkdown, renderHtml } from '../src/index.js'
+import { parseInline, parseMarkdown, renderHtml } from '../src/index.js'
 import { Markdown } from '../src/react.js'
 import { externalHighlighter } from './helpers/external-highlighter.js'
 
@@ -15,6 +15,34 @@ describe('TanStack Markdown', () => {
 
     expect(renderHtml(source)).toBe(expected)
     expect(renderToStaticMarkup(<Markdown>{source}</Markdown>)).toBe(expected)
+  })
+
+  it.each([
+    ['*a **b** c*', '<p><em>a <strong>b</strong> c</em></p>'],
+    ['*see **the docs** here*', '<p><em>see <strong>the docs</strong> here</em></p>'],
+    ['_italic __bold__ tail_', '<p><em>italic <strong>bold</strong> tail</em></p>'],
+    ['*outer **inner***', '<p><em>outer <strong>inner</strong></em></p>'],
+    ['*a **b** and **c** d*', '<p><em>a <strong>b</strong> and <strong>c</strong> d</em></p>'],
+    ['*a ***b*** c*', '<p><em>a <em><strong>b</strong></em> c</em></p>'],
+  ])('nests strong content inside emphasis for %s', (source, expected) => {
+    expect(renderHtml(source)).toBe(expected)
+    expect(renderToStaticMarkup(<Markdown>{source}</Markdown>)).toBe(expected)
+  })
+
+  it('preserves nested emphasis structure in the inline AST', () => {
+    expect(parseInline('*a **b** c*')).toEqual([
+      {
+        type: 'emphasis',
+        children: [
+          { type: 'text', value: 'a ' },
+          {
+            type: 'strong',
+            children: [{ type: 'text', value: 'b' }],
+          },
+          { type: 'text', value: ' c' },
+        ],
+      },
+    ])
   })
 
   it('preserves escaped type brackets around linked API types when HTML is enabled', () => {
