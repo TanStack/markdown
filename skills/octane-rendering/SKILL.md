@@ -9,7 +9,7 @@ metadata:
   type: framework
   library: '@tanstack/markdown'
   framework: 'octane'
-  library_version: '0.0.12'
+  library_version: '0.0.13'
 requires:
   - 'render-markdown'
 sources:
