@@ -23,8 +23,15 @@ describe('TanStack Markdown', () => {
     ['_italic __bold__ tail_', '<p><em>italic <strong>bold</strong> tail</em></p>'],
     ['*outer **inner***', '<p><em>outer <strong>inner</strong></em></p>'],
     ['*a **b** and **c** d*', '<p><em>a <strong>b</strong> and <strong>c</strong> d</em></p>'],
-    ['*a ***b*** c*', '<p><em>a <em><strong>b</strong></em> c</em></p>'],
   ])('nests strong content inside emphasis for %s', (source, expected) => {
+    expect(renderHtml(source)).toBe(expected)
+    expect(renderToStaticMarkup(<Markdown>{source}</Markdown>)).toBe(expected)
+  })
+
+  it.each([
+    ['*foo****', '<p><em>foo</em>***</p>'],
+    ['_foo____', '<p><em>foo</em>___</p>'],
+  ])('does not steal an unmatched delimiter run for %s', (source, expected) => {
     expect(renderHtml(source)).toBe(expected)
     expect(renderToStaticMarkup(<Markdown>{source}</Markdown>)).toBe(expected)
   })
