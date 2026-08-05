@@ -8,7 +8,7 @@ description: >
 metadata:
   type: lifecycle
   library: '@tanstack/markdown'
-  library_version: '0.0.12'
+  library_version: '0.0.13'
 requires:
   - 'render-markdown'
 sources:
@@ -127,7 +127,7 @@ import { parseMarkdown } from '@tanstack/markdown/parser'
 const cache = new Map<string, MarkdownDocument>()
 
 export function renderCachedArticle(key: string, source: string): string {
-  const cacheKey = `markdown-0.0.12:${key}`
+  const cacheKey = `markdown-0.0.13:${key}`
   let document = cache.get(cacheKey)
   if (!document) {
     document = parseMarkdown(source, {
