@@ -22,11 +22,18 @@ export function Article({ source }: { source: string }) {
 
 Map an HTML tag name to a component or another tag:
 
-```tsx
+```tsx group=react-components env=react file=/src/main.tsx entry
 import {
   Markdown,
   type MarkdownComponents,
 } from '@tanstack/markdown/react'
+
+const source = `# Project links
+
+- [TanStack](https://tanstack.com)
+- [Documentation](/docs)
+
+![TanStack logo](https://tanstack.com/images/logo-color-100.png)`
 
 const components = {
   a(props) {
@@ -50,7 +57,9 @@ const components = {
   },
 } satisfies MarkdownComponents
 
-<Markdown components={components}>{source}</Markdown>
+export default function Article() {
+  return <Markdown components={components}>{source}</Markdown>
+}
 ```
 
 Known intrinsic keys receive their matching React props by inference, so `a` exposes anchor props and `img` exposes image props. Arbitrary extension component tag names remain supported. Mappings apply to every intrinsic tag emitted through the React renderer.

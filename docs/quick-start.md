@@ -6,7 +6,7 @@ title: Quick Start
 
 ## Render HTML
 
-```ts
+```ts group=quick-start-html env=client file=/src/main.ts entry
 import { renderHtml } from '@tanstack/markdown/html'
 
 const source = `# Release notes
@@ -16,22 +16,33 @@ const source = `# Release notes
 - Safe defaults`
 
 const html = renderHtml(source)
+
+export default function render(output: HTMLElement) {
+  output.innerHTML = `<article>${html}</article>`
+}
 ```
 
 `renderHtml` accepts Markdown source or an existing `MarkdownDocument`.
 
 ## Render React
 
-```tsx
+```tsx group=quick-start-react env=react file=/src/main.tsx entry
 import { Markdown } from '@tanstack/markdown/react'
 
-export function Article({ source }: { source: string }) {
+const source = `# Release notes
+
+- Small browser bundle
+- HTML, React, and Octane renderers
+- Safe defaults`
+
+export default function Article() {
   return (
     <article>
       <Markdown>{source}</Markdown>
     </article>
   )
 }
+
 ```
 
 Replace intrinsic elements through `components`:

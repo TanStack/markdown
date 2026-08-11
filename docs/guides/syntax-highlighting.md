@@ -12,7 +12,7 @@ TanStack Markdown owns the surrounding `<pre><code>` elements. TanStack Highligh
 
 The first-party adapter and renderer-owned theme selectors require `@tanstack/highlight@0.0.6` or newer.
 
-```ts
+```ts group=syntax-highlighting file=/src/markdown-highlighter.ts
 // markdown-highlighter.ts
 import { createHighlighter } from '@tanstack/highlight/core'
 import { html } from '@tanstack/highlight/languages/html'
@@ -31,25 +31,44 @@ export const highlightMarkdownCode: CodeHighlighter =
   createTanStackMarkdownHighlighter(highlighter)
 ```
 
-Register only the languages the application expects. Unknown identifiers degrade to escaped plain text.
-
-Use the same callback with React:
-
-```tsx
+```tsx group=syntax-highlighting env=react file=/src/main.tsx entry
+import { createThemeCss } from '@tanstack/highlight/theme'
+import { githubDarkTheme } from '@tanstack/highlight/themes/github-dark'
+import { githubLightTheme } from '@tanstack/highlight/themes/github-light'
 import { Markdown } from '@tanstack/markdown/react'
 import { highlightMarkdownCode } from './markdown-highlighter'
 
-export function Article({ source }: { source: string }) {
+const source = [
+  '# Typed counter',
+  '',
+  '```tsx {2}',
+  'const initialCount: number = 1',
+  'const nextCount = initialCount + 1',
+  '```',
+].join('\n')
+
+const themeCss = createThemeCss({
+  light: githubLightTheme,
+  dark: githubDarkTheme,
+  lightSelector: '.markdown-renderer',
+  darkSelector: '.dark .markdown-renderer',
+  codeBlockSelector: '.markdown-renderer pre.tm-code',
+  lineNumbersSelector: '.markdown-renderer .tm-code--line-numbers',
+})
+
+export default function Article() {
   return (
-    <Markdown
-      highlighter={highlightMarkdownCode}
-      codeLineNumbers
-    >
-      {source}
-    </Markdown>
+    <article className="markdown-renderer">
+      <style>{themeCss}</style>
+      <Markdown highlighter={highlightMarkdownCode} codeLineNumbers>
+        {source}
+      </Markdown>
+    </article>
   )
 }
 ```
+
+Register only the languages the application expects. Unknown identifiers degrade to escaped plain text. The example uses the same callback with React.
 
 Or with the HTML renderer:
 

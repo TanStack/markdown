@@ -6,25 +6,44 @@ title: Document Model
 
 `parseMarkdown` returns a `MarkdownDocument`: a plain, serializable object with block nodes under `children`.
 
-```ts
+```ts group=document-model env=client file=/src/main.ts entry
 import { parseMarkdown } from '@tanstack/markdown/parser'
 
-const document = parseMarkdown('# Hello **world**')
+export default function render(output: HTMLElement) {
+  output.innerHTML = `
+  <style>
+    .ast-explorer { display: grid; gap: 12px; }
+    .ast-explorer textarea,
+    .ast-explorer pre {
+      box-sizing: border-box;
+      width: 100%;
+      margin: 0;
+      border: 1px solid color-mix(in srgb, currentColor 22%, transparent);
+      border-radius: 8px;
+      background: var(--notebook-background);
+      color: var(--notebook-foreground);
+      font: 13px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+    .ast-explorer textarea { min-height: 90px; padding: 12px; resize: vertical; }
+    .ast-explorer pre { max-height: 300px; overflow: auto; padding: 12px; }
+  </style>
+  <main class="ast-explorer">
+    <textarea aria-label="Markdown source"># Hello **world**</textarea>
+    <pre aria-label="Parsed Markdown document"></pre>
+  </main>
+  `
 
-// {
-//   type: 'root',
-//   children: [
-//     {
-//       type: 'heading',
-//       depth: 1,
-//       id: 'hello-world',
-//       children: [
-//         { type: 'text', value: 'Hello ' },
-//         { type: 'strong', children: [{ type: 'text', value: 'world' }] },
-//       ],
-//     },
-//   ],
-// }
+  const source = output.querySelector<HTMLTextAreaElement>('textarea')
+  const ast = output.querySelector<HTMLElement>('pre')
+  if (!source || !ast) throw new Error('AST explorer controls not found')
+
+  function update() {
+    ast.textContent = JSON.stringify(parseMarkdown(source.value), null, 2)
+  }
+
+  source.addEventListener('input', update)
+  update()
+}
 ```
 
 ## Block and inline nodes

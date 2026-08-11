@@ -6,23 +6,53 @@ title: AI Streaming
 
 TanStack Markdown can render the accumulated text of a streamed AI response. Each update parses the complete string synchronously; there is no incremental parser state to coordinate or discard.
 
-```tsx
+```tsx group=ai-streaming env=react file=/src/main.tsx entry
 import { streamingMarkdownExtension } from '@tanstack/markdown/extensions/streaming'
 import { Markdown } from '@tanstack/markdown/react'
+import { useEffect, useState } from 'react'
 
 const streamingExtensions = [streamingMarkdownExtension()]
+const response = [
+  '# Release summary',
+  '',
+  'The parser safely renders **accumulated text** as it arrives.',
+  '',
+  '- No incremental parser state',
+  '- Incomplete blocks stay predictable',
+  '',
+  '```ts',
+  "const status = 'streaming'",
+  '```',
+].join('\n')
 
-export function Response({ text }: { text: string }) {
+export default function Response() {
+  const [length, setLength] = useState(0)
+
+  useEffect(() => {
+    if (length >= response.length) return
+    const timeout = window.setTimeout(
+      () => setLength((value) => value + 1),
+      18,
+    )
+    return () => window.clearTimeout(timeout)
+  }, [length])
+
   return (
-    <Markdown
-      extensions={streamingExtensions}
-      frontmatter={false}
-      headingIds={false}
-    >
-      {text}
-    </Markdown>
+    <main>
+      <button type="button" onClick={() => setLength(0)}>
+        Replay
+      </button>
+      <Markdown
+        extensions={streamingExtensions}
+        frontmatter={false}
+        headingIds={false}
+      >
+        {response.slice(0, length)}
+      </Markdown>
+    </main>
   )
 }
+
 ```
 
 The streaming extension suppresses empty trailing headings, blockquotes, and list items while a response is incomplete. It does not change completed paragraphs, lists, tables, quotes, or fenced code. An unclosed code fence renders all code accumulated after its opening fence.
