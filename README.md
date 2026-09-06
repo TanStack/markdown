@@ -1,3 +1,21 @@
+<div align="center">
+  <picture>
+    <source
+      media="(prefers-color-scheme: dark)"
+      srcset="https://tanstack.com/api/readme/markdown.png?theme=dark"
+    />
+    <source
+      media="(prefers-color-scheme: light)"
+      srcset="https://tanstack.com/api/readme/markdown.png"
+    />
+    <img
+      src="https://tanstack.com/api/readme/markdown.png"
+      alt="TanStack Markdown"
+      width="900"
+    />
+  </picture>
+</div>
+
 # TanStack Markdown
 
 A tiny, fast, deterministic Markdown parser and renderer for blogs and documentation.
