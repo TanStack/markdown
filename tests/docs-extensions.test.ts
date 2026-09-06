@@ -90,6 +90,149 @@ solid: @tanstack/solid-query
     expect(html).not.toContain('@tanstack/react-query</p>')
   })
 
+  it('keeps unprefixed package-manager commands on separate shared lines', () => {
+    const document = parseMarkdown(
+      `<!-- ::start:tabs variant="package-manager" mode="local-install" -->
+
+@tanstack/intent@latest list
+@tanstack/intent@latest validate
+@tanstack/intent@latest review
+
+<!-- ::end:tabs -->`,
+      { extensions: docs },
+    )
+
+    expect(document.children[0]).toMatchObject({
+      type: 'component',
+      children: [],
+      properties: {
+        'data-package-manager-meta': JSON.stringify({
+          packagesByFramework: {
+            '': [
+              ['@tanstack/intent@latest', 'list'],
+              ['@tanstack/intent@latest', 'validate'],
+              ['@tanstack/intent@latest', 'review'],
+            ],
+          },
+          mode: 'local-install',
+        }),
+      },
+    })
+  })
+
+  it('preserves framework prefix whitespace handling and ignores empty framework lines', () => {
+    const document = parseMarkdown(
+      `<!-- ::start:tabs variant="package-manager" -->
+
+react:react-first
+React : react-second
+solid:
+
+<!-- ::end:tabs -->`,
+      { extensions: docs },
+    )
+
+    expect(document.children[0]).toMatchObject({
+      properties: {
+        'data-package-manager-meta': JSON.stringify({
+          packagesByFramework: {
+            react: [['react-first'], ['react-second']],
+          },
+          mode: 'install',
+        }),
+      },
+    })
+  })
+
+  it('includes shared commands in each framework in source order', () => {
+    const document = parseMarkdown(
+      `<!-- ::start:tabs variant="package-manager" -->
+
+react: react-only
+shared-first
+solid: solid-only
+shared-last
+react: react-last
+
+<!-- ::end:tabs -->`,
+      { extensions: docs },
+    )
+
+    expect(document.children[0]).toMatchObject({
+      properties: {
+        'data-package-manager-meta': JSON.stringify({
+          packagesByFramework: {
+            '': [['shared-first'], ['shared-last']],
+            react: [['react-only'], ['shared-first'], ['shared-last'], ['react-last']],
+            solid: [['shared-first'], ['solid-only'], ['shared-last']],
+          },
+          mode: 'install',
+        }),
+      },
+    })
+  })
+
+  it.each(['install', 'dev-install', 'local-install'])('preserves literal shared commands in %s mode', mode => {
+    const document = parseMarkdown(
+      `<!-- ::start:tabs variant="package-manager" mode="${mode}" -->
+
+\`\`\`text
+@tanstack/intent@latest load <package>#<skill>
+@tanstack/intent@latest exclude add package#experimental-*
+@tanstack/intent@latest review --base refs/heads/main > .intent/review.json
+tool --registry https://registry.example.com --filter name:value
+\`\`\`
+
+<!-- ::end:tabs -->`,
+      { extensions: docs, allowHtml: true },
+    )
+
+    expect(document.children[0]).toMatchObject({
+      properties: {
+        'data-package-manager-meta': JSON.stringify({
+          packagesByFramework: {
+            '': [
+              ['@tanstack/intent@latest', 'load', '<package>#<skill>'],
+              ['@tanstack/intent@latest', 'exclude', 'add', 'package#experimental-*'],
+              ['@tanstack/intent@latest', 'review', '--base', 'refs/heads/main', '>', '.intent/review.json'],
+              ['tool', '--registry', 'https://registry.example.com', '--filter', 'name:value'],
+            ],
+          },
+          mode,
+        }),
+      },
+    })
+  })
+
+  it('keeps package protocols as shared commands and framework prefixes as framework lines', () => {
+    const document = parseMarkdown(
+      `<!-- ::start:tabs variant="package-manager" -->
+
+https://example.com/package.tgz
+file:../local-package
+git+ssh://git@example.com/org/package.git
+react:@tanstack/react-query
+solid: file:../solid-package
+
+<!-- ::end:tabs -->`,
+      { extensions: docs },
+    )
+
+    const shared = [['https://example.com/package.tgz'], ['file:../local-package'], ['git+ssh://git@example.com/org/package.git']]
+    expect(document.children[0]).toMatchObject({
+      properties: {
+        'data-package-manager-meta': JSON.stringify({
+          packagesByFramework: {
+            '': shared,
+            react: [...shared, ['@tanstack/react-query']],
+            solid: [...shared, ['file:../solid-package']],
+          },
+          mode: 'install',
+        }),
+      },
+    })
+  })
+
   it('transforms framework panels and skips tab headings in collected headings', () => {
     const document = parseMarkdown(
       `<!-- ::start:framework -->
