@@ -37,7 +37,7 @@ Renderer-specific boundaries are excluded from this guarantee:
 
 ## Lists
 
-Tight lists render paragraph content directly under `<li>`. Loose lists preserve `<p>` wrappers. Task-list checkboxes stay inline with their labels in either form.
+Tight lists render paragraph content directly under `<li>`. Loose lists preserve `<p>` wrappers. Task-list checkboxes stay inline with their labels in either form. A loose nested list does not make its parent list loose, and ordered lists preserve a starting value of zero.
 
 ## Code blocks
 

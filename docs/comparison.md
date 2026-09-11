@@ -52,11 +52,11 @@ These repository benchmarks bundle representative browser entry points from pinn
 | commonmark.js | 48.1 KB | 39.8 KB |
 | markdown-it | 52.7 KB | 44.0 KB |
 
-The comparison does not represent equivalent feature sets. It shows the cost of each measured path for this repository’s rendering benchmark. See the generated [size report](../reports/sizes.md) for exact bytes and versions.
+The comparison does not represent equivalent feature sets. It shows the cost of each measured path for this repository’s rendering benchmark. See the generated [size report](https://github.com/TanStack/markdown/blob/main/reports/sizes.md) for exact bytes and versions.
 
 ## Compatibility accounting
 
-The generated [compatibility report](../reports/conformance.md) tracks matches against all 652 CommonMark 0.31.2 examples after serializer normalization. Every established match is protected individually by the regression suite. The count is accounting, not a conformance claim or a target to maximize. Selected official GFM examples separately cover tables, task lists, and strikethrough.
+The generated [compatibility report](https://github.com/TanStack/markdown/blob/main/reports/conformance.md) tracks matches against all 652 CommonMark 0.31.2 examples after serializer normalization. Every established match is protected individually by the regression suite. The count is accounting, not a conformance claim or a target to maximize. Selected official GFM examples separately cover tables, task lists, and strikethrough.
 
 Use [commonmark.js](https://github.com/commonmark/commonmark.js), micromark, or a unified pipeline when exact specification behavior is a requirement. Use TanStack Markdown when your corpus fits the [documented profile](core-concepts/syntax-profile) and the smaller, controlled renderer is the better product tradeoff.
 

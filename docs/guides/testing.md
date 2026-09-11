@@ -38,8 +38,8 @@ Both audits parse every Markdown file twice with the docs profile, verify determ
 
 The external audit runs in CI and fails on parser errors, nondeterminism, or any unexplained target-profile content difference. The local TanStack audit enforces the same rule when the sibling repositories are available.
 
-- [TanStack repository corpus](../../reports/tanstack-corpus.md)
-- [External docs and blogs corpus](../../reports/external-corpus.md)
+- [TanStack repository corpus](https://github.com/TanStack/markdown/blob/main/reports/tanstack-corpus.md)
+- [External docs and blogs corpus](https://github.com/TanStack/markdown/blob/main/reports/external-corpus.md)
 
 ### Triage policy
 
@@ -56,7 +56,7 @@ A syntax rule enters the profile only when real target content needs it, the beh
 pnpm run conformance
 ```
 
-The command compares output against CommonMark 0.31.2 examples, preserves every established match as a regression baseline, and updates [the generated report](../../reports/conformance.md). It is not a claim of full conformance.
+The command compares output against CommonMark 0.31.2 examples, preserves every established match as a regression baseline, and updates [the generated report](https://github.com/TanStack/markdown/blob/main/reports/conformance.md). It is not a claim of full conformance.
 
 Selected official GFM examples separately cover tables, task lists, and strikethrough in the supported profile.
 
