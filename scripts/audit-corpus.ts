@@ -587,11 +587,12 @@ function htmlShape(value: string): string {
 }
 
 export function renderedText(value: string): string {
-  return decodeBasicEntities(value)
+  // Remove markup before decoding so escaped tags stay text, not HTML.
+  return decodeBasicEntities(value
     .replace(/<!--[\s\S]*?-->/g, '')
     .replace(/<figcaption(?:\s[^>]*)?>[\s\S]*?<\/figcaption>/gi, '')
     .replace(/<\/?(?:address|article|aside|blockquote|br|div|figcaption|figure|footer|h[1-6]|header|hr|li|main|nav|ol|p|pre|section|table|tbody|td|tfoot|th|thead|tr|ul)(?:\s[^>]*)?>/gi, ' ')
-    .replace(/<[^>]+>/g, '')
+    .replace(/<[^>]+>/g, ''))
     .replace(/\s+/g, ' ')
     .trim()
 }

@@ -19,18 +19,19 @@ describe('bundle budgets', () => {
       ['react'],
     )
 
-    // The September 11 audited working tree is the ceiling, not the larger npm release.
+    // Measured ceilings for the #7, #9, and #11 fixes, with no spare headroom.
+    // Extension entries retain their 0.0.14 ceilings.
     for (const [result, min, gzip, brotli] of [
-      [parser, 13440, 4948, 4559],
-      [html, 18453, 6737, 6169],
-      [react, 18491, 6682, 6153],
-      [octane, 18494, 6681, 6145],
-      [pluggable, 18489, 6759, 6195],
+      [parser, 13157, 4975, 4593],
+      [html, 18337, 6807, 6240],
+      [react, 18271, 6722, 6184],
+      [octane, 18283, 6727, 6194],
+      [pluggable, 18373, 6829, 6260],
       [streaming, 699, 311, 253],
-      [callouts, 556, 372, 329],
-      [reactStreaming, 19182, 6868, 6316],
-      [docs, 6589, 2334, 2121],
-      [tabs, 3320, 1232, 1094],
+      [callouts, 506, 335, 278],
+      [reactStreaming, 18962, 6907, 6356],
+      [docs, 6423, 2292, 2073],
+      [tabs, 3290, 1221, 1082],
     ] as const) {
       expect(result.minBytes).toBeLessThanOrEqual(min)
       expect(result.gzipBytes).toBeLessThanOrEqual(gzip)
@@ -41,19 +42,20 @@ describe('bundle budgets', () => {
 
   it('also protects the complete namespace of every public entry point', async () => {
     const budgets: Record<string, number[]> = {
-      '.': [18714, 6864, 6272],
-      './html': [18676, 6845, 6267],
-      './parser': [13572, 5032, 4635],
-      './react': [18691, 6790, 6242],
-      './octane': [18697, 6790, 6239],
-      './extensions/callouts': [710, 467, 390],
-      './extensions/comment-components': [1159, 656, 554],
-      './extensions/docs': [6753, 2433, 2198],
+      '.': [18598, 6936, 6345],
+      './html': [18560, 6920, 6331],
+      './parser': [13289, 5061, 4664],
+      './react': [18470, 6828, 6279],
+      './octane': [18485, 6833, 6287],
+      './extensions/callouts': [660, 432, 360],
+      './extensions/comment-components': [1073, 647, 542],
+      './extensions/docs': [6587, 2392, 2162],
       './extensions/framework': [1470, 734, 630],
       './extensions/headings': [1038, 573, 480],
       './extensions/streaming': [838, 403, 334],
-      './extensions/tabs': [3567, 1350, 1197],
+      './extensions/tabs': [3537, 1338, 1185],
     }
+    expect(publicEntries.map(entry => entry.name).sort()).toEqual(Object.keys(budgets).sort())
     for (const entry of publicEntries) {
       const result = await bundle(entry.contents, entry.external)
       const budget = budgets[entry.name]!

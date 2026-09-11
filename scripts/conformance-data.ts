@@ -66,7 +66,7 @@ export function evaluateCommonMark(): ConformanceResult {
 export function normalizeConformanceHtml(value: string): string {
   return value
     .trim()
-    .replace(/<pre class="tm-code" data-lang="([^"]+)"><code class="language-\1">/g, (_, lang: string) =>
+    .replace(/<pre class="tm-code" data-lang="([^"]+)"(?: data-meta="[^"]*")?><code class="language-\1">/g, (_, lang: string) =>
       lang === 'plaintext' ? '<pre><code>' : `<pre><code class="language-${lang}">`,
     )
     .replace(/\n<\/code>/g, '</code>')

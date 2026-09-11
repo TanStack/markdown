@@ -1,5 +1,5 @@
 import { parseMarkdown } from './parser.js'
-import type { BlockNode, ComponentNode, FootnoteItemNode, HeadingAnchorOptions, InlineNode, MarkdownDocument, MarkdownInput, RenderOptions, TableCellNode } from './types.js'
+import type { BlockNode, ComponentNode, FootnoteItemNode, HeadingAnchorOptions, InlineComponentNode, InlineNode, MarkdownDocument, MarkdownInput, RenderOptions, TableCellNode } from './types.js'
 import { escapeAttr, escapeHtml, footnoteReferenceId } from './utils.js'
 
 export function renderHtml(input: MarkdownInput, options: RenderOptions = {}): string {
@@ -76,6 +76,8 @@ export function renderInline(node: InlineNode, options: RenderOptions = {}): str
       return '<br>'
     case 'inlineHtml':
       return options.allowHtml ? node.value : escapeHtml(node.value)
+    case 'inlineComponent':
+      return renderComponent(node, options)
   }
 }
 
@@ -90,10 +92,12 @@ function renderInlines(nodes: InlineNode[], options: RenderOptions): string {
 function renderCodeBlock(node: Extract<BlockNode, { type: 'code' }>, options: RenderOptions): string {
   const lang = node.lang ?? 'plaintext'
   const preAttrs = `class="tm-code${options.codeLineNumbers ? ' tm-code--line-numbers' : ''}" data-lang="${escapeAttr(lang)}"`
+    + (node.meta ? ` data-meta="${escapeAttr(node.meta)}"` : '')
     + (node.title ? ` data-code-title="${escapeAttr(node.title)}"` : '')
     + (node.file ? ` data-filename="${escapeAttr(node.file)}"` : '')
     + (node.framework ? ` data-framework="${escapeAttr(node.framework)}"` : '')
   const html = options.highlighter?.(node.value, lang, {
+    ...(node.meta && { meta: node.meta }),
     ...(node.highlightLines && { highlightLines: node.highlightLines }),
     ...(options.codeLineNumbers !== undefined && { lineNumbers: options.codeLineNumbers }),
   }) ?? escapeHtml(node.value)
@@ -152,10 +156,12 @@ function renderFootnoteBackrefs(item: FootnoteItemNode): string {
   return result
 }
 
-function renderComponent(node: ComponentNode, options: RenderOptions): string {
-  const tag = node.tagName ?? 'md-comment-component'
+function renderComponent(node: ComponentNode | InlineComponentNode, options: RenderOptions): string {
+  const tag = node.tagName ?? (node.type === 'inlineComponent' ? 'span' : 'md-comment-component')
   const attrs = renderComponentAttrs(node)
-  const children = node.children.map(child => renderBlock(child, options)).join('\n')
+  const children = node.type === 'inlineComponent'
+    ? renderInlines(node.children, options)
+    : node.children.map(child => renderBlock(child, options)).join('\n')
   return `<${tag}${attrs}>${children}</${tag}>`
 }
 
@@ -188,7 +194,7 @@ function renderHeadingAnchor(id: string | undefined, options: RenderOptions): st
   return `<a href="#${escapeAttr(id)}" aria-hidden="${anchorOptions.ariaHidden ?? true}" class="${escapeAttr(anchorOptions.className ?? 'anchor-heading anchor-heading-link')}" tabindex="${anchorOptions.tabIndex ?? -1}">${escapeHtml(anchorOptions.content ?? '#')}</a>`
 }
 
-function renderComponentAttrs(node: ComponentNode): string {
+function renderComponentAttrs(node: ComponentNode | InlineComponentNode): string {
   const props: Record<string, string> = {
     ...node.properties,
   }

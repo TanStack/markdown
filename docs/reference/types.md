@@ -22,7 +22,7 @@ Union of `HeadingNode`, `ParagraphNode`, `CodeBlockNode`, `ListNode`, `Blockquot
 
 ### `InlineNode`
 
-Union of `TextNode`, `CodeSpanNode`, `StrongNode`, `EmphasisNode`, `StrikeNode`, `FootnoteReferenceNode`, `LinkNode`, `ImageNode`, `BreakNode`, and `HtmlInlineNode`.
+Union of `TextNode`, `CodeSpanNode`, `StrongNode`, `EmphasisNode`, `StrikeNode`, `FootnoteReferenceNode`, `LinkNode`, `ImageNode`, `BreakNode`, `HtmlInlineNode`, and `InlineComponentNode`.
 
 ## Block nodes
 
@@ -110,11 +110,11 @@ Contains normalized footnote `id`, display `number`, and optional `referenceInde
 
 ### `LinkNode`
 
-Contains sanitized `href`, optional `title`, and inline `children`.
+Contains policy-processed `href`, optional `title`, and inline `children`.
 
 ### `ImageNode`
 
-Contains sanitized `src`, text `alt`, and optional `title`.
+Contains policy-processed `src`, text `alt`, and optional `title`.
 
 ### `BreakNode`
 
@@ -124,11 +124,19 @@ Marker node with `type: 'break'`.
 
 Contains raw inline HTML `value`. It is created only when HTML parsing is enabled.
 
+### `InlineComponentNode`
+
+Contains `type: 'inlineComponent'`, `name`, source `attributes`, inline `children`, and optional rendered `tagName` and string `properties`. Uses the same component replacements as `ComponentNode`, with a `<span>` fallback when no tag is provided. See [Custom components](../guides/extensions#custom-components).
+
 ## Parsing and rendering options
 
 ### `ParseOptions`
 
-Configures `allowHtml`, `frontmatter`, `headingIds`, and `extensions`. It also exposes `references`, `footnotes`, `footnoteOrder`, and `footnoteCounts` state used by nested parser contexts.
+Configures `allowHtml`, `urlTransform`, `frontmatter`, `headingIds`, and `extensions`. It also exposes `references`, `footnotes`, `footnoteOrder`, and `footnoteCounts` state used by nested parser contexts.
+
+### `UrlTransform`
+
+Synchronous callback `(url: string, kind: 'link' | 'image', defaultUrl: string) => string | null`. Return the default screened URL, a trusted replacement, or `null` to keep only the label content. Applies during Markdown parsing, not to raw HTML or supplied ASTs. See [Custom URL policy](../core-concepts/security#custom-url-policy).
 
 ### `RenderOptions`
 
@@ -140,7 +148,7 @@ Synchronous callback `(code, lang?, options?) => string`. The returned string is
 
 ### `CodeHighlightOptions`
 
-Contains optional `highlightLines` and `lineNumbers` passed to a `CodeHighlighter`.
+Contains optional raw fence `meta`, `highlightLines`, and `lineNumbers` passed to a `CodeHighlighter`.
 
 ### `HeadingAnchorOptions`
 

@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-09-11T18:23:48.314Z",
+  "generatedAt": "2026-09-11T20:21:53.280Z",
   "name": "Representative external docs and blogs corpus",
   "roots": 20,
-  "durationMs": 15875.995333,
+  "durationMs": 15746.938083000001,
   "totals": {
     "name": "Representative external docs and blogs corpus",
     "bytes": 87469380,
@@ -13,8 +13,8 @@
     "comparisons": {
       "exact": 5384,
       "serialization": 626,
-      "structure": 1876,
-      "content": 2631
+      "structure": 1862,
+      "content": 2645
     },
     "features": {
       "atx-heading": 7353,
@@ -123,8 +123,8 @@
       "comparisons": {
         "exact": 150,
         "serialization": 12,
-        "structure": 46,
-        "content": 19
+        "structure": 45,
+        "content": 20
       },
       "features": {
         "atx-heading": 218,
@@ -161,8 +161,8 @@
       "comparisons": {
         "exact": 29,
         "serialization": 11,
-        "structure": 68,
-        "content": 9
+        "structure": 67,
+        "content": 10
       },
       "features": {
         "atx-heading": 117,
@@ -330,8 +330,8 @@
       "comparisons": {
         "exact": 2080,
         "serialization": 72,
-        "structure": 245,
-        "content": 1326
+        "structure": 242,
+        "content": 1329
       },
       "features": {
         "atx-heading": 2737,
@@ -403,8 +403,8 @@
       "comparisons": {
         "exact": 1280,
         "serialization": 238,
-        "structure": 729,
-        "content": 183
+        "structure": 728,
+        "content": 184
       },
       "features": {
         "atx-heading": 1526,
@@ -622,8 +622,8 @@
       "comparisons": {
         "exact": 632,
         "serialization": 82,
-        "structure": 69,
-        "content": 210
+        "structure": 71,
+        "content": 208
       },
       "features": {
         "atx-heading": 309,
@@ -658,8 +658,8 @@
       "comparisons": {
         "exact": 115,
         "serialization": 119,
-        "structure": 346,
-        "content": 163
+        "structure": 336,
+        "content": 173
       },
       "features": {
         "atx-heading": 547,
@@ -752,7 +752,7 @@
         "actual": "...pression matching. Popular Envoy-based Gateway API implementations such as Istio1, Envoy Gateway, and Kgateway do a full case-sensitive match. Thus, if you are unaware that Ingress-NGINX patterns are prefix and case-insensitive, and, unbekn...",
         "reference": "...pression matching. Popular Envoy-based Gateway API implementations such as Istio[^1], Envoy Gateway, and Kgateway do a full case-sensitive match. Thus, if you are unaware that Ingress-NGINX patterns are prefix and case-insensitive, and, unb..."
       },
-      "durationMs": 2.916333000001032
+      "durationMs": 2.1839160000017728
     },
     {
       "repository": "rust-blog",
@@ -771,7 +771,7 @@
         "actual": "... fixes have been made since the original post, the text is otherwise unaltered. 1 As is noted in the summary, the next steps are to take the findings we have so far and begin crafting proposals for how the Rust project will be governed in t...",
         "reference": "... fixes have been made since the original post, the text is otherwise unaltered. [^1] As is noted in the summary, the next steps are to take the findings we have so far and begin crafting proposals for how the Rust project will be governed i..."
       },
-      "durationMs": 2.4650000000001455
+      "durationMs": 2.265292000000045
     },
     {
       "repository": "overreacted",
@@ -788,7 +788,7 @@
         "nested-list"
       ],
       "comparison": "structure",
-      "durationMs": 9.637832999999773
+      "durationMs": 9.801625000000058
     },
     {
       "repository": "github-docs",
@@ -802,7 +802,7 @@
         "nested-list"
       ],
       "comparison": "structure",
-      "durationMs": 3.5552920000000086
+      "durationMs": 3.7559169999994992
     },
     {
       "repository": "deno-docs",
@@ -818,7 +818,7 @@
         "table"
       ],
       "comparison": "structure",
-      "durationMs": 6.1148749999993015
+      "durationMs": 6.060667000001558
     },
     {
       "repository": "kubernetes-docs",
@@ -833,7 +833,7 @@
         "table"
       ],
       "comparison": "structure",
-      "durationMs": 6.132708000000093
+      "durationMs": 6.70795900000121
     },
     {
       "repository": "typescript-docs",
@@ -847,7 +847,7 @@
         "frontmatter"
       ],
       "comparison": "structure",
-      "durationMs": 3.9006250000002183
+      "durationMs": 3.8744169999990845
     },
     {
       "repository": "overreacted",
@@ -862,7 +862,7 @@
         "frontmatter"
       ],
       "comparison": "structure",
-      "durationMs": 3.1699579999999514
+      "durationMs": 3.3919160000000375
     },
     {
       "repository": "docker-docs",
@@ -877,7 +877,7 @@
         "nested-list"
       ],
       "comparison": "structure",
-      "durationMs": 7.430958999999348
+      "durationMs": 5.921625000000859
     },
     {
       "repository": "kubernetes-docs",
@@ -891,7 +891,7 @@
         "frontmatter"
       ],
       "comparison": "structure",
-      "durationMs": 3.8100000000013097
+      "durationMs": 3.5147909999996045
     },
     {
       "repository": "kubernetes-docs",
@@ -905,7 +905,7 @@
         "frontmatter"
       ],
       "comparison": "structure",
-      "durationMs": 3.2704160000002958
+      "durationMs": 3.1285420000003796
     },
     {
       "repository": "github-docs",
@@ -918,7 +918,7 @@
         "frontmatter"
       ],
       "comparison": "structure",
-      "durationMs": 2.660041000000092
+      "durationMs": 3.522917000000234
     },
     {
       "repository": "kubernetes-docs",
@@ -935,7 +935,7 @@
         "table"
       ],
       "comparison": "structure",
-      "durationMs": 2.688415999999961
+      "durationMs": 2.7179159999996045
     },
     {
       "repository": "overreacted",
@@ -950,7 +950,7 @@
         "table"
       ],
       "comparison": "structure",
-      "durationMs": 3.338999999999942
+      "durationMs": 3.0559579999999187
     },
     {
       "repository": "docker-docs",
@@ -966,7 +966,7 @@
         "table"
       ],
       "comparison": "structure",
-      "durationMs": 5.433875000000626
+      "durationMs": 6.412417000001369
     },
     {
       "repository": "pnpm-site",
@@ -984,7 +984,7 @@
         "table"
       ],
       "comparison": "structure",
-      "durationMs": 5.317375000000538
+      "durationMs": 3.219375000000582
     },
     {
       "repository": "typescript-docs",
@@ -998,7 +998,7 @@
         "frontmatter"
       ],
       "comparison": "structure",
-      "durationMs": 3.043875000001208
+      "durationMs": 2.977499999999054
     },
     {
       "repository": "deno-docs",
@@ -1012,7 +1012,7 @@
         "frontmatter"
       ],
       "comparison": "structure",
-      "durationMs": 2.9512500000000728
+      "durationMs": 2.974291999998968
     },
     {
       "repository": "deno-docs",
@@ -1027,7 +1027,7 @@
         "frontmatter"
       ],
       "comparison": "structure",
-      "durationMs": 2.506875000000946
+      "durationMs": 2.348834000000352
     },
     {
       "repository": "vite",
@@ -1042,7 +1042,7 @@
         "nested-list"
       ],
       "comparison": "structure",
-      "durationMs": 3.6188749999999743
+      "durationMs": 3.6632919999999842
     },
     {
       "repository": "overreacted",
@@ -1057,7 +1057,7 @@
         "frontmatter"
       ],
       "comparison": "structure",
-      "durationMs": 2.6689590000000862
+      "durationMs": 2.8792080000002898
     },
     {
       "repository": "deno-docs",
@@ -1072,7 +1072,7 @@
         "frontmatter"
       ],
       "comparison": "structure",
-      "durationMs": 2.8883330000007845
+      "durationMs": 3.373874999999316
     },
     {
       "repository": "kubernetes-docs",
@@ -1085,7 +1085,7 @@
         "frontmatter"
       ],
       "comparison": "structure",
-      "durationMs": 1.6490420000000086
+      "durationMs": 1.6709579999997004
     },
     {
       "repository": "kubernetes-docs",
@@ -1098,7 +1098,7 @@
         "frontmatter"
       ],
       "comparison": "structure",
-      "durationMs": 3.1517499999999927
+      "durationMs": 2.0188340000004246
     },
     {
       "repository": "deno-docs",
@@ -1111,7 +1111,7 @@
         "hard-break"
       ],
       "comparison": "structure",
-      "durationMs": 2.0752080000002024
+      "durationMs": 2.0488749999985885
     },
     {
       "repository": "deno-docs",
@@ -1127,7 +1127,7 @@
         "table"
       ],
       "comparison": "structure",
-      "durationMs": 2.9173329999994166
+      "durationMs": 2.1662909999995463
     },
     {
       "repository": "kubernetes-docs",
@@ -1141,7 +1141,7 @@
         "nested-list"
       ],
       "comparison": "structure",
-      "durationMs": 2.2432920000001104
+      "durationMs": 2.0053329999991547
     },
     {
       "repository": "kubernetes-docs",
@@ -1156,7 +1156,7 @@
         "nested-list"
       ],
       "comparison": "structure",
-      "durationMs": 1.8175419999988662
+      "durationMs": 2.320958000000246
     },
     {
       "repository": "kubernetes-docs",
@@ -1171,7 +1171,7 @@
         "nested-list"
       ],
       "comparison": "structure",
-      "durationMs": 1.9119170000003578
+      "durationMs": 2.0090000000000146
     },
     {
       "repository": "docker-docs",
@@ -1185,7 +1185,7 @@
         "frontmatter"
       ],
       "comparison": "structure",
-      "durationMs": 1.639791999999943
+      "durationMs": 1.6659169999984442
     },
     {
       "repository": "rust-blog",
@@ -1198,7 +1198,7 @@
         "fenced-code"
       ],
       "comparison": "structure",
-      "durationMs": 2.6714580000007118
+      "durationMs": 2.4457500000007713
     },
     {
       "repository": "rust-blog",
@@ -1212,7 +1212,7 @@
         "reference-link"
       ],
       "comparison": "structure",
-      "durationMs": 3.0761249999995925
+      "durationMs": 1.6947090000012395
     },
     {
       "repository": "kubernetes-docs",
@@ -1225,7 +1225,7 @@
         "frontmatter"
       ],
       "comparison": "structure",
-      "durationMs": 1.5136249999995925
+      "durationMs": 1.5562079999999696
     },
     {
       "repository": "github-docs",
@@ -1238,7 +1238,7 @@
         "frontmatter"
       ],
       "comparison": "structure",
-      "durationMs": 1.147791999999754
+      "durationMs": 1.2310829999996713
     },
     {
       "repository": "kubernetes-docs",
@@ -1252,7 +1252,7 @@
         "frontmatter"
       ],
       "comparison": "structure",
-      "durationMs": 2.840458000000581
+      "durationMs": 1.3239169999997102
     },
     {
       "repository": "deno-docs",
@@ -1267,7 +1267,7 @@
         "frontmatter"
       ],
       "comparison": "structure",
-      "durationMs": 2.4970419999990554
+      "durationMs": 2.131207999998878
     },
     {
       "repository": "kubernetes-docs",
@@ -1280,7 +1280,7 @@
         "frontmatter"
       ],
       "comparison": "structure",
-      "durationMs": 1.5909590000001117
+      "durationMs": 1.5817919999999503
     },
     {
       "repository": "overreacted",
@@ -1295,7 +1295,7 @@
         "frontmatter"
       ],
       "comparison": "structure",
-      "durationMs": 2.5851659999998446
+      "durationMs": 2.3064580000000205
     },
     {
       "repository": "rust-blog",
@@ -1308,7 +1308,7 @@
         "blockquote"
       ],
       "comparison": "structure",
-      "durationMs": 3.459416000001511
+      "durationMs": 2.3713749999988067
     },
     {
       "repository": "kubernetes-docs",
@@ -1321,7 +1321,7 @@
         "frontmatter"
       ],
       "comparison": "structure",
-      "durationMs": 1.680000000000291
+      "durationMs": 1.7698749999999563
     },
     {
       "repository": "kubernetes-docs",
@@ -1337,7 +1337,7 @@
         "nested-list"
       ],
       "comparison": "structure",
-      "durationMs": 1.9991250000002765
+      "durationMs": 1.840208999999959
     },
     {
       "repository": "kubernetes-docs",
@@ -1350,7 +1350,7 @@
         "frontmatter"
       ],
       "comparison": "structure",
-      "durationMs": 1.6140000000004875
+      "durationMs": 2.2755830000005517
     },
     {
       "repository": "kubernetes-docs",
@@ -1365,7 +1365,7 @@
         "table"
       ],
       "comparison": "structure",
-      "durationMs": 1.2834590000002208
+      "durationMs": 1.7618750000001455
     },
     {
       "repository": "kubernetes-docs",
@@ -1378,7 +1378,7 @@
         "frontmatter"
       ],
       "comparison": "structure",
-      "durationMs": 1.545124999998734
+      "durationMs": 1.7177920000012818
     },
     {
       "repository": "deno-docs",
@@ -1395,7 +1395,7 @@
         "table"
       ],
       "comparison": "structure",
-      "durationMs": 2.4031660000000556
+      "durationMs": 2.628292000001238
     },
     {
       "repository": "deno-docs",
@@ -1410,7 +1410,7 @@
         "frontmatter"
       ],
       "comparison": "structure",
-      "durationMs": 2.9570000000003347
+      "durationMs": 1.5436250000002474
     },
     {
       "repository": "kubernetes-docs",
@@ -1424,7 +1424,7 @@
         "frontmatter"
       ],
       "comparison": "structure",
-      "durationMs": 1.7811670000000959
+      "durationMs": 1.2055419999996957
     },
     {
       "repository": "kubernetes-docs",
@@ -1438,7 +1438,7 @@
         "frontmatter"
       ],
       "comparison": "structure",
-      "durationMs": 2.119666999999936
+      "durationMs": 1.5015839999996388
     },
     {
       "repository": "kubernetes-docs",
@@ -1453,7 +1453,7 @@
         "nested-list"
       ],
       "comparison": "structure",
-      "durationMs": 1.4283329999998386
+      "durationMs": 1.5232090000008611
     },
     {
       "repository": "github-docs",
@@ -1467,7 +1467,7 @@
         "nested-list"
       ],
       "comparison": "structure",
-      "durationMs": 1.5787499999996726
+      "durationMs": 1.6257080000004862
     },
     {
       "repository": "kubernetes-docs",
@@ -1480,7 +1480,7 @@
         "frontmatter"
       ],
       "comparison": "structure",
-      "durationMs": 1.5308749999994689
+      "durationMs": 1.9289159999998446
     },
     {
       "repository": "rust-blog",
@@ -1493,7 +1493,7 @@
         "blockquote"
       ],
       "comparison": "structure",
-      "durationMs": 1.8179159999999683
+      "durationMs": 1.5679999999993015
     },
     {
       "repository": "kubernetes-docs",
@@ -1507,7 +1507,7 @@
         "frontmatter"
       ],
       "comparison": "structure",
-      "durationMs": 1.6083749999997963
+      "durationMs": 1.6330409999991389
     },
     {
       "repository": "kubernetes-docs",
@@ -1520,7 +1520,7 @@
         "frontmatter"
       ],
       "comparison": "structure",
-      "durationMs": 1.2049580000002607
+      "durationMs": 1.5780000000004293
     },
     {
       "repository": "kubernetes-docs",
@@ -1534,7 +1534,7 @@
         "frontmatter"
       ],
       "comparison": "structure",
-      "durationMs": 1.6752500000002328
+      "durationMs": 1.2433750000000146
     },
     {
       "repository": "kubernetes-docs",
@@ -1549,7 +1549,7 @@
         "nested-list"
       ],
       "comparison": "structure",
-      "durationMs": 1.8719579999997222
+      "durationMs": 1.8465829999986454
     },
     {
       "repository": "kubernetes-docs",
@@ -1562,7 +1562,7 @@
         "frontmatter"
       ],
       "comparison": "structure",
-      "durationMs": 1.7269589999996242
+      "durationMs": 1.567709000000832
     },
     {
       "repository": "kubernetes-docs",
@@ -1575,7 +1575,7 @@
         "frontmatter"
       ],
       "comparison": "structure",
-      "durationMs": 1.5285830000011629
+      "durationMs": 1.556416999999783
     },
     {
       "repository": "kubernetes-docs",
@@ -1589,7 +1589,7 @@
         "frontmatter"
       ],
       "comparison": "structure",
-      "durationMs": 1.079874999999447
+      "durationMs": 1.5011670000003505
     },
     {
       "repository": "kubernetes-docs",
@@ -1603,7 +1603,7 @@
         "frontmatter"
       ],
       "comparison": "structure",
-      "durationMs": 1.3955839999998716
+      "durationMs": 1.3984590000000026
     },
     {
       "repository": "svelte-dev",
@@ -1616,7 +1616,7 @@
         "frontmatter"
       ],
       "comparison": "structure",
-      "durationMs": 2.1256250000001273
+      "durationMs": 2.1298329999999623
     },
     {
       "repository": "kubernetes-docs",
@@ -1631,7 +1631,7 @@
         "nested-list"
       ],
       "comparison": "structure",
-      "durationMs": 1.4412090000005264
+      "durationMs": 1.366875000001528
     },
     {
       "repository": "kubernetes-docs",
@@ -1645,7 +1645,7 @@
         "frontmatter"
       ],
       "comparison": "structure",
-      "durationMs": 1.080207999999402
+      "durationMs": 1.191916000000674
     },
     {
       "repository": "kubernetes-docs",
@@ -1658,7 +1658,7 @@
         "frontmatter"
       ],
       "comparison": "structure",
-      "durationMs": 1.0621250000003783
+      "durationMs": 1.3120410000010452
     },
     {
       "repository": "svelte-dev",
@@ -1671,7 +1671,7 @@
         "frontmatter"
       ],
       "comparison": "structure",
-      "durationMs": 2.108165999999983
+      "durationMs": 1.9855000000002292
     },
     {
       "repository": "kubernetes-docs",
@@ -1685,7 +1685,7 @@
         "frontmatter"
       ],
       "comparison": "structure",
-      "durationMs": 1.2033750000009604
+      "durationMs": 1.300708000000668
     },
     {
       "repository": "kubernetes-docs",
@@ -1700,7 +1700,7 @@
         "table"
       ],
       "comparison": "structure",
-      "durationMs": 1.5403749999995853
+      "durationMs": 1.7719999999999345
     },
     {
       "repository": "kubernetes-docs",
@@ -1715,7 +1715,7 @@
         "nested-list"
       ],
       "comparison": "structure",
-      "durationMs": 1.6869580000002316
+      "durationMs": 1.4317919999994047
     },
     {
       "repository": "svelte-dev",
@@ -1729,7 +1729,7 @@
         "nested-list"
       ],
       "comparison": "structure",
-      "durationMs": 2.195417000000134
+      "durationMs": 2.057459000000108
     },
     {
       "repository": "deno-docs",
@@ -1744,7 +1744,7 @@
         "frontmatter"
       ],
       "comparison": "structure",
-      "durationMs": 1.2545829999999114
+      "durationMs": 1.3593330000003334
     },
     {
       "repository": "deno-docs",
@@ -1759,7 +1759,7 @@
         "table"
       ],
       "comparison": "structure",
-      "durationMs": 3.1370420000002923
+      "durationMs": 1.8297079999993002
     },
     {
       "repository": "svelte-dev",
@@ -1773,7 +1773,7 @@
         "nested-list"
       ],
       "comparison": "structure",
-      "durationMs": 2.0390420000001086
+      "durationMs": 2.0845409999997173
     },
     {
       "repository": "kubernetes-docs",
@@ -1787,7 +1787,7 @@
         "frontmatter"
       ],
       "comparison": "structure",
-      "durationMs": 0.906290999999328
+      "durationMs": 1.0732909999987896
     },
     {
       "repository": "svelte-dev",
@@ -1801,7 +1801,7 @@
         "nested-list"
       ],
       "comparison": "structure",
-      "durationMs": 2.5510830000000624
+      "durationMs": 2.0117919999997866
     },
     {
       "repository": "kubernetes-docs",
@@ -1816,7 +1816,7 @@
         "nested-list"
       ],
       "comparison": "structure",
-      "durationMs": 1.345166999999492
+      "durationMs": 1.3830419999994774
     },
     {
       "repository": "kubernetes-docs",
@@ -1829,7 +1829,7 @@
         "frontmatter"
       ],
       "comparison": "structure",
-      "durationMs": 0.9491250000000946
+      "durationMs": 0.9893339999998716
     },
     {
       "repository": "deno-docs",
@@ -1845,7 +1845,7 @@
         "table"
       ],
       "comparison": "structure",
-      "durationMs": 2.626333000000159
+      "durationMs": 1.421583000001192
     },
     {
       "repository": "svelte-dev",
@@ -1858,7 +1858,7 @@
         "frontmatter"
       ],
       "comparison": "structure",
-      "durationMs": 1.8280830000003334
+      "durationMs": 2.0852500000000873
     },
     {
       "repository": "svelte-dev",
@@ -1872,7 +1872,7 @@
         "nested-list"
       ],
       "comparison": "structure",
-      "durationMs": 1.9007500000000164
+      "durationMs": 1.9899169999998776
     },
     {
       "repository": "kubernetes-docs",
@@ -1887,7 +1887,7 @@
         "table"
       ],
       "comparison": "structure",
-      "durationMs": 1.2182920000004742
+      "durationMs": 1.1084589999991294
     },
     {
       "repository": "svelte-dev",
@@ -1901,7 +1901,7 @@
         "nested-list"
       ],
       "comparison": "structure",
-      "durationMs": 1.7927499999998417
+      "durationMs": 1.9809170000003178
     },
     {
       "repository": "svelte-dev",
@@ -1915,7 +1915,7 @@
         "nested-list"
       ],
       "comparison": "structure",
-      "durationMs": 1.9733329999999114
+      "durationMs": 2.385041999999885
     },
     {
       "repository": "docker-docs",
@@ -1930,7 +1930,7 @@
         "nested-list"
       ],
       "comparison": "structure",
-      "durationMs": 1.8537080000005517
+      "durationMs": 1.9487499999995634
     },
     {
       "repository": "kubernetes-docs",
@@ -1943,7 +1943,7 @@
         "frontmatter"
       ],
       "comparison": "structure",
-      "durationMs": 0.9855829999996786
+      "durationMs": 0.9864580000012211
     },
     {
       "repository": "docker-docs",
@@ -1957,7 +1957,7 @@
         "frontmatter"
       ],
       "comparison": "structure",
-      "durationMs": 1.3032920000005106
+      "durationMs": 1.259250000000975
     },
     {
       "repository": "kubernetes-docs",
@@ -1971,7 +1971,7 @@
         "frontmatter"
       ],
       "comparison": "structure",
-      "durationMs": 1.1472080000003189
+      "durationMs": 1.1858329999995476
     },
     {
       "repository": "svelte-dev",
@@ -1985,7 +1985,7 @@
         "nested-list"
       ],
       "comparison": "structure",
-      "durationMs": 1.7943330000000515
+      "durationMs": 2.351166999999805
     },
     {
       "repository": "deno-docs",
@@ -2000,7 +2000,7 @@
         "frontmatter"
       ],
       "comparison": "structure",
-      "durationMs": 1.652249999999185
+      "durationMs": 1.6041670000013255
     },
     {
       "repository": "kubernetes-docs",
@@ -2014,7 +2014,7 @@
         "table"
       ],
       "comparison": "structure",
-      "durationMs": 0.9461249999994834
+      "durationMs": 0.9607089999990421
     },
     {
       "repository": "svelte-dev",
@@ -2028,7 +2028,7 @@
         "nested-list"
       ],
       "comparison": "structure",
-      "durationMs": 1.8976669999999558
+      "durationMs": 1.8322080000002643
     },
     {
       "repository": "kubernetes-docs",
@@ -2041,7 +2041,7 @@
         "frontmatter"
       ],
       "comparison": "structure",
-      "durationMs": 1.4656670000003942
+      "durationMs": 1.217624999999316
     },
     {
       "repository": "docker-docs",
@@ -2056,7 +2056,7 @@
         "frontmatter"
       ],
       "comparison": "structure",
-      "durationMs": 1.4337500000001455
+      "durationMs": 1.5431249999983265
     },
     {
       "repository": "kubernetes-docs",
@@ -2070,7 +2070,7 @@
         "frontmatter"
       ],
       "comparison": "structure",
-      "durationMs": 1.0808749999996508
+      "durationMs": 1.1445420000000013
     },
     {
       "repository": "kubernetes-docs",
@@ -2083,7 +2083,7 @@
         "frontmatter"
       ],
       "comparison": "structure",
-      "durationMs": 1.2083339999999225
+      "durationMs": 1.181166999999732
     },
     {
       "repository": "kubernetes-docs",
@@ -2097,7 +2097,7 @@
         "nested-list"
       ],
       "comparison": "structure",
-      "durationMs": 1.765082999999322
+      "durationMs": 1.5068749999991269
     },
     {
       "repository": "deno-docs",
@@ -2113,7 +2113,7 @@
         "table"
       ],
       "comparison": "structure",
-      "durationMs": 1.9496669999989535
+      "durationMs": 1.4440420000009908
     },
     {
       "repository": "kubernetes-docs",
@@ -2128,7 +2128,7 @@
         "nested-list"
       ],
       "comparison": "structure",
-      "durationMs": 1.50091699999939
+      "durationMs": 1.566208000000188
     },
     {
       "repository": "deno-docs",
@@ -2144,7 +2144,7 @@
         "table"
       ],
       "comparison": "structure",
-      "durationMs": 2.116582999999082
+      "durationMs": 1.2599999999983993
     },
     {
       "repository": "deno-docs",
@@ -2159,7 +2159,7 @@
         "frontmatter"
       ],
       "comparison": "structure",
-      "durationMs": 1.528041999999914
+      "durationMs": 1.4219579999989946
     },
     {
       "repository": "deno-docs",
@@ -2174,7 +2174,7 @@
         "nested-list"
       ],
       "comparison": "structure",
-      "durationMs": 1.7729589999999007
+      "durationMs": 1.563916999999492
     }
   ]
 }

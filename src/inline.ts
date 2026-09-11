@@ -93,8 +93,9 @@ function parseInlineRaw(
         const links = budget.links
         const children = parseInlineRaw(parsed.label, image ? (options.references ? { references: options.references } : {}) : options, budget)
         const nested = !image && budget.links !== links
-        const href = sanitizeUrl(parsed.href)
-        if (image || (!nested && (href || !parsed.href))) {
+        const defaultUrl = sanitizeUrl(parsed.href)
+        const href = options.urlTransform ? options.urlTransform(parsed.href, image ? 'image' : 'link', defaultUrl) : defaultUrl
+        if (href !== null && (image || (!nested && (href || !parsed.href)))) {
           pushText()
           nodes.push({
             ...(image ? { type: 'image' as const, src: href, alt: plainText(children) } : { type: 'link' as const, href, children }),

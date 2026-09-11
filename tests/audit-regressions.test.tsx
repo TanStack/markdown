@@ -8,7 +8,7 @@ import { Markdown as OctaneMarkdown } from '../src/octane.js'
 import { docsMarkdownExtensions } from '../src/extensions/docs.js'
 import { splitByHeading } from '../src/extensions/shared.js'
 import { transformBundlerTabs } from '../src/extensions/tabs.js'
-import { sanitizeUrl } from '../src/utils.js'
+import { escapeAttr, escapeHtml, sanitizeUrl } from '../src/utils.js'
 import type { MarkdownInput, RenderOptions } from '../src/types.js'
 import { normalizeStaticMarkup } from './helpers/normalize-html.js'
 
@@ -20,6 +20,13 @@ function equivalent(input: MarkdownInput, options: RenderOptions = {}) {
 }
 
 describe('audit regressions', () => {
+  it('keeps single-pass attribute escaping identical to the existing policy', () => {
+    const source = Array.from({ length: 256 }, (_, index) => String.fromCharCode(index)).join('') + '\u2028\u2029&copy;&#96;'
+    expect(escapeAttr(source)).toBe(escapeHtml(source).replace(/`/g, '&#96;'))
+    expect(escapeAttr('&<>"\'`')).toBe('&amp;&lt;&gt;&quot;&#39;&#96;')
+    expect(escapeHtml('`')).toBe('`')
+  })
+
   it.each([
     ['`a  b`', 'a  b'],
     ['` a  b `', 'a  b'],

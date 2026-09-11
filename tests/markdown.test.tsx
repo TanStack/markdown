@@ -128,7 +128,7 @@ export function Demo() {
     expect(renderHtml(markdown, { highlighter: externalHighlighter })).toMatchInlineSnapshot(`
       "<h1 id="hello-world">Hello <strong>World</strong></h1>
       <p>Use <a href="https://tanstack.com">TanStack</a> and <code>code</code>.</p>
-      <figure class="tm-code-frame" data-lang="tsx"><figcaption>example.tsx</figcaption><pre class="tm-code" data-lang="tsx" data-code-title="example.tsx" data-filename="example.tsx"><code class="language-tsx"><span class="external-line" data-lang="tsx" data-line="1">const value = true</span>
+      <figure class="tm-code-frame" data-lang="tsx"><figcaption>example.tsx</figcaption><pre class="tm-code" data-lang="tsx" data-meta="title=&quot;example.tsx&quot; {2}" data-code-title="example.tsx" data-filename="example.tsx"><code class="language-tsx"><span class="external-line" data-lang="tsx" data-line="1">const value = true</span>
       <span class="external-line external-line-highlight" data-lang="tsx" data-line="2">export function Demo() {</span>
       <span class="external-line" data-lang="tsx" data-line="3">  return &lt;div&gt;{value}&lt;/div&gt;</span>
       <span class="external-line" data-lang="tsx" data-line="4">}</span></code></pre></figure>

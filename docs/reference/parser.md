@@ -26,6 +26,7 @@ Normalizes and parses a complete Markdown source string into a deterministic `Ma
 | Option | Default | Behavior |
 | --- | --- | --- |
 | `allowHtml` | `false` | Recognize raw block and inline HTML nodes |
+| `urlTransform` | built-in policy | Override parsed link and image URLs; see [Custom URL policy](../core-concepts/security#custom-url-policy) |
 | `frontmatter` | `true` | Extract a leading `---` frontmatter block |
 | `headingIds` | `true` | Generate IDs, disable them, or provide an ID function |
 | `extensions` | `[]` | Run custom parser and transform hooks in array order |

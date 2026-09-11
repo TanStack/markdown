@@ -2,7 +2,7 @@ import { Fragment, createElement } from 'react'
 import type { ComponentPropsWithoutRef, ComponentType, JSX, ReactElement, ReactNode } from 'react'
 import { parseMarkdown } from './parser.js'
 import { footnoteReferenceId } from './utils.js'
-import type { BlockNode, ComponentNode, FootnoteItemNode, InlineNode, MarkdownInput, RenderOptions, TableCellNode } from './types.js'
+import type { BlockNode, ComponentNode, FootnoteItemNode, InlineComponentNode, InlineNode, MarkdownInput, RenderOptions, TableCellNode } from './types.js'
 
 type IntrinsicElementName = keyof JSX.IntrinsicElements
 type ComponentMap = Partial<Record<string, string | ComponentType<any>>>
@@ -135,6 +135,8 @@ export function renderInlineReact(node: InlineNode, options: MarkdownReactOption
       return options.allowHtml
         ? h(options, 'span', { key, dangerouslySetInnerHTML: { __html: node.value } })
         : node.value
+    case 'inlineComponent':
+      return renderComponentReact(node, options, key)
   }
 }
 
@@ -146,10 +148,6 @@ function renderCodeBlockReact(node: Extract<BlockNode, { type: 'code' }>, option
   const lang = node.lang ?? 'plaintext'
   const highlighter = options.highlighter
 
-  const codeProps = {
-    className: `language-${lang}`,
-  }
-
   const content = highlighter ? undefined : node.value
 
   const highlighted =
@@ -157,6 +155,7 @@ function renderCodeBlockReact(node: Extract<BlockNode, { type: 'code' }>, option
       ? {
           dangerouslySetInnerHTML: {
             __html: highlighter(node.value, lang, {
+              ...(node.meta && { meta: node.meta }),
               ...(node.highlightLines && { highlightLines: node.highlightLines }),
               ...(options.codeLineNumbers !== undefined && { lineNumbers: options.codeLineNumbers }),
             }),
@@ -170,11 +169,12 @@ function renderCodeBlockReact(node: Extract<BlockNode, { type: 'code' }>, option
     {
       className: `tm-code${options.codeLineNumbers ? ' tm-code--line-numbers' : ''}`,
       'data-lang': lang,
+      ...(node.meta ? { 'data-meta': node.meta } : {}),
       ...(node.title ? { 'data-code-title': node.title } : {}),
       ...(node.file ? { 'data-filename': node.file } : {}),
       ...(node.framework ? { 'data-framework': node.framework } : {}),
     },
-    h(options, 'code', { ...codeProps, ...highlighted }, content),
+    h(options, 'code', { className: `language-${lang}`, ...highlighted }, content),
   )
 
   if (!node.title) return h(options, Fragment, { key }, pre)
@@ -287,8 +287,8 @@ function h(options: MarkdownReactOptions, tag: string | typeof Fragment, props: 
   return createElement(component, props, ...children)
 }
 
-function renderComponentReact(node: ComponentNode, options: MarkdownReactOptions, key?: string): ReactElement {
-  const tag = node.tagName ?? 'md-comment-component'
+function renderComponentReact(node: ComponentNode | InlineComponentNode, options: MarkdownReactOptions, key?: string): ReactElement {
+  const tag = node.tagName ?? (node.type === 'inlineComponent' ? 'span' : 'md-comment-component')
   const props: Record<string, string> = {
     ...(node.properties ?? {}),
   }
@@ -298,7 +298,9 @@ function renderComponentReact(node: ComponentNode, options: MarkdownReactOptions
     if (!props['data-attributes']) props['data-attributes'] = JSON.stringify(node.attributes)
   }
 
-  return h(options, tag, { key, ...props }, node.children.map((child, index) => renderBlockReact(child, options, `${key}:${index}`)))
+  return h(options, tag, { key, ...props }, node.type === 'inlineComponent'
+    ? renderInlines(node.children, options)
+    : node.children.map((child, index) => renderBlockReact(child, options, `${key}:${index}`)))
 }
 
 function renderHeadingAnchorReact(id: string | undefined, options: MarkdownReactOptions): ReactNode {

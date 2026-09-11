@@ -120,6 +120,10 @@ const two = 2
 
 The parser records metadata even when no highlighter is configured. This keeps content parsing independent from presentation and lets a build pipeline change highlighters without rebuilding the AST.
 
+The complete fence metadata string is available as `CodeBlockNode.meta`, `options.meta` in the highlighter callback, and `data-meta` on the rendered `<pre>` in HTML, React, and Octane. Framework `pre` replacements can read `props['data-meta']`. The attribute and callback field are omitted when there is no metadata. Existing title, filename, framework, and highlighted-line fields remain available.
+
+Metadata is source text, not executable configuration. Validate any values you use to select a custom renderer; never evaluate metadata as code.
+
 ## Keep it server-only when possible
 
 For static blogs and docs, parse and highlight during a build or server render, then send the finished markup. The Markdown package does not force highlighting or registered language grammars into client bundles.
