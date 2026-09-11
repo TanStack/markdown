@@ -20,7 +20,7 @@ export function headingCollectionExtension(options: HeadingCollectionOptions = {
 export function collectMarkdownHeadings(document: MarkdownDocument, options: HeadingCollectionOptions = {}): MarkdownHeading[] {
   const headings: MarkdownHeading[] = []
   const skip = new Set(options.skipComponentNames ?? ['tabs'])
-  collectFromBlocks(document.children, headings, undefined, false, skip)
+  collectFromBlocks(document.children, headings, undefined, skip)
   return headings
 }
 
@@ -28,12 +28,11 @@ function collectFromBlocks(
   blocks: BlockNode[],
   headings: MarkdownHeading[],
   framework: string | undefined,
-  insideSkippedComponent: boolean,
   skipComponentNames: Set<string>,
 ) {
   for (const block of blocks) {
     if (block.type === 'heading') {
-      if (!insideSkippedComponent && block.id) {
+      if (block.id) {
         const heading: MarkdownHeading = {
           id: block.id,
           text: plainText(block.children),
@@ -47,20 +46,20 @@ function collectFromBlocks(
     }
 
     if (block.type === 'list') {
-      for (const item of block.items) collectFromBlocks(item.children, headings, framework, insideSkippedComponent, skipComponentNames)
+      for (const item of block.items) collectFromBlocks(item.children, headings, framework, skipComponentNames)
       continue
     }
 
     if (block.type === 'blockquote' || block.type === 'callout') {
-      collectFromBlocks(block.children, headings, framework, insideSkippedComponent, skipComponentNames)
+      collectFromBlocks(block.children, headings, framework, skipComponentNames)
       continue
     }
 
     if (block.type === 'component') {
       const name = block.name.toLowerCase()
-      const nextInsideSkippedComponent = insideSkippedComponent || skipComponentNames.has(name)
+      if (skipComponentNames.has(name)) continue
       const nextFramework = block.tagName === 'md-framework-panel' ? block.properties?.['data-framework'] ?? framework : framework
-      collectFromBlocks(block.children, headings, nextFramework, nextInsideSkippedComponent, skipComponentNames)
+      collectFromBlocks(block.children, headings, nextFramework, skipComponentNames)
     }
   }
 }

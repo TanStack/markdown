@@ -25,44 +25,27 @@ export function parseCommentComponentBlock(
   const start = parseComponentComment(line)
   if (!start) return undefined
 
-  if (!start.block) {
-    context.consume(1)
-    return transform(
-      {
-        type: 'component',
-        name: start.name,
-        attributes: start.attributes,
-        children: [],
-      },
-      options,
-    )
-  }
-
-  const body: string[] = []
-  let cursor = context.index + 1
-  let foundEnd = false
-
-  while (cursor < context.lines.length) {
-    const candidate = context.lines[cursor] ?? ''
-    if (isEndComment(candidate, start.name)) {
-      foundEnd = true
-      cursor++
-      break
+  let body: string | undefined
+  let consumed = 1
+  if (start.block) {
+    const end = new RegExp(`^ {0,3}<!--\\s*::end:${start.name}\\s*-->\\s*$`, 'i')
+    for (let cursor = context.index + 1; cursor < context.lines.length; cursor++) {
+      if (end.test(context.lines[cursor]!)) {
+        body = context.lines.slice(context.index + 1, cursor).join('\n')
+        consumed = cursor - context.index + 1
+        break
+      }
     }
-    body.push(candidate)
-    cursor++
   }
 
-  context.consume(foundEnd ? cursor - context.index : 1)
-  return transform(
-    {
-      type: 'component',
-      name: start.name,
-      attributes: start.attributes,
-      children: foundEnd ? context.parseBlocks(body.join('\n')) : [],
-    },
-    options,
-  )
+  context.consume(consumed)
+  const node: ComponentNode = {
+    type: 'component',
+    name: start.name,
+    attributes: start.attributes,
+    children: body === undefined ? [] : context.parseBlocks(body),
+  }
+  return options.transformComponent?.(node) ?? node
 }
 
 export function parseComponentComment(line: string): ComponentComment | undefined {
@@ -76,22 +59,10 @@ export function parseComponentComment(line: string): ComponentComment | undefine
 }
 
 export function parseAttributes(value: string): Record<string, string> {
-  const attrs: Record<string, string> = {}
+  const attrs: Record<string, string> = Object.create(null)
   const regex = /([A-Za-z_][\w:-]*)(?:=(?:"([^"]*)"|'([^']*)'|([^\s"']+)))?/g
   for (const match of value.matchAll(regex)) {
     attrs[match[1]!] = match[2] ?? match[3] ?? match[4] ?? 'true'
   }
   return attrs
-}
-
-function transform(node: ComponentNode, options: CommentComponentOptions) {
-  return options.transformComponent?.(node) ?? node
-}
-
-function isEndComment(line: string, name: string): boolean {
-  return new RegExp(`^ {0,3}<!--\\s*::end:${escapeRegex(name)}\\s*-->\\s*$`, 'i').test(line)
-}
-
-function escapeRegex(value: string) {
-  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
 }

@@ -1,6 +1,7 @@
 import { Fragment, createElement } from 'react'
 import type { ComponentPropsWithoutRef, ComponentType, JSX, ReactElement, ReactNode } from 'react'
 import { parseMarkdown } from './parser.js'
+import { footnoteReferenceId } from './utils.js'
 import type { BlockNode, ComponentNode, FootnoteItemNode, InlineNode, MarkdownInput, RenderOptions, TableCellNode } from './types.js'
 
 type IntrinsicElementName = keyof JSX.IntrinsicElements
@@ -49,7 +50,7 @@ export function renderBlockReact(node: BlockNode, options: MarkdownReactOptions 
       return h(
         options,
         tag,
-        { key, ...(node.ordered && node.start && node.start !== 1 ? { start: node.start } : {}) },
+        { key, ...(node.ordered && node.start !== undefined && node.start !== 1 ? { start: node.start } : {}) },
         node.items.map((item, index) =>
           h(options, 'li', { key: index }, renderListItemChildrenReact(item.children, item.checked, node.loose, options, `${index}`)),
         ),
@@ -116,7 +117,7 @@ export function renderInlineReact(node: InlineNode, options: MarkdownReactOption
           options,
           'a',
           {
-            id: `user-content-fnref-${footnoteReferenceId(node)}`,
+            id: `user-content-fnref-${footnoteReferenceId(node.id, node.referenceIndex)}`,
             'data-footnote-ref': '',
             'aria-describedby': 'footnote-label',
             href: `#user-content-fn-${node.id}`,
@@ -194,8 +195,7 @@ function renderListItemChildrenReact(
   options: MarkdownReactOptions,
   key: string,
 ): ReactNode[] {
-  const [first, ...rest] = children
-  const task =
+  let result: ReactNode[] =
     checked === undefined
       ? []
       : [
@@ -209,19 +209,14 @@ function renderListItemChildrenReact(
           ' ',
         ]
 
-  if (first?.type === 'paragraph') {
-    const content = [...task, ...renderInlines(first.children, options)]
-    return [
-      ...(loose ? [h(options, 'p', { key: `${key}:paragraph` }, content)] : content),
-      ...rest.flatMap((child, childIndex) => renderListChildReact(child, loose, options, `${key}:${childIndex + 1}`)),
-    ]
+  for (let index = 0; index < children.length; index++) {
+    const child = children[index]!
+    if (child.type === 'paragraph' && (!loose || index === 0)) {
+      for (const inline of renderInlines(child.children, options)) result.push(inline)
+      if (loose) result = [h(options, 'p', { key: `${key}:paragraph` }, result)]
+    } else result.push(renderBlockReact(child, options, `${key}:${index}`))
   }
-
-  return [...task, ...children.flatMap((child, childIndex) => renderListChildReact(child, loose, options, `${key}:${childIndex}`))]
-}
-
-function renderListChildReact(child: BlockNode, loose: boolean | undefined, options: MarkdownReactOptions, key: string): ReactNode[] {
-  return !loose && child.type === 'paragraph' ? renderInlines(child.children, options) : [renderBlockReact(child, options, key)]
+  return result
 }
 
 function renderTableCellReact(
@@ -253,20 +248,20 @@ function renderFootnoteItemReact(item: FootnoteItemNode, options: MarkdownReactO
   const lastIndex = item.children.length - 1
   const backrefs = renderFootnoteBackrefsReact(item, options)
 
-  if (lastIndex < 0) return [h(options, 'p', { key: 'backref-wrapper' }, backrefs.slice(1))]
-
-  return item.children.map((child, index) => {
+  const result = item.children.map((child, index) => {
     if (index === lastIndex && child.type === 'paragraph') {
       return h(options, 'p', { key: index }, renderInlines(child.children, options), backrefs)
     }
     return renderBlockReact(child, options, `${index}`)
   })
+  if (item.children[lastIndex]?.type !== 'paragraph') result.push(h(options, 'p', { key: 'backref-wrapper' }, backrefs.slice(1)))
+  return result
 }
 
 function renderFootnoteBackrefsReact(item: FootnoteItemNode, options: MarkdownReactOptions): ReactNode[] {
   const result: ReactNode[] = []
   for (let index = 1; index <= (item.referenceCount ?? 1); index++) {
-    const referenceId = index === 1 ? item.id : `${item.id}-${index}`
+    const referenceId = footnoteReferenceId(item.id, index)
     const label = index === 1 ? `${item.number}` : `${item.number}-${index}`
     result.push(
       ' ',
@@ -285,10 +280,6 @@ function renderFootnoteBackrefsReact(item: FootnoteItemNode, options: MarkdownRe
     )
   }
   return result
-}
-
-function footnoteReferenceId(node: Extract<InlineNode, { type: 'footnoteReference' }>): string {
-  return node.referenceIndex && node.referenceIndex > 1 ? `${node.id}-${node.referenceIndex}` : node.id
 }
 
 function h(options: MarkdownReactOptions, tag: string | typeof Fragment, props: Record<string, any> | null, ...children: ReactNode[]): ReactElement {

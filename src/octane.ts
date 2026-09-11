@@ -1,6 +1,7 @@
 import { Fragment, createElement } from 'octane'
 import type { ComponentBody, ElementDescriptor, OctaneNode } from 'octane'
 import { parseMarkdown } from './parser.js'
+import { footnoteReferenceId } from './utils.js'
 import type { BlockNode, ComponentNode, FootnoteItemNode, InlineNode, MarkdownInput, RenderOptions, TableCellNode } from './types.js'
 
 type ComponentMap = Partial<Record<string, string | ComponentBody<any>>>
@@ -41,7 +42,7 @@ export function renderBlockOctane(node: BlockNode, options: MarkdownOctaneOption
       return h(
         options,
         tag,
-        { key, ...(node.ordered && node.start && node.start !== 1 ? { start: node.start } : {}) },
+        { key, ...(node.ordered && node.start !== undefined && node.start !== 1 ? { start: node.start } : {}) },
         node.items.map((item, index) =>
           h(options, 'li', { key: index }, renderListItemChildrenOctane(item.children, item.checked, node.loose, options, `${index}`)),
         ),
@@ -108,7 +109,7 @@ export function renderInlineOctane(node: InlineNode, options: MarkdownOctaneOpti
           options,
           'a',
           {
-            id: `user-content-fnref-${footnoteReferenceId(node)}`,
+            id: `user-content-fnref-${footnoteReferenceId(node.id, node.referenceIndex)}`,
             'data-footnote-ref': '',
             'aria-describedby': 'footnote-label',
             href: `#user-content-fn-${node.id}`,
@@ -180,8 +181,7 @@ function renderListItemChildrenOctane(
   options: MarkdownOctaneOptions,
   key: string,
 ): OctaneNode[] {
-  const [first, ...rest] = children
-  const task: OctaneNode[] =
+  let result: OctaneNode[] =
     checked === undefined
       ? []
       : [
@@ -195,19 +195,14 @@ function renderListItemChildrenOctane(
           ' ',
         ]
 
-  if (first?.type === 'paragraph') {
-    const content = [...task, ...renderInlines(first.children, options)]
-    return [
-      ...(loose ? [h(options, 'p', { key: `${key}:paragraph` }, content)] : content),
-      ...rest.flatMap((child, childIndex) => renderListChildOctane(child, loose, options, `${key}:${childIndex + 1}`)),
-    ]
+  for (let index = 0; index < children.length; index++) {
+    const child = children[index]!
+    if (child.type === 'paragraph' && (!loose || index === 0)) {
+      for (const inline of renderInlines(child.children, options)) result.push(inline)
+      if (loose) result = [h(options, 'p', { key: `${key}:paragraph` }, result)]
+    } else result.push(renderBlockOctane(child, options, `${key}:${index}`))
   }
-
-  return [...task, ...children.flatMap((child, childIndex) => renderListChildOctane(child, loose, options, `${key}:${childIndex}`))]
-}
-
-function renderListChildOctane(child: BlockNode, loose: boolean | undefined, options: MarkdownOctaneOptions, key: string): OctaneNode[] {
-  return !loose && child.type === 'paragraph' ? renderInlines(child.children, options) : [renderBlockOctane(child, options, key)]
+  return result
 }
 
 function renderTableCellOctane(
@@ -239,20 +234,20 @@ function renderFootnoteItemOctane(item: FootnoteItemNode, options: MarkdownOctan
   const lastIndex = item.children.length - 1
   const backrefs = renderFootnoteBackrefsOctane(item, options)
 
-  if (lastIndex < 0) return [h(options, 'p', { key: 'backref-wrapper' }, backrefs.slice(1))]
-
-  return item.children.map((child, index) => {
+  const result = item.children.map((child, index) => {
     if (index === lastIndex && child.type === 'paragraph') {
       return h(options, 'p', { key: index }, renderInlines(child.children, options), backrefs)
     }
     return renderBlockOctane(child, options, `${index}`)
   })
+  if (item.children[lastIndex]?.type !== 'paragraph') result.push(h(options, 'p', { key: 'backref-wrapper' }, backrefs.slice(1)))
+  return result
 }
 
 function renderFootnoteBackrefsOctane(item: FootnoteItemNode, options: MarkdownOctaneOptions): OctaneNode[] {
   const result: OctaneNode[] = []
   for (let index = 1; index <= (item.referenceCount ?? 1); index++) {
-    const referenceId = index === 1 ? item.id : `${item.id}-${index}`
+    const referenceId = footnoteReferenceId(item.id, index)
     const label = index === 1 ? `${item.number}` : `${item.number}-${index}`
     result.push(
       ' ',
@@ -271,10 +266,6 @@ function renderFootnoteBackrefsOctane(item: FootnoteItemNode, options: MarkdownO
     )
   }
   return result
-}
-
-function footnoteReferenceId(node: Extract<InlineNode, { type: 'footnoteReference' }>): string {
-  return node.referenceIndex && node.referenceIndex > 1 ? `${node.id}-${node.referenceIndex}` : node.id
 }
 
 function h(

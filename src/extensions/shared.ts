@@ -1,4 +1,4 @@
-import type { BlockNode, ComponentNode, HeadingNode } from '../types.js'
+import type { BlockNode, ComponentNode } from '../types.js'
 import { plainText } from '../utils.js'
 
 export interface HeadingSection {
@@ -32,8 +32,7 @@ export function blocksToText(blocks: BlockNode[]): string {
 }
 
 export function splitByHeading(children: BlockNode[], forcedDepth?: number): HeadingSection[] {
-  const headings = children.filter((child): child is HeadingNode => child.type === 'heading')
-  const depth = forcedDepth ?? Math.min(...headings.map(heading => heading.depth))
+  const depth = forcedDepth ?? children.reduce((depth, child) => child.type === 'heading' ? Math.min(depth, child.depth) : depth, Infinity)
   if (!Number.isFinite(depth)) return []
 
   const sections: HeadingSection[] = []
@@ -77,7 +76,7 @@ export function markFrameworkHeadings(blocks: BlockNode[], framework: string): B
       }
     }
 
-    if (block.type === 'blockquote' || block.type === 'callout') {
+    if (block.type === 'blockquote' || block.type === 'callout' || block.type === 'component') {
       return {
         ...block,
         children: markFrameworkHeadings(block.children, framework),
@@ -91,13 +90,6 @@ export function markFrameworkHeadings(blocks: BlockNode[], framework: string): B
           ...item,
           children: markFrameworkHeadings(item.children, framework),
         })),
-      }
-    }
-
-    if (block.type === 'component') {
-      return {
-        ...block,
-        children: markFrameworkHeadings(block.children, framework),
       }
     }
 

@@ -43,6 +43,14 @@ The tested [TanStack Highlight adapter](../guides/syntax-highlighting#tanstack-h
 
 An extension `renderHtml` hook also returns trusted HTML. React and Octane component replacements can enforce application-specific link, image, and navigation policies, but those replacements are outside core renderer parity.
 
+## Document ASTs
+
+Renderers trust document ASTs supplied directly by the application. URL screening happens during Markdown parsing, not when rendering an arbitrary link or image node. Do not accept untrusted JSON as a document AST without validating its structure and applying your URL and HTML policies.
+
+## Resource limits
+
+The core limits parser nesting and inline delimiter scans. These are not a limit on total input size, footnote count, or work performed by extensions. Bound untrusted document sizes in the application, and batch streaming updates instead of rerendering on every incoming character.
+
 ## Untrusted content
 
 For user-generated Markdown:
