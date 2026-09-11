@@ -15,8 +15,8 @@ TanStack Markdown implements a documented subset aimed at repository-authored bl
 | Fenced code blocks | Yes | Backtick and tilde fences, language and docs metadata |
 | Blockquotes | Yes | Nested parsing with a bounded depth |
 | Unordered lists | Yes | Tight, loose, nested, and task items |
-| Ordered lists | Yes | `.` and `)` markers, custom starts, tight and loose items |
-| Tables | Yes | Header delimiter and left/center/right alignment |
+| Ordered lists | Yes | `.` and `)` markers, custom starts including zero, tight and loose items |
+| Tables | Yes | Header delimiter, alignment, and escaped pipes in cells |
 | Thematic breaks | Yes | Hyphen, asterisk, and underscore forms |
 | Frontmatter extraction | Yes | Leading `---` block, enabled by default |
 | Footnotes | Yes | Definition order follows first reference |
@@ -30,9 +30,9 @@ TanStack Markdown implements a documented subset aimed at repository-authored bl
 | --- | :---: | --- |
 | Emphasis and strong | Yes | Natural prose patterns; not every pathological delimiter case |
 | Strikethrough | Yes | GFM `~~text~~` and legacy TanStack `~text~`; numeric approximations stay literal |
-| Inline code | Yes | Backtick spans |
+| Inline code | Yes | Matching backtick runs; internal spaces and tabs are preserved |
 | Inline links and images | Yes | Unsafe URL protocols are removed |
-| Reference links and images | Yes | Full and collapsed forms used by the maintained corpus |
+| Reference links and images | Yes | Full, collapsed, and shortcut forms; normalized reference labels |
 | Hard breaks | Yes | Backslash before a newline |
 | Raw inline HTML | Opt-in | Requires `allowHtml: true` |
 | Autolink literals | No | Write an explicit link |

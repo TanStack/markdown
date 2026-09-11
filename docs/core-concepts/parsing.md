@@ -52,7 +52,7 @@ The second callback argument is the zero-based normalized parser line index. It 
 
 ## Definitions and footnotes
 
-Link definitions are collected before block parsing and resolved case-insensitively. Footnotes are emitted in first-reference order, with collision-safe IDs and back-reference counts.
+Link definitions are collected before block parsing. Reference labels are matched case-insensitively with whitespace collapsed, and the first definition wins when labels repeat. Footnotes are emitted in first-reference order, with collision-safe IDs and back-reference counts.
 
 The `references`, `footnotes`, `footnoteOrder`, and `footnoteCounts` fields in `ParseOptions` carry parser state through nested parsing. Most consumers should leave them unset.
 
