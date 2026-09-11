@@ -22,13 +22,15 @@ A tiny, fast, deterministic Markdown parser and renderer for blogs and documenta
 
 - 4.9 KB gzip parser
 - 6.7 KB gzip HTML renderer
-- 6.7 KB gzip React adapter
-- 6.7 KB gzip Octane adapter
+- 6.6 KB gzip React adapter
+- 6.6 KB gzip Octane adapter
 - zero runtime dependencies
 - serializable AST
 - safe defaults for raw HTML and executable URLs
 - optional docs extensions and external syntax highlighting
 - optional AI streaming profile
+
+Bundle sizes include the parser and exclude framework runtimes and syntax highlighters.
 
 ```bash
 pnpm add @tanstack/markdown
