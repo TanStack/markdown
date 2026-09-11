@@ -12,7 +12,7 @@ import type {
   TableCellNode,
   TableNode,
 } from './types.js'
-import { createSlugger, footnoteId, isBlank, normalizeInput, normalizeReferenceLabel, plainText, stripIndent } from './utils.js'
+import { createSlugger, footnoteId, isBlank, normalizeInput, normalizeReferenceLabel, parseDestination, plainText, stripIndent } from './utils.js'
 
 type Slugger = ReturnType<typeof createSlugger>
 
@@ -51,10 +51,11 @@ export function parseMarkdown(markdown: string, options: ParseOptions = {}): Mar
         }
       : options
 
-  const parser = new BlockParser(lines, parseOptions, createSlugger())
+  const slugger = createSlugger()
+  const parser = new BlockParser(lines, parseOptions, slugger)
   const children = parser.parse()
   if (hasFootnotes && footnoteOrder.length > 0) {
-    children.push(createFootnotesBlock(definitions.footnotes, footnoteOrder, parseOptions))
+    children.push(createFootnotesBlock(definitions.footnotes, footnoteOrder, parseOptions, slugger))
   }
   let document: MarkdownDocument = frontmatter === undefined ? { type: 'root', children } : { type: 'root', frontmatter, children }
 
@@ -67,6 +68,7 @@ export function parseMarkdown(markdown: string, options: ParseOptions = {}): Mar
 
 class BlockParser {
   private index = 0
+  loose = false
 
   constructor(
     private readonly lines: string[],
@@ -87,6 +89,7 @@ class BlockParser {
 
     while (this.index < this.lines.length) {
       if (isBlank(this.current())) {
+        if (nodes.length) this.loose = true
         this.index++
         continue
       }
@@ -138,24 +141,22 @@ class BlockParser {
   }
 
   private parseFence(): CodeBlockNode | undefined {
-    const match = this.current().match(/^ {0,3}(`{3,}|~{3,})(.*)$/)
+    const match = this.current().match(/^( {0,3})(`{3,}|~{3,})(.*)$/)
     if (!match) return undefined
 
-    const fence = match[1]!
-    const marker = fence[0]!
-    const fenceSize = fence.length
-    const info = match[2]!.trim()
+    const fence = match[2]!
+    const info = match[3]!.trim()
     const code: string[] = []
     this.index++
 
     while (this.index < this.lines.length) {
       const line = this.current()
       const close = line.match(/^ {0,3}(`{3,}|~{3,})\s*$/)
-      if (close && close[1]![0] === marker && close[1]!.length >= fenceSize) {
+      if (close?.[1]!.startsWith(fence)) {
         this.index++
         break
       }
-      code.push(line)
+      code.push(stripIndent(line, match[1]!.length))
       this.index++
     }
 
@@ -192,15 +193,12 @@ class BlockParser {
     const quoted: string[] = []
     while (this.index < this.lines.length) {
       const line = this.current()
-      if (isBlank(line)) {
-        quoted.push('')
-        this.index++
-        continue
-      }
-
       const match = line.match(/^ {0,3}>\s?(.*)$/)
-      if (!match) break
-      quoted.push(match[1]!)
+      if (!match) {
+        if (!isBlank(line)) break
+        this.loose = true
+      }
+      quoted.push(match?.[1] ?? '')
       this.index++
     }
 
@@ -217,12 +215,11 @@ class BlockParser {
     const items: ListItemNode[] = []
     const ordered = first.ordered
     const baseIndent = first.indent
-    const start = ordered ? first.number : undefined
     let loose = false
 
     while (this.index < this.lines.length) {
       const marker = listMarker(this.current())
-      if (!marker || !sameListType(marker, first) || marker.indent !== baseIndent) break
+      if (!marker || marker.marker !== first.marker || marker.indent !== baseIndent) break
 
       let firstLine = marker.content
       const task = firstLine.match(/^\[([ xX])\]\s+(.*)$/)
@@ -244,7 +241,7 @@ class BlockParser {
 
           const followingMarker = listMarker(following)
           if (followingMarker?.indent === baseIndent) {
-            if (!sameListType(followingMarker, first)) break
+            if (followingMarker.marker !== first.marker) break
             loose = true
             this.index = nextIndex
             break
@@ -252,9 +249,7 @@ class BlockParser {
 
           if (leadingSpaces(following) < marker.contentIndent) break
 
-          loose = true
-          itemLines.push('')
-          this.index = nextIndex
+          while (this.index < nextIndex) itemLines.push(stripIndent(this.lines[this.index++]!, marker.contentIndent))
           continue
         }
         if (leadingSpaces(line) >= marker.contentIndent) {
@@ -267,7 +262,9 @@ class BlockParser {
         this.index++
       }
 
-      const children = new BlockParser(itemLines, this.options, this.slugger, this.budget).parse()
+      const parser = new BlockParser(itemLines, this.options, this.slugger, this.budget)
+      const children = parser.parse()
+      loose ||= parser.loose
       const item: ListItemNode = { type: 'listItem', children }
       if (checked !== undefined) item.checked = checked
       items.push(item)
@@ -276,7 +273,7 @@ class BlockParser {
     return {
       type: 'list',
       ordered,
-      ...(ordered && start !== undefined ? { start } : {}),
+      ...(ordered && { start: first.number! }),
       ...(loose && { loose: true }),
       items,
     }
@@ -373,7 +370,7 @@ function parseCodeInfo(info: string): Omit<CodeBlockNode, 'type' | 'value'> {
   const titleMatch = meta.match(/(?:^|\s)(?:title|file)=(?:"([^"]+)"|'([^']+)'|([^\s}]+))/)
   const frameworkMatch = meta.match(/(?:^|\s)framework=(?:"([^"]+)"|'([^']+)'|([^\s}]+))/)
   const rangeMatch = meta.match(/\{([^}]+)\}|(?:^|\s)lines=([^\s]+)/)
-  const highlightLines = parseLineRanges(rangeMatch?.[1] ?? rangeMatch?.[2] ?? '')
+  const highlightLines = rangeMatch ? parseLineRanges(rangeMatch[1] ?? rangeMatch[2]!) : []
   const title = titleMatch ? titleMatch[1] ?? titleMatch[2] ?? titleMatch[3] : undefined
   const framework = frameworkMatch ? frameworkMatch[1] ?? frameworkMatch[2] ?? frameworkMatch[3] : undefined
 
@@ -389,30 +386,18 @@ function parseCodeInfo(info: string): Omit<CodeBlockNode, 'type' | 'value'> {
 function extractDefinitions(lines: string[]) {
   const references: NonNullable<ParseOptions['references']> = Object.create(null)
   const footnotes: NonNullable<ParseOptions['footnotes']> = Object.create(null)
-  const footnoteIds = new Map<string, number>()
+  const footnoteIds = createSlugger(footnoteId)
   const remaining: string[] = []
-  let fenceMarker: string | undefined
-  let fenceSize = 0
+  let activeFence = ''
   let index = 0
 
   while (index < lines.length) {
     const line = lines[index]!
-    const fence = line.match(/^ {0,3}(`{3,}|~{3,})/)
+    const fence = line.match(/^ {0,3}(`{3,}|~{3,})(.*)$/)
     if (fence) {
-      const marker = fence[1]![0]!
-      if (!fenceMarker) {
-        fenceMarker = marker
-        fenceSize = fence[1]!.length
-      } else if (marker === fenceMarker && fence[1]!.length >= fenceSize) {
-        fenceMarker = undefined
-        fenceSize = 0
-      }
-      remaining.push(line)
-      index++
-      continue
-    }
-
-    if (!fenceMarker) {
+      if (!activeFence) activeFence = fence[1]!
+      else if (fence[1]!.startsWith(activeFence) && isBlank(fence[2]!)) activeFence = ''
+    } else if (!activeFence) {
       const footnote = line.match(/^ {0,3}\[\^([^\]\n]+)\]:[ \t]*(.*)$/)
       if (footnote) {
         const label = footnote[1]!
@@ -428,23 +413,15 @@ function extractDefinitions(lines: string[]) {
 
         const key = normalizeReferenceLabel(label)
         if (!footnotes[key]) {
-          const baseId = footnoteId(label) || 'footnote'
-          const count = (footnoteIds.get(baseId) ?? 0) + 1
-          footnoteIds.set(baseId, count)
-          footnotes[key] = { label, content: content.join('\n'), id: count === 1 ? baseId : `${baseId}-${count}` }
+          footnotes[key] = { label, content: content.join('\n'), id: footnoteIds(label) }
         }
         continue
       }
 
-      const definition = line.match(
-        /^ {0,3}\[([^\]\n]+)\]:[ \t]*(\S+)(?:[ \t]+(?:"([^"]*)"|'([^']*)'|\(([^)]*)\)))?[ \t]*$/,
-      )
-      if (definition) {
-        const title = definition[3] ?? definition[4] ?? definition[5]
-        references[normalizeReferenceLabel(definition[1]!)] = {
-          href: definition[2]!.replace(/^<|>$/g, ''),
-          ...(title !== undefined ? { title } : {}),
-        }
+      const definition = line.match(/^ {0,3}\[([^\]\n]+)\]:[ \t]*(\S.*)$/)
+      const destination = definition && parseDestination(definition[2]!.trimEnd())
+      if (destination) {
+        references[normalizeReferenceLabel(definition![1]!)] ??= destination
         index++
         continue
       }
@@ -461,6 +438,7 @@ function createFootnotesBlock(
   footnotes: NonNullable<ParseOptions['footnotes']>,
   footnoteOrder: string[],
   options: ParseOptions,
+  slugger: Slugger,
 ): BlockNode {
   const items: FootnoteItemNode[] = []
   for (let index = 0; index < footnoteOrder.length; index++) {
@@ -468,9 +446,9 @@ function createFootnotesBlock(
     const definition = footnotes[key]
     if (!definition) continue
     items.push({
-      id: definition.id ?? (footnoteId(definition.label) || 'footnote'),
+      id: definition.id ?? footnoteId(definition.label),
       number: index + 1,
-      children: new BlockParser(normalizeInput(definition.content).split('\n'), options, createSlugger()).parse(),
+      children: new BlockParser(normalizeInput(definition.content).split('\n'), options, slugger).parse(),
     })
   }
   for (const item of items) {
@@ -487,6 +465,8 @@ function parseLineRanges(value: string): number[] {
     if (!match) continue
     const start = Number(match[1])
     const end = Number(match[2] ?? match[1])
+    // Larger integers can stop line++ from making progress.
+    if (end > Number.MAX_SAFE_INTEGER) continue
     for (let line = start; line <= end && line < start + 1000; line++) lines.add(line)
   }
   return [...lines].sort((a, b) => a - b)
@@ -517,10 +497,6 @@ function listMarker(line: string):
   }
 }
 
-function sameListType(left: NonNullable<ReturnType<typeof listMarker>>, right: NonNullable<ReturnType<typeof listMarker>>): boolean {
-  return left.ordered === right.ordered && left.marker === right.marker
-}
-
 function leadingSpaces(line: string): number {
   return line.match(/^ */)?.[0].length ?? 0
 }
@@ -528,10 +504,7 @@ function leadingSpaces(line: string): number {
 function isBlockStart(line: string, next?: string): boolean {
   const marker = listMarker(line)
   return (
-    /^ {0,3}(`{3,}|~{3,})/.test(line) ||
-    /^ {0,3}#{1,6}(?:\s+|$)/.test(line) ||
-    /^ {0,3}([-*_])(?:\s*\1){2,}\s*$/.test(line) ||
-    /^ {0,3}>\s?/.test(line) ||
+    /^ {0,3}(?:`{3,}|~{3,}|#{1,6}(?:\s|$)|([-*_])(?:\s*\1){2,}\s*$|>)/.test(line) ||
     (marker !== undefined && (!marker.ordered || marker.number === 1)) ||
     (!!next && looksLikeTableHeader(line, next))
   )
@@ -544,13 +517,11 @@ function looksLikeTableHeader(header: string, delimiter: string): boolean {
 }
 
 function splitTableRow(value: string): string[] {
-  let row = value.trim()
-  if (row.startsWith('|')) row = row.slice(1)
-  if (row.endsWith('|')) row = row.slice(0, -1)
+  const row = value.trim()
 
   const cells: string[] = []
   let current = ''
-  for (let index = 0; index < row.length; index++) {
+  for (let index = row.startsWith('|') ? 1 : 0; index < row.length; index++) {
     const char = row[index]!
     if (char === '\\' && row[index + 1] === '|') {
       current += '|'
@@ -564,7 +535,7 @@ function splitTableRow(value: string): string[] {
     }
     current += char
   }
-  cells.push(current.trim())
+  if (current || !row.endsWith('|') || !cells.length) cells.push(current.trim())
   return cells
 }
 

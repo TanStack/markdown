@@ -50,15 +50,13 @@ export function transformFileTabs(node: ComponentNode): ComponentNode {
 }
 
 export function transformPackageManagerTabs(node: ComponentNode): ComponentNode {
-  const packagesByFramework: Record<string, string[][]> = {}
+  const packagesByFramework: Record<string, string[][]> = Object.create(null)
 
   for (const line of blocksToText(node.children).split('\n')) {
-    const trimmed = line.trim()
-    if (!trimmed) continue
-    const colon = trimmed.indexOf(':')
+    const colon = line.indexOf(':')
     if (colon === -1) continue
-    const framework = trimmed.slice(0, colon).trim().toLowerCase()
-    const packages = trimmed.slice(colon + 1).trim().split(/\s+/).filter(Boolean)
+    const framework = line.slice(0, colon).trim().toLowerCase()
+    const packages = line.slice(colon + 1).trim().split(/\s+/).filter(Boolean)
     if (!framework || packages.length === 0) continue
     packagesByFramework[framework] ??= []
     packagesByFramework[framework]!.push(packages)
@@ -81,13 +79,13 @@ export function transformPackageManagerTabs(node: ComponentNode): ComponentNode 
 
 export function transformBundlerTabs(node: ComponentNode): ComponentNode {
   const sections = splitByHeading(node.children)
-  const selected = sections.filter(section => isBundler(section.name.toLowerCase()))
+  const selected = bundlers.flatMap(bundler => {
+    const section = sections.find(section => section.name.toLowerCase() === bundler)
+    return section ? [section] : []
+  })
   if (!selected.length) return node
 
-  const tabs = bundlers
-    .map(bundler => selected.find(section => section.name.toLowerCase() === bundler))
-    .filter((section): section is NonNullable<typeof section> => Boolean(section))
-    .map(section => ({ slug: section.name.toLowerCase(), name: section.name.toLowerCase() }))
+  const tabs = selected.map(section => ({ slug: section.name.toLowerCase(), name: section.name.toLowerCase() }))
 
   return {
     ...node,
@@ -96,15 +94,14 @@ export function transformBundlerTabs(node: ComponentNode): ComponentNode {
       'data-attributes': JSON.stringify({ tabs }),
       'data-bundler-meta': JSON.stringify({ bundlers: tabs.map(tab => tab.slug) }),
     },
-    children: tabs.map((tab, index): ComponentNode => {
-      const section = selected.find(section => section.name.toLowerCase() === tab.slug)!
+    children: selected.map((section, index): ComponentNode => {
       return {
         type: 'component',
         name: 'tab-panel',
         tagName: 'md-tab-panel',
         attributes: {},
         properties: {
-          'data-tab-slug': tab.slug,
+          'data-tab-slug': section.name.toLowerCase(),
           'data-tab-index': String(index),
           'data-content': section.children.length === 1 && section.children[0]?.type === 'code' ? 'code-only' : 'mixed',
         },
@@ -147,8 +144,4 @@ function resolveInstallMode(value: string | undefined): string {
   const mode = value?.toLowerCase()
   if (mode === 'dev-install' || mode === 'local-install') return mode
   return 'install'
-}
-
-function isBundler(value: string): value is (typeof bundlers)[number] {
-  return (bundlers as readonly string[]).includes(value)
 }

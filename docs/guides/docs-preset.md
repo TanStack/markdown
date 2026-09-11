@@ -19,7 +19,7 @@ const html = renderHtml(document, {
 })
 ```
 
-The preset is a separate 2.4 KB gzip entry and is not imported by the parser or renderers.
+The preset is a separate 2.3 KB gzip entry and is not imported by the parser or renderers.
 
 ## Callouts
 
@@ -29,6 +29,8 @@ The preset is a separate 2.4 KB gzip entry and is not imported by the parser or 
 ```
 
 This produces a `CalloutNode` and renders `markdown-alert`, `markdown-alert-title`, and `markdown-alert-content` classes.
+
+Keep blank lines inside a callout quoted with `>`. An unquoted blank line ends the callout. Custom titles are plain text; put Markdown links in the body.
 
 ## Heading collection
 

@@ -19,12 +19,6 @@ export function parseCalloutBlock(context: Parameters<NonNullable<MarkdownExtens
 
   while (cursor < context.lines.length) {
     const line = context.lines[cursor] ?? ''
-    if (/^\s*$/.test(line)) {
-      body.push('')
-      cursor++
-      continue
-    }
-
     const quoted = line.match(/^ {0,3}>\s?(.*)$/)
     if (!quoted) break
     body.push(quoted[1]!)

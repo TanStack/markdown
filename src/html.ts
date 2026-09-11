@@ -1,6 +1,6 @@
 import { parseMarkdown } from './parser.js'
 import type { BlockNode, ComponentNode, FootnoteItemNode, HeadingAnchorOptions, InlineNode, MarkdownDocument, MarkdownInput, RenderOptions, TableCellNode } from './types.js'
-import { escapeAttr, escapeHtml } from './utils.js'
+import { escapeAttr, escapeHtml, footnoteReferenceId } from './utils.js'
 
 export function renderHtml(input: MarkdownInput, options: RenderOptions = {}): string {
   const document = typeof input === 'string' ? parseMarkdown(input, options) : input
@@ -23,7 +23,7 @@ export function renderBlock(node: BlockNode, options: RenderOptions = {}): strin
       return renderCodeBlock(node, options)
     case 'list': {
       const tag = node.ordered ? 'ol' : 'ul'
-      const start = node.ordered && node.start && node.start !== 1 ? ` start="${node.start}"` : ''
+      const start = node.ordered && node.start !== undefined && node.start !== 1 ? ` start="${node.start}"` : ''
       const items = node.items.map(item => `<li>${renderListItemChildren(item.children, item.checked, node.loose, options)}</li>`).join('\n')
       return `<${tag}${start}>\n${items}\n</${tag}>`
     }
@@ -67,7 +67,7 @@ export function renderInline(node: InlineNode, options: RenderOptions = {}): str
     case 'strike':
       return `<del>${renderInlines(node.children, options)}</del>`
     case 'footnoteReference':
-      return `<sup><a id="user-content-fnref-${escapeAttr(footnoteReferenceId(node))}" data-footnote-ref="" aria-describedby="footnote-label" href="#user-content-fn-${escapeAttr(node.id)}">${node.number}</a></sup>`
+      return `<sup><a id="user-content-fnref-${escapeAttr(footnoteReferenceId(node.id, node.referenceIndex))}" data-footnote-ref="" aria-describedby="footnote-label" href="#user-content-fn-${escapeAttr(node.id)}">${node.number}</a></sup>`
     case 'link':
       return `<a href="${escapeAttr(node.href)}"${node.title ? ` title="${escapeAttr(node.title)}"` : ''}>${renderInlines(node.children, options)}</a>`
     case 'image':
@@ -89,15 +89,10 @@ function renderInlines(nodes: InlineNode[], options: RenderOptions): string {
 
 function renderCodeBlock(node: Extract<BlockNode, { type: 'code' }>, options: RenderOptions): string {
   const lang = node.lang ?? 'plaintext'
-  const preAttrs = [
-    `class="tm-code${options.codeLineNumbers ? ' tm-code--line-numbers' : ''}"`,
-    `data-lang="${escapeAttr(lang)}"`,
-    node.title ? `data-code-title="${escapeAttr(node.title)}"` : '',
-    node.file ? `data-filename="${escapeAttr(node.file)}"` : '',
-    node.framework ? `data-framework="${escapeAttr(node.framework)}"` : '',
-  ]
-    .filter(Boolean)
-    .join(' ')
+  const preAttrs = `class="tm-code${options.codeLineNumbers ? ' tm-code--line-numbers' : ''}" data-lang="${escapeAttr(lang)}"`
+    + (node.title ? ` data-code-title="${escapeAttr(node.title)}"` : '')
+    + (node.file ? ` data-filename="${escapeAttr(node.file)}"` : '')
+    + (node.framework ? ` data-framework="${escapeAttr(node.framework)}"` : '')
   const html = options.highlighter?.(node.value, lang, {
     ...(node.highlightLines && { highlightLines: node.highlightLines }),
     ...(options.codeLineNumbers !== undefined && { lineNumbers: options.codeLineNumbers }),
@@ -110,14 +105,15 @@ function renderCodeBlock(node: Extract<BlockNode, { type: 'code' }>, options: Re
 }
 
 function renderListItemChildren(children: BlockNode[], checked: boolean | undefined, loose: boolean | undefined, options: RenderOptions): string {
-  const first = children[0]
-  const task = checked === undefined ? '' : `<input type="checkbox" disabled${checked ? ' checked' : ''}> `
-  if (first?.type === 'paragraph') {
-    const content = `${task}${renderInlines(first.children, options)}`
-    const rest = children.length > 1 ? `\n${children.slice(1).map(child => renderBlock(child, options)).join('\n')}` : ''
-    return `${loose ? `<p>${content}</p>` : content}${rest}`
+  let result = checked === undefined ? '' : `<input type="checkbox" disabled${checked ? ' checked' : ''}> `
+  for (let index = 0; index < children.length; index++) {
+    const child = children[index]!
+    if (child.type === 'paragraph' && (!loose || index === 0)) {
+      result += renderInlines(child.children, options)
+      if (loose) result = `<p>${result}</p>`
+    } else result += (index ? '\n' : '') + renderBlock(child, options)
   }
-  return `${task}${children.map(child => renderBlock(child, options)).join('\n')}`
+  return result
 }
 
 function renderCallout(node: Extract<BlockNode, { type: 'callout' }>, options: RenderOptions): string {
@@ -135,30 +131,25 @@ function renderFootnoteItem(item: FootnoteItemNode, options: RenderOptions): str
   const backref = renderFootnoteBackrefs(item)
   const lastIndex = item.children.length - 1
 
-  if (lastIndex < 0) return `<p>${backref.trimStart()}</p>`
-
-  return item.children
+  const result = item.children
     .map((child, index) => {
       if (index === lastIndex && child.type === 'paragraph') {
         return `<p>${renderInlines(child.children, options)}${backref}</p>`
       }
       return renderBlock(child, options)
     })
-    .join('\n')
+  if (item.children[lastIndex]?.type !== 'paragraph') result.push(`<p>${backref.trimStart()}</p>`)
+  return result.join('\n')
 }
 
 function renderFootnoteBackrefs(item: FootnoteItemNode): string {
   let result = ''
   for (let index = 1; index <= (item.referenceCount ?? 1); index++) {
-    const referenceId = index === 1 ? item.id : `${item.id}-${index}`
+    const referenceId = footnoteReferenceId(item.id, index)
     const label = index === 1 ? `${item.number}` : `${item.number}-${index}`
     result += ` <a data-footnote-backref="" aria-label="Back to reference ${label}" class="data-footnote-backref" href="#user-content-fnref-${escapeAttr(referenceId)}">&#8617;</a>`
   }
   return result
-}
-
-function footnoteReferenceId(node: Extract<InlineNode, { type: 'footnoteReference' }>): string {
-  return node.referenceIndex && node.referenceIndex > 1 ? `${node.id}-${node.referenceIndex}` : node.id
 }
 
 function renderComponent(node: ComponentNode, options: RenderOptions): string {
@@ -207,7 +198,5 @@ function renderComponentAttrs(node: ComponentNode): string {
     if (!props['data-attributes']) props['data-attributes'] = JSON.stringify(node.attributes)
   }
 
-  const entries = Object.entries(props)
-  if (!entries.length) return ''
-  return ` ${entries.map(([key, value]) => `${key}="${escapeAttr(value)}"`).join(' ')}`
+  return Object.entries(props).map(([key, value]) => ` ${key}="${escapeAttr(value)}"`).join('')
 }

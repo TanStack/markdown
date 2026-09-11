@@ -60,9 +60,25 @@ The command compares output against CommonMark 0.31.2 examples, preserves every 
 
 Selected official GFM examples separately cover tables, task lists, and strikethrough in the supported profile.
 
+## Comparing a change
+
+Compare the working tree with a Git revision or a saved directory containing `src/`, using the same compiler and runtime:
+
+```bash
+node --import tsx scripts/compare-revision.mjs main
+```
+
+The script measures minified, gzip, and Brotli sizes, lists gained and lost CommonMark matches, and alternates old and new implementations over nine timing samples. It includes React and Octane node creation and SSR, and retains the medians and every sample in `artifacts/audit-comparison.json`. Run it without other CPU-heavy work. Small timing differences can still be noise, and Node results do not establish browser performance.
+
+Size tests protect both narrow imports and the complete namespace of every public entry point. Their ceilings are the smaller audited working tree, not the earlier npm release. A smaller gzip bundle does not excuse growth in minified or Brotli bytes.
+
+After running both corpus audits, add `--corpus` to compare both revisions in core and docs-extension modes against the same source files and Marked version. Use `--no-bench` when checking only output and size. Review changed output even when a file already differs from Marked. The corpus classification is a triage tool, not proof that two outputs behave identically.
+
 ## Resilience
 
 The suite includes fixed-seed generated malformed documents and adversarial cases such as unmatched delimiters, deep blockquotes, nested lists, and parser depth exhaustion. Performance thresholds are generous enough for CI variation but strict enough to catch accidental superlinear behavior.
+
+Synchronous hang regressions, including oversized numeric code-line ranges, run in a subprocess with a deadline. An ordinary test timeout cannot interrupt a blocked JavaScript event loop.
 
 The AI streaming profile renders every character prefix of a representative response and verifies deterministic output, React/HTML parity, safe handling of executable URLs and raw HTML, unfinished-fence behavior, trailing-placeholder suppression, and bounded progressive rendering.
 

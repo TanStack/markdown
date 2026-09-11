@@ -619,7 +619,7 @@ function decodeBasicEntities(value: string): string {
     .replace(/&amp;/g, '&')
 }
 
-function stripFrontmatter(source: string): string {
+export function stripFrontmatter(source: string): string {
   const normalized = source.replace(/\r\n?/g, '\n')
   if (!normalized.startsWith('---\n')) return normalized
   const match = /\n---(?:\n|$)/.exec(normalized.slice(4))

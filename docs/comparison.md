@@ -42,9 +42,9 @@ These repository benchmarks bundle representative browser entry points from pinn
 | --- | ---: | ---: |
 | `@tanstack/markdown/parser` | 4.9 KB | 4.6 KB |
 | `@tanstack/markdown/html` | 6.7 KB | 6.2 KB |
-| `@tanstack/markdown/react` | 6.7 KB | 6.1 KB |
+| `@tanstack/markdown/react` | 6.6 KB | 6.1 KB |
 | React with streaming extension | 6.8 KB | 6.3 KB |
-| `@tanstack/markdown/octane` | 6.7 KB | 6.1 KB |
+| `@tanstack/markdown/octane` | 6.6 KB | 6.1 KB |
 | Marked | 12.5 KB | 11.5 KB |
 | micromark | 15.4 KB | 13.7 KB |
 | markdown-wasm JS + WASM | 31.3 KB | 26.4 KB |
@@ -56,7 +56,7 @@ The comparison does not represent equivalent feature sets. It shows the cost of 
 
 ## Compatibility accounting
 
-TanStack Markdown currently matches 348 of 652 CommonMark 0.31.2 examples after serializer normalization. That 53.4% figure is accounting, not a conformance claim or a target to maximize. The project also preserves selected official GFM examples for tables, task lists, and strikethrough.
+The generated [compatibility report](../reports/conformance.md) tracks matches against all 652 CommonMark 0.31.2 examples after serializer normalization. Every established match is protected individually by the regression suite. The count is accounting, not a conformance claim or a target to maximize. Selected official GFM examples separately cover tables, task lists, and strikethrough.
 
 Use [commonmark.js](https://github.com/commonmark/commonmark.js), micromark, or a unified pipeline when exact specification behavior is a requirement. Use TanStack Markdown when your corpus fits the [documented profile](core-concepts/syntax-profile) and the smaller, controlled renderer is the better product tradeoff.
 

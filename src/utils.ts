@@ -1,4 +1,4 @@
-import type { InlineNode } from './types.js'
+import type { InlineNode, LinkReferenceDefinition } from './types.js'
 
 const htmlEscapes: Record<string, string> = {
   '&': '&amp;',
@@ -40,42 +40,55 @@ export function plainText(nodes: InlineNode[]): string {
   return value
 }
 
-export function createSlugger() {
+export function createSlugger(normalize = headingSlug) {
   const seen = new Map<string, number>()
 
   return (value: string) => {
-    const base =
-      value
-        .toLowerCase()
-        .normalize('NFKD')
-        .replace(/[\u0300-\u036f]/g, '')
-        .replace(/&[a-z0-9#]+;/gi, '')
-        .replace(/[^a-z0-9]+/g, '-')
-        .replace(/^-+|-+$/g, '') || 'section'
-
-    const count = seen.get(base) ?? 0
-    seen.set(base, count + 1)
-    return count === 0 ? base : `${base}-${count + 1}`
+    const base = normalize(value)
+    let count = seen.get(base) ?? 1
+    let id = base
+    while (seen.has(id)) id = `${base}-${++count}`
+    seen.set(base, count)
+    seen.set(id, 1)
+    return id
   }
 }
 
+function headingSlug(value: string): string {
+  return value
+    .toLowerCase()
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/&[a-z0-9#]+;/gi, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '') || 'section'
+}
+
 export function sanitizeUrl(value: string): string {
-  const trimmed = value.trim().replace(/[\u0000-\u001F\u007F\s]+/g, '')
-  if (!trimmed) return ''
-  if (/^(#|\/|\.\/|\.\.\/)/.test(trimmed)) return trimmed
-  if (/^(https?:|mailto:|tel:)/i.test(trimmed)) return trimmed
-  if (/^[a-z][a-z0-9+.-]*:/i.test(trimmed)) return ''
-  return trimmed
+  const trimmed = value.replace(/[\u0000-\u001F\u007F\s]+/g, '')
+  return /^(?!https?:|mailto:|tel:)[a-z][a-z0-9+.-]*:/i.test(trimmed) ? '' : trimmed
+}
+
+export function parseDestination(value: string): LinkReferenceDefinition | undefined {
+  const match = value.match(/^(?:<([^<>\n]*)>|([^<>\s]*?))(?:\s+(?:"([^"]*)"|'([^']*)'|\(([^)]*)\)))?$/)
+  if (!match) return undefined
+  const href = match[1] ?? match[2]!
+  const title = match[3] ?? match[4] ?? match[5]
+  return { href: href.replace(/\\([!-/:-@\[-`{-~])/g, '$1'), ...(title ? { title } : {}) }
 }
 
 export function normalizeReferenceLabel(value: string): string {
-  return value.trim().toLowerCase()
+  return value.trim().replace(/\s+/g, ' ').toLowerCase()
 }
 
 export function footnoteId(label: string): string {
   return normalizeReferenceLabel(label)
     .replace(/[^a-z0-9_-]+/g, '-')
-    .replace(/^-+|-+$/g, '')
+    .replace(/^-+|-+$/g, '') || 'footnote'
+}
+
+export function footnoteReferenceId(id: string, index = 1): string {
+  return index > 1 ? `${id}-${index}` : id
 }
 
 export function splitLines(value: string): string[] {

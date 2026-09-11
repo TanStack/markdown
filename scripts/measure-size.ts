@@ -2,11 +2,20 @@
 import { brotliCompressSync, gzipSync } from 'node:zlib'
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { build } from 'esbuild'
 
 const reportsDir = join(process.cwd(), 'reports')
 
-const entries = [
+const packageJson = JSON.parse(await readFile(new URL('../package.json', import.meta.url), 'utf8'))
+export const publicEntries = Object.keys(packageJson.exports).map(name => ({
+  group: 'tanstack-public',
+  name,
+  contents: `import * as entry from './src/${name === '.' ? 'index' : name.slice(2)}.ts'; console.log(entry)`,
+  external: ['react', 'octane'],
+}))
+
+export const entries = [
   {
     group: 'tanstack',
     name: 'parser only',
@@ -97,7 +106,7 @@ async function main() {
   await mkdir(reportsDir, { recursive: true })
 
   const results = []
-  for (const entry of entries) {
+  for (const entry of [...entries, ...publicEntries]) {
     try {
       if (entry.files) {
         const files = await Promise.all(entry.files.map(file => readFile(join(process.cwd(), file))))
@@ -177,7 +186,9 @@ function renderSizeReport(results) {
   return lines.join('\n')
 }
 
-main().catch(error => {
-  console.error(error)
-  process.exitCode = 1
-})
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
+  main().catch(error => {
+    console.error(error)
+    process.exitCode = 1
+  })
+}
