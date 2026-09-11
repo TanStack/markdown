@@ -331,6 +331,14 @@ export function renderWithPolicy(
 
 Core escaping and protocol filtering do not enforce application-specific outbound-link, image, or final-HTML policy.
 
+For parsed Markdown destinations, `urlTransform(url, kind, defaultUrl)` can return
+the screened default, a trusted replacement, or `null` to remove the link or image
+while retaining its label content. Only allow data images after application validation
+of their content, MIME type, and size. Keep the default policy for other destinations.
+Callback results are not screened again, and the callback does not apply to raw HTML,
+extension-created URLs, or ASTs supplied directly to renderers. Do not enable raw HTML
+to allow images. Include URL-policy changes in persisted AST cache invalidation.
+
 Source: `docs/core-concepts/security.md`
 
 ### HIGH Assuming complete CommonMark behavior

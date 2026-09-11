@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { classifyDocument, compareRenderedHtml, detectCorpusFeatures, locateTextDifference } from '../scripts/audit-corpus.js'
+import { classifyDocument, compareRenderedHtml, detectCorpusFeatures, locateTextDifference, renderedText } from '../scripts/audit-corpus.js'
 
 describe('practical corpus audit', () => {
   it('detects supported, extension, and unsupported syntax outside code fences', () => {
@@ -74,5 +74,13 @@ Title
       actual: 'Before actual after',
       reference: 'Before reference after',
     })
+  })
+
+  it('does not mistake escaped code or metadata for HTML tags', () => {
+    const code = '<pre data-meta="[[1, &quot;&lt;App /&gt;&quot;]]"><code>&lt;App /&gt;</code></pre>'
+    expect(renderedText(code)).toBe('<App />')
+    expect(renderedText('<p>&lt;!--literal--&gt; &amp;lt;tag&amp;gt;</p>')).toBe('<!--literal--> &lt;tag&gt;')
+    expect(compareRenderedHtml(code, '<pre><code>&lt;App /&gt;</code></pre>')).not.toBe('content')
+    expect(compareRenderedHtml('<code>&lt;App /&gt;</code>', '<code></code>')).toBe('content')
   })
 })

@@ -2,7 +2,7 @@
 name: 'custom-extensions'
 description: >
   Implement MarkdownExtension block parsers, inline and document transforms,
-  HTML hooks, and portable ComponentNode output. Load when adding deterministic
+  HTML hooks, and portable block and inline component output. Load when adding deterministic
   custom syntax or rendering behavior across HTML, React, and Octane.
 metadata:
   type: core
@@ -110,6 +110,13 @@ console.log(html)
 ```
 
 Transforms receive built-in inline nodes and must return a deterministic replacement array.
+
+For custom inline UI, return an `InlineComponentNode` with `type: 'inlineComponent'`,
+`name`, `attributes`, inline `children`, and optional `tagName` and string `properties`.
+It uses the same emitted-tag component maps as a block `ComponentNode`, but defaults
+to `<span>` instead of `<md-comment-component>`. Keep tag and property names under
+extension control, use phrasing content, and recurse through inline `children` when
+transforming text nested inside links or emphasis. This does not require `allowHtml`.
 
 ### Derive document metadata after parsing
 
@@ -370,7 +377,7 @@ export function Article() {
 }
 ```
 
-`renderHtml` hooks do not run in React or Octane; a `ComponentNode` and emitted-tag component mapping is the portable path.
+`renderHtml` hooks do not run in React or Octane; a `ComponentNode` or `InlineComponentNode` and emitted-tag component mapping is the portable path.
 
 Source: `docs/guides/extensions.md`
 
@@ -425,7 +432,7 @@ Source: `docs/guides/extensions.md`
 
 ### HIGH Rich output versus untrusted-content safety
 
-Prefer `ComponentNode` plus application components for rich output. Treat `allowHtml`, extension HTML strings, and highlighter markup as explicit trusted boundaries; see `production-pipelines`.
+Prefer block or inline component nodes plus application components for rich output. Treat `allowHtml`, extension HTML strings, and highlighter markup as explicit trusted boundaries; see `production-pipelines`.
 
 ### MEDIUM Parse-ahead performance versus option timing
 

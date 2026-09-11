@@ -190,10 +190,11 @@ Important rendering invariants:
 | `emphasis` | `EmphasisNode` | inline `children` |
 | `strike` | `StrikeNode` | inline `children` |
 | `footnoteReference` | `FootnoteReferenceNode` | normalized `id`, display `number`, optional `referenceIndex` |
-| `link` | `LinkNode` | sanitized `href`, optional `title`, inline `children` |
-| `image` | `ImageNode` | sanitized `src`, text `alt`, optional `title` |
+| `link` | `LinkNode` | policy-processed `href`, optional `title`, inline `children` |
+| `image` | `ImageNode` | policy-processed `src`, text `alt`, optional `title` |
 | `break` | `BreakNode` | no additional fields |
 | `inlineHtml` | `HtmlInlineNode` | raw `value` |
+| `inlineComponent` | `InlineComponentNode` | `name`, `attributes`, inline `children`, optional `tagName`, optional string `properties` |
 
 `HtmlInlineNode` is created only when parsing with `allowHtml: true`.
 Repeated footnote references use `referenceIndex` to produce unique source
@@ -206,10 +207,12 @@ import type {
   FootnoteDefinition,
   LinkReferenceDefinition,
   MarkdownExtension,
+  UrlTransform,
 } from '@tanstack/markdown'
 
 interface ParseOptions {
   allowHtml?: boolean
+  urlTransform?: UrlTransform
   frontmatter?: boolean
   headingIds?: boolean | ((text: string, index: number) => string)
   extensions?: MarkdownExtension[]
@@ -223,6 +226,7 @@ interface ParseOptions {
 | Option | Default | Contract |
 | --- | --- | --- |
 | `allowHtml` | `false` | Recognize raw block and inline HTML nodes. Rendering also requires this option to emit their raw values. |
+| `urlTransform` | built-in policy | Synchronous `(url, kind, defaultUrl) => string \| null`; return the screened default, a trusted replacement, or `null` to keep only label content. Applies to Markdown destinations, not raw HTML or supplied ASTs. |
 | `frontmatter` | `true` | Extract one leading `---` block into `document.frontmatter`. The library does not parse YAML. |
 | `headingIds` | `true` | Generate duplicate-safe IDs, disable IDs with `false`, or return an ID from `(text, normalizedLineIndex)`. |
 | `extensions` | `[]` | Run block parsers and inline/document transforms in array order. |
@@ -259,6 +263,7 @@ interface HeadingAnchorOptions {
 }
 
 interface CodeHighlightOptions {
+  meta?: string
   highlightLines?: number[]
   lineNumbers?: boolean
 }

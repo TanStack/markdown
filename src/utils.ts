@@ -6,18 +6,21 @@ const htmlEscapes: Record<string, string> = {
   '>': '&gt;',
   '"': '&quot;',
   "'": '&#39;',
+  '`': '&#96;',
 }
+
+const escapeCharacter = (char: string) => htmlEscapes[char]!
 
 export function normalizeInput(value: string): string {
   return value.replace(/^\uFEFF/, '').replace(/\r\n?/g, '\n')
 }
 
 export function escapeHtml(value: string): string {
-  return value.replace(/[&<>"']/g, char => htmlEscapes[char]!)
+  return value.replace(/[&<>"']/g, escapeCharacter)
 }
 
 export function escapeAttr(value: string): string {
-  return escapeHtml(value).replace(/`/g, '&#96;')
+  return value.replace(/[&<>"'`]/g, escapeCharacter)
 }
 
 export function isBlank(value: string): boolean {

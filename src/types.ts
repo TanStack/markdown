@@ -112,6 +112,11 @@ export interface ComponentNode {
   properties?: Record<string, string>
 }
 
+export interface InlineComponentNode extends Omit<ComponentNode, 'type' | 'children'> {
+  type: 'inlineComponent'
+  children: InlineNode[]
+}
+
 export type InlineNode =
   | TextNode
   | CodeSpanNode
@@ -123,6 +128,7 @@ export type InlineNode =
   | ImageNode
   | BreakNode
   | HtmlInlineNode
+  | InlineComponentNode
 
 export interface TextNode {
   type: 'text'
@@ -212,6 +218,7 @@ export interface HtmlRenderContext {
 
 export interface ParseOptions {
   allowHtml?: boolean
+  urlTransform?: UrlTransform
   frontmatter?: boolean
   headingIds?: boolean | ((text: string, index: number) => string)
   extensions?: MarkdownExtension[]
@@ -219,6 +226,10 @@ export interface ParseOptions {
   footnotes?: Record<string, FootnoteDefinition>
   footnoteOrder?: string[]
   footnoteCounts?: Record<string, number>
+}
+
+export interface UrlTransform {
+  (url: string, kind: 'link' | 'image', defaultUrl: string): string | null
 }
 
 export interface RenderOptions extends ParseOptions {
@@ -232,6 +243,7 @@ export interface CodeHighlighter {
 }
 
 export interface CodeHighlightOptions {
+  meta?: string
   highlightLines?: number[]
   lineNumbers?: boolean
 }

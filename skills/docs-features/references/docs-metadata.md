@@ -317,4 +317,4 @@ interface CodeBlockNode {
 - `{2,4-6}` and `lines=2,4-6` produce sorted, unique positive line numbers.
 - Invalid ranges are ignored, and each individual range expands to at most 1,000 lines.
 
-HTML code blocks expose `data-lang`, `data-code-title`, `data-filename`, and `data-framework` when the corresponding values exist. Highlight lines are passed to a configured highlighter; metadata alone does not create token or line markup.
+HTML, React, and Octane code blocks expose `data-lang`, `data-meta`, `data-code-title`, `data-filename`, and `data-framework` on `<pre>` when the corresponding values exist. Framework `pre` replacements can read `props['data-meta']`; highlighters receive the raw metadata in `options.meta` alongside highlight lines. Metadata alone does not create token or line markup.

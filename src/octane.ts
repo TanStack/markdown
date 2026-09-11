@@ -2,7 +2,7 @@ import { Fragment, createElement } from 'octane'
 import type { ComponentBody, ElementDescriptor, OctaneNode } from 'octane'
 import { parseMarkdown } from './parser.js'
 import { footnoteReferenceId } from './utils.js'
-import type { BlockNode, ComponentNode, FootnoteItemNode, InlineNode, MarkdownInput, RenderOptions, TableCellNode } from './types.js'
+import type { BlockNode, ComponentNode, FootnoteItemNode, InlineComponentNode, InlineNode, MarkdownInput, RenderOptions, TableCellNode } from './types.js'
 
 type ComponentMap = Partial<Record<string, string | ComponentBody<any>>>
 
@@ -127,6 +127,8 @@ export function renderInlineOctane(node: InlineNode, options: MarkdownOctaneOpti
       return options.allowHtml
         ? h(options, 'span', { key, dangerouslySetInnerHTML: { __html: node.value } })
         : node.value
+    case 'inlineComponent':
+      return renderComponentOctane(node, options, key)
   }
 }
 
@@ -143,6 +145,7 @@ function renderCodeBlockOctane(node: Extract<BlockNode, { type: 'code' }>, optio
       ? {
           dangerouslySetInnerHTML: {
             __html: highlighter(node.value, lang, {
+              ...(node.meta && { meta: node.meta }),
               ...(node.highlightLines && { highlightLines: node.highlightLines }),
               ...(options.codeLineNumbers !== undefined && { lineNumbers: options.codeLineNumbers }),
             }),
@@ -156,6 +159,7 @@ function renderCodeBlockOctane(node: Extract<BlockNode, { type: 'code' }>, optio
     {
       className: `tm-code${options.codeLineNumbers ? ' tm-code--line-numbers' : ''}`,
       'data-lang': lang,
+      ...(node.meta ? { 'data-meta': node.meta } : {}),
       ...(node.title ? { 'data-code-title': node.title } : {}),
       ...(node.file ? { 'data-filename': node.file } : {}),
       ...(node.framework ? { 'data-framework': node.framework } : {}),
@@ -278,8 +282,8 @@ function h(
   return createElement(component as string | ComponentBody<any> | typeof Fragment, props ?? undefined, ...children)
 }
 
-function renderComponentOctane(node: ComponentNode, options: MarkdownOctaneOptions, key?: string): ElementDescriptor {
-  const tag = node.tagName ?? 'md-comment-component'
+function renderComponentOctane(node: ComponentNode | InlineComponentNode, options: MarkdownOctaneOptions, key?: string): ElementDescriptor {
+  const tag = node.tagName ?? (node.type === 'inlineComponent' ? 'span' : 'md-comment-component')
   const props: Record<string, string> = {
     ...(node.properties ?? {}),
   }
@@ -289,7 +293,9 @@ function renderComponentOctane(node: ComponentNode, options: MarkdownOctaneOptio
     if (!props['data-attributes']) props['data-attributes'] = JSON.stringify(node.attributes)
   }
 
-  return h(options, tag, { key, ...props }, node.children.map((child, index) => renderBlockOctane(child, options, `${key}:${index}`)))
+  return h(options, tag, { key, ...props }, node.type === 'inlineComponent'
+    ? renderInlines(node.children, options)
+    : node.children.map((child, index) => renderBlockOctane(child, options, `${key}:${index}`)))
 }
 
 function renderHeadingAnchorOctane(id: string | undefined, options: MarkdownOctaneOptions): OctaneNode {
