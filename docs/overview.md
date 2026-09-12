@@ -31,7 +31,7 @@ TanStack Markdown spends its complexity budget on that path. It deliberately doe
 
 ### Small entry points
 
-Current minified browser bundles are 5.0 KB gzip for the parser, 6.8 KB for HTML rendering, and 6.7 KB for either UI adapter with its framework runtime externalized. The generated [bundle report](https://github.com/TanStack/markdown/blob/main/reports/sizes.md) is the source of truth.
+Current minified browser bundles are 5.3 KB gzip for the parser, 7.1 KB for HTML rendering, and 7.0 KB for either UI adapter with its framework runtime externalized. The generated [bundle report](https://github.com/TanStack/markdown/blob/main/reports/sizes.md) is the source of truth.
 
 ### Parse once, render many
 

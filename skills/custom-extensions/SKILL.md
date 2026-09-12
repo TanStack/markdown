@@ -1,7 +1,7 @@
 ---
 name: 'custom-extensions'
 description: >
-  Implement MarkdownExtension block parsers, inline and document transforms,
+  Implement MarkdownExtension block and inline source parsers, inline and document transforms,
   HTML hooks, and portable block and inline component output. Load when adding deterministic
   custom syntax or rendering behavior across HTML, React, and Octane.
 metadata:
@@ -75,6 +75,14 @@ console.log(html)
 `parseBlock` runs before built-in block parsing, and nested `parseBlocks` shares the parent depth budget and heading slugger.
 
 ## Core Patterns
+
+### Recognize inline source before formatting
+
+Use `inlineParser: { markers, parse(context) }` for syntax that needs original source characters. `markers` is a string of literal first characters. The context supplies `source`, UTF-16 `index`, `options`, `inLink`, and `parseInline(value)` sharing the current depth and scan budget. Return `{ node, length }` with one standard `InlineNode` and a positive in-bounds integer length, or `undefined` to decline. Invalid lengths throw `RangeError`.
+
+Escapes and code spans take precedence. Hooks do not run in code, image alt text, or link destinations; they do run in emphasis and link labels. Respect `inLink` when creating automatic links. Indices are local to the current inline container, and ranges cannot cross enclosing inline or block boundaries. Hook dispatch is budgeted, but callback work is trusted and must avoid repeated suffix scans. Returned AST nodes are trusted; validate URLs and component metadata yourself.
+
+Use `transformInline` for changes to already-parsed nodes. It cannot distinguish an escaped opener from an ordinary text opener or restore raw Markdown spelling. See the extension guide for a complete source-parser example.
 
 ### Transform parsed inline nodes
 

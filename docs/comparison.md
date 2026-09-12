@@ -40,11 +40,11 @@ These repository benchmarks bundle representative browser entry points from pinn
 
 | Entry | Gzip | Brotli |
 | --- | ---: | ---: |
-| `@tanstack/markdown/parser` | 5.0 KB | 4.6 KB |
-| `@tanstack/markdown/html` | 6.8 KB | 6.2 KB |
-| `@tanstack/markdown/react` | 6.7 KB | 6.2 KB |
+| `@tanstack/markdown/parser` | 5.3 KB | 4.9 KB |
+| `@tanstack/markdown/html` | 7.1 KB | 6.5 KB |
+| `@tanstack/markdown/react` | 7.0 KB | 6.5 KB |
 | React with streaming extension | 6.9 KB | 6.4 KB |
-| `@tanstack/markdown/octane` | 6.7 KB | 6.2 KB |
+| `@tanstack/markdown/octane` | 7.0 KB | 6.5 KB |
 | Marked | 12.5 KB | 11.5 KB |
 | micromark | 15.4 KB | 13.7 KB |
 | markdown-wasm JS + WASM | 31.3 KB | 26.4 KB |
