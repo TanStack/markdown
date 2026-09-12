@@ -16,6 +16,9 @@ const revision = process.argv[2]
 assert(revision, 'Usage: node --import tsx scripts/compare-revision.mjs <baseline-git-ref-or-directory> [--no-bench] [--corpus]')
 const directory = await stat(revision).then(value => value.isDirectory()).catch(() => false)
 const baseline = directory ? resolve(revision) : execFileSync('git', ['rev-parse', '--verify', `${revision}^{commit}`], { encoding: 'utf8' }).trim()
+const baselinePackage = JSON.parse(directory
+  ? await readFile(resolve(baseline, 'package.json'), 'utf8')
+  : execFileSync('git', ['show', `${baseline}:package.json`], { encoding: 'utf8' }))
 const sourceCache = new Map()
 const baselinePlugin = {
   name: 'baseline-source',
@@ -52,12 +55,16 @@ const sizes = []
 for (const entry of [...entries.filter(entry => entry.group === 'tanstack'), ...publicEntries]) {
   const results = []
   for (const previous of [true, false]) {
+    if (previous && entry.group === 'tanstack-public' && !Object.hasOwn(baselinePackage.exports, entry.name)) {
+      results.push(null)
+      continue
+    }
     const code = await bundle(entry.contents, previous, entry.external)
     results.push({ min: code.length, gzip: gzipSync(code, { level: 9 }).length, brotli: brotliCompressSync(code).length })
   }
   sizes.push({ name: entry.name, before: results[0], after: results[1] })
 }
-console.table(sizes.map(row => ({ name: row.name, before: row.before.gzip, after: row.after.gzip, delta: row.after.gzip - row.before.gzip })))
+console.table(sizes.map(row => ({ name: row.name, before: row.before?.gzip ?? 'new entry', after: row.after.gzip, delta: row.before ? row.after.gzip - row.before.gzip : null })))
 
 const apis = []
 for (const previous of [true, false]) {

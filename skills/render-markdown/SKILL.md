@@ -201,7 +201,7 @@ const html = renderHtml(controlledMarkdown)
 console.log(html)
 ```
 
-Setext headings and automatic URL linking are outside the supported syntax
+Setext headings are outside the supported syntax
 profile, so unsupported input can remain literal or have different structure.
 
 Source: `docs/core-concepts/syntax-profile.md`
@@ -320,6 +320,10 @@ Standalone inline parsing does not extract document-level reference or
 footnote definitions unless internal parser state is supplied explicitly.
 
 Source: `docs/reference/default-entry.md`
+
+## Optional pasted URLs
+
+Import `autolinksExtension` from `@tanstack/markdown/extensions/autolinks` and pass it in `extensions` to recognize bare HTTP(S) URLs and `<https://…>` notation. This is opt-in and is not part of the docs preset. It uses the application `urlTransform` policy and produces ordinary portable link nodes. Code, images, and explicit link labels retain existing behavior. Bare links exclude trailing sentence punctuation and unmatched closing delimiters; use angle notation for meaningful trailing punctuation. `www.` addresses, emails, other schemes, and full GFM autolink conformance are not included.
 
 ## Related Skills
 

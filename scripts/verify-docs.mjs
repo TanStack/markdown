@@ -55,6 +55,7 @@ const apiDocuments = new Map([
   ['./parser', 'docs/reference/parser.md'],
   ['./react', 'docs/reference/react.md'],
   ['./octane', 'docs/reference/octane.md'],
+  ['./extensions/autolinks', 'docs/reference/extensions.md'],
   ['./extensions/callouts', 'docs/reference/extensions.md'],
   ['./extensions/comment-components', 'docs/reference/extensions.md'],
   ['./extensions/docs', 'docs/reference/extensions.md'],

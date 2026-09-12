@@ -229,7 +229,7 @@ interface ParseOptions {
 | `urlTransform` | built-in policy | Synchronous `(url, kind, defaultUrl) => string \| null`; return the screened default, a trusted replacement, or `null` to keep only label content. Applies to Markdown destinations, not raw HTML or supplied ASTs. |
 | `frontmatter` | `true` | Extract one leading `---` block into `document.frontmatter`. The library does not parse YAML. |
 | `headingIds` | `true` | Generate duplicate-safe IDs, disable IDs with `false`, or return an ID from `(text, normalizedLineIndex)`. |
-| `extensions` | `[]` | Run block parsers and inline/document transforms in array order. |
+| `extensions` | `[]` | Run block/inline source parsers and inline/document transforms in array order. |
 | `references` | internal | Carry normalized reference definitions through nested parsing. |
 | `footnotes` | internal | Carry normalized footnote definitions through nested parsing. |
 | `footnoteOrder` | internal | Track first-reference order through nested parsing. |

@@ -19,17 +19,18 @@ describe('bundle budgets', () => {
       ['react'],
     )
 
-    // Measured ceilings for the #7, #9, and #11 fixes, with no spare headroom.
+    // Proposed exact ceilings including inline-parser dispatch (+304–311 gzip bytes).
+    // See reports/inline-parsers.md for the baseline comparison and API tradeoff.
     // Extension entries retain their 0.0.14 ceilings.
     for (const [result, min, gzip, brotli] of [
-      [parser, 13157, 4975, 4593],
-      [html, 18337, 6807, 6240],
-      [react, 18271, 6722, 6184],
-      [octane, 18283, 6727, 6194],
-      [pluggable, 18373, 6829, 6260],
+      [parser, 13797, 5283, 4854],
+      [html, 18979, 7116, 6514],
+      [react, 18913, 7026, 6454],
+      [octane, 18925, 7033, 6462],
+      [pluggable, 19015, 7137, 6536],
       [streaming, 699, 311, 253],
       [callouts, 506, 335, 278],
-      [reactStreaming, 18962, 6907, 6356],
+      [reactStreaming, 19604, 7212, 6624],
       [docs, 6423, 2292, 2073],
       [tabs, 3290, 1221, 1082],
     ] as const) {
@@ -38,15 +39,17 @@ describe('bundle budgets', () => {
       expect(result.brotliBytes).toBeLessThanOrEqual(brotli)
     }
     expect(html.code).not.toContain('external-line')
+    expect(html.code).not.toContain('autolinks')
   })
 
   it('also protects the complete namespace of every public entry point', async () => {
     const budgets: Record<string, number[]> = {
-      '.': [18598, 6936, 6345],
-      './html': [18560, 6920, 6331],
-      './parser': [13289, 5061, 4664],
-      './react': [18470, 6828, 6279],
-      './octane': [18485, 6833, 6287],
+      '.': [19241, 7240, 6622],
+      './html': [19203, 7227, 6606],
+      './parser': [13929, 5372, 4925],
+      './react': [19113, 7133, 6554],
+      './octane': [19128, 7140, 6563],
+      './extensions/autolinks': [994, 632, 568],
       './extensions/callouts': [660, 432, 360],
       './extensions/comment-components': [1073, 647, 542],
       './extensions/docs': [6587, 2392, 2162],
