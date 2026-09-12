@@ -117,7 +117,7 @@ const html = renderHtml('IMPORTANT: Back up the database.', {
 console.log(html)
 ```
 
-Transforms receive built-in inline nodes and must return a deterministic replacement array.
+Transforms receive both built-in inline nodes and extension nodes returned by `inlineParser`, and must return a deterministic replacement array.
 
 For custom inline UI, return an `InlineComponentNode` with `type: 'inlineComponent'`,
 `name`, `attributes`, inline `children`, and optional `tagName` and string `properties`.
