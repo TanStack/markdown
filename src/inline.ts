@@ -1,8 +1,14 @@
-import type { InlineNode, ParseOptions } from './types.js'
+import type { InlineNode, InlineParser, ParseOptions } from './types.js'
 import { footnoteId, normalizeReferenceLabel, parseDestination, plainText, sanitizeUrl } from './utils.js'
 
 export function parseInline(value: string, options: ParseOptions = {}): InlineNode[] {
-  let result = parseInlineRaw(value, options)
+  const parsers = options.extensions?.flatMap(extension => extension.inlineParser ? [extension.inlineParser] : []) ?? []
+  const marker = parsers.length
+    ? new RegExp(inlineMarker.source + '|[' + parsers.map(parser => parser.markers).join('').replace(/[\\\]\[\-^]/g, '\\$&') + ']', 'g')
+    : inlineMarker
+  let result = parseInlineRaw(value, options, {
+    scans: Math.max(value.length * scansPerCharacter, 1024), depth: 0, links: 0, parsers, marker,
+  })
 
   for (const extension of options.extensions ?? []) {
     result = extension.transformInline?.(result, { options }) ?? result
@@ -15,6 +21,8 @@ interface InlineParseBudget {
   scans: number
   depth: number
   links: number
+  parsers: InlineParser[]
+  marker: RegExp
 }
 
 const maxInlineDepth = 32
@@ -24,10 +32,14 @@ const inlineMarker = /[\\`!\[_*~<]/g
 function parseInlineRaw(
   value: string,
   options: ParseOptions,
-  budget: InlineParseBudget = { scans: Math.max(value.length * scansPerCharacter, 1024), depth: 0, links: 0 },
+  budget: InlineParseBudget,
+  inLink = false,
 ): InlineNode[] {
   if (budget.depth >= maxInlineDepth) return value ? [{ type: 'text', value }] : []
   budget.depth++
+  // Image alt text is parsed with stripped options and shares only the budget.
+  const parsers = options.extensions ? budget.parsers : []
+  const marker = parsers.length ? budget.marker : inlineMarker
 
   const nodes: InlineNode[] = []
   let index = 0
@@ -40,7 +52,7 @@ function parseInlineRaw(
     }
   }
 
-  while (index < value.length) {
+  scan: while (index < value.length) {
     const char = value[index]!
     const next = value[index + 1]
 
@@ -77,6 +89,23 @@ function parseInlineRaw(
       continue
     }
 
+    for (const parser of parsers) {
+      if (!parser.markers.includes(char) || budget.scans-- <= 0) continue
+      const result = parser.parse({
+        source: value, index, options, inLink,
+        parseInline: source => parseInlineRaw(source, options, budget, inLink),
+      })
+      if (!result) continue
+      if (!Number.isInteger(result.length) || result.length <= 0 || result.length > value.length - index) {
+        throw new RangeError('Inline parser must consume a positive length within the source')
+      }
+      pushText()
+      nodes.push(result.node)
+      if (result.node.type === 'link') budget.links++
+      index += result.length
+      continue scan
+    }
+
     if (char === '[' || (char === '!' && next === '[')) {
       const image = char === '!'
       const footnote = next === '^' && parseFootnoteReference(value, index, options, budget)
@@ -91,7 +120,7 @@ function parseInlineRaw(
       const parsed = parseLinkish(value, index + Number(image), options, budget)
       if (parsed) {
         const links = budget.links
-        const children = parseInlineRaw(parsed.label, image ? (options.references ? { references: options.references } : {}) : options, budget)
+        const children = parseInlineRaw(parsed.label, image ? (options.references ? { references: options.references } : {}) : options, budget, !image)
         const nested = !image && budget.links !== links
         const defaultUrl = sanitizeUrl(parsed.href)
         const href = options.urlTransform ? options.urlTransform(parsed.href, image ? 'image' : 'link', defaultUrl) : defaultUrl
@@ -124,7 +153,7 @@ function parseInlineRaw(
         pushText()
         nodes.push({
           type: 'emphasis',
-          children: parseInlineRaw(value.slice(index + 1, close + 2), options, budget),
+          children: parseInlineRaw(value.slice(index + 1, close + 2), options, budget, inLink),
         })
         index = close + 3
         continue
@@ -145,7 +174,7 @@ function parseInlineRaw(
         pushText()
         nodes.push({
           type: char === '~' ? 'strike' : size === 2 ? 'strong' : 'emphasis',
-          children: parseInlineRaw(value.slice(index + size, close), options, budget),
+          children: parseInlineRaw(value.slice(index + size, close), options, budget, inLink),
         })
         index = close + size
       } else {
@@ -166,8 +195,8 @@ function parseInlineRaw(
     }
 
     // Reset after recursive parsing; exhausted budgets still allow escapes.
-    inlineMarker.lastIndex = index + 1
-    const end = budget.scans > 0 ? inlineMarker.exec(value)?.index ?? value.length : value.indexOf('\\', index + 1)
+    marker.lastIndex = index + 1
+    const end = budget.scans > 0 ? marker.exec(value)?.index ?? value.length : value.indexOf('\\', index + 1)
     text += value.slice(index, end < 0 ? value.length : end)
     index = end < 0 ? value.length : end
   }
