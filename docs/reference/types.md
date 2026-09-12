@@ -158,11 +158,23 @@ Configures anchor `content`, `className`, `ariaHidden`, and `tabIndex`.
 
 ### `MarkdownExtension`
 
-Named hook object with optional `parseBlock`, `transformDocument`, `transformInline`, and `renderHtml` functions.
+Named hook object with optional `parseBlock`, `transformDocument`, `transformInline`, and `renderHtml` functions, plus an optional `inlineParser`.
 
 ### `BlockParseContext`
 
 Provides source `lines`, current `index`, active `options`, nested `parseInline` and `parseBlocks` helpers, and `consume`.
+
+### `InlineParser`
+
+Contains literal first-character `markers` and a synchronous `parse(context)` callback returning `InlineParseResult | undefined`. Runs at matching source positions after escapes and code spans, before other built-in inline rules.
+
+### `InlineParseContext`
+
+Provides current-container `source`, UTF-16 `index`, active `options`, `inLink`, and a nested `parseInline(value)` helper that shares the recursion and scan budget.
+
+### `InlineParseResult`
+
+Contains one standard `InlineNode` as `node` and a positive integer `length` in UTF-16 code units. The range must fit in the current source. Invalid lengths throw `RangeError`.
 
 ### `InlineTransformContext`
 

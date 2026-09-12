@@ -188,9 +188,32 @@ export interface HtmlInlineNode {
 export interface MarkdownExtension {
   name: string
   parseBlock?: (context: BlockParseContext) => BlockNode | undefined
+  inlineParser?: InlineParser
   transformDocument?: (document: MarkdownDocument, context: DocumentTransformContext) => MarkdownDocument | void
   transformInline?: (nodes: InlineNode[], context: InlineTransformContext) => InlineNode[]
   renderHtml?: (node: BlockNode | InlineNode, context: HtmlRenderContext) => string | undefined
+}
+
+export interface InlineParser {
+  /** Possible first characters, used to skip ordinary text efficiently. */
+  markers: string
+  parse: (context: InlineParseContext) => InlineParseResult | undefined
+}
+
+export interface InlineParseContext {
+  source: string
+  index: number
+  options: ParseOptions
+  /** True while parsing an explicit link label. */
+  inLink: boolean
+  /** Parse children with the current recursion and scan budget. */
+  parseInline: (value: string) => InlineNode[]
+}
+
+export interface InlineParseResult {
+  node: InlineNode
+  /** Positive number of UTF-16 code units consumed at context.index. */
+  length: number
 }
 
 export interface BlockParseContext {
