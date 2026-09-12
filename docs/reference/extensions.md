@@ -6,6 +6,18 @@ title: Extensions
 
 Every built-in extension is available through a separate package entry.
 
+## Autolinks
+
+Import from `@tanstack/markdown/extensions/autolinks`.
+
+### `autolinksExtension`
+
+```ts
+function autolinksExtension(): MarkdownExtension
+```
+
+Creates an inline source parser for bare `http://` / `https://` URLs and explicit `<https://…>` links. Returns ordinary link nodes and applies the active `urlTransform` policy. It is not included in the core entry or docs preset. See the [autolink profile](../guides/extensions#optional-url-linking) for boundaries and deliberate limits.
+
 ## Callouts
 
 Import from `@tanstack/markdown/extensions/callouts`.

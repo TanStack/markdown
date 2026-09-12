@@ -39,6 +39,7 @@ describe('bundle budgets', () => {
       expect(result.brotliBytes).toBeLessThanOrEqual(brotli)
     }
     expect(html.code).not.toContain('external-line')
+    expect(html.code).not.toContain('autolinks')
   })
 
   it('also protects the complete namespace of every public entry point', async () => {
@@ -48,6 +49,7 @@ describe('bundle budgets', () => {
       './parser': [13929, 5372, 4925],
       './react': [19113, 7133, 6554],
       './octane': [19128, 7140, 6563],
+      './extensions/autolinks': [994, 632, 568],
       './extensions/callouts': [660, 432, 360],
       './extensions/comment-components': [1073, 647, 542],
       './extensions/docs': [6587, 2392, 2162],

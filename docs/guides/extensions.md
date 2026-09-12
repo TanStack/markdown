@@ -76,6 +76,29 @@ Return one standard `InlineNode` and a positive integer `length` within the rema
 
 Returned nodes follow the same trust contract as supplied ASTs: URL destinations and component names/properties must be validated by the extension. The fixed, numeric issue path above needs no user-supplied URL. Extensions accepting arbitrary URLs should use the application URL policy. Return a portable `InlineComponentNode` for custom presentation; no HTML renderer changes are required.
 
+## Optional URL linking
+
+```ts
+import { renderHtml } from '@tanstack/markdown/html'
+import { autolinksExtension } from '@tanstack/markdown/extensions/autolinks'
+
+const html = renderHtml('See https://example.com/~alice~/notes.', {
+  extensions: [autolinksExtension()],
+})
+```
+
+This extension recognizes bare HTTP(S) URLs and `<http://…>` / `<https://…>` notation, without changing the core or docs-preset defaults. URLs retain their original source spelling, including Markdown punctuation. Host/port validity follows the platform `URL` implementation. Link nodes pass through the existing `urlTransform(url, 'link', defaultUrl)` policy and render consistently in HTML, React, and Octane; `null` keeps only the URL label. Application replacements remain trusted, as with explicit links.
+
+The bounded profile is intentionally smaller than GFM autolink literals:
+
+- Bare links must start at the container boundary or after punctuation/whitespace, excluding letters, numbers, `_`, `/`, `@`, `<`, and backslash. They stop at whitespace, controls, quotes, backticks, backslashes, angle brackets, or an unmatched closing parenthesis/bracket/brace.
+- Balanced parentheses, brackets, and braces stay in bare URLs. Trailing `. , ! ? ; :` characters stay outside the link. Use angle notation or an explicit Markdown link when those trailing characters belong to the URL.
+- Angle notation preserves trailing punctuation and requires a closing `>` before whitespace, controls, quotes, backticks, backslashes, or another `<`. Escaping the opening `<` keeps it literal.
+- Explicit links (including their formatted labels), images, code, destinations, and enabled raw HTML are handled by the existing parser. Autolinks also work in ordinary emphasis, headings, lists, quotes, and table cells, within the enclosing inline boundaries.
+- `www.` addresses, email detection, other schemes, entity decoding, and full CommonMark/GFM autolink conformance are not included. Malformed HTTP(S) candidates are consumed as literal text to avoid rescanning their suffixes.
+
+This uses the same public `inlineParser` contract as third-party extensions and adds no runtime dependency. Import it only where URL linking is wanted.
+
 ## Inline transformation
 
 `transformInline` receives built-in and extension inline nodes after parsing. Return the replacement array. Keep transforms deterministic and avoid repeated full-array scans for every node.

@@ -25,7 +25,7 @@ General Markdown processors optimize for broad conformance, plugin ecosystems, o
 - code metadata for documentation UI
 - a small browser bundle
 
-TanStack Markdown spends its complexity budget on that path. It deliberately does not implement every CommonMark edge case, MDX evaluation, automatic linkification, or a general asynchronous processing ecosystem.
+TanStack Markdown spends its complexity budget on that path. It deliberately does not implement every CommonMark edge case, MDX evaluation, automatic linkification by default, or a general asynchronous processing ecosystem.
 
 ## Core properties
 

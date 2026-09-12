@@ -69,6 +69,10 @@
     "./extensions/tabs": {
       "types": "./dist/extensions/tabs.d.ts",
       "import": "./dist/extensions/tabs.js"
+    },
+    "./extensions/autolinks": {
+      "types": "./dist/extensions/autolinks.d.ts",
+      "import": "./dist/extensions/autolinks.js"
     }
   },
   "scripts": {
