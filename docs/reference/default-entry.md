@@ -30,7 +30,7 @@ function parseMarkdown(
 ): MarkdownDocument
 ```
 
-Parses a complete Markdown document. See the [Parser Reference](parser).
+Parses a complete Markdown document. See the [Parser Reference](./parser.md).
 
 ### `parseInline`
 
@@ -58,8 +58,8 @@ Renders one `BlockNode` to HTML.
 
 Renders one `InlineNode` to HTML.
 
-Signatures and rendering options are documented in the [HTML Reference](html).
+Signatures and rendering options are documented in the [HTML Reference](./html.md).
 
 ## Type exports
 
-The default entry exports every AST node, parser context, render option, extension contract, and supporting definition from the [Types Reference](types).
+The default entry exports every AST node, parser context, render option, extension contract, and supporting definition from the [Types Reference](./types.md).

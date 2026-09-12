@@ -88,4 +88,4 @@ function renderInlineReact(
 
 Renders one inline node.
 
-See the [React Guide](../guides/react) for component mapping and SSR usage.
+See the [React Guide](../guides/react.md) for component mapping and SSR usage.

@@ -111,4 +111,4 @@ Use a fenced text block inside the component when command arguments contain lite
 
 `framework` blocks split top-level framework headings into `md-framework-panel` elements. Nested headings receive a framework label, while top-level selector headings are omitted from collected table-of-contents data.
 
-Use the individual [extension entry points](../reference/extensions) when the complete preset is more than your site needs.
+Use the individual [extension entry points](../reference/extensions.md) when the complete preset is more than your site needs.

@@ -42,4 +42,4 @@ It is public and typed, but the package is pre-1.0. Pin a version for persisted 
 
 ## How do I decide before migrating?
 
-Review the [Syntax Profile](../core-concepts/syntax-profile), run your content through the [downstream corpus test](../guides/testing), and inspect the generated output. Choose a broader parser when unsupported syntax is a content requirement rather than an incidental edge case.
+Review the [Syntax Profile](../core-concepts/syntax-profile.md), run your content through the [downstream corpus test](../guides/testing.md), and inspect the generated output. Choose a broader parser when unsupported syntax is a content requirement rather than an incidental edge case.

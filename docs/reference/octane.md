@@ -78,4 +78,4 @@ function renderInlineOctane(
 
 Renders one inline node.
 
-See the [Octane Guide](../guides/octane) for TSRX, component mapping, and SSR usage.
+See the [Octane Guide](../guides/octane.md) for TSRX, component mapping, and SSR usage.

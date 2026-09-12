@@ -71,4 +71,4 @@ TanStack Markdown ships ESM JavaScript and TypeScript declarations. Its synchron
 
 ## Optional capabilities
 
-Syntax highlighting is supplied as a callback, so install only the highlighter your application uses. Docs-specific behavior is available through separately importable [extensions](guides/extensions).
+Syntax highlighting is supplied as a callback, so install only the highlighter your application uses. Docs-specific behavior is available through separately importable [extensions](./guides/extensions.md).
