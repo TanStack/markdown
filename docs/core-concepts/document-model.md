@@ -62,7 +62,7 @@ for (const block of document.children) {
 }
 ```
 
-The complete node contracts are in the [Types Reference](../reference/types).
+The complete node contracts are in the [Types Reference](../reference/types.md).
 
 ## Derived document data
 

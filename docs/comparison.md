@@ -58,8 +58,8 @@ The comparison does not represent equivalent feature sets. It shows the cost of 
 
 The generated [compatibility report](https://github.com/TanStack/markdown/blob/main/reports/conformance.md) tracks matches against all 652 CommonMark 0.31.2 examples after serializer normalization. Every established match is protected individually by the regression suite. The count is accounting, not a conformance claim or a target to maximize. Selected official GFM examples separately cover tables, task lists, and strikethrough.
 
-Use [commonmark.js](https://github.com/commonmark/commonmark.js), micromark, or a unified pipeline when exact specification behavior is a requirement. Use TanStack Markdown when your corpus fits the [documented profile](core-concepts/syntax-profile) and the smaller, controlled renderer is the better product tradeoff.
+Use [commonmark.js](https://github.com/commonmark/commonmark.js), micromark, or a unified pipeline when exact specification behavior is a requirement. Use TanStack Markdown when your corpus fits the [documented profile](./core-concepts/syntax-profile.md) and the smaller, controlled renderer is the better product tradeoff.
 
 ## Performance
 
-Across the maintained fixtures, TanStack Markdown is competitive with the JavaScript renderers in the suite, but it is not the fastest result in every fixture. Pre-parsed AST rendering is its cheapest path. The defensible advantage is the combined size, output contract, and focused feature set. See [Performance](guides/performance) for methodology and current results.
+Across the maintained fixtures, TanStack Markdown is competitive with the JavaScript renderers in the suite, but it is not the fastest result in every fixture. Pre-parsed AST rendering is its cheapest path. The defensible advantage is the combined size, output contract, and focused feature set. See [Performance](./guides/performance.md) for methodology and current results.

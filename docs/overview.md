@@ -43,15 +43,15 @@ Raw HTML is escaped unless `allowHtml` is enabled. Executable URL protocols such
 
 ### Focused compatibility
 
-The supported contract is the [TanStack docs syntax profile](core-concepts/syntax-profile), not full CommonMark or GFM. Compatibility is continuously measured so established behavior cannot regress silently.
+The supported contract is the [TanStack docs syntax profile](./core-concepts/syntax-profile.md), not full CommonMark or GFM. Compatibility is continuously measured so established behavior cannot regress silently.
 
 ### AI streaming without parser state
 
-The optional [AI streaming profile](guides/ai-streaming) reparses accumulated response text and suppresses incomplete trailing block placeholders. It adds 0.2 KB gzip to the React path while leaving the core parser and renderers unchanged.
+The optional [AI streaming profile](./guides/ai-streaming.md) reparses accumulated response text and suppresses incomplete trailing block placeholders. It adds 0.2 KB gzip to the React path while leaving the core parser and renderers unchanged.
 
 ## Choose your starting point
 
-- Continue to [Installation](installation) for package and runtime requirements.
-- Use [Quick Start](quick-start) for HTML, React, and Octane examples.
-- Read [Comparison](comparison) to evaluate the tradeoffs.
-- Review the [Syntax Profile](core-concepts/syntax-profile) before migrating an existing content corpus.
+- Continue to [Installation](./installation.md) for package and runtime requirements.
+- Use [Quick Start](./quick-start.md) for HTML, React, and Octane examples.
+- Read [Comparison](./comparison.md) to evaluate the tradeoffs.
+- Review the [Syntax Profile](./core-concepts/syntax-profile.md) before migrating an existing content corpus.
