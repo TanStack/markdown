@@ -2,6 +2,11 @@
 import { performance } from 'node:perf_hooks'
 import { mkdir, readdir, readFile, writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
+import { cpus } from 'node:os'
+import { createHighlighter } from '@tanstack/highlight/core'
+import { plaintext } from '@tanstack/highlight/languages/plaintext'
+import { ts } from '@tanstack/highlight/languages/ts'
+import { createTanStackMarkdownHighlighter } from '@tanstack/highlight/markdown'
 import * as commonmark from 'commonmark'
 import { parse as parseWasm, ready as wasmReady } from 'markdown-wasm'
 import MarkdownIt from 'markdown-it'
@@ -13,6 +18,7 @@ import remarkRehype from 'remark-rehype'
 import { unified } from 'unified'
 import { streamingMarkdownExtension } from '../src/extensions/streaming.js'
 import { parseMarkdown, renderHtml } from '../src/index.js'
+import { benchStream, createAiResponseFixture, createFenceFixture } from './streaming-bench.js'
 
 const root = process.cwd()
 const fixtureDir = join(root, 'fixtures', 'benchmark')
@@ -92,26 +98,34 @@ async function main() {
     }
   }
 
-  const streamingFixture = fixtures.find(fixture => fixture.name === 'ai-response.md')
-  if (streamingFixture) {
-    const streamingExtensions = [streamingMarkdownExtension()]
-    const streamingRenderers = [
-      {
-        name: '@tanstack/markdown streaming profile',
-        run: (source: string) => replayStream(source, prefix => renderHtml(prefix, { extensions: streamingExtensions, frontmatter: false, headingIds: false })),
-      },
-      {
-        name: 'marked progressive parse+render',
-        run: (source: string) => replayStream(source, prefix => String(marked.parse(prefix))),
-      },
-    ]
-
+  const aiResponse = fixtures.find(fixture => fixture.name === 'ai-response.md')
+  const streamingFixtures = [
+    ...(aiResponse ? [createAiResponseFixture(aiResponse.source)] : []),
+    ...[4, 16, 64].map(kib => createFenceFixture(kib)),
+    createFenceFixture(64, '~~~'),
+    createFenceFixture(64, '```', true),
+  ]
+  const streamingOptions = { extensions: [streamingMarkdownExtension()], frontmatter: false, headingIds: false }
+  const highlighter = createTanStackMarkdownHighlighter(createHighlighter({ languages: [plaintext, ts] }))
+  const highlightedOptions = { ...streamingOptions, highlighter }
+  const streamingRenderers = [
+    { name: '@tanstack/markdown streaming parse', run: (source: string) => parseMarkdown(source, streamingOptions) },
+    { name: '@tanstack/markdown streaming profile', run: (source: string) => renderHtml(source, streamingOptions) },
+    { name: '@tanstack/markdown streaming with @tanstack/highlight', run: (source: string) => renderHtml(source, highlightedOptions) },
+    { name: 'marked progressive parse+render', run: (source: string) => String(marked.parse(source)) },
+  ]
+  for (const fixture of streamingFixtures) {
+    const iterations = fixture.source.length < 1000 ? 250 : fixture.source.length <= 4096 ? 20 : fixture.source.length <= 16384 ? 10 : 5
     for (const renderer of streamingRenderers) {
-      results.push(bench('streaming', renderer.name, streamingFixture.name, streamingFixture.source, 250, renderer.run))
+      console.log(`Streaming: ${fixture.name}, ${renderer.name} (${iterations} replays)`)
+      const result = benchStream(renderer.name, fixture, iterations, renderer.run)
+      sink += result.checksum
+      results.push(result)
     }
   }
 
-  await writeFile(join(reportsDir, 'benchmarks.json'), JSON.stringify({ generatedAt: new Date().toISOString(), sink, results }, null, 2))
+  const environment = { node: process.version, platform: process.platform, arch: process.arch, cpu: cpus()[0]?.model }
+  await writeFile(join(reportsDir, 'benchmarks.json'), JSON.stringify({ generatedAt: new Date().toISOString(), environment, sink, results }, null, 2))
   await writeFile(join(reportsDir, 'benchmarks.md'), renderMarkdownReport(results))
 }
 
@@ -151,20 +165,15 @@ function markdownIterations(bytes: number): number {
   return 500
 }
 
-function replayStream(source: string, render: (prefix: string) => string): string {
-  const chunkSize = 32
-  let output = ''
-  for (let end = chunkSize; end < source.length; end += chunkSize) output = render(source.slice(0, end))
-  return render(source)
-}
-
 function renderMarkdownReport(results: BenchResult[]): string {
   const lines = [
     '# Benchmark Results',
     '',
     `Generated: ${new Date().toISOString()}`,
     '',
-    'Lower `ms/op` is better. Benchmarks run in Node with production package builds where available; heap delta is a coarse process-level signal, not an allocation profiler. Streaming rows replay the complete response in 32-character chunks, so one operation is one progressive response.',
+    `Environment: Node ${process.version}, ${process.platform} ${process.arch}, ${cpus()[0]?.model ?? 'unknown CPU'}.`,
+    '',
+    'Lower `ms/op` is better. Benchmarks run in Node with production dependency builds where available and local Markdown source; heap delta is a coarse process-level signal, not an allocation profiler. Streaming rows replay the complete response in 32-character chunks, so one operation is one progressive response. Every prefix is parsed from scratch. Replay time includes slicing, timing, and collecting samples; per-update latency times only the parser or renderer call. Browser layout, framework updates, and network delays are excluded.',
     '',
   ]
 
@@ -180,11 +189,25 @@ function renderMarkdownReport(results: BenchResult[]): string {
     lines.push('')
   }
 
+  lines.push('For persistent React and incremental DOM comparisons against streaming-focused libraries, see the [browser streaming report](./streaming-browser.md).', '')
+  lines.push('## Streaming update latency', '')
+  lines.push('All timings below are milliseconds, pooled across measured replays after two full warmup replays. Percentiles use nearest rank. Each update contributes its output to a checksum. Parse-only rows use the same streaming options as rendering rows and report zero HTML output bytes.', '')
+  lines.push('Generated fixtures contain a growing TypeScript fence with an unfinished final line. Backtick fences cover 4, 16, and 64 KiB; a 64 KiB tilde fence checks the other delimiter. The closing case appends a closing fence and trailing prose to the same 64 KiB body. Open-fence membership uses known fixture offsets, independently of the parser. The late-open sample covers prefixes in the last 10% of the source up to the closing fence, or EOF when it never closes.', '')
+  lines.push('The streaming highlighter is the installed @tanstack/highlight TypeScript tokenizer and HTML adapter, initialized before timing and called on every code block on every update. The non-streaming external-highlighter rows above use a line-wrapping stub. Parse-only and plain-render rows help compare parsing cost with rendering; these are separate runs, not an instrumented phase breakdown.', '')
+  lines.push('| Name | Fixture | Updates/replay | Open updates/replay | Update p50 | Update p95 | Open p50 | Open p95 | Open max | Late open p95 | Final p50 |', '| :--- | :--- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |')
+  const ms = (value: number | undefined) => value === undefined ? 'n/a' : value.toFixed(4)
+  for (const result of results.filter(result => result.group === 'streaming')) {
+    const { latency } = result
+    lines.push(`| ${result.name} | ${result.fixture} | ${result.updatesPerReplay} | ${result.openFenceUpdatesPerReplay} | ${ms(latency.all?.p50Ms)} | ${ms(latency.all?.p95Ms)} | ${ms(latency.openFence?.p50Ms)} | ${ms(latency.openFence?.p95Ms)} | ${ms(latency.openFence?.maxMs)} | ${ms(latency.lastTenPercentOpenFence?.p95Ms)} | ${ms(latency.finalUpdate?.p50Ms)} |`)
+  }
+  lines.push('')
+
   lines.push('## Averages', '')
   lines.push('| Group | Name | Mean ms/op |')
   lines.push('| :--- | :--- | ---: |')
   const grouped = new Map<string, BenchResult[]>()
   for (const result of results) {
+    if (result.group === 'streaming') continue
     const key = `${result.group}::${result.name}`
     grouped.set(key, [...(grouped.get(key) ?? []), result])
   }
