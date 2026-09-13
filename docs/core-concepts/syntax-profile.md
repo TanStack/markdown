@@ -61,7 +61,7 @@ The docs extension entry points add:
 - comment-delimited component blocks
 - file, package-manager, bundler, and framework transforms
 
-See the [Docs Preset](../guides/docs-preset) guide.
+See the [Docs Preset](../guides/docs-preset.md) guide.
 
 ## Deliberate limits
 

@@ -23,12 +23,12 @@ TanStack Markdown uses explicit subpath exports so applications can import only 
 
 ## Reference pages
 
-- [Default Entry](default-entry)
-- [Parser](parser)
-- [HTML](html)
-- [React](react)
-- [Octane](octane)
-- [Types](types)
-- [Extensions](extensions)
+- [Default Entry](./default-entry.md)
+- [Parser](./parser.md)
+- [HTML](./html.md)
+- [React](./react.md)
+- [Octane](./octane.md)
+- [Types](./types.md)
+- [Extensions](./extensions.md)
 
 Prefer narrow entry points in application code. The default entry is convenient when parser, HTML renderer, and public types are used together.

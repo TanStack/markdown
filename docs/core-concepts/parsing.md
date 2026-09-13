@@ -58,7 +58,7 @@ The `references`, `footnotes`, `footnoteOrder`, and `footnoteCounts` fields in `
 
 ## Extensions
 
-Extensions may claim a block, transform inline nodes, transform the completed document, or render custom HTML. They run in array order. See [Extensions](../guides/extensions) for lifecycle and examples.
+Extensions may claim a block, transform inline nodes, transform the completed document, or render custom HTML. They run in array order. See [Extensions](../guides/extensions.md) for lifecycle and examples.
 
 ## Complexity bounds
 

@@ -126,7 +126,7 @@ Contains raw inline HTML `value`. It is created only when HTML parsing is enable
 
 ### `InlineComponentNode`
 
-Contains `type: 'inlineComponent'`, `name`, source `attributes`, inline `children`, and optional rendered `tagName` and string `properties`. Uses the same component replacements as `ComponentNode`, with a `<span>` fallback when no tag is provided. See [Custom components](../guides/extensions#custom-components).
+Contains `type: 'inlineComponent'`, `name`, source `attributes`, inline `children`, and optional rendered `tagName` and string `properties`. Uses the same component replacements as `ComponentNode`, with a `<span>` fallback when no tag is provided. See [Custom components](../guides/extensions.md#custom-components).
 
 ## Parsing and rendering options
 
@@ -136,7 +136,7 @@ Configures `allowHtml`, `urlTransform`, `frontmatter`, `headingIds`, and `extens
 
 ### `UrlTransform`
 
-Synchronous callback `(url: string, kind: 'link' | 'image', defaultUrl: string) => string | null`. Return the default screened URL, a trusted replacement, or `null` to keep only the label content. Applies during Markdown parsing, not to raw HTML or supplied ASTs. See [Custom URL policy](../core-concepts/security#custom-url-policy).
+Synchronous callback `(url: string, kind: 'link' | 'image', defaultUrl: string) => string | null`. Return the default screened URL, a trusted replacement, or `null` to keep only the label content. Applies during Markdown parsing, not to raw HTML or supplied ASTs. See [Custom URL policy](../core-concepts/security.md#custom-url-policy).
 
 ### `RenderOptions`
 
