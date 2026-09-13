@@ -46,13 +46,13 @@ export function parseMarkdown(markdown: string, options: ParseOptions = {}): Mar
     hasReferences || hasFootnotes
       ? {
           ...options,
-          ...(hasReferences ? { references: definitions.references } : {}),
-          ...(hasFootnotes ? { footnotes: definitions.footnotes, footnoteOrder, footnoteCounts } : {}),
+          ...(hasReferences && { references: definitions.references }),
+          ...(hasFootnotes && { footnotes: definitions.footnotes, footnoteOrder, footnoteCounts }),
         }
       : options
 
   const slugger = createSlugger()
-  const parser = new BlockParser(lines, parseOptions, slugger)
+  const parser = createBlockParser(lines, parseOptions, slugger)
   const children = parser.parse()
   if (hasFootnotes && footnoteOrder.length > 0) {
     children.push(createFootnotesBlock(definitions.footnotes, footnoteOrder, parseOptions, slugger))
@@ -66,73 +66,81 @@ export function parseMarkdown(markdown: string, options: ParseOptions = {}): Mar
   return document
 }
 
-class BlockParser {
-  private index = 0
-  loose = false
+function createBlockParser(
+  inputLines: string[],
+  options: ParseOptions,
+  slugger: Slugger,
+  budget: BlockParseBudget = { depth: 0 },
+) {
+  let cursor = 0
+  let looseBlocks = false
+  return {
+    parse,
+    get loose() {
+      return looseBlocks
+    },
+  }
 
-  constructor(
-    private readonly lines: string[],
-    private readonly options: ParseOptions,
-    private readonly slugger: Slugger,
-    private readonly budget: BlockParseBudget = { depth: 0 },
-  ) {}
-
-  parse(): BlockNode[] {
-    if (this.budget.depth >= maxBlockDepth) {
-      const value = this.lines.slice(this.index).join('\n')
-      this.index = this.lines.length
-      return value ? [{ type: 'paragraph', children: parseInline(value, this.options) }] : []
+  function parse(): BlockNode[] {
+    if (budget.depth >= maxBlockDepth) {
+      const value = inputLines.slice(cursor).join('\n')
+      cursor = inputLines.length
+      return value ? [{ type: 'paragraph', children: parseInline(value, options) }] : []
     }
 
-    this.budget.depth++
+    budget.depth++
     const nodes: BlockNode[] = []
 
-    while (this.index < this.lines.length) {
-      if (isBlank(this.current())) {
-        if (nodes.length) this.loose = true
-        this.index++
+    while (cursor < inputLines.length) {
+      if (isBlank(current())) {
+        if (nodes.length) looseBlocks = true
+        cursor++
         continue
       }
 
-      const extensionNode = this.parseExtensionBlock()
+      const extensionNode = parseExtensionBlock()
       if (extensionNode) {
         nodes.push(extensionNode)
         continue
       }
 
+      // Letter-led text cannot open a fence, heading, rule, quote, or list.
+      // It can still be a table header, so table detection remains below.
       const node =
-        this.parseFence() ??
-        this.parseHeading() ??
-        this.parseThematicBreak() ??
-        this.parseBlockquote() ??
-        this.parseList() ??
-        this.parseTable() ??
-        this.parseHtmlBlock() ??
-        this.parseParagraph()
+        (/^[a-z]/i.test(current()) ? undefined : (
+          parseFence() ??
+          parseHeading() ??
+          parseThematicBreak() ??
+          parseBlockquote() ??
+          parseList()
+        )) ??
+        parseTable() ??
+        parseHtmlBlock() ??
+        parseParagraph()
 
       nodes.push(node)
     }
 
-    this.budget.depth--
+    budget.depth--
     return nodes
   }
 
-  private parseExtensionBlock(): BlockNode | undefined {
-    for (const extension of this.options.extensions ?? []) {
+  function parseExtensionBlock(): BlockNode | undefined {
+    for (const extension of options.extensions ?? []) {
       let consumed = 0
       const node = extension.parseBlock?.({
-        lines: this.lines,
-        index: this.index,
-        options: this.options,
-        parseInline: value => parseInline(value, this.options),
-        parseBlocks: value => new BlockParser(normalizeInput(value).split('\n'), this.options, this.slugger, this.budget).parse(),
+        lines: inputLines,
+        index: cursor,
+        options: options,
+        parseInline: value => parseInline(value, options),
+        parseBlocks: value => createBlockParser(normalizeInput(value).split('\n'), options, slugger, budget).parse(),
         consume: lines => {
           consumed = lines
         },
       })
 
       if (node) {
-        this.index += Math.max(consumed, 1)
+        cursor += Math.max(consumed, 1)
         return node
       }
     }
@@ -140,24 +148,23 @@ class BlockParser {
     return undefined
   }
 
-  private parseFence(): CodeBlockNode | undefined {
-    const match = this.current().match(/^( {0,3})(`{3,}|~{3,})(.*)$/)
+  function parseFence(): CodeBlockNode | undefined {
+    const match = current().match(/^( {0,3})(`{3,}|~{3,})(.*)$/)
     if (!match) return undefined
 
     const fence = match[2]!
     const info = match[3]!.trim()
     const code: string[] = []
-    this.index++
+    cursor++
 
-    while (this.index < this.lines.length) {
-      const line = this.current()
-      const close = line.match(/^ {0,3}(`{3,}|~{3,})\s*$/)
-      if (close?.[1]!.startsWith(fence)) {
-        this.index++
+    while (cursor < inputLines.length) {
+      const line = current()
+      if (line.includes(fence) && /^ {0,3}(?:`+|~+)\s*$/.test(line)) {
+        cursor++
         break
       }
       code.push(stripIndent(line, match[1]!.length))
-      this.index++
+      cursor++
     }
 
     return {
@@ -167,49 +174,49 @@ class BlockParser {
     }
   }
 
-  private parseHeading(): HeadingNode | undefined {
-    const match = this.current().match(/^ {0,3}(#{1,6})(?:[ \t]+(.*)|[ \t]*)$/)
+  function parseHeading(): HeadingNode | undefined {
+    const match = current().match(/^ {0,3}(#{1,6})(?:[ \t]+(.*)|[ \t]*)$/)
     if (!match) return undefined
 
     const depth = match[1]!.length as HeadingNode['depth']
     const rawValue = match[2] ?? ''
     const value = (/^#+[ \t]*$/.test(rawValue) ? '' : rawValue.replace(/[ \t]+#+[ \t]*$/, '')).trim()
-    const children = parseInline(value, this.options)
-    const id = this.createHeadingId(children)
-    this.index++
+    const children = parseInline(value, options)
+    const id = createHeadingId(children)
+    cursor++
 
     return id ? { type: 'heading', depth, id, children } : { type: 'heading', depth, children }
   }
 
-  private parseThematicBreak(): BlockNode | undefined {
-    if (!/^ {0,3}([-*_])(?:\s*\1){2,}\s*$/.test(this.current())) return undefined
-    this.index++
+  function parseThematicBreak(): BlockNode | undefined {
+    if (!/^ {0,3}([-*_])(?:\s*\1){2,}\s*$/.test(current())) return undefined
+    cursor++
     return { type: 'thematicBreak' }
   }
 
-  private parseBlockquote(): BlockNode | undefined {
-    if (!/^ {0,3}>\s?/.test(this.current())) return undefined
+  function parseBlockquote(): BlockNode | undefined {
+    if (!/^ {0,3}>\s?/.test(current())) return undefined
 
     const quoted: string[] = []
-    while (this.index < this.lines.length) {
-      const line = this.current()
+    while (cursor < inputLines.length) {
+      const line = current()
       const match = line.match(/^ {0,3}>\s?(.*)$/)
       if (!match) {
         if (!isBlank(line)) break
-        this.loose = true
+        looseBlocks = true
       }
       quoted.push(match?.[1] ?? '')
-      this.index++
+      cursor++
     }
 
     return {
       type: 'blockquote',
-      children: new BlockParser(quoted, this.options, this.slugger, this.budget).parse(),
+      children: createBlockParser(quoted, options, slugger, budget).parse(),
     }
   }
 
-  private parseList(): ListNode | undefined {
-    const first = listMarker(this.current())
+  function parseList(): ListNode | undefined {
+    const first = listMarker(current())
     if (!first) return undefined
 
     const items: ListItemNode[] = []
@@ -217,8 +224,8 @@ class BlockParser {
     const baseIndent = first.indent
     let loose = false
 
-    while (this.index < this.lines.length) {
-      const marker = listMarker(this.current())
+    while (cursor < inputLines.length) {
+      const marker = listMarker(current())
       if (!marker || marker.marker !== first.marker || marker.indent !== baseIndent) break
 
       let firstLine = marker.content
@@ -227,42 +234,42 @@ class BlockParser {
       if (task) firstLine = task[2]!
 
       const itemLines = [firstLine]
-      this.index++
+      cursor++
 
-      while (this.index < this.lines.length) {
-        const line = this.current()
+      while (cursor < inputLines.length) {
+        const line = current()
         const nextMarker = listMarker(line)
         if (nextMarker && nextMarker.indent === baseIndent) break
         if (isBlank(line)) {
-          let nextIndex = this.index
-          while (nextIndex < this.lines.length && isBlank(this.lines[nextIndex]!)) nextIndex++
-          const following = this.lines[nextIndex]
+          let nextIndex = cursor
+          while (nextIndex < inputLines.length && isBlank(inputLines[nextIndex]!)) nextIndex++
+          const following = inputLines[nextIndex]
           if (following === undefined) break
 
           const followingMarker = listMarker(following)
           if (followingMarker?.indent === baseIndent) {
             if (followingMarker.marker !== first.marker) break
             loose = true
-            this.index = nextIndex
+            cursor = nextIndex
             break
           }
 
           if (leadingSpaces(following) < marker.contentIndent) break
 
-          while (this.index < nextIndex) itemLines.push(stripIndent(this.lines[this.index++]!, marker.contentIndent))
+          while (cursor < nextIndex) itemLines.push(stripIndent(inputLines[cursor++]!, marker.contentIndent))
           continue
         }
         if (leadingSpaces(line) >= marker.contentIndent) {
           itemLines.push(stripIndent(line, marker.contentIndent))
-          this.index++
+          cursor++
           continue
         }
-        if (isBlockStart(line, this.next())) break
+        if (isBlockStart(line, next())) break
         itemLines.push(line.trimStart())
-        this.index++
+        cursor++
       }
 
-      const parser = new BlockParser(itemLines, this.options, this.slugger, this.budget)
+      const parser = createBlockParser(itemLines, options, slugger, budget)
       const children = parser.parse()
       loose ||= parser.loose
       const item: ListItemNode = { type: 'listItem', children }
@@ -279,107 +286,103 @@ class BlockParser {
     }
   }
 
-  private parseTable(): TableNode | undefined {
-    const header = this.current()
-    const delimiter = this.next()
+  function parseTable(): TableNode | undefined {
+    const header = current()
+    const delimiter = next()
     if (!delimiter || !looksLikeTableHeader(header, delimiter)) return undefined
 
     const headerCells = splitTableRow(header)
     const align = splitTableRow(delimiter).map(parseAlign)
     const columns = headerCells.length
     const rows: TableCellNode[][] = []
-    this.index += 2
+    cursor += 2
 
-    while (this.index < this.lines.length) {
-      const line = this.current()
-      if (isBlank(line) || isBlockStart(line, this.next())) break
+    while (cursor < inputLines.length) {
+      const line = current()
+      if (isBlank(line) || isBlockStart(line, next())) break
       const values = splitTableRow(line)
-      rows.push(Array.from({ length: columns }, (_, index) => cell(values[index] ?? '', this.options)))
-      this.index++
+      rows.push(Array.from({ length: columns }, (_, index) => cell(values[index] ?? '', options)))
+      cursor++
     }
 
     return {
       type: 'table',
       align,
-      header: headerCells.map(value => cell(value, this.options)),
+      header: headerCells.map(value => cell(value, options)),
       rows,
     }
   }
 
-  private parseHtmlBlock(): BlockNode | undefined {
-    if (!this.options.allowHtml || !/^ {0,3}<([A-Za-z][\w:-]*|!--|\/[A-Za-z])/.test(this.current())) return undefined
+  function parseHtmlBlock(): BlockNode | undefined {
+    if (!options.allowHtml || !/^ {0,3}<([A-Za-z][\w:-]*|!--|\/[A-Za-z])/.test(current())) return undefined
 
     const html: string[] = []
-    if (/^ {0,3}<!--/.test(this.current())) {
-      while (this.index < this.lines.length) {
-        const line = this.current()
+    if (/^ {0,3}<!--/.test(current())) {
+      while (cursor < inputLines.length) {
+        const line = current()
         html.push(line)
-        this.index++
+        cursor++
         if (line.includes('-->')) break
       }
       return { type: 'html', value: html.join('\n') }
     }
 
-    while (this.index < this.lines.length && !isBlank(this.current())) {
-      html.push(this.current())
-      this.index++
+    while (cursor < inputLines.length && !isBlank(current())) {
+      html.push(current())
+      cursor++
     }
 
     return { type: 'html', value: html.join('\n') }
   }
 
-  private parseParagraph(): BlockNode {
+  function parseParagraph(): BlockNode {
     const lines: string[] = []
 
-    while (this.index < this.lines.length) {
-      const line = this.current()
+    while (cursor < inputLines.length) {
+      const line = current()
       if (isBlank(line)) break
-      if (lines.length > 0 && isBlockStart(line, this.next())) break
+      if (lines.length > 0 && isBlockStart(line, next())) break
       lines.push(line.trim())
-      this.index++
+      cursor++
     }
 
     return {
       type: 'paragraph',
-      children: parseInline(lines.join('\n'), this.options),
+      children: parseInline(lines.join('\n'), options),
     }
   }
 
-  private createHeadingId(children: InlineNode[]): string | undefined {
-    if (this.options.headingIds === false) return undefined
+  function createHeadingId(children: InlineNode[]): string | undefined {
+    if (options.headingIds === false) return undefined
     const text = plainText(children)
-    if (typeof this.options.headingIds === 'function') return this.options.headingIds(text, this.index)
-    return this.slugger(text)
+    if (typeof options.headingIds === 'function') return options.headingIds(text, cursor)
+    return slugger(text)
   }
 
-  private current(): string {
-    return this.lines[this.index] ?? ''
+  function current(): string {
+    return inputLines[cursor] ?? ''
   }
 
-  private next(): string | undefined {
-    return this.lines[this.index + 1]
+  function next(): string | undefined {
+    return inputLines[cursor + 1]
   }
 }
 
 function parseCodeInfo(info: string): Omit<CodeBlockNode, 'type' | 'value'> {
-  if (!info) return {}
-
   const langMatch = info.match(/^([A-Za-z0-9_+.#-]+)/)
   const lang = langMatch?.[1]
   const meta = lang ? info.slice(lang.length).trim() : info
-  const titleMatch = meta.match(/(?:^|\s)(?:title|file)=(?:"([^"]+)"|'([^']+)'|([^\s}]+))/)
-  const frameworkMatch = meta.match(/(?:^|\s)framework=(?:"([^"]+)"|'([^']+)'|([^\s}]+))/)
+  const title = meta.match(/(?:^|\s)(?:title|file)=(?:"([^"]+)"|'([^']+)'|([^\s}]+))/)?.slice(1).find(Boolean)
+  const framework = meta.match(/(?:^|\s)framework=(?:"([^"]+)"|'([^']+)'|([^\s}]+))/)?.slice(1).find(Boolean)
   const rangeMatch = meta.match(/\{([^}]+)\}|(?:^|\s)lines=([^\s]+)/)
   const highlightLines = rangeMatch ? parseLineRanges(rangeMatch[1] ?? rangeMatch[2]!) : []
-  const title = titleMatch ? titleMatch[1] ?? titleMatch[2] ?? titleMatch[3] : undefined
-  const framework = frameworkMatch ? frameworkMatch[1] ?? frameworkMatch[2] ?? frameworkMatch[3] : undefined
 
   return {
-    ...(lang ? { lang } : {}),
-    ...(meta ? { meta } : {}),
-    ...(title ? { title, file: title } : {}),
-    ...(framework ? { framework: framework.toLowerCase() } : {}),
-    ...(highlightLines.length ? { highlightLines } : {}),
+    ...(lang && { lang }),
+    ...(meta && { meta }),
+    ...(title && { title, file: title }),
+    ...(framework && { framework: framework.toLowerCase() }),
+    ...(highlightLines.length && { highlightLines }),
   }
 }
 
@@ -393,7 +396,7 @@ function extractDefinitions(lines: string[]) {
 
   while (index < lines.length) {
     const line = lines[index]!
-    const fence = line.match(/^ {0,3}(`{3,}|~{3,})(.*)$/)
+    const fence = (!activeFence || line.includes(activeFence)) && line.match(/^ {0,3}(`{3,}|~{3,})(.*)$/)
     if (fence) {
       if (!activeFence) activeFence = fence[1]!
       else if (fence[1]!.startsWith(activeFence) && isBlank(fence[2]!)) activeFence = ''
@@ -448,7 +451,7 @@ function createFootnotesBlock(
     items.push({
       id: definition.id ?? footnoteId(definition.label),
       number: index + 1,
-      children: new BlockParser(normalizeInput(definition.content).split('\n'), options, slugger).parse(),
+      children: createBlockParser(normalizeInput(definition.content).split('\n'), options, slugger).parse(),
     })
   }
   for (const item of items) {
@@ -489,7 +492,7 @@ function listMarker(line: string):
   const ordered = /\d/.test(marker[0]!)
   return {
     ordered,
-    ...(ordered ? { number: Number.parseInt(marker, 10) } : {}),
+    ...(ordered && { number: Number.parseInt(marker, 10) }),
     indent: match[1]!.length,
     marker: ordered ? marker.at(-1)! : marker,
     contentIndent: match[1]!.length + marker.length + (match[3]?.length ?? 1),

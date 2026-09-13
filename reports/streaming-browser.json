@@ -1,0 +1,1381 @@
+{
+  "generatedAt": "2026-09-12T17:00:04.103Z",
+  "environment": {
+    "node": "v24.15.0",
+    "browser": "152.0.7977.83",
+    "platform": "darwin",
+    "arch": "arm64",
+    "cpu": "Apple M5 Pro",
+    "isolated": true,
+    "dependencies": {
+      "react": "19.2.7",
+      "react-dom": "19.2.7",
+      "streamdown": "2.6.0",
+      "streaming-markdown": "0.2.15"
+    }
+  },
+  "results": [
+    {
+      "name": "TanStack Markdown React",
+      "fixture": "unfinished-backtick-4kib",
+      "bytes": 4096,
+      "chunkSize": 32,
+      "iterations": 5,
+      "warmupReplays": 2,
+      "validation": {
+        "passed": true,
+        "openUpdates": 127,
+        "missingFenceUpdates": 0,
+        "mismatchedCodeUpdates": 0,
+        "maxBufferedCharacters": 0,
+        "finalCodeMatches": true,
+        "finalTextDiffers": false
+      },
+      "replay": {
+        "samples": 5,
+        "meanMs": 4.528999972343445,
+        "p50Ms": 4.605000019073486,
+        "p95Ms": 4.684999942779541,
+        "maxMs": 4.684999942779541
+      },
+      "finish": {
+        "samples": 5,
+        "meanMs": 0.0009999990463256836,
+        "p50Ms": 0,
+        "p95Ms": 0.004999995231628418,
+        "maxMs": 0.004999995231628418
+      },
+      "updates": {
+        "update": {
+          "samples": 640,
+          "meanMs": 0.00989062488079071,
+          "p50Ms": 0.009999990463256836,
+          "p95Ms": 0.015000104904174805,
+          "maxMs": 0.2850000858306885
+        },
+        "updateAndLayout": {
+          "samples": 640,
+          "meanMs": 0.034890624694526196,
+          "p50Ms": 0.034999966621398926,
+          "p95Ms": 0.05500006675720215,
+          "maxMs": 0.3250000476837158
+        }
+      },
+      "openFence": {
+        "update": {
+          "samples": 635,
+          "meanMs": 0.009677165324293722,
+          "p50Ms": 0.009999990463256836,
+          "p95Ms": 0.015000104904174805,
+          "maxMs": 0.2850000858306885
+        },
+        "updateAndLayout": {
+          "samples": 635,
+          "meanMs": 0.0346377952830998,
+          "p50Ms": 0.034999966621398926,
+          "p95Ms": 0.05500006675720215,
+          "maxMs": 0.3250000476837158
+        }
+      },
+      "lateOpenFence": {
+        "update": {
+          "samples": 65,
+          "meanMs": 0.01269231392787053,
+          "p50Ms": 0.009999990463256836,
+          "p95Ms": 0.019999980926513672,
+          "maxMs": 0.08000004291534424
+        },
+        "updateAndLayout": {
+          "samples": 65,
+          "meanMs": 0.0514615352337177,
+          "p50Ms": 0.04999995231628418,
+          "p95Ms": 0.06499993801116943,
+          "maxMs": 0.11500000953674316
+        }
+      },
+      "checksum": 775341
+    },
+    {
+      "name": "Streamdown React",
+      "fixture": "unfinished-backtick-4kib",
+      "bytes": 4096,
+      "chunkSize": 32,
+      "iterations": 5,
+      "warmupReplays": 2,
+      "validation": {
+        "passed": true,
+        "openUpdates": 127,
+        "missingFenceUpdates": 0,
+        "mismatchedCodeUpdates": 0,
+        "maxBufferedCharacters": 1,
+        "finalCodeMatches": true,
+        "finalTextDiffers": true
+      },
+      "replay": {
+        "samples": 5,
+        "meanMs": 30.30799994468689,
+        "p50Ms": 29.75499999523163,
+        "p95Ms": 32.359999895095825,
+        "maxMs": 32.359999895095825
+      },
+      "finish": {
+        "samples": 5,
+        "meanMs": 0.23099994659423828,
+        "p50Ms": 0.2049999237060547,
+        "p95Ms": 0.34999990463256836,
+        "maxMs": 0.34999990463256836
+      },
+      "updates": {
+        "update": {
+          "samples": 640,
+          "meanMs": 0.14968750011175871,
+          "p50Ms": 0.14499998092651367,
+          "p95Ms": 0.2549999952316284,
+          "maxMs": 1.1800000667572021
+        },
+        "updateAndLayout": {
+          "samples": 640,
+          "meanMs": 0.2342031253501773,
+          "p50Ms": 0.23500001430511475,
+          "p95Ms": 0.39499998092651367,
+          "maxMs": 1.2850000858306885
+        }
+      },
+      "openFence": {
+        "update": {
+          "samples": 635,
+          "meanMs": 0.14910236268531618,
+          "p50Ms": 0.14499998092651367,
+          "p95Ms": 0.2549999952316284,
+          "maxMs": 1.1800000667572021
+        },
+        "updateAndLayout": {
+          "samples": 635,
+          "meanMs": 0.23391338614966925,
+          "p50Ms": 0.23500001430511475,
+          "p95Ms": 0.39499998092651367,
+          "maxMs": 1.2850000858306885
+        }
+      },
+      "lateOpenFence": {
+        "update": {
+          "samples": 65,
+          "meanMs": 0.2404615328862117,
+          "p50Ms": 0.22499990463256836,
+          "p95Ms": 0.3799999952316284,
+          "maxMs": 0.44499993324279785
+        },
+        "updateAndLayout": {
+          "samples": 65,
+          "meanMs": 0.392692310993488,
+          "p50Ms": 0.375,
+          "p95Ms": 0.5399999618530273,
+          "maxMs": 0.6200000047683716
+        }
+      },
+      "checksum": 775341
+    },
+    {
+      "name": "streaming-markdown DOM",
+      "fixture": "unfinished-backtick-4kib",
+      "bytes": 4096,
+      "chunkSize": 32,
+      "iterations": 5,
+      "warmupReplays": 2,
+      "validation": {
+        "passed": true,
+        "openUpdates": 127,
+        "missingFenceUpdates": 0,
+        "mismatchedCodeUpdates": 0,
+        "maxBufferedCharacters": 2,
+        "finalCodeMatches": true,
+        "finalTextDiffers": false
+      },
+      "replay": {
+        "samples": 5,
+        "meanMs": 3.7110000133514403,
+        "p50Ms": 3.069999933242798,
+        "p95Ms": 4.810000061988831,
+        "maxMs": 4.810000061988831
+      },
+      "finish": {
+        "samples": 5,
+        "meanMs": 0.05500004291534424,
+        "p50Ms": 0.040000081062316895,
+        "p95Ms": 0.08500003814697266,
+        "maxMs": 0.08500003814697266
+      },
+      "updates": {
+        "update": {
+          "samples": 640,
+          "meanMs": 0.00123437512665987,
+          "p50Ms": 0,
+          "p95Ms": 0.004999995231628418,
+          "maxMs": 0.029999971389770508
+        },
+        "updateAndLayout": {
+          "samples": 640,
+          "meanMs": 0.028304686956107616,
+          "p50Ms": 0.02499997615814209,
+          "p95Ms": 0.060000061988830566,
+          "maxMs": 0.38999998569488525
+        }
+      },
+      "openFence": {
+        "update": {
+          "samples": 635,
+          "meanMs": 0.0011653543457271545,
+          "p50Ms": 0,
+          "p95Ms": 0.004999995231628418,
+          "maxMs": 0.029999971389770508
+        },
+        "updateAndLayout": {
+          "samples": 635,
+          "meanMs": 0.028330707925511157,
+          "p50Ms": 0.02499997615814209,
+          "p95Ms": 0.060000061988830566,
+          "maxMs": 0.38999998569488525
+        }
+      },
+      "lateOpenFence": {
+        "update": {
+          "samples": 65,
+          "meanMs": 0.0016153885768010066,
+          "p50Ms": 0,
+          "p95Ms": 0.004999995231628418,
+          "maxMs": 0.005000114440917969
+        },
+        "updateAndLayout": {
+          "samples": 65,
+          "meanMs": 0.04623076548943153,
+          "p50Ms": 0.039999961853027344,
+          "p95Ms": 0.0700000524520874,
+          "maxMs": 0.0849999189376831
+        }
+      },
+      "checksum": 774753
+    },
+    {
+      "name": "TanStack Markdown React",
+      "fixture": "unfinished-backtick-16kib",
+      "bytes": 16384,
+      "chunkSize": 32,
+      "iterations": 5,
+      "warmupReplays": 2,
+      "validation": {
+        "passed": true,
+        "openUpdates": 511,
+        "missingFenceUpdates": 0,
+        "mismatchedCodeUpdates": 0,
+        "maxBufferedCharacters": 0,
+        "finalCodeMatches": true,
+        "finalTextDiffers": false
+      },
+      "replay": {
+        "samples": 5,
+        "meanMs": 47.487000012397765,
+        "p50Ms": 46.18999993801117,
+        "p95Ms": 53.3050000667572,
+        "maxMs": 53.3050000667572
+      },
+      "finish": {
+        "samples": 5,
+        "meanMs": 0,
+        "p50Ms": 0,
+        "p95Ms": 0,
+        "maxMs": 0
+      },
+      "updates": {
+        "update": {
+          "samples": 2560,
+          "meanMs": 0.016054687881842257,
+          "p50Ms": 0.014999985694885254,
+          "p95Ms": 0.029999971389770508,
+          "maxMs": 0.09500002861022949
+        },
+        "updateAndLayout": {
+          "samples": 2560,
+          "meanMs": 0.08960742205381393,
+          "p50Ms": 0.08000004291534424,
+          "p95Ms": 0.1549999713897705,
+          "maxMs": 5.034999966621399
+        }
+      },
+      "openFence": {
+        "update": {
+          "samples": 2555,
+          "meanMs": 0.016013698988464713,
+          "p50Ms": 0.014999985694885254,
+          "p95Ms": 0.029999971389770508,
+          "maxMs": 0.09500002861022949
+        },
+        "updateAndLayout": {
+          "samples": 2555,
+          "meanMs": 0.08963992189754479,
+          "p50Ms": 0.08000004291534424,
+          "p95Ms": 0.15500009059906006,
+          "maxMs": 5.034999966621399
+        }
+      },
+      "lateOpenFence": {
+        "update": {
+          "samples": 260,
+          "meanMs": 0.02742307552924523,
+          "p50Ms": 0.02499997615814209,
+          "p95Ms": 0.04999995231628418,
+          "maxMs": 0.09500002861022949
+        },
+        "updateAndLayout": {
+          "samples": 260,
+          "meanMs": 0.18905769128065844,
+          "p50Ms": 0.1499999761581421,
+          "p95Ms": 0.23500001430511475,
+          "maxMs": 5.034999966621399
+        }
+      },
+      "checksum": 10925523
+    },
+    {
+      "name": "Streamdown React",
+      "fixture": "unfinished-backtick-16kib",
+      "bytes": 16384,
+      "chunkSize": 32,
+      "iterations": 5,
+      "warmupReplays": 2,
+      "validation": {
+        "passed": true,
+        "openUpdates": 511,
+        "missingFenceUpdates": 0,
+        "mismatchedCodeUpdates": 0,
+        "maxBufferedCharacters": 1,
+        "finalCodeMatches": true,
+        "finalTextDiffers": true
+      },
+      "replay": {
+        "samples": 5,
+        "meanMs": 366.48600001335143,
+        "p50Ms": 365.5550000667572,
+        "p95Ms": 370.585000038147,
+        "maxMs": 370.585000038147
+      },
+      "finish": {
+        "samples": 5,
+        "meanMs": 0.6489999771118165,
+        "p50Ms": 0.6499999761581421,
+        "p95Ms": 0.6649999618530273,
+        "maxMs": 0.6649999618530273
+      },
+      "updates": {
+        "update": {
+          "samples": 2560,
+          "meanMs": 0.411314452951774,
+          "p50Ms": 0.3950001001358032,
+          "p95Ms": 0.7450000047683716,
+          "maxMs": 1.9800000190734863
+        },
+        "updateAndLayout": {
+          "samples": 2560,
+          "meanMs": 0.7138535155914724,
+          "p50Ms": 0.6950000524520874,
+          "p95Ms": 1.3200000524520874,
+          "maxMs": 2.534999966621399
+        }
+      },
+      "openFence": {
+        "update": {
+          "samples": 2555,
+          "meanMs": 0.41170254383535065,
+          "p50Ms": 0.3999999761581421,
+          "p95Ms": 0.7450000047683716,
+          "maxMs": 1.9800000190734863
+        },
+        "updateAndLayout": {
+          "samples": 2555,
+          "meanMs": 0.7147240704053068,
+          "p50Ms": 0.6999999284744263,
+          "p95Ms": 1.3200000524520874,
+          "maxMs": 2.534999966621399
+        }
+      },
+      "lateOpenFence": {
+        "update": {
+          "samples": 260,
+          "meanMs": 0.751346151645367,
+          "p50Ms": 0.7300000190734863,
+          "p95Ms": 0.875,
+          "maxMs": 1.9449999332427979
+        },
+        "updateAndLayout": {
+          "samples": 260,
+          "meanMs": 1.3240192303290734,
+          "p50Ms": 1.3049999475479126,
+          "p95Ms": 1.4500000476837158,
+          "maxMs": 2.534999966621399
+        }
+      },
+      "checksum": 10925530
+    },
+    {
+      "name": "streaming-markdown DOM",
+      "fixture": "unfinished-backtick-16kib",
+      "bytes": 16384,
+      "chunkSize": 32,
+      "iterations": 5,
+      "warmupReplays": 2,
+      "validation": {
+        "passed": true,
+        "openUpdates": 511,
+        "missingFenceUpdates": 0,
+        "mismatchedCodeUpdates": 0,
+        "maxBufferedCharacters": 2,
+        "finalCodeMatches": true,
+        "finalTextDiffers": false
+      },
+      "replay": {
+        "samples": 5,
+        "meanMs": 50.31999998092651,
+        "p50Ms": 50.63499999046326,
+        "p95Ms": 52.35000002384186,
+        "maxMs": 52.35000002384186
+      },
+      "finish": {
+        "samples": 5,
+        "meanMs": 0.17100000381469727,
+        "p50Ms": 0.1650000810623169,
+        "p95Ms": 0.19999992847442627,
+        "maxMs": 0.19999992847442627
+      },
+      "updates": {
+        "update": {
+          "samples": 2560,
+          "meanMs": 0.005187500081956386,
+          "p50Ms": 0,
+          "p95Ms": 0.004999995231628418,
+          "maxMs": 1.1150000095367432
+        },
+        "updateAndLayout": {
+          "samples": 2560,
+          "meanMs": 0.09778906241990626,
+          "p50Ms": 0.08000004291534424,
+          "p95Ms": 0.1549999713897705,
+          "maxMs": 3.640000104904175
+        }
+      },
+      "openFence": {
+        "update": {
+          "samples": 2555,
+          "meanMs": 0.0051565558943029955,
+          "p50Ms": 0,
+          "p95Ms": 0.004999995231628418,
+          "maxMs": 1.1150000095367432
+        },
+        "updateAndLayout": {
+          "samples": 2555,
+          "meanMs": 0.09788258318331844,
+          "p50Ms": 0.08000004291534424,
+          "p95Ms": 0.1549999713897705,
+          "maxMs": 3.640000104904175
+        }
+      },
+      "lateOpenFence": {
+        "update": {
+          "samples": 260,
+          "meanMs": 0.011942307765667255,
+          "p50Ms": 0,
+          "p95Ms": 0.004999995231628418,
+          "maxMs": 1.1150000095367432
+        },
+        "updateAndLayout": {
+          "samples": 260,
+          "meanMs": 0.18648076974428618,
+          "p50Ms": 0.14500010013580322,
+          "p95Ms": 0.19000005722045898,
+          "maxMs": 2.509999990463257
+        }
+      },
+      "checksum": 10924641
+    },
+    {
+      "name": "TanStack Markdown React",
+      "fixture": "unfinished-backtick-64kib",
+      "bytes": 65536,
+      "chunkSize": 32,
+      "iterations": 5,
+      "warmupReplays": 2,
+      "validation": {
+        "passed": true,
+        "openUpdates": 2047,
+        "missingFenceUpdates": 0,
+        "mismatchedCodeUpdates": 0,
+        "maxBufferedCharacters": 0,
+        "finalCodeMatches": true,
+        "finalTextDiffers": false
+      },
+      "replay": {
+        "samples": 5,
+        "meanMs": 677.7850000143051,
+        "p50Ms": 678.7400000095367,
+        "p95Ms": 680.4900000095367,
+        "maxMs": 680.4900000095367
+      },
+      "finish": {
+        "samples": 5,
+        "meanMs": 0,
+        "p50Ms": 0,
+        "p95Ms": 0,
+        "maxMs": 0
+      },
+      "updates": {
+        "update": {
+          "samples": 10240,
+          "meanMs": 0.056908202916383745,
+          "p50Ms": 0.04500007629394531,
+          "p95Ms": 0.09000003337860107,
+          "maxMs": 1.409999966621399
+        },
+        "updateAndLayout": {
+          "samples": 10240,
+          "meanMs": 0.33075488277245313,
+          "p50Ms": 0.3049999475479126,
+          "p95Ms": 0.5699999332427979,
+          "maxMs": 3.8550000190734863
+        }
+      },
+      "openFence": {
+        "update": {
+          "samples": 10235,
+          "meanMs": 0.05691499733377446,
+          "p50Ms": 0.04500007629394531,
+          "p95Ms": 0.09000003337860107,
+          "maxMs": 1.409999966621399
+        },
+        "updateAndLayout": {
+          "samples": 10235,
+          "meanMs": 0.33087445036865293,
+          "p50Ms": 0.3049999475479126,
+          "p95Ms": 0.5699999332427979,
+          "maxMs": 3.8550000190734863
+        }
+      },
+      "lateOpenFence": {
+        "update": {
+          "samples": 1025,
+          "meanMs": 0.10408292619193472,
+          "p50Ms": 0.0849999189376831,
+          "p95Ms": 0.11500000953674316,
+          "maxMs": 1.2799999713897705
+        },
+        "updateAndLayout": {
+          "samples": 1025,
+          "meanMs": 0.6159707312467622,
+          "p50Ms": 0.5499999523162842,
+          "p95Ms": 0.6950000524520874,
+          "maxMs": 3.375
+        }
+      },
+      "checksum": 167105001
+    },
+    {
+      "name": "Streamdown React",
+      "fixture": "unfinished-backtick-64kib",
+      "bytes": 65536,
+      "chunkSize": 32,
+      "iterations": 5,
+      "warmupReplays": 2,
+      "validation": {
+        "passed": true,
+        "openUpdates": 2047,
+        "missingFenceUpdates": 0,
+        "mismatchedCodeUpdates": 0,
+        "maxBufferedCharacters": 1,
+        "finalCodeMatches": true,
+        "finalTextDiffers": true
+      },
+      "replay": {
+        "samples": 5,
+        "meanMs": 5932.687999987602,
+        "p50Ms": 5922.759999990463,
+        "p95Ms": 5979.625,
+        "maxMs": 5979.625
+      },
+      "finish": {
+        "samples": 5,
+        "meanMs": 3.165000009536743,
+        "p50Ms": 3.0449999570846558,
+        "p95Ms": 3.9149999618530273,
+        "maxMs": 3.9149999618530273
+      },
+      "updates": {
+        "update": {
+          "samples": 10240,
+          "meanMs": 1.6887353521306068,
+          "p50Ms": 1.6299999952316284,
+          "p95Ms": 3.3799999952316284,
+          "maxMs": 6.870000004768372
+        },
+        "updateAndLayout": {
+          "samples": 10240,
+          "meanMs": 2.8947646484710274,
+          "p50Ms": 2.8499999046325684,
+          "p95Ms": 5.684999942779541,
+          "maxMs": 9.205000042915344
+        }
+      },
+      "openFence": {
+        "update": {
+          "samples": 10235,
+          "meanMs": 1.6894215931587238,
+          "p50Ms": 1.6299999952316284,
+          "p95Ms": 3.3799999952316284,
+          "maxMs": 6.870000004768372
+        },
+        "updateAndLayout": {
+          "samples": 10235,
+          "meanMs": 2.8960068393231135,
+          "p50Ms": 2.850000023841858,
+          "p95Ms": 5.684999942779541,
+          "maxMs": 9.205000042915344
+        }
+      },
+      "lateOpenFence": {
+        "update": {
+          "samples": 1025,
+          "meanMs": 3.4095658515139324,
+          "p50Ms": 3.305000066757202,
+          "p95Ms": 4.049999952316284,
+          "maxMs": 6.870000004768372
+        },
+        "updateAndLayout": {
+          "samples": 1025,
+          "meanMs": 5.706985365588491,
+          "p50Ms": 5.580000042915344,
+          "p95Ms": 6.784999966621399,
+          "maxMs": 9.205000042915344
+        }
+      },
+      "checksum": 167105008
+    },
+    {
+      "name": "streaming-markdown DOM",
+      "fixture": "unfinished-backtick-64kib",
+      "bytes": 65536,
+      "chunkSize": 32,
+      "iterations": 5,
+      "warmupReplays": 2,
+      "validation": {
+        "passed": true,
+        "openUpdates": 2047,
+        "missingFenceUpdates": 0,
+        "mismatchedCodeUpdates": 0,
+        "maxBufferedCharacters": 2,
+        "finalCodeMatches": true,
+        "finalTextDiffers": false
+      },
+      "replay": {
+        "samples": 5,
+        "meanMs": 788.8239999771118,
+        "p50Ms": 788.9249999523163,
+        "p95Ms": 795.0750000476837,
+        "maxMs": 795.0750000476837
+      },
+      "finish": {
+        "samples": 5,
+        "meanMs": 0.7149999856948852,
+        "p50Ms": 0.7149999141693115,
+        "p95Ms": 0.7999999523162842,
+        "maxMs": 0.7999999523162842
+      },
+      "updates": {
+        "update": {
+          "samples": 10240,
+          "meanMs": 0.013867675850633532,
+          "p50Ms": 0,
+          "p95Ms": 0.004999995231628418,
+          "maxMs": 1.0399999618530273
+        },
+        "updateAndLayout": {
+          "samples": 10240,
+          "meanMs": 0.38456298826495183,
+          "p50Ms": 0.3250000476837158,
+          "p95Ms": 0.6499999761581421,
+          "maxMs": 4.790000081062317
+        }
+      },
+      "openFence": {
+        "update": {
+          "samples": 10235,
+          "meanMs": 0.013867122694871807,
+          "p50Ms": 0,
+          "p95Ms": 0.004999995231628418,
+          "maxMs": 1.0399999618530273
+        },
+        "updateAndLayout": {
+          "samples": 10235,
+          "meanMs": 0.3847288715123082,
+          "p50Ms": 0.3250000476837158,
+          "p95Ms": 0.6499999761581421,
+          "maxMs": 4.790000081062317
+        }
+      },
+      "lateOpenFence": {
+        "update": {
+          "samples": 1025,
+          "meanMs": 0.02483414591812506,
+          "p50Ms": 0,
+          "p95Ms": 0.009999990463256836,
+          "maxMs": 1.0199999809265137
+        },
+        "updateAndLayout": {
+          "samples": 1025,
+          "meanMs": 0.7283317070472531,
+          "p50Ms": 0.6000000238418579,
+          "p95Ms": 1.4950000047683716,
+          "maxMs": 4.350000023841858
+        }
+      },
+      "checksum": 167103237
+    },
+    {
+      "name": "TanStack Markdown React",
+      "fixture": "unfinished-tilde-64kib",
+      "bytes": 65536,
+      "chunkSize": 32,
+      "iterations": 5,
+      "warmupReplays": 2,
+      "validation": {
+        "passed": true,
+        "openUpdates": 2047,
+        "missingFenceUpdates": 0,
+        "mismatchedCodeUpdates": 0,
+        "maxBufferedCharacters": 0,
+        "finalCodeMatches": true,
+        "finalTextDiffers": false
+      },
+      "replay": {
+        "samples": 5,
+        "meanMs": 677.8530000209809,
+        "p50Ms": 678.5,
+        "p95Ms": 680.9800000190735,
+        "maxMs": 680.9800000190735
+      },
+      "finish": {
+        "samples": 5,
+        "meanMs": 0.0009999990463256836,
+        "p50Ms": 0,
+        "p95Ms": 0.004999995231628418,
+        "maxMs": 0.004999995231628418
+      },
+      "updates": {
+        "update": {
+          "samples": 10240,
+          "meanMs": 0.05543408194789663,
+          "p50Ms": 0.04500007629394531,
+          "p95Ms": 0.09000003337860107,
+          "maxMs": 2.225000023841858
+        },
+        "updateAndLayout": {
+          "samples": 10240,
+          "meanMs": 0.33078222658950834,
+          "p50Ms": 0.30500006675720215,
+          "p95Ms": 0.5750000476837158,
+          "maxMs": 3.4850000143051147
+        }
+      },
+      "openFence": {
+        "update": {
+          "samples": 10235,
+          "meanMs": 0.055436248073475386,
+          "p50Ms": 0.04500007629394531,
+          "p95Ms": 0.09000003337860107,
+          "maxMs": 2.225000023841858
+        },
+        "updateAndLayout": {
+          "samples": 10235,
+          "meanMs": 0.330896433831193,
+          "p50Ms": 0.30500006675720215,
+          "p95Ms": 0.5750000476837158,
+          "maxMs": 3.4850000143051147
+        }
+      },
+      "lateOpenFence": {
+        "update": {
+          "samples": 1025,
+          "meanMs": 0.10096097376288438,
+          "p50Ms": 0.0849999189376831,
+          "p95Ms": 0.11000001430511475,
+          "maxMs": 1.190000057220459
+        },
+        "updateAndLayout": {
+          "samples": 1025,
+          "meanMs": 0.6201219512195122,
+          "p50Ms": 0.5549999475479126,
+          "p95Ms": 0.7400000095367432,
+          "maxMs": 3.4850000143051147
+        }
+      },
+      "checksum": 167105001
+    },
+    {
+      "name": "Streamdown React",
+      "fixture": "unfinished-tilde-64kib",
+      "bytes": 65536,
+      "chunkSize": 32,
+      "iterations": 5,
+      "warmupReplays": 2,
+      "validation": {
+        "passed": false,
+        "openUpdates": 2047,
+        "missingFenceUpdates": 0,
+        "mismatchedCodeUpdates": 2047,
+        "maxBufferedCharacters": 65503,
+        "finalCodeMatches": false,
+        "firstMismatch": {
+          "end": 64,
+          "expectedTail": "const route0: Route = { path: '",
+          "actualTail": "const route0: Route = { path: '~~"
+        },
+        "finalTextDiffers": true,
+        "finalMismatch": {
+          "expectedTail": "onst route1091: Route = { path: '/api/1091', enabled: true }\nconst route1092: Ro",
+          "actualTail": "t route1091: Route = { path: '/api/1091', enabled: true }\nconst route1092: Ro~~\n"
+        }
+      },
+      "replay": null,
+      "finish": null,
+      "updates": {
+        "update": null,
+        "updateAndLayout": null
+      },
+      "openFence": {
+        "update": null,
+        "updateAndLayout": null
+      },
+      "lateOpenFence": {
+        "update": null,
+        "updateAndLayout": null
+      },
+      "checksum": 0
+    },
+    {
+      "name": "streaming-markdown DOM",
+      "fixture": "unfinished-tilde-64kib",
+      "bytes": 65536,
+      "chunkSize": 32,
+      "iterations": 5,
+      "warmupReplays": 2,
+      "validation": {
+        "passed": false,
+        "openUpdates": 2047,
+        "missingFenceUpdates": 2047,
+        "mismatchedCodeUpdates": 2047,
+        "maxBufferedCharacters": 65503,
+        "finalCodeMatches": false,
+        "firstMismatch": {
+          "end": 64,
+          "expectedTail": "const route0: Route = { path: '",
+          "actualTail": ""
+        },
+        "finalTextDiffers": true,
+        "finalMismatch": {
+          "expectedTail": "onst route1091: Route = { path: '/api/1091', enabled: true }\nconst route1092: Ro",
+          "actualTail": ""
+        }
+      },
+      "replay": null,
+      "finish": null,
+      "updates": {
+        "update": null,
+        "updateAndLayout": null
+      },
+      "openFence": {
+        "update": null,
+        "updateAndLayout": null
+      },
+      "lateOpenFence": {
+        "update": null,
+        "updateAndLayout": null
+      },
+      "checksum": 0
+    },
+    {
+      "name": "TanStack Markdown React",
+      "fixture": "closing-backtick-64kib",
+      "bytes": 65566,
+      "chunkSize": 32,
+      "iterations": 5,
+      "warmupReplays": 2,
+      "validation": {
+        "passed": true,
+        "openUpdates": 2047,
+        "missingFenceUpdates": 0,
+        "mismatchedCodeUpdates": 0,
+        "maxBufferedCharacters": 0,
+        "finalCodeMatches": true,
+        "finalTextDiffers": false
+      },
+      "replay": {
+        "samples": 5,
+        "meanMs": 678.2109999895096,
+        "p50Ms": 677.8999999761581,
+        "p95Ms": 681.4700000286102,
+        "maxMs": 681.4700000286102
+      },
+      "finish": {
+        "samples": 5,
+        "meanMs": 0,
+        "p50Ms": 0,
+        "p95Ms": 0,
+        "maxMs": 0
+      },
+      "updates": {
+        "update": {
+          "samples": 10245,
+          "meanMs": 0.04983748220245451,
+          "p50Ms": 0.04999995231628418,
+          "p95Ms": 0.09000003337860107,
+          "maxMs": 1.065000057220459
+        },
+        "updateAndLayout": {
+          "samples": 10245,
+          "meanMs": 0.3243035626795421,
+          "p50Ms": 0.3049999475479126,
+          "p95Ms": 0.5700000524520874,
+          "maxMs": 3.3899999856948853
+        }
+      },
+      "openFence": {
+        "update": {
+          "samples": 10235,
+          "meanMs": 0.04981240894250539,
+          "p50Ms": 0.04999995231628418,
+          "p95Ms": 0.09000003337860107,
+          "maxMs": 1.065000057220459
+        },
+        "updateAndLayout": {
+          "samples": 10235,
+          "meanMs": 0.324515388369502,
+          "p50Ms": 0.30500006675720215,
+          "p95Ms": 0.5700000524520874,
+          "maxMs": 3.3899999856948853
+        }
+      },
+      "lateOpenFence": {
+        "update": {
+          "samples": 1025,
+          "meanMs": 0.09007317054562453,
+          "p50Ms": 0.0849999189376831,
+          "p95Ms": 0.11000001430511475,
+          "maxMs": 0.8899999856948853
+        },
+        "updateAndLayout": {
+          "samples": 1025,
+          "meanMs": 0.605429268232206,
+          "p50Ms": 0.5499999523162842,
+          "p95Ms": 0.6549999713897705,
+          "maxMs": 3.1649999618530273
+        }
+      },
+      "checksum": 167266876
+    },
+    {
+      "name": "Streamdown React",
+      "fixture": "closing-backtick-64kib",
+      "bytes": 65566,
+      "chunkSize": 32,
+      "iterations": 5,
+      "warmupReplays": 2,
+      "validation": {
+        "passed": true,
+        "openUpdates": 2047,
+        "missingFenceUpdates": 0,
+        "mismatchedCodeUpdates": 0,
+        "maxBufferedCharacters": 1,
+        "finalCodeMatches": true,
+        "finalTextDiffers": true
+      },
+      "replay": {
+        "samples": 5,
+        "meanMs": 6081.446000003814,
+        "p50Ms": 6058.159999966621,
+        "p95Ms": 6236.325000047684,
+        "maxMs": 6236.325000047684
+      },
+      "finish": {
+        "samples": 5,
+        "meanMs": 0.020999979972839356,
+        "p50Ms": 0.019999980926513672,
+        "p95Ms": 0.029999971389770508,
+        "maxMs": 0.029999971389770508
+      },
+      "updates": {
+        "update": {
+          "samples": 10245,
+          "meanMs": 1.7450082967315086,
+          "p50Ms": 1.6649999618530273,
+          "p95Ms": 3.4499999284744263,
+          "maxMs": 6.400000095367432
+        },
+        "updateAndLayout": {
+          "samples": 10245,
+          "meanMs": 2.963551488371812,
+          "p50Ms": 2.875,
+          "p95Ms": 5.754999995231628,
+          "maxMs": 8.805000066757202
+        }
+      },
+      "openFence": {
+        "update": {
+          "samples": 10235,
+          "meanMs": 1.7447493893260424,
+          "p50Ms": 1.6649999618530273,
+          "p95Ms": 3.444999933242798,
+          "maxMs": 6.400000095367432
+        },
+        "updateAndLayout": {
+          "samples": 10235,
+          "meanMs": 2.9644298972417276,
+          "p50Ms": 2.875,
+          "p95Ms": 5.754999995231628,
+          "maxMs": 8.805000066757202
+        }
+      },
+      "lateOpenFence": {
+        "update": {
+          "samples": 1025,
+          "meanMs": 3.4744829260430685,
+          "p50Ms": 3.375,
+          "p95Ms": 4.315000057220459,
+          "maxMs": 6.400000095367432
+        },
+        "updateAndLayout": {
+          "samples": 1025,
+          "meanMs": 5.782839024125076,
+          "p50Ms": 5.65500009059906,
+          "p95Ms": 7.059999942779541,
+          "maxMs": 8.805000066757202
+        }
+      },
+      "checksum": 167266883
+    },
+    {
+      "name": "streaming-markdown DOM",
+      "fixture": "closing-backtick-64kib",
+      "bytes": 65566,
+      "chunkSize": 32,
+      "iterations": 5,
+      "warmupReplays": 2,
+      "validation": {
+        "passed": true,
+        "openUpdates": 2047,
+        "missingFenceUpdates": 0,
+        "mismatchedCodeUpdates": 0,
+        "maxBufferedCharacters": 2,
+        "finalCodeMatches": true,
+        "finalTextDiffers": false
+      },
+      "replay": {
+        "samples": 5,
+        "meanMs": 842.5479999780655,
+        "p50Ms": 848.7749999761581,
+        "p95Ms": 862.9599999189377,
+        "maxMs": 862.9599999189377
+      },
+      "finish": {
+        "samples": 5,
+        "meanMs": 0.0019999980926513673,
+        "p50Ms": 0,
+        "p95Ms": 0.004999995231628418,
+        "maxMs": 0.004999995231628418
+      },
+      "updates": {
+        "update": {
+          "samples": 10245,
+          "meanMs": 0.026625182746153685,
+          "p50Ms": 0,
+          "p95Ms": 0.004999995231628418,
+          "maxMs": 2.90500009059906
+        },
+        "updateAndLayout": {
+          "samples": 10245,
+          "meanMs": 0.41093557831599925,
+          "p50Ms": 0.33000004291534424,
+          "p95Ms": 0.6549999713897705,
+          "maxMs": 6.445000052452087
+        }
+      },
+      "openFence": {
+        "update": {
+          "samples": 10235,
+          "meanMs": 0.02663800656999328,
+          "p50Ms": 0,
+          "p95Ms": 0.004999995231628418,
+          "maxMs": 2.90500009059906
+        },
+        "updateAndLayout": {
+          "samples": 10235,
+          "meanMs": 0.41095945285364777,
+          "p50Ms": 0.33000004291534424,
+          "p95Ms": 0.6500000953674316,
+          "maxMs": 6.445000052452087
+        }
+      },
+      "lateOpenFence": {
+        "update": {
+          "samples": 1025,
+          "meanMs": 0.048058535529346004,
+          "p50Ms": 0,
+          "p95Ms": 0.004999995231628418,
+          "maxMs": 2.8550000190734863
+        },
+        "updateAndLayout": {
+          "samples": 1025,
+          "meanMs": 0.7703024389685654,
+          "p50Ms": 0.6050000190734863,
+          "p95Ms": 1.0399999618530273,
+          "maxMs": 6.445000052452087
+        }
+      },
+      "checksum": 167265112
+    },
+    {
+      "name": "TanStack Markdown React",
+      "fixture": "settled-prose-16kib-then-open-fence-16kib",
+      "bytes": 32770,
+      "chunkSize": 32,
+      "iterations": 5,
+      "warmupReplays": 2,
+      "validation": {
+        "passed": true,
+        "openUpdates": 512,
+        "missingFenceUpdates": 0,
+        "mismatchedCodeUpdates": 0,
+        "maxBufferedCharacters": 0,
+        "finalCodeMatches": true,
+        "finalTextDiffers": false
+      },
+      "replay": {
+        "samples": 5,
+        "meanMs": 327.65800004005433,
+        "p50Ms": 325.99000000953674,
+        "p95Ms": 334.3550000190735,
+        "maxMs": 334.3550000190735
+      },
+      "finish": {
+        "samples": 5,
+        "meanMs": 0,
+        "p50Ms": 0,
+        "p95Ms": 0,
+        "maxMs": 0
+      },
+      "updates": {
+        "update": {
+          "samples": 5125,
+          "meanMs": 0.24721658415910674,
+          "p50Ms": 0.2900000810623169,
+          "p95Ms": 0.3450000286102295,
+          "maxMs": 2.125
+        },
+        "updateAndLayout": {
+          "samples": 5125,
+          "meanMs": 0.3195121950986909,
+          "p50Ms": 0.3549998998641968,
+          "p95Ms": 0.4950000047683716,
+          "maxMs": 2.75
+        }
+      },
+      "openFence": {
+        "update": {
+          "samples": 2560,
+          "meanMs": 0.32893945183604956,
+          "p50Ms": 0.31499993801116943,
+          "p95Ms": 0.35500001907348633,
+          "maxMs": 2.125
+        },
+        "updateAndLayout": {
+          "samples": 2560,
+          "meanMs": 0.44414648436941206,
+          "p50Ms": 0.4249999523162842,
+          "p95Ms": 0.5150001049041748,
+          "maxMs": 2.75
+        }
+      },
+      "lateOpenFence": {
+        "update": {
+          "samples": 520,
+          "meanMs": 0.3400384604930878,
+          "p50Ms": 0.3200000524520874,
+          "p95Ms": 0.3700000047683716,
+          "maxMs": 2.125
+        },
+        "updateAndLayout": {
+          "samples": 520,
+          "meanMs": 0.513423076730508,
+          "p50Ms": 0.48500001430511475,
+          "p95Ms": 0.5600000619888306,
+          "maxMs": 2.75
+        }
+      },
+      "checksum": 89206215
+    },
+    {
+      "name": "Streamdown React",
+      "fixture": "settled-prose-16kib-then-open-fence-16kib",
+      "bytes": 32770,
+      "chunkSize": 32,
+      "iterations": 5,
+      "warmupReplays": 2,
+      "validation": {
+        "passed": true,
+        "openUpdates": 512,
+        "missingFenceUpdates": 0,
+        "mismatchedCodeUpdates": 0,
+        "maxBufferedCharacters": 1,
+        "finalCodeMatches": true,
+        "finalTextDiffers": true
+      },
+      "replay": {
+        "samples": 5,
+        "meanMs": 1196.574999976158,
+        "p50Ms": 1197.9749999046326,
+        "p95Ms": 1212.2549999952316,
+        "maxMs": 1212.2549999952316
+      },
+      "finish": {
+        "samples": 5,
+        "meanMs": 1.4390000104904175,
+        "p50Ms": 1.3650000095367432,
+        "p95Ms": 1.7450000047683716,
+        "maxMs": 1.7450000047683716
+      },
+      "updates": {
+        "update": {
+          "samples": 5125,
+          "meanMs": 0.9679200010299682,
+          "p50Ms": 0.9249999523162842,
+          "p95Ms": 1.8849999904632568,
+          "maxMs": 4.504999995231628
+        },
+        "updateAndLayout": {
+          "samples": 5125,
+          "meanMs": 1.1657765852532735,
+          "p50Ms": 1,
+          "p95Ms": 2.5,
+          "maxMs": 5.195000052452087
+        }
+      },
+      "openFence": {
+        "update": {
+          "samples": 2560,
+          "meanMs": 1.4375019538681955,
+          "p50Ms": 1.415000081062317,
+          "p95Ms": 2.0149999856948853,
+          "maxMs": 4.504999995231628
+        },
+        "updateAndLayout": {
+          "samples": 2560,
+          "meanMs": 1.7968203122727573,
+          "p50Ms": 1.7699999809265137,
+          "p95Ms": 2.6549999713897705,
+          "maxMs": 5.195000052452087
+        }
+      },
+      "lateOpenFence": {
+        "update": {
+          "samples": 520,
+          "meanMs": 1.9037115360681827,
+          "p50Ms": 1.8600000143051147,
+          "p95Ms": 2.174999952316284,
+          "maxMs": 4.504999995231628
+        },
+        "updateAndLayout": {
+          "samples": 520,
+          "meanMs": 2.5160384613734026,
+          "p50Ms": 2.465000033378601,
+          "p95Ms": 2.865000009536743,
+          "maxMs": 5.195000052452087
+        }
+      },
+      "checksum": 89206222
+    },
+    {
+      "name": "streaming-markdown DOM",
+      "fixture": "settled-prose-16kib-then-open-fence-16kib",
+      "bytes": 32770,
+      "chunkSize": 32,
+      "iterations": 5,
+      "warmupReplays": 2,
+      "validation": {
+        "passed": true,
+        "openUpdates": 512,
+        "missingFenceUpdates": 0,
+        "mismatchedCodeUpdates": 0,
+        "maxBufferedCharacters": 2,
+        "finalCodeMatches": true,
+        "finalTextDiffers": false
+      },
+      "replay": {
+        "samples": 5,
+        "meanMs": 80.59500000476837,
+        "p50Ms": 81.6450001001358,
+        "p95Ms": 82.55000007152557,
+        "maxMs": 82.55000007152557
+      },
+      "finish": {
+        "samples": 5,
+        "meanMs": 0.1989999771118164,
+        "p50Ms": 0.1950000524520874,
+        "p95Ms": 0.2200000286102295,
+        "maxMs": 0.2200000286102295
+      },
+      "updates": {
+        "update": {
+          "samples": 5125,
+          "meanMs": 0.003562926618064322,
+          "p50Ms": 0,
+          "p95Ms": 0.004999995231628418,
+          "maxMs": 1.1399999856948853
+        },
+        "updateAndLayout": {
+          "samples": 5125,
+          "meanMs": 0.07830536579504245,
+          "p50Ms": 0.04499995708465576,
+          "p95Ms": 0.1799999475479126,
+          "maxMs": 3.4250000715255737
+        }
+      },
+      "openFence": {
+        "update": {
+          "samples": 2560,
+          "meanMs": 0.0048828123603016135,
+          "p50Ms": 0,
+          "p95Ms": 0.004999995231628418,
+          "maxMs": 1.1399999856948853
+        },
+        "updateAndLayout": {
+          "samples": 2560,
+          "meanMs": 0.13017187495715915,
+          "p50Ms": 0.11500000953674316,
+          "p95Ms": 0.19000005722045898,
+          "maxMs": 3.4250000715255737
+        }
+      },
+      "lateOpenFence": {
+        "update": {
+          "samples": 520,
+          "meanMs": 0.0073557681762255155,
+          "p50Ms": 0,
+          "p95Ms": 0.004999995231628418,
+          "maxMs": 0.8499999046325684
+        },
+        "updateAndLayout": {
+          "samples": 520,
+          "meanMs": 0.20069230726132026,
+          "p50Ms": 0.17499995231628418,
+          "p95Ms": 0.2200000286102295,
+          "maxMs": 2.5799999237060547
+        }
+      },
+      "checksum": 89198662
+    }
+  ]
+}

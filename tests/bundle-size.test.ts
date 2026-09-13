@@ -19,17 +19,17 @@ describe('bundle budgets', () => {
       ['react'],
     )
 
-    // Measured ceilings for the #7, #9, and #11 fixes, with no spare headroom.
+    // Measured ceilings after the streaming layout optimization, with no spare headroom.
     // Extension entries retain their 0.0.14 ceilings.
     for (const [result, min, gzip, brotli] of [
-      [parser, 13157, 4975, 4593],
-      [html, 18337, 6807, 6240],
-      [react, 18271, 6722, 6184],
-      [octane, 18283, 6727, 6194],
-      [pluggable, 18373, 6829, 6260],
+      [parser, 11949, 4894, 4539],
+      [html, 17139, 6729, 6158],
+      [react, 17147, 6676, 6170],
+      [octane, 17084, 6644, 6143],
+      [pluggable, 17175, 6751, 6184],
       [streaming, 699, 311, 253],
       [callouts, 506, 335, 278],
-      [reactStreaming, 18962, 6907, 6356],
+      [reactStreaming, 17839, 6860, 6302],
       [docs, 6423, 2292, 2073],
       [tabs, 3290, 1221, 1082],
     ] as const) {
@@ -42,11 +42,11 @@ describe('bundle budgets', () => {
 
   it('also protects the complete namespace of every public entry point', async () => {
     const budgets: Record<string, number[]> = {
-      '.': [18598, 6936, 6345],
-      './html': [18560, 6920, 6331],
-      './parser': [13289, 5061, 4664],
-      './react': [18470, 6828, 6279],
-      './octane': [18485, 6833, 6287],
+      '.': [17404, 6852, 6267],
+      './html': [17364, 6840, 6283],
+      './parser': [12082, 4981, 4599],
+      './react': [17347, 6790, 6241],
+      './octane': [17287, 6752, 6209],
       './extensions/callouts': [660, 432, 360],
       './extensions/comment-components': [1073, 647, 542],
       './extensions/docs': [6587, 2392, 2162],

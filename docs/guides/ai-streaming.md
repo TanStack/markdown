@@ -65,6 +65,8 @@ Unclosed emphasis, code spans, links, and other inline delimiters remain literal
 
 The package reparses the accumulated response rather than maintaining parser state between updates. Batch very small transport tokens into normal UI updates when responses are unusually long or tokens arrive faster than the screen should repaint.
 
+With the streaming extension enabled, React keeps completed groups of plain code lines in stable text nodes. Appending code updates the trailing group instead of replacing the entire block's text, which reduces browser layout work. Custom code components still receive string children, and highlighters keep their existing HTML rendering path.
+
 ## Security
 
 AI output is untrusted content:

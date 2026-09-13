@@ -1,6 +1,12 @@
 {
-  "generatedAt": "2026-09-11T20:23:30.357Z",
-  "sink": 112892330,
+  "generatedAt": "2026-09-12T23:59:58.621Z",
+  "environment": {
+    "node": "v24.15.0",
+    "platform": "darwin",
+    "arch": "arm64",
+    "cpu": "Apple M5 Pro"
+  },
+  "sink": 9056185263,
   "results": [
     {
       "group": "markdown",
@@ -8,9 +14,9 @@
       "fixture": "ai-response.md",
       "bytes": 652,
       "iterations": 2000,
-      "msPerOp": 0.01844806249999999,
+      "msPerOp": 0.0230959165,
       "outputBytes": 15,
-      "heapDeltaKb": 898.9609375
+      "heapDeltaKb": 35036.625
     },
     {
       "group": "markdown",
@@ -18,9 +24,9 @@
       "fixture": "ai-response.md",
       "bytes": 652,
       "iterations": 2000,
-      "msPerOp": 0.005263854499999994,
+      "msPerOp": 0.004967021000000003,
       "outputBytes": 1399,
-      "heapDeltaKb": 1238.703125
+      "heapDeltaKb": 10160.7421875
     },
     {
       "group": "markdown",
@@ -28,9 +34,9 @@
       "fixture": "ai-response.md",
       "bytes": 652,
       "iterations": 2000,
-      "msPerOp": 0.00399779199999999,
+      "msPerOp": 0.003822896,
       "outputBytes": 1143,
-      "heapDeltaKb": -3027.4296875
+      "heapDeltaKb": 133.8359375
     },
     {
       "group": "markdown",
@@ -38,9 +44,9 @@
       "fixture": "ai-response.md",
       "bytes": 652,
       "iterations": 2000,
-      "msPerOp": 0.023797770500000013,
+      "msPerOp": 0.025145104000000005,
       "outputBytes": 1399,
-      "heapDeltaKb": -2596.171875
+      "heapDeltaKb": 11894.5078125
     },
     {
       "group": "markdown",
@@ -48,9 +54,9 @@
       "fixture": "ai-response.md",
       "bytes": 652,
       "iterations": 2000,
-      "msPerOp": 0.023606604000000003,
+      "msPerOp": 0.023205708500000016,
       "outputBytes": 1143,
-      "heapDeltaKb": -1860.5859375
+      "heapDeltaKb": 44793.6796875
     },
     {
       "group": "markdown",
@@ -58,9 +64,9 @@
       "fixture": "ai-response.md",
       "bytes": 652,
       "iterations": 2000,
-      "msPerOp": 0.02952339599999999,
+      "msPerOp": 0.029327332999999983,
       "outputBytes": 1035,
-      "heapDeltaKb": -853.609375
+      "heapDeltaKb": -92849.1171875
     },
     {
       "group": "markdown",
@@ -68,9 +74,9 @@
       "fixture": "ai-response.md",
       "bytes": 652,
       "iterations": 2000,
-      "msPerOp": 0.019339646000000016,
+      "msPerOp": 0.018661083499999988,
       "outputBytes": 1087,
-      "heapDeltaKb": 4088.890625
+      "heapDeltaKb": 44907.1484375
     },
     {
       "group": "markdown",
@@ -78,9 +84,9 @@
       "fixture": "ai-response.md",
       "bytes": 652,
       "iterations": 2000,
-      "msPerOp": 0.17314687500000003,
+      "msPerOp": 0.16640525,
       "outputBytes": 825,
-      "heapDeltaKb": -8298.203125
+      "heapDeltaKb": 51435.609375
     },
     {
       "group": "markdown",
@@ -88,9 +94,9 @@
       "fixture": "ai-response.md",
       "bytes": 652,
       "iterations": 2000,
-      "msPerOp": 0.021329833500000006,
+      "msPerOp": 0.013089541999999994,
       "outputBytes": 825,
-      "heapDeltaKb": 54.8671875
+      "heapDeltaKb": -49166.7734375
     },
     {
       "group": "markdown",
@@ -98,9 +104,9 @@
       "fixture": "ai-response.md",
       "bytes": 652,
       "iterations": 2000,
-      "msPerOp": 0.010540166499999998,
+      "msPerOp": 0.008372937499999978,
       "outputBytes": 1117,
-      "heapDeltaKb": 4372.3984375
+      "heapDeltaKb": 4376.671875
     },
     {
       "group": "markdown",
@@ -108,9 +114,9 @@
       "fixture": "ai-response.md",
       "bytes": 652,
       "iterations": 2000,
-      "msPerOp": 0.19910575,
+      "msPerOp": 0.21472016700000002,
       "outputBytes": 824,
-      "heapDeltaKb": 13756
+      "heapDeltaKb": 7854.609375
     },
     {
       "group": "markdown",
@@ -118,9 +124,9 @@
       "fixture": "code-heavy.md",
       "bytes": 1011,
       "iterations": 1000,
-      "msPerOp": 0.006807167000000163,
+      "msPerOp": 0.00930816600000003,
       "outputBytes": 15,
-      "heapDeltaKb": -6378.1484375
+      "heapDeltaKb": 23903.4453125
     },
     {
       "group": "markdown",
@@ -128,9 +134,9 @@
       "fixture": "code-heavy.md",
       "bytes": 1011,
       "iterations": 1000,
-      "msPerOp": 0.007484500000000026,
+      "msPerOp": 0.008788749999999936,
       "outputBytes": 4596,
-      "heapDeltaKb": -1122.5703125
+      "heapDeltaKb": -30194.4296875
     },
     {
       "group": "markdown",
@@ -138,9 +144,9 @@
       "fixture": "code-heavy.md",
       "bytes": 1011,
       "iterations": 1000,
-      "msPerOp": 0.003155708999999888,
+      "msPerOp": 0.0040034169999999,
       "outputBytes": 1927,
-      "heapDeltaKb": 10476.2890625
+      "heapDeltaKb": 10476.1640625
     },
     {
       "group": "markdown",
@@ -148,9 +154,9 @@
       "fixture": "code-heavy.md",
       "bytes": 1011,
       "iterations": 1000,
-      "msPerOp": 0.014249915999999984,
+      "msPerOp": 0.01934395799999993,
       "outputBytes": 4596,
-      "heapDeltaKb": -6339.6796875
+      "heapDeltaKb": -5389.796875
     },
     {
       "group": "markdown",
@@ -158,9 +164,9 @@
       "fixture": "code-heavy.md",
       "bytes": 1011,
       "iterations": 1000,
-      "msPerOp": 0.009854332999999996,
+      "msPerOp": 0.01655070899999987,
       "outputBytes": 1927,
-      "heapDeltaKb": 4603.2109375
+      "heapDeltaKb": -25821.4453125
     },
     {
       "group": "markdown",
@@ -168,9 +174,9 @@
       "fixture": "code-heavy.md",
       "bytes": 1011,
       "iterations": 1000,
-      "msPerOp": 0.006169208000000026,
+      "msPerOp": 0.007307250000000067,
       "outputBytes": 1330,
-      "heapDeltaKb": -19757.0859375
+      "heapDeltaKb": 12886.8359375
     },
     {
       "group": "markdown",
@@ -178,9 +184,9 @@
       "fixture": "code-heavy.md",
       "bytes": 1011,
       "iterations": 1000,
-      "msPerOp": 0.008338584000000083,
+      "msPerOp": 0.009848250000000008,
       "outputBytes": 1330,
-      "heapDeltaKb": -5321.0390625
+      "heapDeltaKb": 27313.4140625
     },
     {
       "group": "markdown",
@@ -188,9 +194,9 @@
       "fixture": "code-heavy.md",
       "bytes": 1011,
       "iterations": 1000,
-      "msPerOp": 0.13680366700000013,
+      "msPerOp": 0.16169662500000004,
       "outputBytes": 1330,
-      "heapDeltaKb": -11833.328125
+      "heapDeltaKb": -5850.4296875
     },
     {
       "group": "markdown",
@@ -198,9 +204,9 @@
       "fixture": "code-heavy.md",
       "bytes": 1011,
       "iterations": 1000,
-      "msPerOp": 0.009240166999999928,
+      "msPerOp": 0.010917582999999922,
       "outputBytes": 1330,
-      "heapDeltaKb": 24577.0234375
+      "heapDeltaKb": -40875.984375
     },
     {
       "group": "markdown",
@@ -208,9 +214,9 @@
       "fixture": "code-heavy.md",
       "bytes": 1011,
       "iterations": 1000,
-      "msPerOp": 0.004289874999999938,
+      "msPerOp": 0.0053693749999999905,
       "outputBytes": 1512,
-      "heapDeltaKb": 2559.9921875
+      "heapDeltaKb": 2558.296875
     },
     {
       "group": "markdown",
@@ -218,9 +224,9 @@
       "fixture": "code-heavy.md",
       "bytes": 1011,
       "iterations": 1000,
-      "msPerOp": 0.15214312500000005,
+      "msPerOp": 0.15673112500000003,
       "outputBytes": 1200,
-      "heapDeltaKb": -7037.953125
+      "heapDeltaKb": 24973.7109375
     },
     {
       "group": "markdown",
@@ -228,9 +234,9 @@
       "fixture": "malformed.md",
       "bytes": 237,
       "iterations": 2000,
-      "msPerOp": 0.0027057704999999713,
+      "msPerOp": 0.002730000000000018,
       "outputBytes": 15,
-      "heapDeltaKb": 18580.609375
+      "heapDeltaKb": -44947.8828125
     },
     {
       "group": "markdown",
@@ -238,9 +244,9 @@
       "fixture": "malformed.md",
       "bytes": 237,
       "iterations": 2000,
-      "msPerOp": 0.0016762294999999768,
+      "msPerOp": 0.001634728999999993,
       "outputBytes": 1067,
-      "heapDeltaKb": -17067.3203125
+      "heapDeltaKb": 15659.734375
     },
     {
       "group": "markdown",
@@ -248,9 +254,9 @@
       "fixture": "malformed.md",
       "bytes": 237,
       "iterations": 2000,
-      "msPerOp": 0.0007344790000000785,
+      "msPerOp": 0.0006929999999999837,
       "outputBytes": 361,
-      "heapDeltaKb": 5314.8828125
+      "heapDeltaKb": 5315.171875
     },
     {
       "group": "markdown",
@@ -258,9 +264,9 @@
       "fixture": "malformed.md",
       "bytes": 237,
       "iterations": 2000,
-      "msPerOp": 0.004606062500000007,
+      "msPerOp": 0.004589437500000031,
       "outputBytes": 1067,
-      "heapDeltaKb": 1452.21875
+      "heapDeltaKb": 33660.75
     },
     {
       "group": "markdown",
@@ -268,9 +274,9 @@
       "fixture": "malformed.md",
       "bytes": 237,
       "iterations": 2000,
-      "msPerOp": 0.0036469999999999346,
+      "msPerOp": 0.00380916650000006,
       "outputBytes": 361,
-      "heapDeltaKb": -8892.2109375
+      "heapDeltaKb": -34278.9375
     },
     {
       "group": "markdown",
@@ -278,9 +284,9 @@
       "fixture": "malformed.md",
       "bytes": 237,
       "iterations": 2000,
-      "msPerOp": 0.005531416499999977,
+      "msPerOp": 0.005420104499999979,
       "outputBytes": 350,
-      "heapDeltaKb": 16140.453125
+      "heapDeltaKb": 16657.734375
     },
     {
       "group": "markdown",
@@ -288,9 +294,9 @@
       "fixture": "malformed.md",
       "bytes": 237,
       "iterations": 2000,
-      "msPerOp": 0.005058562499999994,
+      "msPerOp": 0.005576854499999968,
       "outputBytes": 300,
-      "heapDeltaKb": -7253.6015625
+      "heapDeltaKb": -31630.0625
     },
     {
       "group": "markdown",
@@ -298,9 +304,9 @@
       "fixture": "malformed.md",
       "bytes": 237,
       "iterations": 2000,
-      "msPerOp": 0.05207070850000002,
+      "msPerOp": 0.05042335449999996,
       "outputBytes": 300,
-      "heapDeltaKb": 7694.546875
+      "heapDeltaKb": 11184.7890625
     },
     {
       "group": "markdown",
@@ -308,9 +314,9 @@
       "fixture": "malformed.md",
       "bytes": 237,
       "iterations": 2000,
-      "msPerOp": 0.0038984790000000658,
+      "msPerOp": 0.003881750000000011,
       "outputBytes": 300,
-      "heapDeltaKb": -9655.921875
+      "heapDeltaKb": 23073.0234375
     },
     {
       "group": "markdown",
@@ -318,9 +324,9 @@
       "fixture": "malformed.md",
       "bytes": 237,
       "iterations": 2000,
-      "msPerOp": 0.0018649789999999485,
+      "msPerOp": 0.001838145499999996,
       "outputBytes": 408,
-      "heapDeltaKb": 2938.3984375
+      "heapDeltaKb": 2938.671875
     },
     {
       "group": "markdown",
@@ -328,9 +334,9 @@
       "fixture": "malformed.md",
       "bytes": 237,
       "iterations": 2000,
-      "msPerOp": 0.06917156250000005,
+      "msPerOp": 0.055197812500000054,
       "outputBytes": 297,
-      "heapDeltaKb": 2219.1953125
+      "heapDeltaKb": -30681.640625
     },
     {
       "group": "markdown",
@@ -338,9 +344,9 @@
       "fixture": "prose-heavy.md",
       "bytes": 1700,
       "iterations": 1000,
-      "msPerOp": 0.017162290999999868,
+      "msPerOp": 0.018113207999999985,
       "outputBytes": 15,
-      "heapDeltaKb": -17554.0625
+      "heapDeltaKb": 1601.375
     },
     {
       "group": "markdown",
@@ -348,9 +354,9 @@
       "fixture": "prose-heavy.md",
       "bytes": 1700,
       "iterations": 1000,
-      "msPerOp": 0.002673625000000129,
+      "msPerOp": 0.002141417000000047,
       "outputBytes": 1903,
-      "heapDeltaKb": 10295.9765625
+      "heapDeltaKb": 10292.2421875
     },
     {
       "group": "markdown",
@@ -358,9 +364,9 @@
       "fixture": "prose-heavy.md",
       "bytes": 1700,
       "iterations": 1000,
-      "msPerOp": 0.002687332999999853,
+      "msPerOp": 0.002436666999999943,
       "outputBytes": 1903,
-      "heapDeltaKb": 10321.3203125
+      "heapDeltaKb": 10320.4609375
     },
     {
       "group": "markdown",
@@ -368,9 +374,9 @@
       "fixture": "prose-heavy.md",
       "bytes": 1700,
       "iterations": 1000,
-      "msPerOp": 0.017694124999999984,
+      "msPerOp": 0.02010304199999996,
       "outputBytes": 1903,
-      "heapDeltaKb": -7354.9765625
+      "heapDeltaKb": 18362.328125
     },
     {
       "group": "markdown",
@@ -378,9 +384,9 @@
       "fixture": "prose-heavy.md",
       "bytes": 1700,
       "iterations": 1000,
-      "msPerOp": 0.016582792000000155,
+      "msPerOp": 0.020281833000000006,
       "outputBytes": 1903,
-      "heapDeltaKb": -7244.9453125
+      "heapDeltaKb": 18847.21875
     },
     {
       "group": "markdown",
@@ -388,9 +394,9 @@
       "fixture": "prose-heavy.md",
       "bytes": 1700,
       "iterations": 1000,
-      "msPerOp": 0.03447937500000012,
+      "msPerOp": 0.03812349999999992,
       "outputBytes": 1860,
-      "heapDeltaKb": 6729.9375
+      "heapDeltaKb": -5593.0234375
     },
     {
       "group": "markdown",
@@ -398,9 +404,9 @@
       "fixture": "prose-heavy.md",
       "bytes": 1700,
       "iterations": 1000,
-      "msPerOp": 0.01885091699999998,
+      "msPerOp": 0.02060416699999996,
       "outputBytes": 1860,
-      "heapDeltaKb": -18343.15625
+      "heapDeltaKb": -8952.140625
     },
     {
       "group": "markdown",
@@ -408,9 +414,9 @@
       "fixture": "prose-heavy.md",
       "bytes": 1700,
       "iterations": 1000,
-      "msPerOp": 0.24291566599999986,
+      "msPerOp": 0.2549411249999998,
       "outputBytes": 1862,
-      "heapDeltaKb": 24865.828125
+      "heapDeltaKb": 21780.578125
     },
     {
       "group": "markdown",
@@ -418,9 +424,9 @@
       "fixture": "prose-heavy.md",
       "bytes": 1700,
       "iterations": 1000,
-      "msPerOp": 0.011920082999999977,
+      "msPerOp": 0.013604624999999941,
       "outputBytes": 1862,
-      "heapDeltaKb": 46458.671875
+      "heapDeltaKb": -14599.390625
     },
     {
       "group": "markdown",
@@ -428,9 +434,9 @@
       "fixture": "prose-heavy.md",
       "bytes": 1700,
       "iterations": 1000,
-      "msPerOp": 0.006297250000000076,
+      "msPerOp": 0.006443499999999858,
       "outputBytes": 2340,
-      "heapDeltaKb": 3368.3671875
+      "heapDeltaKb": 3369.3828125
     },
     {
       "group": "markdown",
@@ -438,9 +444,9 @@
       "fixture": "prose-heavy.md",
       "bytes": 1700,
       "iterations": 1000,
-      "msPerOp": 0.28966795899999986,
+      "msPerOp": 0.3224618330000003,
       "outputBytes": 1859,
-      "heapDeltaKb": 50897.1328125
+      "heapDeltaKb": -73200.890625
     },
     {
       "group": "markdown",
@@ -448,9 +454,9 @@
       "fixture": "small-doc.md",
       "bytes": 432,
       "iterations": 2000,
-      "msPerOp": 0.0093737500000002,
+      "msPerOp": 0.01270204149999995,
       "outputBytes": 15,
-      "heapDeltaKb": 7577.4453125
+      "heapDeltaKb": 20112.46875
     },
     {
       "group": "markdown",
@@ -458,9 +464,9 @@
       "fixture": "small-doc.md",
       "bytes": 432,
       "iterations": 2000,
-      "msPerOp": 0.003080417000000125,
+      "msPerOp": 0.004287021000000096,
       "outputBytes": 1370,
-      "heapDeltaKb": 27814.0859375
+      "heapDeltaKb": -24522.9140625
     },
     {
       "group": "markdown",
@@ -468,9 +474,9 @@
       "fixture": "small-doc.md",
       "bytes": 432,
       "iterations": 2000,
-      "msPerOp": 0.0026590625000001184,
+      "msPerOp": 0.0027589165000001686,
       "outputBytes": 1044,
-      "heapDeltaKb": -42766.875
+      "heapDeltaKb": 21772.9453125
     },
     {
       "group": "markdown",
@@ -478,9 +484,9 @@
       "fixture": "small-doc.md",
       "bytes": 432,
       "iterations": 2000,
-      "msPerOp": 0.012628958000000011,
+      "msPerOp": 0.016400666499999942,
       "outputBytes": 1370,
-      "heapDeltaKb": 31414.875
+      "heapDeltaKb": -9773.921875
     },
     {
       "group": "markdown",
@@ -488,9 +494,9 @@
       "fixture": "small-doc.md",
       "bytes": 432,
       "iterations": 2000,
-      "msPerOp": 0.012084312499999895,
+      "msPerOp": 0.016765562499999987,
       "outputBytes": 1044,
-      "heapDeltaKb": -40133.328125
+      "heapDeltaKb": -7187.6171875
     },
     {
       "group": "markdown",
@@ -498,9 +504,9 @@
       "fixture": "small-doc.md",
       "bytes": 432,
       "iterations": 2000,
-      "msPerOp": 0.012065562499999943,
+      "msPerOp": 0.014704625000000079,
       "outputBytes": 724,
-      "heapDeltaKb": 50632.2109375
+      "heapDeltaKb": 50669.171875
     },
     {
       "group": "markdown",
@@ -508,9 +514,9 @@
       "fixture": "small-doc.md",
       "bytes": 432,
       "iterations": 2000,
-      "msPerOp": 0.00776693750000004,
+      "msPerOp": 0.008663270999999894,
       "outputBytes": 776,
-      "heapDeltaKb": 3160.15625
+      "heapDeltaKb": 4037.9140625
     },
     {
       "group": "markdown",
@@ -518,9 +524,9 @@
       "fixture": "small-doc.md",
       "bytes": 432,
       "iterations": 2000,
-      "msPerOp": 0.09741200000000004,
+      "msPerOp": 0.13299991649999993,
       "outputBytes": 535,
-      "heapDeltaKb": 44970.375
+      "heapDeltaKb": 44880.390625
     },
     {
       "group": "markdown",
@@ -528,9 +534,9 @@
       "fixture": "small-doc.md",
       "bytes": 432,
       "iterations": 2000,
-      "msPerOp": 0.007062458500000048,
+      "msPerOp": 0.007399374999999963,
       "outputBytes": 535,
-      "heapDeltaKb": -15145.1796875
+      "heapDeltaKb": -15136.8671875
     },
     {
       "group": "markdown",
@@ -538,9 +544,9 @@
       "fixture": "small-doc.md",
       "bytes": 432,
       "iterations": 2000,
-      "msPerOp": 0.003928562499999998,
+      "msPerOp": 0.0036898334999998497,
       "outputBytes": 854,
-      "heapDeltaKb": 3580.1796875
+      "heapDeltaKb": 3631.15625
     },
     {
       "group": "markdown",
@@ -548,9 +554,9 @@
       "fixture": "small-doc.md",
       "bytes": 432,
       "iterations": 2000,
-      "msPerOp": 0.129259542,
+      "msPerOp": 0.1475164164999999,
       "outputBytes": 534,
-      "heapDeltaKb": 4179.84375
+      "heapDeltaKb": 4013.40625
     },
     {
       "group": "markdown",
@@ -558,9 +564,9 @@
       "fixture": "tables-lists.md",
       "bytes": 454,
       "iterations": 2000,
-      "msPerOp": 0.0232009579999999,
+      "msPerOp": 0.029478124999999862,
       "outputBytes": 15,
-      "heapDeltaKb": -43744.359375
+      "heapDeltaKb": 12749.0625
     },
     {
       "group": "markdown",
@@ -568,9 +574,9 @@
       "fixture": "tables-lists.md",
       "bytes": 454,
       "iterations": 2000,
-      "msPerOp": 0.004354895999999826,
+      "msPerOp": 0.005765270999999984,
       "outputBytes": 1315,
-      "heapDeltaKb": 42277.9921875
+      "heapDeltaKb": -5483.21875
     },
     {
       "group": "markdown",
@@ -578,9 +584,9 @@
       "fixture": "tables-lists.md",
       "bytes": 454,
       "iterations": 2000,
-      "msPerOp": 0.00404427099999998,
+      "msPerOp": 0.005156958500000201,
       "outputBytes": 1315,
-      "heapDeltaKb": -23161.15625
+      "heapDeltaKb": -14400.9453125
     },
     {
       "group": "markdown",
@@ -588,9 +594,9 @@
       "fixture": "tables-lists.md",
       "bytes": 454,
       "iterations": 2000,
-      "msPerOp": 0.02736354150000011,
+      "msPerOp": 0.036605395499999985,
       "outputBytes": 1315,
-      "heapDeltaKb": -1853.140625
+      "heapDeltaKb": 6365.84375
     },
     {
       "group": "markdown",
@@ -598,9 +604,9 @@
       "fixture": "tables-lists.md",
       "bytes": 454,
       "iterations": 2000,
-      "msPerOp": 0.027197875000000066,
+      "msPerOp": 0.03830779150000012,
       "outputBytes": 1315,
-      "heapDeltaKb": -2112.7109375
+      "heapDeltaKb": -91885.7890625
     },
     {
       "group": "markdown",
@@ -608,9 +614,9 @@
       "fixture": "tables-lists.md",
       "bytes": 454,
       "iterations": 2000,
-      "msPerOp": 0.029182874999999966,
+      "msPerOp": 0.03246374999999989,
       "outputBytes": 1102,
-      "heapDeltaKb": -14329.2421875
+      "heapDeltaKb": -2774.734375
     },
     {
       "group": "markdown",
@@ -618,9 +624,9 @@
       "fixture": "tables-lists.md",
       "bytes": 454,
       "iterations": 2000,
-      "msPerOp": 0.017972145500000123,
+      "msPerOp": 0.021280750000000126,
       "outputBytes": 1325,
-      "heapDeltaKb": 26395.5078125
+      "heapDeltaKb": 26335.390625
     },
     {
       "group": "markdown",
@@ -628,9 +634,9 @@
       "fixture": "tables-lists.md",
       "bytes": 454,
       "iterations": 2000,
-      "msPerOp": 0.16772906250000005,
+      "msPerOp": 0.18304518749999987,
       "outputBytes": 627,
-      "heapDeltaKb": -39153.3359375
+      "heapDeltaKb": 43377.28125
     },
     {
       "group": "markdown",
@@ -638,9 +644,9 @@
       "fixture": "tables-lists.md",
       "bytes": 454,
       "iterations": 2000,
-      "msPerOp": 0.011388625000000048,
+      "msPerOp": 0.011697375000000192,
       "outputBytes": 627,
-      "heapDeltaKb": 28363.8125
+      "heapDeltaKb": -36650.7734375
     },
     {
       "group": "markdown",
@@ -648,9 +654,9 @@
       "fixture": "tables-lists.md",
       "bytes": 454,
       "iterations": 2000,
-      "msPerOp": 0.005910791999999901,
+      "msPerOp": 0.005767812500000218,
       "outputBytes": 1202,
-      "heapDeltaKb": 4506.171875
+      "heapDeltaKb": 4506.0546875
     },
     {
       "group": "markdown",
@@ -658,9 +664,54 @@
       "fixture": "tables-lists.md",
       "bytes": 454,
       "iterations": 2000,
-      "msPerOp": 0.1964307080000001,
+      "msPerOp": 0.20902820799999972,
       "outputBytes": 622,
-      "heapDeltaKb": 7601.8671875
+      "heapDeltaKb": -44097.953125
+    },
+    {
+      "group": "streaming",
+      "name": "@tanstack/markdown streaming parse",
+      "fixture": "ai-response.md",
+      "bytes": 652,
+      "iterations": 250,
+      "msPerOp": 0.21409083199997986,
+      "outputBytes": 0,
+      "heapDeltaKb": 27889.125,
+      "chunkSize": 32,
+      "warmupReplays": 2,
+      "updatesPerReplay": 21,
+      "openFenceUpdatesPerReplay": 2,
+      "checksum": 26208,
+      "latency": {
+        "all": {
+          "samples": 5250,
+          "meanMs": 0.010083434857144831,
+          "p50Ms": 0.007499999999708962,
+          "p95Ms": 0.015916999999717518,
+          "maxMs": 2.5200840000006792
+        },
+        "openFence": {
+          "samples": 500,
+          "meanMs": 0.006220576000010624,
+          "p50Ms": 0.0058330000001660665,
+          "p95Ms": 0.0071250000000873115,
+          "maxMs": 0.04941599999983737
+        },
+        "lastTenPercentOpenFence": {
+          "samples": 250,
+          "meanMs": 0.0062961639999884935,
+          "p50Ms": 0.005834000000504602,
+          "p95Ms": 0.0070420000001831795,
+          "maxMs": 0.04941599999983737
+        },
+        "finalUpdate": {
+          "samples": 250,
+          "meanMs": 0.015879831999976887,
+          "p50Ms": 0.014874999999847205,
+          "p95Ms": 0.01895799999965675,
+          "maxMs": 0.0702080000000933
+        }
+      }
     },
     {
       "group": "streaming",
@@ -668,9 +719,89 @@
       "fixture": "ai-response.md",
       "bytes": 652,
       "iterations": 250,
-      "msPerOp": 0.22356500000000232,
+      "msPerOp": 0.2578975960000098,
       "outputBytes": 1112,
-      "heapDeltaKb": -8191.453125
+      "heapDeltaKb": 65860.796875,
+      "chunkSize": 32,
+      "warmupReplays": 2,
+      "updatesPerReplay": 21,
+      "openFenceUpdatesPerReplay": 2,
+      "checksum": 3173184,
+      "latency": {
+        "all": {
+          "samples": 5250,
+          "meanMs": 0.012171573523811232,
+          "p50Ms": 0.00891700000011042,
+          "p95Ms": 0.019290999999611813,
+          "maxMs": 2.499333000000661
+        },
+        "openFence": {
+          "samples": 500,
+          "meanMs": 0.007640497999973377,
+          "p50Ms": 0.00724999999965803,
+          "p95Ms": 0.008667000000059488,
+          "maxMs": 0.052958000000217
+        },
+        "lastTenPercentOpenFence": {
+          "samples": 250,
+          "meanMs": 0.007983831999979884,
+          "p50Ms": 0.00741699999980483,
+          "p95Ms": 0.009125000000494765,
+          "maxMs": 0.052958000000217
+        },
+        "finalUpdate": {
+          "samples": 250,
+          "meanMs": 0.026833788000047206,
+          "p50Ms": 0.018500000000130967,
+          "p95Ms": 0.02104200000030687,
+          "maxMs": 1.980333000000428
+        }
+      }
+    },
+    {
+      "group": "streaming",
+      "name": "@tanstack/markdown streaming with @tanstack/highlight",
+      "fixture": "ai-response.md",
+      "bytes": 652,
+      "iterations": 250,
+      "msPerOp": 0.38105232800001976,
+      "outputBytes": 1274,
+      "heapDeltaKb": 26043.859375,
+      "chunkSize": 32,
+      "warmupReplays": 2,
+      "updatesPerReplay": 21,
+      "openFenceUpdatesPerReplay": 2,
+      "checksum": 3703896,
+      "latency": {
+        "all": {
+          "samples": 5250,
+          "meanMs": 0.01806752114286272,
+          "p50Ms": 0.017582999999831372,
+          "p95Ms": 0.029458999999405933,
+          "maxMs": 2.0387080000000424
+        },
+        "openFence": {
+          "samples": 500,
+          "meanMs": 0.019441631999998207,
+          "p50Ms": 0.012625000000298314,
+          "p95Ms": 0.01741700000002311,
+          "maxMs": 1.8179999999993015
+        },
+        "lastTenPercentOpenFence": {
+          "samples": 250,
+          "meanMs": 0.02747746000004554,
+          "p50Ms": 0.01341599999977916,
+          "p95Ms": 0.02008399999976973,
+          "maxMs": 1.8179999999993015
+        },
+        "finalUpdate": {
+          "samples": 250,
+          "meanMs": 0.03449262800000724,
+          "p50Ms": 0.026125000000320142,
+          "p95Ms": 0.03470800000013696,
+          "maxMs": 1.784125000000131
+        }
+      }
     },
     {
       "group": "streaming",
@@ -678,9 +809,944 @@
       "fixture": "ai-response.md",
       "bytes": 652,
       "iterations": 250,
-      "msPerOp": 0.2804184999999998,
+      "msPerOp": 0.3046166559999801,
       "outputBytes": 1035,
-      "heapDeltaKb": 3232.0078125
+      "heapDeltaKb": 19526.328125,
+      "chunkSize": 32,
+      "warmupReplays": 2,
+      "updatesPerReplay": 21,
+      "openFenceUpdatesPerReplay": 2,
+      "checksum": 2962764,
+      "latency": {
+        "all": {
+          "samples": 5250,
+          "meanMs": 0.014406752571436213,
+          "p50Ms": 0.013124999999490683,
+          "p95Ms": 0.025375000000167347,
+          "maxMs": 1.5779169999996157
+        },
+        "openFence": {
+          "samples": 500,
+          "meanMs": 0.01029838800001744,
+          "p50Ms": 0.009833000000071479,
+          "p95Ms": 0.013332999999875028,
+          "maxMs": 0.02525000000059663
+        },
+        "lastTenPercentOpenFence": {
+          "samples": 250,
+          "meanMs": 0.0104275000000016,
+          "p50Ms": 0.009957999999642198,
+          "p95Ms": 0.013832999999976892,
+          "maxMs": 0.019166999999470136
+        },
+        "finalUpdate": {
+          "samples": 250,
+          "meanMs": 0.024599832000021707,
+          "p50Ms": 0.02345900000000256,
+          "p95Ms": 0.02995900000041729,
+          "maxMs": 0.05720800000017334
+        }
+      }
+    },
+    {
+      "group": "streaming",
+      "name": "@tanstack/markdown streaming parse",
+      "fixture": "unfinished-backtick-4kib",
+      "bytes": 4096,
+      "iterations": 20,
+      "msPerOp": 0.4621396000000459,
+      "outputBytes": 0,
+      "heapDeltaKb": -34834.6953125,
+      "chunkSize": 32,
+      "warmupReplays": 2,
+      "updatesPerReplay": 128,
+      "openFenceUpdatesPerReplay": 127,
+      "checksum": 5632,
+      "latency": {
+        "all": {
+          "samples": 2560,
+          "meanMs": 0.0034755386718696712,
+          "p50Ms": 0.0030829999996058177,
+          "p95Ms": 0.005083000000013271,
+          "maxMs": 0.6201670000000377
+        },
+        "openFence": {
+          "samples": 2540,
+          "meanMs": 0.0034912744094433615,
+          "p50Ms": 0.0030830000005153124,
+          "p95Ms": 0.005083000000013271,
+          "maxMs": 0.6201670000000377
+        },
+        "lastTenPercentOpenFence": {
+          "samples": 260,
+          "meanMs": 0.005197099999976182,
+          "p50Ms": 0.004874999999628926,
+          "p95Ms": 0.006124999999883585,
+          "maxMs": 0.020915999999488122
+        },
+        "finalUpdate": {
+          "samples": 20,
+          "meanMs": 0.005047750000085216,
+          "p50Ms": 0.005000000000109139,
+          "p95Ms": 0.005541000000448548,
+          "maxMs": 0.005624999999781721
+        }
+      }
+    },
+    {
+      "group": "streaming",
+      "name": "@tanstack/markdown streaming profile",
+      "fixture": "unfinished-backtick-4kib",
+      "bytes": 4096,
+      "iterations": 20,
+      "msPerOp": 0.860104199999887,
+      "outputBytes": 4731,
+      "heapDeltaKb": 695.4375,
+      "chunkSize": 32,
+      "warmupReplays": 2,
+      "updatesPerReplay": 128,
+      "openFenceUpdatesPerReplay": 127,
+      "checksum": 6817030,
+      "latency": {
+        "all": {
+          "samples": 2560,
+          "meanMs": 0.006617728125001321,
+          "p50Ms": 0.005625000000691216,
+          "p95Ms": 0.009707999999591266,
+          "maxMs": 2.0296669999997903
+        },
+        "openFence": {
+          "samples": 2540,
+          "meanMs": 0.006656301574804367,
+          "p50Ms": 0.0056670000003578025,
+          "p95Ms": 0.009708999999929802,
+          "maxMs": 2.0296669999997903
+        },
+        "lastTenPercentOpenFence": {
+          "samples": 260,
+          "meanMs": 0.00977183846150113,
+          "p50Ms": 0.00908400000025722,
+          "p95Ms": 0.013374999999541615,
+          "maxMs": 0.05837500000052387
+        },
+        "finalUpdate": {
+          "samples": 20,
+          "meanMs": 0.010637499999938882,
+          "p50Ms": 0.009500000000116415,
+          "p95Ms": 0.014249999999265128,
+          "maxMs": 0.017416000000594067
+        }
+      }
+    },
+    {
+      "group": "streaming",
+      "name": "@tanstack/markdown streaming with @tanstack/highlight",
+      "fixture": "unfinished-backtick-4kib",
+      "bytes": 4096,
+      "iterations": 20,
+      "msPerOp": 22.06873735000004,
+      "outputBytes": 16010,
+      "heapDeltaKb": 62990.421875,
+      "chunkSize": 32,
+      "warmupReplays": 2,
+      "updatesPerReplay": 128,
+      "openFenceUpdatesPerReplay": 127,
+      "checksum": 22759572,
+      "latency": {
+        "all": {
+          "samples": 2560,
+          "meanMs": 0.17212833007812875,
+          "p50Ms": 0.16845800000010058,
+          "p95Ms": 0.32120800000029703,
+          "maxMs": 0.7369170000001759
+        },
+        "openFence": {
+          "samples": 2540,
+          "meanMs": 0.17335691614173696,
+          "p50Ms": 0.16941600000063772,
+          "p95Ms": 0.32133299999986775,
+          "maxMs": 0.7369170000001759
+        },
+        "lastTenPercentOpenFence": {
+          "samples": 260,
+          "meanMs": 0.32346092692306716,
+          "p50Ms": 0.31554099999993923,
+          "p95Ms": 0.3592500000004293,
+          "maxMs": 0.7194170000002487
+        },
+        "finalUpdate": {
+          "samples": 20,
+          "meanMs": 0.35081459999978504,
+          "p50Ms": 0.33216600000014296,
+          "p95Ms": 0.36524999999983265,
+          "maxMs": 0.6940829999994094
+        }
+      }
+    },
+    {
+      "group": "streaming",
+      "name": "marked progressive parse+render",
+      "fixture": "unfinished-backtick-4kib",
+      "bytes": 4096,
+      "iterations": 20,
+      "msPerOp": 0.7148749500001031,
+      "outputBytes": 4702,
+      "heapDeltaKb": -36811.359375,
+      "chunkSize": 32,
+      "warmupReplays": 2,
+      "updatesPerReplay": 128,
+      "openFenceUpdatesPerReplay": 127,
+      "checksum": 6735366,
+      "latency": {
+        "all": {
+          "samples": 2560,
+          "meanMs": 0.005508160156259834,
+          "p50Ms": 0.005333999999493244,
+          "p95Ms": 0.009250000000065484,
+          "maxMs": 0.3232909999996991
+        },
+        "openFence": {
+          "samples": 2540,
+          "meanMs": 0.005541573228355639,
+          "p50Ms": 0.005375000000640284,
+          "p95Ms": 0.009250000000065484,
+          "maxMs": 0.3232909999996991
+        },
+        "lastTenPercentOpenFence": {
+          "samples": 260,
+          "meanMs": 0.010631888461564534,
+          "p50Ms": 0.009125000000494765,
+          "p95Ms": 0.01116699999965931,
+          "maxMs": 0.3232909999996991
+        },
+        "finalUpdate": {
+          "samples": 20,
+          "meanMs": 0.009675050000214468,
+          "p50Ms": 0.009500000000116415,
+          "p95Ms": 0.010333000000173342,
+          "maxMs": 0.010709000000133528
+        }
+      }
+    },
+    {
+      "group": "streaming",
+      "name": "@tanstack/markdown streaming parse",
+      "fixture": "unfinished-backtick-16kib",
+      "bytes": 16384,
+      "iterations": 10,
+      "msPerOp": 5.848141600000053,
+      "outputBytes": 0,
+      "heapDeltaKb": -165018.1953125,
+      "chunkSize": 32,
+      "warmupReplays": 2,
+      "updatesPerReplay": 512,
+      "openFenceUpdatesPerReplay": 511,
+      "checksum": 12288,
+      "latency": {
+        "all": {
+          "samples": 5120,
+          "meanMs": 0.011320061523442249,
+          "p50Ms": 0.009500000000116415,
+          "p95Ms": 0.018124999999599822,
+          "maxMs": 2.3499999999994543
+        },
+        "openFence": {
+          "samples": 5110,
+          "meanMs": 0.011338096477499627,
+          "p50Ms": 0.009500000000116415,
+          "p95Ms": 0.018124999999599822,
+          "maxMs": 2.3499999999994543
+        },
+        "lastTenPercentOpenFence": {
+          "samples": 520,
+          "meanMs": 0.025568692307708193,
+          "p50Ms": 0.016749999999774445,
+          "p95Ms": 0.02420799999981682,
+          "maxMs": 2.262917000000016
+        },
+        "finalUpdate": {
+          "samples": 10,
+          "meanMs": 0.022812400000020716,
+          "p50Ms": 0.017582999999831372,
+          "p95Ms": 0.05129099999976461,
+          "maxMs": 0.05129099999976461
+        }
+      }
+    },
+    {
+      "group": "streaming",
+      "name": "@tanstack/markdown streaming profile",
+      "fixture": "unfinished-backtick-16kib",
+      "bytes": 16384,
+      "iterations": 10,
+      "msPerOp": 10.330145699999866,
+      "outputBytes": 18667,
+      "heapDeltaKb": 66138.4765625,
+      "chunkSize": 32,
+      "warmupReplays": 2,
+      "updatesPerReplay": 512,
+      "openFenceUpdatesPerReplay": 511,
+      "checksum": 57732972,
+      "latency": {
+        "all": {
+          "samples": 5120,
+          "meanMs": 0.02006602402343489,
+          "p50Ms": 0.018874999999752617,
+          "p95Ms": 0.03450000000066211,
+          "maxMs": 1.5924589999995078
+        },
+        "openFence": {
+          "samples": 5110,
+          "meanMs": 0.02009172387475263,
+          "p50Ms": 0.018915999999990163,
+          "p95Ms": 0.03450000000066211,
+          "maxMs": 1.5924589999995078
+        },
+        "lastTenPercentOpenFence": {
+          "samples": 520,
+          "meanMs": 0.036632036538470365,
+          "p50Ms": 0.033250000000407454,
+          "p95Ms": 0.041041999999833934,
+          "maxMs": 1.2621659999995245
+        },
+        "finalUpdate": {
+          "samples": 10,
+          "meanMs": 0.036491599999953904,
+          "p50Ms": 0.03608399999939138,
+          "p95Ms": 0.0415419999999358,
+          "maxMs": 0.0415419999999358
+        }
+      }
+    },
+    {
+      "group": "streaming",
+      "name": "@tanstack/markdown streaming with @tanstack/highlight",
+      "fixture": "unfinished-backtick-16kib",
+      "bytes": 16384,
+      "iterations": 10,
+      "msPerOp": 433.25519150000036,
+      "outputBytes": 62868,
+      "heapDeltaKb": 35834.84375,
+      "chunkSize": 32,
+      "warmupReplays": 2,
+      "updatesPerReplay": 512,
+      "openFenceUpdatesPerReplay": 511,
+      "checksum": 194725992,
+      "latency": {
+        "all": {
+          "samples": 5120,
+          "meanMs": 0.8447549888671946,
+          "p50Ms": 0.8175839999994423,
+          "p95Ms": 1.7402500000007421,
+          "maxMs": 3.7253749999999854
+        },
+        "openFence": {
+          "samples": 5110,
+          "meanMs": 0.8463017614481487,
+          "p50Ms": 0.8186249999998836,
+          "p95Ms": 1.7403749999994034,
+          "maxMs": 3.7253749999999854
+        },
+        "lastTenPercentOpenFence": {
+          "samples": 520,
+          "meanMs": 1.646597844230767,
+          "p50Ms": 1.6052500000005239,
+          "p95Ms": 2.194792000000234,
+          "maxMs": 3.7253749999999854
+        },
+        "finalUpdate": {
+          "samples": 10,
+          "meanMs": 1.7058375000000523,
+          "p50Ms": 1.6742920000006052,
+          "p95Ms": 2.0839579999992566,
+          "maxMs": 2.0839579999992566
+        }
+      }
+    },
+    {
+      "group": "streaming",
+      "name": "marked progressive parse+render",
+      "fixture": "unfinished-backtick-16kib",
+      "bytes": 16384,
+      "iterations": 10,
+      "msPerOp": 10.240053999999873,
+      "outputBytes": 18638,
+      "heapDeltaKb": -4537.4609375,
+      "chunkSize": 32,
+      "warmupReplays": 2,
+      "updatesPerReplay": 512,
+      "openFenceUpdatesPerReplay": 511,
+      "checksum": 57554796,
+      "latency": {
+        "all": {
+          "samples": 5120,
+          "meanMs": 0.019879748437497825,
+          "p50Ms": 0.019417000001340057,
+          "p95Ms": 0.035875000001396984,
+          "maxMs": 0.2828749999989668
+        },
+        "openFence": {
+          "samples": 5110,
+          "meanMs": 0.019912887475535518,
+          "p50Ms": 0.019458999999187654,
+          "p95Ms": 0.035916000000725035,
+          "maxMs": 0.2828749999989668
+        },
+        "lastTenPercentOpenFence": {
+          "samples": 520,
+          "meanMs": 0.036673030769200594,
+          "p50Ms": 0.034790999998222105,
+          "p95Ms": 0.0476249999992433,
+          "maxMs": 0.16791600000033213
+        },
+        "finalUpdate": {
+          "samples": 10,
+          "meanMs": 0.03875830000015412,
+          "p50Ms": 0.03600000000005821,
+          "p95Ms": 0.05379200000061246,
+          "maxMs": 0.05379200000061246
+        }
+      }
+    },
+    {
+      "group": "streaming",
+      "name": "@tanstack/markdown streaming parse",
+      "fixture": "unfinished-backtick-64kib",
+      "bytes": 65536,
+      "iterations": 5,
+      "msPerOp": 88.78324159999974,
+      "outputBytes": 0,
+      "heapDeltaKb": 58977.828125,
+      "chunkSize": 32,
+      "warmupReplays": 2,
+      "updatesPerReplay": 2048,
+      "openFenceUpdatesPerReplay": 2047,
+      "checksum": 28672,
+      "latency": {
+        "all": {
+          "samples": 10240,
+          "meanMs": 0.04318977167969536,
+          "p50Ms": 0.036208999999871594,
+          "p95Ms": 0.08095899999898393,
+          "maxMs": 3.2906660000007832
+        },
+        "openFence": {
+          "samples": 10235,
+          "meanMs": 0.04320940097704749,
+          "p50Ms": 0.03620900000169058,
+          "p95Ms": 0.08100000000013097,
+          "maxMs": 3.2906660000007832
+        },
+        "lastTenPercentOpenFence": {
+          "samples": 1025,
+          "meanMs": 0.0844143346341493,
+          "p50Ms": 0.0648750000000291,
+          "p95Ms": 0.11779199999909906,
+          "maxMs": 2.9725839999991877
+        },
+        "finalUpdate": {
+          "samples": 5,
+          "meanMs": 0.0742999999998574,
+          "p50Ms": 0.06708299999991141,
+          "p95Ms": 0.08816699999988487,
+          "maxMs": 0.08816699999988487
+        }
+      }
+    },
+    {
+      "group": "streaming",
+      "name": "@tanstack/markdown streaming profile",
+      "fixture": "unfinished-backtick-64kib",
+      "bytes": 65536,
+      "iterations": 5,
+      "msPerOp": 166.69010019999988,
+      "outputBytes": 74347,
+      "heapDeltaKb": -65495.1875,
+      "chunkSize": 32,
+      "warmupReplays": 2,
+      "updatesPerReplay": 2048,
+      "openFenceUpdatesPerReplay": 2047,
+      "checksum": 534043559,
+      "latency": {
+        "all": {
+          "samples": 10240,
+          "meanMs": 0.08118271386719282,
+          "p50Ms": 0.07345799999893643,
+          "p95Ms": 0.1531250000007276,
+          "maxMs": 2.1279169999997976
+        },
+        "openFence": {
+          "samples": 10235,
+          "meanMs": 0.08121982081094817,
+          "p50Ms": 0.073500000000422,
+          "p95Ms": 0.15333299999838346,
+          "maxMs": 2.1279169999997976
+        },
+        "lastTenPercentOpenFence": {
+          "samples": 1025,
+          "meanMs": 0.15453332097562408,
+          "p50Ms": 0.1279580000009446,
+          "p95Ms": 0.22691699999995762,
+          "maxMs": 1.78583400000025
+        },
+        "finalUpdate": {
+          "samples": 5,
+          "meanMs": 0.1325332000003982,
+          "p50Ms": 0.13154100000065228,
+          "p95Ms": 0.14270900000155962,
+          "maxMs": 0.14270900000155962
+        }
+      }
+    },
+    {
+      "group": "streaming",
+      "name": "@tanstack/markdown streaming with @tanstack/highlight",
+      "fixture": "unfinished-backtick-64kib",
+      "bytes": 65536,
+      "iterations": 5,
+      "msPerOp": 6953.515150000001,
+      "outputBytes": 249146,
+      "heapDeltaKb": -35723.3515625,
+      "chunkSize": 32,
+      "warmupReplays": 2,
+      "updatesPerReplay": 2048,
+      "openFenceUpdatesPerReplay": 2047,
+      "checksum": 1793925812,
+      "latency": {
+        "all": {
+          "samples": 10240,
+          "meanMs": 3.392740948242209,
+          "p50Ms": 3.4198749999995925,
+          "p95Ms": 6.580291999998735,
+          "maxMs": 12.043541999999434
+        },
+        "openFence": {
+          "samples": 10235,
+          "meanMs": 3.394368667415751,
+          "p50Ms": 3.421582999995735,
+          "p95Ms": 6.583459000001312,
+          "maxMs": 12.043541999999434
+        },
+        "lastTenPercentOpenFence": {
+          "samples": 1025,
+          "meanMs": 6.55173894926834,
+          "p50Ms": 6.430832999998529,
+          "p95Ms": 7.7552080000023125,
+          "maxMs": 10.843958000004932
+        },
+        "finalUpdate": {
+          "samples": 5,
+          "meanMs": 6.907216400001198,
+          "p50Ms": 6.77204100000381,
+          "p95Ms": 7.664291000000958,
+          "maxMs": 7.664291000000958
+        }
+      }
+    },
+    {
+      "group": "streaming",
+      "name": "marked progressive parse+render",
+      "fixture": "unfinished-backtick-64kib",
+      "bytes": 65536,
+      "iterations": 5,
+      "msPerOp": 148.42968340000078,
+      "outputBytes": 74318,
+      "heapDeltaKb": 29715.09375,
+      "chunkSize": 32,
+      "warmupReplays": 2,
+      "updatesPerReplay": 2048,
+      "openFenceUpdatesPerReplay": 2047,
+      "checksum": 533627815,
+      "latency": {
+        "all": {
+          "samples": 10240,
+          "meanMs": 0.07235159365235333,
+          "p50Ms": 0.07262500000069849,
+          "p95Ms": 0.134249999995518,
+          "maxMs": 0.4335419999988517
+        },
+        "openFence": {
+          "samples": 10235,
+          "meanMs": 0.07238514342941847,
+          "p50Ms": 0.07266700000036508,
+          "p95Ms": 0.134249999995518,
+          "maxMs": 0.4335419999988517
+        },
+        "lastTenPercentOpenFence": {
+          "samples": 1025,
+          "meanMs": 0.135444688780415,
+          "p50Ms": 0.1322920000020531,
+          "p95Ms": 0.15491599999950267,
+          "maxMs": 0.3325830000030692
+        },
+        "finalUpdate": {
+          "samples": 5,
+          "meanMs": 0.14232500000071013,
+          "p50Ms": 0.13716700000077253,
+          "p95Ms": 0.16033299999980954,
+          "maxMs": 0.16033299999980954
+        }
+      }
+    },
+    {
+      "group": "streaming",
+      "name": "@tanstack/markdown streaming parse",
+      "fixture": "unfinished-tilde-64kib",
+      "bytes": 65536,
+      "iterations": 5,
+      "msPerOp": 79.82769179999741,
+      "outputBytes": 0,
+      "heapDeltaKb": 71313.5703125,
+      "chunkSize": 32,
+      "warmupReplays": 2,
+      "updatesPerReplay": 2048,
+      "openFenceUpdatesPerReplay": 2047,
+      "checksum": 28672,
+      "latency": {
+        "all": {
+          "samples": 10240,
+          "meanMs": 0.03892056455080208,
+          "p50Ms": 0.033999999999650754,
+          "p95Ms": 0.06441699999413686,
+          "maxMs": 2.7499169999937294
+        },
+        "openFence": {
+          "samples": 10235,
+          "meanMs": 0.038938336394745345,
+          "p50Ms": 0.034040999998978805,
+          "p95Ms": 0.06445800000074087,
+          "maxMs": 2.7499169999937294
+        },
+        "lastTenPercentOpenFence": {
+          "samples": 1025,
+          "meanMs": 0.07508403219514748,
+          "p50Ms": 0.06274999999732245,
+          "p95Ms": 0.08191700000315905,
+          "maxMs": 2.7499169999937294
+        },
+        "finalUpdate": {
+          "samples": 5,
+          "meanMs": 0.06999179999838816,
+          "p50Ms": 0.06583299999329029,
+          "p95Ms": 0.08716699999786215,
+          "maxMs": 0.08716699999786215
+        }
+      }
+    },
+    {
+      "group": "streaming",
+      "name": "@tanstack/markdown streaming profile",
+      "fixture": "unfinished-tilde-64kib",
+      "bytes": 65536,
+      "iterations": 5,
+      "msPerOp": 151.58304159999972,
+      "outputBytes": 74347,
+      "heapDeltaKb": -86751.4609375,
+      "chunkSize": 32,
+      "warmupReplays": 2,
+      "updatesPerReplay": 2048,
+      "openFenceUpdatesPerReplay": 2047,
+      "checksum": 534043559,
+      "latency": {
+        "all": {
+          "samples": 10240,
+          "meanMs": 0.07392367548829241,
+          "p50Ms": 0.06974999999511056,
+          "p95Ms": 0.12745900000300026,
+          "maxMs": 1.701708000000508
+        },
+        "openFence": {
+          "samples": 10235,
+          "meanMs": 0.0739573055202851,
+          "p50Ms": 0.0697920000020531,
+          "p95Ms": 0.12749999999505235,
+          "maxMs": 1.701708000000508
+        },
+        "lastTenPercentOpenFence": {
+          "samples": 1025,
+          "meanMs": 0.13837541560961852,
+          "p50Ms": 0.12449999999807915,
+          "p95Ms": 0.1492080000025453,
+          "maxMs": 1.62275000000227
+        },
+        "finalUpdate": {
+          "samples": 5,
+          "meanMs": 0.1289249999987078,
+          "p50Ms": 0.1275420000019949,
+          "p95Ms": 0.13320799999928568,
+          "maxMs": 0.13320799999928568
+        }
+      }
+    },
+    {
+      "group": "streaming",
+      "name": "@tanstack/markdown streaming with @tanstack/highlight",
+      "fixture": "unfinished-tilde-64kib",
+      "bytes": 65536,
+      "iterations": 5,
+      "msPerOp": 8161.249008199998,
+      "outputBytes": 249146,
+      "heapDeltaKb": -109512.4609375,
+      "chunkSize": 32,
+      "warmupReplays": 2,
+      "updatesPerReplay": 2048,
+      "openFenceUpdatesPerReplay": 2047,
+      "checksum": 1793925812,
+      "latency": {
+        "all": {
+          "samples": 10240,
+          "meanMs": 3.982018991699145,
+          "p50Ms": 3.78270799999882,
+          "p95Ms": 8.104082999998354,
+          "maxMs": 92.9486670000042
+        },
+        "openFence": {
+          "samples": 10235,
+          "meanMs": 3.9839234586223,
+          "p50Ms": 3.784333000003244,
+          "p95Ms": 8.106708999999682,
+          "maxMs": 92.9486670000042
+        },
+        "lastTenPercentOpenFence": {
+          "samples": 1025,
+          "meanMs": 7.017661139512117,
+          "p50Ms": 6.327290999994148,
+          "p95Ms": 9.367958000002545,
+          "maxMs": 89.78366599998844
+        },
+        "finalUpdate": {
+          "samples": 5,
+          "meanMs": 7.071666600002208,
+          "p50Ms": 6.715166000009049,
+          "p95Ms": 8.302792000002228,
+          "maxMs": 8.302792000002228
+        }
+      }
+    },
+    {
+      "group": "streaming",
+      "name": "marked progressive parse+render",
+      "fixture": "unfinished-tilde-64kib",
+      "bytes": 65536,
+      "iterations": 5,
+      "msPerOp": 147.22933320000303,
+      "outputBytes": 74318,
+      "heapDeltaKb": 29615.7109375,
+      "chunkSize": 32,
+      "warmupReplays": 2,
+      "updatesPerReplay": 2048,
+      "openFenceUpdatesPerReplay": 2047,
+      "checksum": 533627815,
+      "latency": {
+        "all": {
+          "samples": 10240,
+          "meanMs": 0.0717972814452807,
+          "p50Ms": 0.07083399999828544,
+          "p95Ms": 0.13324999999895226,
+          "maxMs": 0.3760000000038417
+        },
+        "openFence": {
+          "samples": 10235,
+          "meanMs": 0.07182997430382528,
+          "p50Ms": 0.07087499999033753,
+          "p95Ms": 0.13324999999895226,
+          "maxMs": 0.3760000000038417
+        },
+        "lastTenPercentOpenFence": {
+          "samples": 1025,
+          "meanMs": 0.13354970634142618,
+          "p50Ms": 0.13033300000824966,
+          "p95Ms": 0.1582909999997355,
+          "maxMs": 0.3410839999996824
+        },
+        "finalUpdate": {
+          "samples": 5,
+          "meanMs": 0.15028300000121816,
+          "p50Ms": 0.13937499999883585,
+          "p95Ms": 0.19883300000219606,
+          "maxMs": 0.19883300000219606
+        }
+      }
+    },
+    {
+      "group": "streaming",
+      "name": "@tanstack/markdown streaming parse",
+      "fixture": "closing-backtick-64kib",
+      "bytes": 65566,
+      "iterations": 5,
+      "msPerOp": 83.45165839999973,
+      "outputBytes": 0,
+      "heapDeltaKb": 72340.4921875,
+      "chunkSize": 32,
+      "warmupReplays": 2,
+      "updatesPerReplay": 2049,
+      "openFenceUpdatesPerReplay": 2047,
+      "checksum": 28693,
+      "latency": {
+        "all": {
+          "samples": 10245,
+          "meanMs": 0.04065191215222499,
+          "p50Ms": 0.034916999997221865,
+          "p95Ms": 0.0695830000040587,
+          "maxMs": 3.1708749999961583
+        },
+        "openFence": {
+          "samples": 10235,
+          "meanMs": 0.04065160058618007,
+          "p50Ms": 0.034916999997221865,
+          "p95Ms": 0.06949999999778811,
+          "maxMs": 3.1708749999961583
+        },
+        "lastTenPercentOpenFence": {
+          "samples": 1025,
+          "meanMs": 0.07932173170739922,
+          "p50Ms": 0.06325000000651926,
+          "p95Ms": 0.09729199999128468,
+          "maxMs": 2.7610419999982696
+        },
+        "finalUpdate": {
+          "samples": 5,
+          "meanMs": 0.0778249999973923,
+          "p50Ms": 0.07470899999316316,
+          "p95Ms": 0.08883300000161398,
+          "maxMs": 0.08883300000161398
+        }
+      }
+    },
+    {
+      "group": "streaming",
+      "name": "@tanstack/markdown streaming profile",
+      "fixture": "closing-backtick-64kib",
+      "bytes": 65566,
+      "iterations": 5,
+      "msPerOp": 158.23815839999878,
+      "outputBytes": 74378,
+      "heapDeltaKb": 3098.046875,
+      "chunkSize": 32,
+      "warmupReplays": 2,
+      "updatesPerReplay": 2049,
+      "openFenceUpdatesPerReplay": 2047,
+      "checksum": 534564205,
+      "latency": {
+        "all": {
+          "samples": 10245,
+          "meanMs": 0.07712069389948589,
+          "p50Ms": 0.06920800000079907,
+          "p95Ms": 0.1396670000103768,
+          "maxMs": 1.764999999999418
+        },
+        "openFence": {
+          "samples": 10235,
+          "meanMs": 0.07711955378605276,
+          "p50Ms": 0.06920800000079907,
+          "p95Ms": 0.13950000000477303,
+          "maxMs": 1.764999999999418
+        },
+        "lastTenPercentOpenFence": {
+          "samples": 1025,
+          "meanMs": 0.1427728409754828,
+          "p50Ms": 0.12816699998802505,
+          "p95Ms": 0.1669170000095619,
+          "maxMs": 1.6622079999942798
+        },
+        "finalUpdate": {
+          "samples": 5,
+          "meanMs": 0.15054999999701976,
+          "p50Ms": 0.146666999993613,
+          "p95Ms": 0.16754100000252947,
+          "maxMs": 0.16754100000252947
+        }
+      }
+    },
+    {
+      "group": "streaming",
+      "name": "@tanstack/markdown streaming with @tanstack/highlight",
+      "fixture": "closing-backtick-64kib",
+      "bytes": 65566,
+      "iterations": 5,
+      "msPerOp": 6534.3609,
+      "outputBytes": 249177,
+      "heapDeltaKb": -117985.0078125,
+      "chunkSize": 32,
+      "warmupReplays": 2,
+      "updatesPerReplay": 2049,
+      "openFenceUpdatesPerReplay": 2047,
+      "checksum": 1795670051,
+      "latency": {
+        "all": {
+          "samples": 10245,
+          "meanMs": 3.187517166325207,
+          "p50Ms": 3.1581670000159647,
+          "p95Ms": 6.161041999992449,
+          "maxMs": 12.539707999996608
+        },
+        "openFence": {
+          "samples": 10235,
+          "meanMs": 3.1875759316074004,
+          "p50Ms": 3.1581670000159647,
+          "p95Ms": 6.159833000012441,
+          "maxMs": 12.539707999996608
+        },
+        "lastTenPercentOpenFence": {
+          "samples": 1025,
+          "meanMs": 6.201656636098093,
+          "p50Ms": 6.096417000022484,
+          "p95Ms": 7.122999999992317,
+          "maxMs": 12.539707999996608
+        },
+        "finalUpdate": {
+          "samples": 5,
+          "meanMs": 6.199541799991858,
+          "p50Ms": 6.250833999976749,
+          "p95Ms": 6.409249999996973,
+          "maxMs": 6.409249999996973
+        }
+      }
+    },
+    {
+      "group": "streaming",
+      "name": "marked progressive parse+render",
+      "fixture": "closing-backtick-64kib",
+      "bytes": 65566,
+      "iterations": 5,
+      "msPerOp": 146.64199140000272,
+      "outputBytes": 74349,
+      "heapDeltaKb": -43318,
+      "chunkSize": 32,
+      "warmupReplays": 2,
+      "updatesPerReplay": 2049,
+      "openFenceUpdatesPerReplay": 2047,
+      "checksum": 534148258,
+      "latency": {
+        "all": {
+          "samples": 10245,
+          "meanMs": 0.07149037306003303,
+          "p50Ms": 0.07129200000781566,
+          "p95Ms": 0.13333399998373352,
+          "maxMs": 0.3815420000173617
+        },
+        "openFence": {
+          "samples": 10235,
+          "meanMs": 0.07148188373229648,
+          "p50Ms": 0.07129200000781566,
+          "p95Ms": 0.13329199998406693,
+          "maxMs": 0.3815420000173617
+        },
+        "lastTenPercentOpenFence": {
+          "samples": 1025,
+          "meanMs": 0.1348610351218206,
+          "p50Ms": 0.13129200000548735,
+          "p95Ms": 0.1559170000255108,
+          "maxMs": 0.3815420000173617
+        },
+        "finalUpdate": {
+          "samples": 5,
+          "meanMs": 0.15603319999645465,
+          "p50Ms": 0.15587499999674037,
+          "p95Ms": 0.1638329999987036,
+          "maxMs": 0.1638329999987036
+        }
+      }
     }
   ]
 }

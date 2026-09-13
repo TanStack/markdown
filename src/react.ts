@@ -37,7 +37,7 @@ export function renderBlockReact(node: BlockNode, options: MarkdownReactOptions 
       return h(
         options,
         `h${node.depth}`,
-        { key, ...(node.id ? { id: node.id } : {}), ...(node.framework ? { 'data-framework': node.framework } : {}) },
+        { key, ...(node.id && { id: node.id }), ...(node.framework && { 'data-framework': node.framework }) },
         renderInlines(node.children, options),
         renderHeadingAnchorReact(node.id, options),
       )
@@ -50,7 +50,7 @@ export function renderBlockReact(node: BlockNode, options: MarkdownReactOptions 
       return h(
         options,
         tag,
-        { key, ...(node.ordered && node.start !== undefined && node.start !== 1 ? { start: node.start } : {}) },
+        { key, ...(node.ordered && node.start !== undefined && node.start !== 1 && { start: node.start }) },
         node.items.map((item, index) =>
           h(options, 'li', { key: index }, renderListItemChildrenReact(item.children, item.checked, node.loose, options, `${index}`)),
         ),
@@ -126,9 +126,9 @@ export function renderInlineReact(node: InlineNode, options: MarkdownReactOption
         ),
       )
     case 'link':
-      return h(options, 'a', { key, href: node.href, ...(node.title ? { title: node.title } : {}) }, renderInlines(node.children, options))
+      return h(options, 'a', { key, href: node.href, ...(node.title && { title: node.title }) }, renderInlines(node.children, options))
     case 'image':
-      return h(options, 'img', { key, src: node.src, alt: node.alt, ...(node.title ? { title: node.title } : {}) })
+      return h(options, 'img', { key, src: node.src, alt: node.alt, ...(node.title && { title: node.title }) })
     case 'break':
       return h(options, 'br', { key })
     case 'inlineHtml':
@@ -148,7 +148,12 @@ function renderCodeBlockReact(node: Extract<BlockNode, { type: 'code' }>, option
   const lang = node.lang ?? 'plaintext'
   const highlighter = options.highlighter
 
-  const content = highlighter ? undefined : node.value
+  // Keep completed groups of lines in stable text nodes as code grows. Grouping
+  // bounds React's sibling work without relaying out the entire code block.
+  // Static rendering and custom code components retain string children.
+  const content = highlighter ? undefined : !options.components?.code && options.extensions?.some(extension => extension.name === 'streaming')
+    ? node.value.match(/(?:[^\n]*\n){1,4}|[^\n]+$/g)
+    : node.value
 
   const highlighted =
     highlighter
@@ -167,17 +172,18 @@ function renderCodeBlockReact(node: Extract<BlockNode, { type: 'code' }>, option
     options,
     'pre',
     {
+      key,
       className: `tm-code${options.codeLineNumbers ? ' tm-code--line-numbers' : ''}`,
       'data-lang': lang,
-      ...(node.meta ? { 'data-meta': node.meta } : {}),
-      ...(node.title ? { 'data-code-title': node.title } : {}),
-      ...(node.file ? { 'data-filename': node.file } : {}),
-      ...(node.framework ? { 'data-framework': node.framework } : {}),
+      ...(node.meta && { 'data-meta': node.meta }),
+      ...(node.title && { 'data-code-title': node.title }),
+      ...(node.file && { 'data-filename': node.file }),
+      ...(node.framework && { 'data-framework': node.framework }),
     },
     h(options, 'code', { className: `language-${lang}`, ...highlighted }, content),
   )
 
-  if (!node.title) return h(options, Fragment, { key }, pre)
+  if (!node.title) return pre
 
   return h(
     options,
@@ -226,7 +232,7 @@ function renderTableCellReact(
   options: MarkdownReactOptions,
   key: number,
 ): ReactElement {
-  return h(options, tag, { key, ...(align ? { style: { textAlign: align } } : {}) }, renderInlines(cell.children, options))
+  return h(options, tag, { key, ...(align && { style: { textAlign: align } }) }, renderInlines(cell.children, options))
 }
 
 function renderFootnotesReact(items: FootnoteItemNode[], options: MarkdownReactOptions, key?: string): ReactElement {
@@ -290,7 +296,7 @@ function h(options: MarkdownReactOptions, tag: string | typeof Fragment, props: 
 function renderComponentReact(node: ComponentNode | InlineComponentNode, options: MarkdownReactOptions, key?: string): ReactElement {
   const tag = node.tagName ?? (node.type === 'inlineComponent' ? 'span' : 'md-comment-component')
   const props: Record<string, string> = {
-    ...(node.properties ?? {}),
+    ...node.properties,
   }
 
   if (!node.tagName) {
