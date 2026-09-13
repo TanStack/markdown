@@ -2,7 +2,7 @@ import type { BlockNode, ComponentNode } from '../types.js'
 import { plainText } from '../utils.js'
 
 export interface HeadingSection {
-  id?: string
+  id?: string | undefined
   name: string
   children: BlockNode[]
 }
@@ -33,19 +33,12 @@ export function blocksToText(blocks: BlockNode[]): string {
 
 export function splitByHeading(children: BlockNode[], forcedDepth?: number): HeadingSection[] {
   const depth = forcedDepth ?? children.reduce((depth, child) => child.type === 'heading' ? Math.min(depth, child.depth) : depth, Infinity)
-  if (!Number.isFinite(depth)) return []
-
   const sections: HeadingSection[] = []
   let current: HeadingSection | undefined
 
   for (const child of children) {
     if (child.type === 'heading' && child.depth === depth) {
-      current = {
-        name: plainText(child.children),
-        children: [],
-      }
-      if (child.id) current.id = child.id
-      sections.push(current)
+      sections.push((current = { id: child.id, name: plainText(child.children), children: [] }))
       continue
     }
     if (current) current.children.push(child)
@@ -60,8 +53,7 @@ export function slugify(value: string, fallback: string) {
       .trim()
       .toLowerCase()
       .replace(/[^a-z0-9\s-]/g, '')
-      .replace(/\s+/g, '-')
-      .replace(/-+/g, '-')
+      .replace(/[\s-]+/g, '-')
       .replace(/^-|-$/g, '')
       .slice(0, 64) || fallback
   )

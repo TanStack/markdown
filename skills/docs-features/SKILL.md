@@ -126,7 +126,7 @@ main {
 <!-- ::end:tabs -->
 ````
 
-Package-manager tabs consume `framework: package...` lines and remove their source children after creating metadata:
+Package-manager tabs consume `framework: package...` lines and shared `package...` lines, then remove their source children after creating metadata:
 
 ```md
 <!-- ::start:tabs variant="package-manager" mode="dev-install" -->
