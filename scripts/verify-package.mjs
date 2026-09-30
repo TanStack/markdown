@@ -11,14 +11,14 @@ try {
   run('pnpm', ['pack', '--out', join(directory, 'markdown.tgz')], process.cwd())
   await writeFile(join(directory, 'package.json'), JSON.stringify({ private: true, type: 'module' }))
   const react = process.env.TEST_REACT_VERSION || '19'
-  run('npm', ['install', '--ignore-scripts', '--no-audit', '--no-fund', './markdown.tgz', `react@${react}`, `react-dom@${react}`, 'octane@0.1.12'])
+  run('npm', ['install', '--ignore-scripts', '--no-audit', '--no-fund', '--legacy-peer-deps=false', './markdown.tgz', `react@${react}`, `react-dom@${react}`, ...(react.startsWith('18') ? [] : ['octane@0.1.12'])])
   await writeFile(join(directory, 'verify.mjs'), `
 import assert from 'node:assert/strict'
 import { createElement } from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
 import { Markdown } from '@tanstack/markdown/react'
 import { parseMarkdown, renderHtml } from '@tanstack/markdown'
-for (const entry of ${JSON.stringify(Object.keys(manifest.exports))}) {
+for (const entry of ${JSON.stringify(Object.keys(manifest.exports).filter(entry => !react.startsWith('18') || entry !== './octane'))}) {
   await import('@tanstack/markdown' + (entry === '.' ? '' : entry.slice(1)))
 }
 const source = '# Hello\\n\\n**world** and [unsafe](javascript:alert(1))'
