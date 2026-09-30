@@ -38,7 +38,7 @@ Yes. Every renderer accepts the same `MarkdownDocument`. Core output structure i
 
 ## Is the AST stable?
 
-It is public and typed, but the package is pre-1.0. Pin a version for persisted ASTs and rebuild caches when an upgrade changes the node contract.
+The documented AST is public and follows the version 1 compatibility policy. Existing valid documents remain accepted throughout 1.x. For persistent caches, record the producer package version and rebuild when you want updated parsing behavior. See [Version 1 compatibility](./version-one.md).
 
 ## How do I decide before migrating?
 

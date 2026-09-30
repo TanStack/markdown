@@ -96,7 +96,8 @@
     "research": "pnpm run conformance && pnpm run size && pnpm run bench",
     "verify": "pnpm test && pnpm run typecheck && pnpm run build && pnpm run docs:verify && pnpm run test:skills && pnpm run research && pnpm pack --dry-run",
     "prepublishOnly": "pnpm run verify",
-    "version": "pnpm run skills:sync-version"
+    "version": "pnpm run skills:sync-version",
+    "test:package": "node scripts/verify-package.mjs"
   },
   "publishConfig": {
     "access": "public"
