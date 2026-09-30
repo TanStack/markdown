@@ -1,5 +1,11 @@
 # @tanstack/markdown
 
+## 0.0.16
+
+### Patch Changes
+
+- 967a294: Support framework-independent commands in package-manager tabs. Lines without a framework prefix are shared commands, and named framework groups include shared lines in source order. Preserve existing framework-prefixed commands and URL and path specifiers.
+
 ## 0.0.15
 
 ### Patch Changes
