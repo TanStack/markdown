@@ -68,7 +68,7 @@ const issueReferences: MarkdownExtension = {
 }
 ```
 
-`markers` lists literal possible first characters, not a regular expression. The parser skips ordinary text to the next built-in or extension marker. At a matching position, extensions run in array order after built-in escapes and code spans, before the other built-in inline rules. The first returned result owns that range. Return `undefined` to let the next extension or built-in rule handle it.
+`markers` lists literal possible starting UTF-16 code units, not a regular expression or a list of Unicode code points. An emoji contributes its surrogate code units: a callback may also be called for another character sharing one of those units. Always check the complete syntax with `source.startsWith(token, index)` or equivalent, and consume its UTF-16 length. The parser skips ordinary text to the next built-in or extension marker. At a matching position, extensions run in array order after built-in escapes and code spans, before the other built-in inline rules. The first returned result owns that range. Return `undefined` to let the next extension or built-in rule handle it.
 
 The context provides `source`, `index`, `options`, `inLink`, and a nested `parseInline(value)` helper. Source and UTF-16 indices refer to the current inline container, not offsets in the original document. Hooks also run within emphasis and explicit link labels; `inLink` remains true through their nested content. They do not run inside code, image alt text, or link destinations. A hook cannot consume across an enclosing inline or block boundary.
 

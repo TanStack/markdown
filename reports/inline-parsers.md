@@ -1,37 +1,38 @@
-# Inline source parser proposal
+# Inline source parser candidate
 
-Baseline: `eb6ef72496aa2c5b2916a1545064307041529024`. Runtime: `v26.7.0`.
+Baseline: `1b7dc5410e2fd66f95e2eb557650403579fe530b`. Runtime: `v24.21.0`. This is an isolated inclusion proposal, not an approved 1.0 API decision.
 
-This new extension API adds core dispatch code. The proposed measured ceilings below replace the previous exact ceilings; accepting the API therefore also requires accepting this explicit size increase. Standalone existing extensions are unchanged. No runtime dependency is added.
+The two original PR #19 commits retain Silouan Wright as author. Generated reports and size ceilings were rebased onto the current streaming implementation rather than restoring the older PR ceilings. No runtime dependency is added.
 
 | Entry | Gzip before | Gzip after | Delta |
 | --- | ---: | ---: | ---: |
-| parser only | 4975 | 5283 | +308 |
-| html renderer no highlighter | 6807 | 7116 | +309 |
-| react adapter | 6722 | 7026 | +304 |
-| octane adapter | 6727 | 7033 | +306 |
+| parser only | 4894 | 5196 | +302 |
+| html renderer no highlighter | 6729 | 7027 | +298 |
+| react adapter | 6676 | 6974 | +298 |
+| octane adapter | 6644 | 6941 | +297 |
+| react adapter with streaming extension | 6860 | 7157 | +297 |
 
-CommonMark accounting: 403 → 403; no established matches lost.
+CommonMark: 403 → 403, no established matches lost.
 
-The existing revision comparison warms both implementations and alternates their execution over nine rounds. These are local Node measurements with the extension disabled, not browser performance claims.
+Paired measurements warm both implementations and alternate order across nine rounds, with the hook disabled. These are local Node measurements, not browser timing claims.
 
-| Fixture | Parse + render before (ms) | After (ms) | Ratio |
+| Fixture/mode | Before ms | After ms | Ratio |
 | --- | ---: | ---: | ---: |
-| ai-response.md (parseRender) | 0.01933 | 0.01951 | 1.01× |
-| ai-response.md (streaming) | 0.22550 | 0.23448 | 1.04× |
-| code-heavy.md (parseRender) | 0.01066 | 0.01088 | 1.02× |
-| malformed.md (parseRender) | 0.00374 | 0.00383 | 1.02× |
-| prose-heavy.md (parseRender) | 0.01852 | 0.01860 | 1.00× |
-| small-doc.md (parseRender) | 0.01291 | 0.01298 | 1.01× |
-| tables-lists.md (parseRender) | 0.02851 | 0.02877 | 1.01× |
-| long-prose (parseRender) | 0.01856 | 0.01857 | 1.00× |
-| unmatched-brackets (parseRender) | 0.03279 | 0.03293 | 1.00× |
+| ai-response.md / parseRender | 0.02316 | 0.02122 | 0.92x |
+| ai-response.md / streaming | 0.23267 | 0.25443 | 1.09x |
+| code-heavy.md / parseRender | 0.01062 | 0.01115 | 1.05x |
+| malformed.md / parseRender | 0.00336 | 0.00336 | 1.00x |
+| prose-heavy.md / parseRender | 0.01874 | 0.01837 | 0.98x |
+| small-doc.md / parseRender | 0.01303 | 0.01319 | 1.01x |
+| tables-lists.md / parseRender | 0.03009 | 0.03114 | 1.03x |
+| long-prose / parseRender | 0.02170 | 0.02177 | 1.00x |
+| unmatched-brackets / parseRender | 0.04778 | 0.04811 | 1.01x |
 
-Reproduce:
+All paired samples are in `artifacts/audit-comparison.json` (local artifact). Reproduce with Node 24:
 
 ```sh
-pnpm exec tsx scripts/compare-revision.mjs eb6ef72496aa2c5b2916a1545064307041529024
+pnpm exec tsx scripts/compare-revision.mjs 1b7dc5410e2fd66f95e2eb557650403579fe530b
 pnpm run verify
 ```
 
-The comparison writes full paired samples to `artifacts/audit-comparison.json`. Hook-specific tests cover ordinary-text dispatch, literal markers, escape and code precedence, source ownership, shared scan/depth limits, invalid consumption, link context, AST serialization, and HTML/React/Octane parity.
+The new tests cover callback ordering, literal markers including UTF-16 surrogate handling, escape/code precedence, image-alt exclusion, container boundaries, nested link handling, shared scan/depth limits, invalid lengths and HTML/React/Octane parity. Callbacks and returned ASTs are trusted; callback work and URL policy are application responsibilities.

@@ -166,7 +166,7 @@ Provides source `lines`, current `index`, active `options`, nested `parseInline`
 
 ### `InlineParser`
 
-Contains literal first-character `markers` and a synchronous `parse(context)` callback returning `InlineParseResult | undefined`. Runs at matching source positions after escapes and code spans, before other built-in inline rules.
+Contains literal starting UTF-16 code-unit `markers` and a synchronous `parse(context)` callback returning `InlineParseResult | undefined`. Runs at matching source positions after escapes and code spans, before other built-in inline rules.
 
 ### `InlineParseContext`
 

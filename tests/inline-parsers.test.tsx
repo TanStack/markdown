@@ -124,3 +124,15 @@ describe('source-level inline parsers', () => {
     expect(renderAll('[@](/outer)', { extensions })).toBe('<p>[<a href="/inner">inner</a>](/outer)</p>')
   })
 })
+
+
+it('uses UTF-16 marker units while allowing complete Unicode syntax checks', () => {
+  const extensions: MarkdownExtension[] = [{ name: 'emoji', inlineParser: {
+    markers: '😀',
+    parse({ source, index }) {
+      if (!source.startsWith('😀', index)) return
+      return { length: '😀'.length, node: { type: 'inlineCode', value: 'emoji' } }
+    },
+  } }]
+  expect(renderAll('🔥 then 😀', { extensions })).toBe('<p>🔥 then <code>emoji</code></p>')
+})
