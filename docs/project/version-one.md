@@ -18,9 +18,9 @@ Extensions and custom URL transforms are trusted synchronous application code. T
 
 ## Supported environments
 
-The package is ESM-only. Release checks cover Node.js 22 and 24, React 18.3 and 19, and Octane 0.1.12. The framework-independent parser and HTML renderer need no React or Octane runtime. Browser checks cover current Playwright Chromium, Firefox, and WebKit with React rendering and hydration. A supported browser needs modern JavaScript, including ES2022 features. Other ESM runtimes may work but are not a tested support promise.
+The package is ESM-only. Release checks cover Node.js 22 and 24, React 18.0 and 19, and Octane 0.1.12. The framework-independent parser and HTML renderer need no React or Octane runtime. Browser checks cover current Playwright Chromium, Firefox, and WebKit with React rendering and hydration. A supported browser needs modern JavaScript, including ES2022 features. Other ESM runtimes may work but are not a tested support promise.
 
-The React peer range allows newer compatible React releases; automated testing of the current 18 and 19 releases is the compatibility baseline. Octane remains an optional adapter for the explicitly tested release, not a promise about future pre-1.0 Octane changes. Octane 0.1.12 requires React 19 when both frameworks are installed; React 18 applications should omit the optional Octane dependency.
+The React peer range allows newer compatible React releases; automated testing of the minimum 18.0 and current 19 releases is the compatibility baseline. Octane remains an optional adapter for the explicitly tested release, not a promise about future pre-1.0 Octane changes. Octane 0.1.12 requires React 19 when both frameworks are installed; React 18 applications should omit the optional Octane dependency.
 
 ## Upgrading from 0.0.16
 
