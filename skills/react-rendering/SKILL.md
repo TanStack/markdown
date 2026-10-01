@@ -9,7 +9,7 @@ metadata:
   type: framework
   library: '@tanstack/markdown'
   framework: 'react'
-  library_version: '0.0.16'
+  library_version: '1.0.0'
 requires:
   - 'render-markdown'
 sources:

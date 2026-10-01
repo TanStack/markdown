@@ -1,5 +1,15 @@
 # @tanstack/markdown
 
+## 1.0.0
+
+### Major Changes
+
+- 7cd68d4: Release the documented Markdown parser, HTML/React/Octane renderers, AST and extension APIs as version 1.0. Define the compatibility and trusted-content contracts, validate installed package entry points, and gate releases on supported server and browser rendering tests. Include the optional source-level inline parser contract for custom syntax without changing default parsing. Existing 0.0.16 calls require no migration.
+
+### Minor Changes
+
+- 771ab04: Add opt-in source-level inline parsers to Markdown extensions. Declare starting characters and return a standard inline node with an explicit consumed length, before built-in formatting changes the source. Preserve escape and code precedence, expose link-label context, and share parser budgets with nested parsing.
+
 ## 0.0.16
 
 ### Patch Changes
