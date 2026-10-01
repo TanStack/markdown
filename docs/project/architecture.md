@@ -48,7 +48,7 @@ The parser never imports a renderer. The renderers never import a highlighter. T
 
 The extension API handles the common need to add a docs block or derive metadata without paying for a general compiler pipeline. It intentionally does not implement async plugins, arbitrary virtual files, source maps, JSX evaluation, or cross-format compilation.
 
-That boundary is the product: use a unified or MDX stack when those capabilities are central, and use TanStack Markdown when the controlled docs renderer is enough.
+Use these hooks to recognize a custom block or inline marker, collect headings, or replace HTML for a node. Choose a unified or MDX stack when you need asynchronous transforms, compiler integration, or executable JSX.
 
 ## Release gates
 
