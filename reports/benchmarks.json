@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-09-12T23:59:58.621Z",
+  "generatedAt": "2026-09-30T23:01:01.672Z",
   "environment": {
-    "node": "v24.15.0",
+    "node": "v24.21.0",
     "platform": "darwin",
     "arch": "arm64",
     "cpu": "Apple M5 Pro"
   },
-  "sink": 9056185263,
+  "sink": 11120744697,
   "results": [
     {
       "group": "markdown",
@@ -14,9 +14,9 @@
       "fixture": "ai-response.md",
       "bytes": 652,
       "iterations": 2000,
-      "msPerOp": 0.0230959165,
+      "msPerOp": 0.02314304150000001,
       "outputBytes": 15,
-      "heapDeltaKb": 35036.625
+      "heapDeltaKb": 39319.75
     },
     {
       "group": "markdown",
@@ -24,9 +24,9 @@
       "fixture": "ai-response.md",
       "bytes": 652,
       "iterations": 2000,
-      "msPerOp": 0.004967021000000003,
+      "msPerOp": 0.005718249999999998,
       "outputBytes": 1399,
-      "heapDeltaKb": 10160.7421875
+      "heapDeltaKb": -18030.453125
     },
     {
       "group": "markdown",
@@ -34,9 +34,9 @@
       "fixture": "ai-response.md",
       "bytes": 652,
       "iterations": 2000,
-      "msPerOp": 0.003822896,
+      "msPerOp": 0.003599479000000002,
       "outputBytes": 1143,
-      "heapDeltaKb": 133.8359375
+      "heapDeltaKb": -3178.421875
     },
     {
       "group": "markdown",
@@ -44,9 +44,9 @@
       "fixture": "ai-response.md",
       "bytes": 652,
       "iterations": 2000,
-      "msPerOp": 0.025145104000000005,
+      "msPerOp": 0.025802271000000005,
       "outputBytes": 1399,
-      "heapDeltaKb": 11894.5078125
+      "heapDeltaKb": 22823.9140625
     },
     {
       "group": "markdown",
@@ -54,9 +54,9 @@
       "fixture": "ai-response.md",
       "bytes": 652,
       "iterations": 2000,
-      "msPerOp": 0.023205708500000016,
+      "msPerOp": 0.024148562499999998,
       "outputBytes": 1143,
-      "heapDeltaKb": 44793.6796875
+      "heapDeltaKb": -12809.8828125
     },
     {
       "group": "markdown",
@@ -64,9 +64,9 @@
       "fixture": "ai-response.md",
       "bytes": 652,
       "iterations": 2000,
-      "msPerOp": 0.029327332999999983,
+      "msPerOp": 0.026587208500000004,
       "outputBytes": 1035,
-      "heapDeltaKb": -92849.1171875
+      "heapDeltaKb": 27814.2265625
     },
     {
       "group": "markdown",
@@ -74,9 +74,9 @@
       "fixture": "ai-response.md",
       "bytes": 652,
       "iterations": 2000,
-      "msPerOp": 0.018661083499999988,
+      "msPerOp": 0.018293270500000007,
       "outputBytes": 1087,
-      "heapDeltaKb": 44907.1484375
+      "heapDeltaKb": -15946.640625
     },
     {
       "group": "markdown",
@@ -84,9 +84,9 @@
       "fixture": "ai-response.md",
       "bytes": 652,
       "iterations": 2000,
-      "msPerOp": 0.16640525,
+      "msPerOp": 0.15490054149999996,
       "outputBytes": 825,
-      "heapDeltaKb": 51435.609375
+      "heapDeltaKb": -14778.1015625
     },
     {
       "group": "markdown",
@@ -94,9 +94,9 @@
       "fixture": "ai-response.md",
       "bytes": 652,
       "iterations": 2000,
-      "msPerOp": 0.013089541999999994,
+      "msPerOp": 0.012504250000000014,
       "outputBytes": 825,
-      "heapDeltaKb": -49166.7734375
+      "heapDeltaKb": 16212.625
     },
     {
       "group": "markdown",
@@ -104,9 +104,9 @@
       "fixture": "ai-response.md",
       "bytes": 652,
       "iterations": 2000,
-      "msPerOp": 0.008372937499999978,
+      "msPerOp": 0.007889437499999985,
       "outputBytes": 1117,
-      "heapDeltaKb": 4376.671875
+      "heapDeltaKb": 4373.8359375
     },
     {
       "group": "markdown",
@@ -114,9 +114,9 @@
       "fixture": "ai-response.md",
       "bytes": 652,
       "iterations": 2000,
-      "msPerOp": 0.21472016700000002,
+      "msPerOp": 0.1819836045,
       "outputBytes": 824,
-      "heapDeltaKb": 7854.609375
+      "heapDeltaKb": 7768.109375
     },
     {
       "group": "markdown",
@@ -124,9 +124,9 @@
       "fixture": "code-heavy.md",
       "bytes": 1011,
       "iterations": 1000,
-      "msPerOp": 0.00930816600000003,
+      "msPerOp": 0.007070875000000114,
       "outputBytes": 15,
-      "heapDeltaKb": 23903.4453125
+      "heapDeltaKb": 22915.1171875
     },
     {
       "group": "markdown",
@@ -134,9 +134,9 @@
       "fixture": "code-heavy.md",
       "bytes": 1011,
       "iterations": 1000,
-      "msPerOp": 0.008788749999999936,
+      "msPerOp": 0.008151333000000023,
       "outputBytes": 4596,
-      "heapDeltaKb": -30194.4296875
+      "heapDeltaKb": -29854.671875
     },
     {
       "group": "markdown",
@@ -144,9 +144,9 @@
       "fixture": "code-heavy.md",
       "bytes": 1011,
       "iterations": 1000,
-      "msPerOp": 0.0040034169999999,
+      "msPerOp": 0.003115332999999964,
       "outputBytes": 1927,
-      "heapDeltaKb": 10476.1640625
+      "heapDeltaKb": 10478.1953125
     },
     {
       "group": "markdown",
@@ -154,9 +154,9 @@
       "fixture": "code-heavy.md",
       "bytes": 1011,
       "iterations": 1000,
-      "msPerOp": 0.01934395799999993,
+      "msPerOp": 0.014756374999999934,
       "outputBytes": 4596,
-      "heapDeltaKb": -5389.796875
+      "heapDeltaKb": -4365.1015625
     },
     {
       "group": "markdown",
@@ -164,9 +164,9 @@
       "fixture": "code-heavy.md",
       "bytes": 1011,
       "iterations": 1000,
-      "msPerOp": 0.01655070899999987,
+      "msPerOp": 0.00979279100000008,
       "outputBytes": 1927,
-      "heapDeltaKb": -25821.4453125
+      "heapDeltaKb": 33441.578125
     },
     {
       "group": "markdown",
@@ -174,9 +174,9 @@
       "fixture": "code-heavy.md",
       "bytes": 1011,
       "iterations": 1000,
-      "msPerOp": 0.007307250000000067,
+      "msPerOp": 0.006185165999999981,
       "outputBytes": 1330,
-      "heapDeltaKb": 12886.8359375
+      "heapDeltaKb": 12906.40625
     },
     {
       "group": "markdown",
@@ -184,9 +184,9 @@
       "fixture": "code-heavy.md",
       "bytes": 1011,
       "iterations": 1000,
-      "msPerOp": 0.009848250000000008,
+      "msPerOp": 0.00939212499999985,
       "outputBytes": 1330,
-      "heapDeltaKb": 27313.4140625
+      "heapDeltaKb": -31203.328125
     },
     {
       "group": "markdown",
@@ -194,9 +194,9 @@
       "fixture": "code-heavy.md",
       "bytes": 1011,
       "iterations": 1000,
-      "msPerOp": 0.16169662500000004,
+      "msPerOp": 0.1417757919999999,
       "outputBytes": 1330,
-      "heapDeltaKb": -5850.4296875
+      "heapDeltaKb": -8000.9921875
     },
     {
       "group": "markdown",
@@ -204,9 +204,9 @@
       "fixture": "code-heavy.md",
       "bytes": 1011,
       "iterations": 1000,
-      "msPerOp": 0.010917582999999922,
+      "msPerOp": 0.009371875000000045,
       "outputBytes": 1330,
-      "heapDeltaKb": -40875.984375
+      "heapDeltaKb": 24582.9453125
     },
     {
       "group": "markdown",
@@ -214,9 +214,9 @@
       "fixture": "code-heavy.md",
       "bytes": 1011,
       "iterations": 1000,
-      "msPerOp": 0.0053693749999999905,
+      "msPerOp": 0.003929167000000007,
       "outputBytes": 1512,
-      "heapDeltaKb": 2558.296875
+      "heapDeltaKb": 2559.875
     },
     {
       "group": "markdown",
@@ -224,9 +224,9 @@
       "fixture": "code-heavy.md",
       "bytes": 1011,
       "iterations": 1000,
-      "msPerOp": 0.15673112500000003,
+      "msPerOp": 0.147281291,
       "outputBytes": 1200,
-      "heapDeltaKb": 24973.7109375
+      "heapDeltaKb": 24883.4140625
     },
     {
       "group": "markdown",
@@ -234,9 +234,9 @@
       "fixture": "malformed.md",
       "bytes": 237,
       "iterations": 2000,
-      "msPerOp": 0.002730000000000018,
+      "msPerOp": 0.0025634374999999637,
       "outputBytes": 15,
-      "heapDeltaKb": -44947.8828125
+      "heapDeltaKb": 19347.1015625
     },
     {
       "group": "markdown",
@@ -244,9 +244,9 @@
       "fixture": "malformed.md",
       "bytes": 237,
       "iterations": 2000,
-      "msPerOp": 0.001634728999999993,
+      "msPerOp": 0.001887104000000022,
       "outputBytes": 1067,
-      "heapDeltaKb": 15659.734375
+      "heapDeltaKb": -45990.1953125
     },
     {
       "group": "markdown",
@@ -254,9 +254,9 @@
       "fixture": "malformed.md",
       "bytes": 237,
       "iterations": 2000,
-      "msPerOp": 0.0006929999999999837,
+      "msPerOp": 0.0007514169999999468,
       "outputBytes": 361,
-      "heapDeltaKb": 5315.171875
+      "heapDeltaKb": 5314.59375
     },
     {
       "group": "markdown",
@@ -264,9 +264,9 @@
       "fixture": "malformed.md",
       "bytes": 237,
       "iterations": 2000,
-      "msPerOp": 0.004589437500000031,
+      "msPerOp": 0.004132479499999931,
       "outputBytes": 1067,
-      "heapDeltaKb": 33660.75
+      "heapDeltaKb": 35040.671875
     },
     {
       "group": "markdown",
@@ -274,9 +274,9 @@
       "fixture": "malformed.md",
       "bytes": 237,
       "iterations": 2000,
-      "msPerOp": 0.00380916650000006,
+      "msPerOp": 0.003574207999999999,
       "outputBytes": 361,
-      "heapDeltaKb": -34278.9375
+      "heapDeltaKb": -30869.7421875
     },
     {
       "group": "markdown",
@@ -284,9 +284,9 @@
       "fixture": "malformed.md",
       "bytes": 237,
       "iterations": 2000,
-      "msPerOp": 0.005420104499999979,
+      "msPerOp": 0.005106666500000074,
       "outputBytes": 350,
-      "heapDeltaKb": 16657.734375
+      "heapDeltaKb": 16137.046875
     },
     {
       "group": "markdown",
@@ -294,9 +294,9 @@
       "fixture": "malformed.md",
       "bytes": 237,
       "iterations": 2000,
-      "msPerOp": 0.005576854499999968,
+      "msPerOp": 0.004525833000000034,
       "outputBytes": 300,
-      "heapDeltaKb": -31630.0625
+      "heapDeltaKb": 24769.1953125
     },
     {
       "group": "markdown",
@@ -304,9 +304,9 @@
       "fixture": "malformed.md",
       "bytes": 237,
       "iterations": 2000,
-      "msPerOp": 0.05042335449999996,
+      "msPerOp": 0.04883245850000003,
       "outputBytes": 300,
-      "heapDeltaKb": 11184.7890625
+      "heapDeltaKb": -49578.34375
     },
     {
       "group": "markdown",
@@ -314,9 +314,9 @@
       "fixture": "malformed.md",
       "bytes": 237,
       "iterations": 2000,
-      "msPerOp": 0.003881750000000011,
+      "msPerOp": 0.0036510210000000143,
       "outputBytes": 300,
-      "heapDeltaKb": 23073.0234375
+      "heapDeltaKb": 23073.7734375
     },
     {
       "group": "markdown",
@@ -324,9 +324,9 @@
       "fixture": "malformed.md",
       "bytes": 237,
       "iterations": 2000,
-      "msPerOp": 0.001838145499999996,
+      "msPerOp": 0.0017149164999999585,
       "outputBytes": 408,
-      "heapDeltaKb": 2938.671875
+      "heapDeltaKb": 2938.6796875
     },
     {
       "group": "markdown",
@@ -334,9 +334,9 @@
       "fixture": "malformed.md",
       "bytes": 237,
       "iterations": 2000,
-      "msPerOp": 0.055197812500000054,
+      "msPerOp": 0.05300268749999998,
       "outputBytes": 297,
-      "heapDeltaKb": -30681.640625
+      "heapDeltaKb": -30685.546875
     },
     {
       "group": "markdown",
@@ -344,9 +344,9 @@
       "fixture": "prose-heavy.md",
       "bytes": 1700,
       "iterations": 1000,
-      "msPerOp": 0.018113207999999985,
+      "msPerOp": 0.014754709000000048,
       "outputBytes": 15,
-      "heapDeltaKb": 1601.375
+      "heapDeltaKb": 58579.8828125
     },
     {
       "group": "markdown",
@@ -354,9 +354,9 @@
       "fixture": "prose-heavy.md",
       "bytes": 1700,
       "iterations": 1000,
-      "msPerOp": 0.002141417000000047,
+      "msPerOp": 0.004086374999999862,
       "outputBytes": 1903,
-      "heapDeltaKb": 10292.2421875
+      "heapDeltaKb": -42841.4765625
     },
     {
       "group": "markdown",
@@ -364,9 +364,9 @@
       "fixture": "prose-heavy.md",
       "bytes": 1700,
       "iterations": 1000,
-      "msPerOp": 0.002436666999999943,
+      "msPerOp": 0.002841707999999926,
       "outputBytes": 1903,
-      "heapDeltaKb": 10320.4609375
+      "heapDeltaKb": 10328.890625
     },
     {
       "group": "markdown",
@@ -374,9 +374,9 @@
       "fixture": "prose-heavy.md",
       "bytes": 1700,
       "iterations": 1000,
-      "msPerOp": 0.02010304199999996,
+      "msPerOp": 0.01882529200000022,
       "outputBytes": 1903,
-      "heapDeltaKb": 18362.328125
+      "heapDeltaKb": 22426.21875
     },
     {
       "group": "markdown",
@@ -384,9 +384,9 @@
       "fixture": "prose-heavy.md",
       "bytes": 1700,
       "iterations": 1000,
-      "msPerOp": 0.020281833000000006,
+      "msPerOp": 0.01886454099999992,
       "outputBytes": 1903,
-      "heapDeltaKb": 18847.21875
+      "heapDeltaKb": 20395.140625
     },
     {
       "group": "markdown",
@@ -394,9 +394,9 @@
       "fixture": "prose-heavy.md",
       "bytes": 1700,
       "iterations": 1000,
-      "msPerOp": 0.03812349999999992,
+      "msPerOp": 0.037371417000000066,
       "outputBytes": 1860,
-      "heapDeltaKb": -5593.0234375
+      "heapDeltaKb": -8289.125
     },
     {
       "group": "markdown",
@@ -404,9 +404,9 @@
       "fixture": "prose-heavy.md",
       "bytes": 1700,
       "iterations": 1000,
-      "msPerOp": 0.02060416699999996,
+      "msPerOp": 0.01920512499999995,
       "outputBytes": 1860,
-      "heapDeltaKb": -8952.140625
+      "heapDeltaKb": -11639.0390625
     },
     {
       "group": "markdown",
@@ -414,9 +414,9 @@
       "fixture": "prose-heavy.md",
       "bytes": 1700,
       "iterations": 1000,
-      "msPerOp": 0.2549411249999998,
+      "msPerOp": 0.23727079100000015,
       "outputBytes": 1862,
-      "heapDeltaKb": 21780.578125
+      "heapDeltaKb": 23424.1796875
     },
     {
       "group": "markdown",
@@ -424,9 +424,9 @@
       "fixture": "prose-heavy.md",
       "bytes": 1700,
       "iterations": 1000,
-      "msPerOp": 0.013604624999999941,
+      "msPerOp": 0.01251391599999988,
       "outputBytes": 1862,
-      "heapDeltaKb": -14599.390625
+      "heapDeltaKb": -15252.7578125
     },
     {
       "group": "markdown",
@@ -434,9 +434,9 @@
       "fixture": "prose-heavy.md",
       "bytes": 1700,
       "iterations": 1000,
-      "msPerOp": 0.006443499999999858,
+      "msPerOp": 0.005916458000000148,
       "outputBytes": 2340,
-      "heapDeltaKb": 3369.3828125
+      "heapDeltaKb": 3368.1953125
     },
     {
       "group": "markdown",
@@ -444,9 +444,9 @@
       "fixture": "prose-heavy.md",
       "bytes": 1700,
       "iterations": 1000,
-      "msPerOp": 0.3224618330000003,
+      "msPerOp": 0.268393959,
       "outputBytes": 1859,
-      "heapDeltaKb": -73200.890625
+      "heapDeltaKb": 50649.2421875
     },
     {
       "group": "markdown",
@@ -454,9 +454,9 @@
       "fixture": "small-doc.md",
       "bytes": 432,
       "iterations": 2000,
-      "msPerOp": 0.01270204149999995,
+      "msPerOp": 0.011964478999999983,
       "outputBytes": 15,
-      "heapDeltaKb": 20112.46875
+      "heapDeltaKb": 24191.8671875
     },
     {
       "group": "markdown",
@@ -464,9 +464,9 @@
       "fixture": "small-doc.md",
       "bytes": 432,
       "iterations": 2000,
-      "msPerOp": 0.004287021000000096,
+      "msPerOp": 0.0038877915000000486,
       "outputBytes": 1370,
-      "heapDeltaKb": -24522.9140625
+      "heapDeltaKb": -25168.5390625
     },
     {
       "group": "markdown",
@@ -474,9 +474,9 @@
       "fixture": "small-doc.md",
       "bytes": 432,
       "iterations": 2000,
-      "msPerOp": 0.0027589165000001686,
+      "msPerOp": 0.0026822915000000195,
       "outputBytes": 1044,
-      "heapDeltaKb": 21772.9453125
+      "heapDeltaKb": 21771.8359375
     },
     {
       "group": "markdown",
@@ -484,9 +484,9 @@
       "fixture": "small-doc.md",
       "bytes": 432,
       "iterations": 2000,
-      "msPerOp": 0.016400666499999942,
+      "msPerOp": 0.014629791999999952,
       "outputBytes": 1370,
-      "heapDeltaKb": -9773.921875
+      "heapDeltaKb": -6793.421875
     },
     {
       "group": "markdown",
@@ -494,9 +494,9 @@
       "fixture": "small-doc.md",
       "bytes": 432,
       "iterations": 2000,
-      "msPerOp": 0.016765562499999987,
+      "msPerOp": 0.013748000000000047,
       "outputBytes": 1044,
-      "heapDeltaKb": -7187.6171875
+      "heapDeltaKb": 47308.5546875
     },
     {
       "group": "markdown",
@@ -504,9 +504,9 @@
       "fixture": "small-doc.md",
       "bytes": 432,
       "iterations": 2000,
-      "msPerOp": 0.014704625000000079,
+      "msPerOp": 0.01333077049999997,
       "outputBytes": 724,
-      "heapDeltaKb": 50669.171875
+      "heapDeltaKb": 50669.125
     },
     {
       "group": "markdown",
@@ -514,9 +514,9 @@
       "fixture": "small-doc.md",
       "bytes": 432,
       "iterations": 2000,
-      "msPerOp": 0.008663270999999894,
+      "msPerOp": 0.008349104000000124,
       "outputBytes": 776,
-      "heapDeltaKb": 4037.9140625
+      "heapDeltaKb": 9738.6484375
     },
     {
       "group": "markdown",
@@ -524,9 +524,9 @@
       "fixture": "small-doc.md",
       "bytes": 432,
       "iterations": 2000,
-      "msPerOp": 0.13299991649999993,
+      "msPerOp": 0.10135727100000008,
       "outputBytes": 535,
-      "heapDeltaKb": 44880.390625
+      "heapDeltaKb": 45061.2734375
     },
     {
       "group": "markdown",
@@ -534,9 +534,9 @@
       "fixture": "small-doc.md",
       "bytes": 432,
       "iterations": 2000,
-      "msPerOp": 0.007399374999999963,
+      "msPerOp": 0.006327562499999885,
       "outputBytes": 535,
-      "heapDeltaKb": -15136.8671875
+      "heapDeltaKb": -15154.078125
     },
     {
       "group": "markdown",
@@ -544,9 +544,9 @@
       "fixture": "small-doc.md",
       "bytes": 432,
       "iterations": 2000,
-      "msPerOp": 0.0036898334999998497,
+      "msPerOp": 0.0031854789999999867,
       "outputBytes": 854,
-      "heapDeltaKb": 3631.15625
+      "heapDeltaKb": 3584.3828125
     },
     {
       "group": "markdown",
@@ -554,9 +554,9 @@
       "fixture": "small-doc.md",
       "bytes": 432,
       "iterations": 2000,
-      "msPerOp": 0.1475164164999999,
+      "msPerOp": 0.11612966700000016,
       "outputBytes": 534,
-      "heapDeltaKb": 4013.40625
+      "heapDeltaKb": 4153.8125
     },
     {
       "group": "markdown",
@@ -564,9 +564,9 @@
       "fixture": "tables-lists.md",
       "bytes": 454,
       "iterations": 2000,
-      "msPerOp": 0.029478124999999862,
+      "msPerOp": 0.02737168750000001,
       "outputBytes": 15,
-      "heapDeltaKb": 12749.0625
+      "heapDeltaKb": 21858.8125
     },
     {
       "group": "markdown",
@@ -574,9 +574,9 @@
       "fixture": "tables-lists.md",
       "bytes": 454,
       "iterations": 2000,
-      "msPerOp": 0.005765270999999984,
+      "msPerOp": 0.005564666499999931,
       "outputBytes": 1315,
-      "heapDeltaKb": -5483.21875
+      "heapDeltaKb": -5902.1015625
     },
     {
       "group": "markdown",
@@ -584,9 +584,9 @@
       "fixture": "tables-lists.md",
       "bytes": 454,
       "iterations": 2000,
-      "msPerOp": 0.005156958500000201,
+      "msPerOp": 0.004480354499999976,
       "outputBytes": 1315,
-      "heapDeltaKb": -14400.9453125
+      "heapDeltaKb": -14615.2578125
     },
     {
       "group": "markdown",
@@ -594,9 +594,9 @@
       "fixture": "tables-lists.md",
       "bytes": 454,
       "iterations": 2000,
-      "msPerOp": 0.036605395499999985,
+      "msPerOp": 0.033384021000000076,
       "outputBytes": 1315,
-      "heapDeltaKb": 6365.84375
+      "heapDeltaKb": 13028.3515625
     },
     {
       "group": "markdown",
@@ -604,9 +604,9 @@
       "fixture": "tables-lists.md",
       "bytes": 454,
       "iterations": 2000,
-      "msPerOp": 0.03830779150000012,
+      "msPerOp": 0.035895083500000056,
       "outputBytes": 1315,
-      "heapDeltaKb": -91885.7890625
+      "heapDeltaKb": -84288.1953125
     },
     {
       "group": "markdown",
@@ -614,9 +614,9 @@
       "fixture": "tables-lists.md",
       "bytes": 454,
       "iterations": 2000,
-      "msPerOp": 0.03246374999999989,
+      "msPerOp": 0.030279208000000155,
       "outputBytes": 1102,
-      "heapDeltaKb": -2774.734375
+      "heapDeltaKb": 6604.7734375
     },
     {
       "group": "markdown",
@@ -624,9 +624,9 @@
       "fixture": "tables-lists.md",
       "bytes": 454,
       "iterations": 2000,
-      "msPerOp": 0.021280750000000126,
+      "msPerOp": 0.017934541500000022,
       "outputBytes": 1325,
-      "heapDeltaKb": 26335.390625
+      "heapDeltaKb": -39166.90625
     },
     {
       "group": "markdown",
@@ -634,9 +634,9 @@
       "fixture": "tables-lists.md",
       "bytes": 454,
       "iterations": 2000,
-      "msPerOp": 0.18304518749999987,
+      "msPerOp": 0.1759611460000001,
       "outputBytes": 627,
-      "heapDeltaKb": 43377.28125
+      "heapDeltaKb": 29847.5625
     },
     {
       "group": "markdown",
@@ -644,9 +644,9 @@
       "fixture": "tables-lists.md",
       "bytes": 454,
       "iterations": 2000,
-      "msPerOp": 0.011697375000000192,
+      "msPerOp": 0.011679333000000042,
       "outputBytes": 627,
-      "heapDeltaKb": -36650.7734375
+      "heapDeltaKb": -36841.375
     },
     {
       "group": "markdown",
@@ -654,9 +654,9 @@
       "fixture": "tables-lists.md",
       "bytes": 454,
       "iterations": 2000,
-      "msPerOp": 0.005767812500000218,
+      "msPerOp": 0.005787499999999909,
       "outputBytes": 1202,
-      "heapDeltaKb": 4506.0546875
+      "heapDeltaKb": 4506.0625
     },
     {
       "group": "markdown",
@@ -664,9 +664,9 @@
       "fixture": "tables-lists.md",
       "bytes": 454,
       "iterations": 2000,
-      "msPerOp": 0.20902820799999972,
+      "msPerOp": 0.1998507084999999,
       "outputBytes": 622,
-      "heapDeltaKb": -44097.953125
+      "heapDeltaKb": 11679.6171875
     },
     {
       "group": "streaming",
@@ -674,9 +674,9 @@
       "fixture": "ai-response.md",
       "bytes": 652,
       "iterations": 250,
-      "msPerOp": 0.21409083199997986,
+      "msPerOp": 0.22260016799997903,
       "outputBytes": 0,
-      "heapDeltaKb": 27889.125,
+      "heapDeltaKb": 38394.2890625,
       "chunkSize": 32,
       "warmupReplays": 2,
       "updatesPerReplay": 21,
@@ -685,31 +685,31 @@
       "latency": {
         "all": {
           "samples": 5250,
-          "meanMs": 0.010083434857144831,
-          "p50Ms": 0.007499999999708962,
-          "p95Ms": 0.015916999999717518,
-          "maxMs": 2.5200840000006792
+          "meanMs": 0.010485273904756641,
+          "p50Ms": 0.007916999999906693,
+          "p95Ms": 0.01687500000025466,
+          "maxMs": 2.289625000000342
         },
         "openFence": {
           "samples": 500,
-          "meanMs": 0.006220576000010624,
-          "p50Ms": 0.0058330000001660665,
-          "p95Ms": 0.0071250000000873115,
-          "maxMs": 0.04941599999983737
+          "meanMs": 0.006492279999993116,
+          "p50Ms": 0.006000000000312866,
+          "p95Ms": 0.008125000000291038,
+          "maxMs": 0.03804200000013225
         },
         "lastTenPercentOpenFence": {
           "samples": 250,
-          "meanMs": 0.0062961639999884935,
-          "p50Ms": 0.005834000000504602,
-          "p95Ms": 0.0070420000001831795,
-          "maxMs": 0.04941599999983737
+          "meanMs": 0.0064580599999972035,
+          "p50Ms": 0.006000000000312866,
+          "p95Ms": 0.00766600000042672,
+          "maxMs": 0.032167000000299595
         },
         "finalUpdate": {
           "samples": 250,
-          "meanMs": 0.015879831999976887,
-          "p50Ms": 0.014874999999847205,
-          "p95Ms": 0.01895799999965675,
-          "maxMs": 0.0702080000000933
+          "meanMs": 0.024832651999997325,
+          "p50Ms": 0.015583000000333413,
+          "p95Ms": 0.021499999999832653,
+          "maxMs": 1.885167000000365
         }
       }
     },
@@ -719,9 +719,9 @@
       "fixture": "ai-response.md",
       "bytes": 652,
       "iterations": 250,
-      "msPerOp": 0.2578975960000098,
+      "msPerOp": 0.28219248800002245,
       "outputBytes": 1112,
-      "heapDeltaKb": 65860.796875,
+      "heapDeltaKb": 24961.3046875,
       "chunkSize": 32,
       "warmupReplays": 2,
       "updatesPerReplay": 21,
@@ -730,31 +730,31 @@
       "latency": {
         "all": {
           "samples": 5250,
-          "meanMs": 0.012171573523811232,
-          "p50Ms": 0.00891700000011042,
-          "p95Ms": 0.019290999999611813,
-          "maxMs": 2.499333000000661
+          "meanMs": 0.013321013904755784,
+          "p50Ms": 0.009874999999738066,
+          "p95Ms": 0.021125000000211003,
+          "maxMs": 2.8364999999994325
         },
         "openFence": {
           "samples": 500,
-          "meanMs": 0.007640497999973377,
-          "p50Ms": 0.00724999999965803,
-          "p95Ms": 0.008667000000059488,
-          "maxMs": 0.052958000000217
+          "meanMs": 0.00814662800001679,
+          "p50Ms": 0.007500000000618456,
+          "p95Ms": 0.010457999999744061,
+          "maxMs": 0.049417000000175904
         },
         "lastTenPercentOpenFence": {
           "samples": 250,
-          "meanMs": 0.007983831999979884,
-          "p50Ms": 0.00741699999980483,
-          "p95Ms": 0.009125000000494765,
-          "maxMs": 0.052958000000217
+          "meanMs": 0.008242948000013711,
+          "p50Ms": 0.007625000000189175,
+          "p95Ms": 0.010458000000653556,
+          "maxMs": 0.048541000000113854
         },
         "finalUpdate": {
           "samples": 250,
-          "meanMs": 0.026833788000047206,
-          "p50Ms": 0.018500000000130967,
-          "p95Ms": 0.02104200000030687,
-          "maxMs": 1.980333000000428
+          "meanMs": 0.020949619999999412,
+          "p50Ms": 0.019208000000617176,
+          "p95Ms": 0.027833000000100583,
+          "maxMs": 0.07362499999999272
         }
       }
     },
@@ -764,42 +764,42 @@
       "fixture": "ai-response.md",
       "bytes": 652,
       "iterations": 250,
-      "msPerOp": 0.38105232800001976,
-      "outputBytes": 1274,
-      "heapDeltaKb": 26043.859375,
+      "msPerOp": 0.3564215160000167,
+      "outputBytes": 1358,
+      "heapDeltaKb": 68355.078125,
       "chunkSize": 32,
       "warmupReplays": 2,
       "updatesPerReplay": 21,
       "openFenceUpdatesPerReplay": 2,
-      "checksum": 3703896,
+      "checksum": 3968496,
       "latency": {
         "all": {
           "samples": 5250,
-          "meanMs": 0.01806752114286272,
-          "p50Ms": 0.017582999999831372,
-          "p95Ms": 0.029458999999405933,
-          "maxMs": 2.0387080000000424
+          "meanMs": 0.01689696342856509,
+          "p50Ms": 0.016125000000101863,
+          "p95Ms": 0.02791700000034325,
+          "maxMs": 1.6280000000006112
         },
         "openFence": {
           "samples": 500,
-          "meanMs": 0.019441631999998207,
-          "p50Ms": 0.012625000000298314,
-          "p95Ms": 0.01741700000002311,
-          "maxMs": 1.8179999999993015
+          "meanMs": 0.012095650000012028,
+          "p50Ms": 0.011541000000761414,
+          "p95Ms": 0.016666000000441272,
+          "maxMs": 0.05224999999973079
         },
         "lastTenPercentOpenFence": {
           "samples": 250,
-          "meanMs": 0.02747746000004554,
-          "p50Ms": 0.01341599999977916,
-          "p95Ms": 0.02008399999976973,
-          "maxMs": 1.8179999999993015
+          "meanMs": 0.013260144000003493,
+          "p50Ms": 0.012209000000439119,
+          "p95Ms": 0.017625000000407454,
+          "maxMs": 0.05224999999973079
         },
         "finalUpdate": {
           "samples": 250,
-          "meanMs": 0.03449262800000724,
-          "p50Ms": 0.026125000000320142,
-          "p95Ms": 0.03470800000013696,
-          "maxMs": 1.784125000000131
+          "meanMs": 0.02842499199996746,
+          "p50Ms": 0.025208000000020547,
+          "p95Ms": 0.04116700000031415,
+          "maxMs": 0.15324999999938882
         }
       }
     },
@@ -809,9 +809,9 @@
       "fixture": "ai-response.md",
       "bytes": 652,
       "iterations": 250,
-      "msPerOp": 0.3046166559999801,
+      "msPerOp": 0.30102664400001233,
       "outputBytes": 1035,
-      "heapDeltaKb": 19526.328125,
+      "heapDeltaKb": -43364.9453125,
       "chunkSize": 32,
       "warmupReplays": 2,
       "updatesPerReplay": 21,
@@ -820,31 +820,31 @@
       "latency": {
         "all": {
           "samples": 5250,
-          "meanMs": 0.014406752571436213,
-          "p50Ms": 0.013124999999490683,
-          "p95Ms": 0.025375000000167347,
-          "maxMs": 1.5779169999996157
+          "meanMs": 0.01424324685714843,
+          "p50Ms": 0.012333000000580796,
+          "p95Ms": 0.023874999999861757,
+          "maxMs": 1.8154590000003736
         },
         "openFence": {
           "samples": 500,
-          "meanMs": 0.01029838800001744,
-          "p50Ms": 0.009833000000071479,
-          "p95Ms": 0.013332999999875028,
-          "maxMs": 0.02525000000059663
+          "meanMs": 0.010308168000005025,
+          "p50Ms": 0.009874999999738066,
+          "p95Ms": 0.011458000000857282,
+          "maxMs": 0.048541000000113854
         },
         "lastTenPercentOpenFence": {
           "samples": 250,
-          "meanMs": 0.0104275000000016,
-          "p50Ms": 0.009957999999642198,
-          "p95Ms": 0.013832999999976892,
-          "maxMs": 0.019166999999470136
+          "meanMs": 0.010362336000009235,
+          "p50Ms": 0.009958999999980733,
+          "p95Ms": 0.011499999999614374,
+          "maxMs": 0.04625000000032742
         },
         "finalUpdate": {
           "samples": 250,
-          "meanMs": 0.024599832000021707,
-          "p50Ms": 0.02345900000000256,
-          "p95Ms": 0.02995900000041729,
-          "maxMs": 0.05720800000017334
+          "meanMs": 0.024333999999991647,
+          "p50Ms": 0.023333000000093307,
+          "p95Ms": 0.027417000000241387,
+          "maxMs": 0.08349999999973079
         }
       }
     },
@@ -854,9 +854,9 @@
       "fixture": "unfinished-backtick-4kib",
       "bytes": 4096,
       "iterations": 20,
-      "msPerOp": 0.4621396000000459,
+      "msPerOp": 0.4291666499999337,
       "outputBytes": 0,
-      "heapDeltaKb": -34834.6953125,
+      "heapDeltaKb": 29134.03125,
       "chunkSize": 32,
       "warmupReplays": 2,
       "updatesPerReplay": 128,
@@ -865,31 +865,31 @@
       "latency": {
         "all": {
           "samples": 2560,
-          "meanMs": 0.0034755386718696712,
-          "p50Ms": 0.0030829999996058177,
-          "p95Ms": 0.005083000000013271,
-          "maxMs": 0.6201670000000377
+          "meanMs": 0.003228891796873512,
+          "p50Ms": 0.003125000000181899,
+          "p95Ms": 0.004958000000442553,
+          "maxMs": 0.11491599999953905
         },
         "openFence": {
           "samples": 2540,
-          "meanMs": 0.0034912744094433615,
-          "p50Ms": 0.0030830000005153124,
-          "p95Ms": 0.005083000000013271,
-          "maxMs": 0.6201670000000377
+          "meanMs": 0.0032452114173220324,
+          "p50Ms": 0.003125000000181899,
+          "p95Ms": 0.004958000000442553,
+          "maxMs": 0.11491599999953905
         },
         "lastTenPercentOpenFence": {
           "samples": 260,
-          "meanMs": 0.005197099999976182,
-          "p50Ms": 0.004874999999628926,
-          "p95Ms": 0.006124999999883585,
-          "maxMs": 0.020915999999488122
+          "meanMs": 0.00519565769228533,
+          "p50Ms": 0.004916000000775966,
+          "p95Ms": 0.0054579999996349216,
+          "maxMs": 0.06112500000017462
         },
         "finalUpdate": {
           "samples": 20,
-          "meanMs": 0.005047750000085216,
-          "p50Ms": 0.005000000000109139,
-          "p95Ms": 0.005541000000448548,
-          "maxMs": 0.005624999999781721
+          "meanMs": 0.005129049999959534,
+          "p50Ms": 0.005083000000013271,
+          "p95Ms": 0.0054579999996349216,
+          "maxMs": 0.005666999999448308
         }
       }
     },
@@ -899,9 +899,9 @@
       "fixture": "unfinished-backtick-4kib",
       "bytes": 4096,
       "iterations": 20,
-      "msPerOp": 0.860104199999887,
+      "msPerOp": 0.809364399999913,
       "outputBytes": 4731,
-      "heapDeltaKb": 695.4375,
+      "heapDeltaKb": -90.046875,
       "chunkSize": 32,
       "warmupReplays": 2,
       "updatesPerReplay": 128,
@@ -910,31 +910,31 @@
       "latency": {
         "all": {
           "samples": 2560,
-          "meanMs": 0.006617728125001321,
-          "p50Ms": 0.005625000000691216,
-          "p95Ms": 0.009707999999591266,
-          "maxMs": 2.0296669999997903
+          "meanMs": 0.006239692187500268,
+          "p50Ms": 0.005541999999877589,
+          "p95Ms": 0.009292000000641565,
+          "maxMs": 1.4058749999994689
         },
         "openFence": {
           "samples": 2540,
-          "meanMs": 0.006656301574804367,
-          "p50Ms": 0.0056670000003578025,
-          "p95Ms": 0.009708999999929802,
-          "maxMs": 2.0296669999997903
+          "meanMs": 0.006275797637795043,
+          "p50Ms": 0.005583000000115135,
+          "p95Ms": 0.009332999999969616,
+          "maxMs": 1.4058749999994689
         },
         "lastTenPercentOpenFence": {
           "samples": 260,
-          "meanMs": 0.00977183846150113,
-          "p50Ms": 0.00908400000025722,
-          "p95Ms": 0.013374999999541615,
-          "maxMs": 0.05837500000052387
+          "meanMs": 0.009482057692324675,
+          "p50Ms": 0.009167000000161352,
+          "p95Ms": 0.009915999999975611,
+          "maxMs": 0.039249999999810825
         },
         "finalUpdate": {
           "samples": 20,
-          "meanMs": 0.010637499999938882,
+          "meanMs": 0.009523049999961586,
           "p50Ms": 0.009500000000116415,
-          "p95Ms": 0.014249999999265128,
-          "maxMs": 0.017416000000594067
+          "p95Ms": 0.010041999999884865,
+          "maxMs": 0.010041999999884865
         }
       }
     },
@@ -944,42 +944,42 @@
       "fixture": "unfinished-backtick-4kib",
       "bytes": 4096,
       "iterations": 20,
-      "msPerOp": 22.06873735000004,
-      "outputBytes": 16010,
-      "heapDeltaKb": 62990.421875,
+      "msPerOp": 13.348095849999982,
+      "outputBytes": 21890,
+      "heapDeltaKb": 23042.8125,
       "chunkSize": 32,
       "warmupReplays": 2,
       "updatesPerReplay": 128,
       "openFenceUpdatesPerReplay": 127,
-      "checksum": 22759572,
+      "checksum": 31073724,
       "latency": {
         "all": {
           "samples": 2560,
-          "meanMs": 0.17212833007812875,
-          "p50Ms": 0.16845800000010058,
-          "p95Ms": 0.32120800000029703,
-          "maxMs": 0.7369170000001759
+          "meanMs": 0.10408861132812,
+          "p50Ms": 0.10383300000012241,
+          "p95Ms": 0.18816700000024866,
+          "maxMs": 0.5521669999998267
         },
         "openFence": {
           "samples": 2540,
-          "meanMs": 0.17335691614173696,
-          "p50Ms": 0.16941600000063772,
-          "p95Ms": 0.32133299999986775,
-          "maxMs": 0.7369170000001759
+          "meanMs": 0.10485871614172804,
+          "p50Ms": 0.10445799999979499,
+          "p95Ms": 0.1882500000001528,
+          "maxMs": 0.5521669999998267
         },
         "lastTenPercentOpenFence": {
           "samples": 260,
-          "meanMs": 0.32346092692306716,
-          "p50Ms": 0.31554099999993923,
-          "p95Ms": 0.3592500000004293,
-          "maxMs": 0.7194170000002487
+          "meanMs": 0.18964088076920163,
+          "p50Ms": 0.1843750000007276,
+          "p95Ms": 0.2135840000000826,
+          "maxMs": 0.5090000000000146
         },
         "finalUpdate": {
           "samples": 20,
-          "meanMs": 0.35081459999978504,
-          "p50Ms": 0.33216600000014296,
-          "p95Ms": 0.36524999999983265,
-          "maxMs": 0.6940829999994094
+          "meanMs": 0.19182920000002923,
+          "p50Ms": 0.19179199999962293,
+          "p95Ms": 0.19787499999983993,
+          "maxMs": 0.20095899999978428
         }
       }
     },
@@ -989,9 +989,9 @@
       "fixture": "unfinished-backtick-4kib",
       "bytes": 4096,
       "iterations": 20,
-      "msPerOp": 0.7148749500001031,
+      "msPerOp": 0.7055479500001638,
       "outputBytes": 4702,
-      "heapDeltaKb": -36811.359375,
+      "heapDeltaKb": 28115.140625,
       "chunkSize": 32,
       "warmupReplays": 2,
       "updatesPerReplay": 128,
@@ -1000,31 +1000,31 @@
       "latency": {
         "all": {
           "samples": 2560,
-          "meanMs": 0.005508160156259834,
-          "p50Ms": 0.005333999999493244,
-          "p95Ms": 0.009250000000065484,
-          "maxMs": 0.3232909999996991
+          "meanMs": 0.00543735664063405,
+          "p50Ms": 0.00537499999973079,
+          "p95Ms": 0.009292000000641565,
+          "maxMs": 0.044417000000066764
         },
         "openFence": {
           "samples": 2540,
-          "meanMs": 0.005541573228355639,
-          "p50Ms": 0.005375000000640284,
-          "p95Ms": 0.009250000000065484,
-          "maxMs": 0.3232909999996991
+          "meanMs": 0.005470017716546376,
+          "p50Ms": 0.005415999999968335,
+          "p95Ms": 0.009292000000641565,
+          "maxMs": 0.044417000000066764
         },
         "lastTenPercentOpenFence": {
           "samples": 260,
-          "meanMs": 0.010631888461564534,
-          "p50Ms": 0.009125000000494765,
-          "p95Ms": 0.01116699999965931,
-          "maxMs": 0.3232909999996991
+          "meanMs": 0.009398126923119539,
+          "p50Ms": 0.009167000000161352,
+          "p95Ms": 0.010291000000506756,
+          "maxMs": 0.01900000000023283
         },
         "finalUpdate": {
           "samples": 20,
-          "meanMs": 0.009675050000214468,
-          "p50Ms": 0.009500000000116415,
+          "meanMs": 0.009785549999969589,
+          "p50Ms": 0.009541999999783002,
           "p95Ms": 0.010333000000173342,
-          "maxMs": 0.010709000000133528
+          "maxMs": 0.013167000000066764
         }
       }
     },
@@ -1034,9 +1034,9 @@
       "fixture": "unfinished-backtick-16kib",
       "bytes": 16384,
       "iterations": 10,
-      "msPerOp": 5.848141600000053,
+      "msPerOp": 5.292658299999948,
       "outputBytes": 0,
-      "heapDeltaKb": -165018.1953125,
+      "heapDeltaKb": 58919.171875,
       "chunkSize": 32,
       "warmupReplays": 2,
       "updatesPerReplay": 512,
@@ -1045,31 +1045,31 @@
       "latency": {
         "all": {
           "samples": 5120,
-          "meanMs": 0.011320061523442249,
-          "p50Ms": 0.009500000000116415,
-          "p95Ms": 0.018124999999599822,
-          "maxMs": 2.3499999999994543
+          "meanMs": 0.010265940234373971,
+          "p50Ms": 0.009375000000545697,
+          "p95Ms": 0.01641699999981938,
+          "maxMs": 2.9473330000000715
         },
         "openFence": {
           "samples": 5110,
-          "meanMs": 0.011338096477499627,
-          "p50Ms": 0.009500000000116415,
-          "p95Ms": 0.018124999999599822,
-          "maxMs": 2.3499999999994543
+          "meanMs": 0.01028315185909901,
+          "p50Ms": 0.009415999999873748,
+          "p95Ms": 0.01641699999981938,
+          "maxMs": 2.9473330000000715
         },
         "lastTenPercentOpenFence": {
           "samples": 520,
-          "meanMs": 0.025568692307708193,
-          "p50Ms": 0.016749999999774445,
-          "p95Ms": 0.02420799999981682,
-          "maxMs": 2.262917000000016
+          "meanMs": 0.02006396730769036,
+          "p50Ms": 0.01616699999976845,
+          "p95Ms": 0.019250000000283762,
+          "maxMs": 1.8503749999999854
         },
         "finalUpdate": {
           "samples": 10,
-          "meanMs": 0.022812400000020716,
-          "p50Ms": 0.017582999999831372,
-          "p95Ms": 0.05129099999976461,
-          "maxMs": 0.05129099999976461
+          "meanMs": 0.017703900000196882,
+          "p50Ms": 0.01700000000073487,
+          "p95Ms": 0.025749999999788997,
+          "maxMs": 0.025749999999788997
         }
       }
     },
@@ -1079,9 +1079,9 @@
       "fixture": "unfinished-backtick-16kib",
       "bytes": 16384,
       "iterations": 10,
-      "msPerOp": 10.330145699999866,
+      "msPerOp": 10.013183300000128,
       "outputBytes": 18667,
-      "heapDeltaKb": 66138.4765625,
+      "heapDeltaKb": 67338.390625,
       "chunkSize": 32,
       "warmupReplays": 2,
       "updatesPerReplay": 512,
@@ -1090,31 +1090,31 @@
       "latency": {
         "all": {
           "samples": 5120,
-          "meanMs": 0.02006602402343489,
-          "p50Ms": 0.018874999999752617,
-          "p95Ms": 0.03450000000066211,
-          "maxMs": 1.5924589999995078
+          "meanMs": 0.019454660351567555,
+          "p50Ms": 0.017917000000124972,
+          "p95Ms": 0.03291700000045239,
+          "maxMs": 1.5409159999999247
         },
         "openFence": {
           "samples": 5110,
-          "meanMs": 0.02009172387475263,
-          "p50Ms": 0.018915999999990163,
-          "p95Ms": 0.03450000000066211,
-          "maxMs": 1.5924589999995078
+          "meanMs": 0.019485581213312227,
+          "p50Ms": 0.01795899999979156,
+          "p95Ms": 0.032958000000689935,
+          "maxMs": 1.5409159999999247
         },
         "lastTenPercentOpenFence": {
           "samples": 520,
-          "meanMs": 0.036632036538470365,
-          "p50Ms": 0.033250000000407454,
-          "p95Ms": 0.041041999999833934,
-          "maxMs": 1.2621659999995245
+          "meanMs": 0.0365706769230673,
+          "p50Ms": 0.03225000000020373,
+          "p95Ms": 0.04066700000021228,
+          "maxMs": 1.4200000000000728
         },
         "finalUpdate": {
           "samples": 10,
-          "meanMs": 0.036491599999953904,
-          "p50Ms": 0.03608399999939138,
-          "p95Ms": 0.0415419999999358,
-          "maxMs": 0.0415419999999358
+          "meanMs": 0.036245900000176336,
+          "p50Ms": 0.0339590000003227,
+          "p95Ms": 0.055957999999918684,
+          "maxMs": 0.055957999999918684
         }
       }
     },
@@ -1124,42 +1124,42 @@
       "fixture": "unfinished-backtick-16kib",
       "bytes": 16384,
       "iterations": 10,
-      "msPerOp": 433.25519150000036,
-      "outputBytes": 62868,
-      "heapDeltaKb": 35834.84375,
+      "msPerOp": 208.07345369999993,
+      "outputBytes": 86052,
+      "heapDeltaKb": -94523.828125,
       "chunkSize": 32,
       "warmupReplays": 2,
       "updatesPerReplay": 512,
       "openFenceUpdatesPerReplay": 511,
-      "checksum": 194725992,
+      "checksum": 266533896,
       "latency": {
         "all": {
           "samples": 5120,
-          "meanMs": 0.8447549888671946,
-          "p50Ms": 0.8175839999994423,
-          "p95Ms": 1.7402500000007421,
-          "maxMs": 3.7253749999999854
+          "meanMs": 0.40618499843749556,
+          "p50Ms": 0.40204200000061974,
+          "p95Ms": 0.7567920000001322,
+          "maxMs": 3.7079160000002958
         },
         "openFence": {
           "samples": 5110,
-          "meanMs": 0.8463017614481487,
-          "p50Ms": 0.8186249999998836,
-          "p95Ms": 1.7403749999994034,
-          "maxMs": 3.7253749999999854
+          "meanMs": 0.4069596923679019,
+          "p50Ms": 0.4034590000001117,
+          "p95Ms": 0.7568330000003698,
+          "maxMs": 3.7079160000002958
         },
         "lastTenPercentOpenFence": {
           "samples": 520,
-          "meanMs": 1.646597844230767,
-          "p50Ms": 1.6052500000005239,
-          "p95Ms": 2.194792000000234,
-          "maxMs": 3.7253749999999854
+          "meanMs": 0.7587315884615464,
+          "p50Ms": 0.7402920000004087,
+          "p95Ms": 0.9166249999998399,
+          "maxMs": 1.4287920000006125
         },
         "finalUpdate": {
           "samples": 10,
-          "meanMs": 1.7058375000000523,
-          "p50Ms": 1.6742920000006052,
-          "p95Ms": 2.0839579999992566,
-          "maxMs": 2.0839579999992566
+          "meanMs": 0.8173875999998927,
+          "p50Ms": 0.7836669999996957,
+          "p95Ms": 1.1174169999994774,
+          "maxMs": 1.1174169999994774
         }
       }
     },
@@ -1169,9 +1169,9 @@
       "fixture": "unfinished-backtick-16kib",
       "bytes": 16384,
       "iterations": 10,
-      "msPerOp": 10.240053999999873,
+      "msPerOp": 10.001599999999963,
       "outputBytes": 18638,
-      "heapDeltaKb": -4537.4609375,
+      "heapDeltaKb": -4468.78125,
       "chunkSize": 32,
       "warmupReplays": 2,
       "updatesPerReplay": 512,
@@ -1180,31 +1180,31 @@
       "latency": {
         "all": {
           "samples": 5120,
-          "meanMs": 0.019879748437497825,
-          "p50Ms": 0.019417000001340057,
-          "p95Ms": 0.035875000001396984,
-          "maxMs": 0.2828749999989668
+          "meanMs": 0.019455233007809623,
+          "p50Ms": 0.01945900000009715,
+          "p95Ms": 0.035874999999577994,
+          "maxMs": 0.23924999999962893
         },
         "openFence": {
           "samples": 5110,
-          "meanMs": 0.019912887475535518,
-          "p50Ms": 0.019458999999187654,
-          "p95Ms": 0.035916000000725035,
-          "maxMs": 0.2828749999989668
+          "meanMs": 0.01948887847357883,
+          "p50Ms": 0.019500000000334694,
+          "p95Ms": 0.03587500000048749,
+          "maxMs": 0.23924999999962893
         },
         "lastTenPercentOpenFence": {
           "samples": 520,
-          "meanMs": 0.036673030769200594,
-          "p50Ms": 0.034790999998222105,
-          "p95Ms": 0.0476249999992433,
-          "maxMs": 0.16791600000033213
+          "meanMs": 0.03586898076921618,
+          "p50Ms": 0.03487500000028376,
+          "p95Ms": 0.04179100000055769,
+          "maxMs": 0.23924999999962893
         },
         "finalUpdate": {
           "samples": 10,
-          "meanMs": 0.03875830000015412,
+          "meanMs": 0.037208100000134435,
           "p50Ms": 0.03600000000005821,
-          "p95Ms": 0.05379200000061246,
-          "maxMs": 0.05379200000061246
+          "p95Ms": 0.04470800000035524,
+          "maxMs": 0.04470800000035524
         }
       }
     },
@@ -1214,9 +1214,9 @@
       "fixture": "unfinished-backtick-64kib",
       "bytes": 65536,
       "iterations": 5,
-      "msPerOp": 88.78324159999974,
+      "msPerOp": 77.72217540000001,
       "outputBytes": 0,
-      "heapDeltaKb": 58977.828125,
+      "heapDeltaKb": 106103.65625,
       "chunkSize": 32,
       "warmupReplays": 2,
       "updatesPerReplay": 2048,
@@ -1225,31 +1225,31 @@
       "latency": {
         "all": {
           "samples": 10240,
-          "meanMs": 0.04318977167969536,
-          "p50Ms": 0.036208999999871594,
-          "p95Ms": 0.08095899999898393,
-          "maxMs": 3.2906660000007832
+          "meanMs": 0.03788354433593559,
+          "p50Ms": 0.034333999999944353,
+          "p95Ms": 0.06404199999997218,
+          "maxMs": 2.524290999999721
         },
         "openFence": {
           "samples": 10235,
-          "meanMs": 0.04320940097704749,
-          "p50Ms": 0.03620900000169058,
-          "p95Ms": 0.08100000000013097,
-          "maxMs": 3.2906660000007832
+          "meanMs": 0.03790119609183993,
+          "p50Ms": 0.0343750000001819,
+          "p95Ms": 0.06404199999997218,
+          "maxMs": 2.524290999999721
         },
         "lastTenPercentOpenFence": {
           "samples": 1025,
-          "meanMs": 0.0844143346341493,
-          "p50Ms": 0.0648750000000291,
-          "p95Ms": 0.11779199999909906,
-          "maxMs": 2.9725839999991877
+          "meanMs": 0.06726365951219966,
+          "p50Ms": 0.06300000000010186,
+          "p95Ms": 0.07133400000020629,
+          "maxMs": 1.9698749999997744
         },
         "finalUpdate": {
           "samples": 5,
-          "meanMs": 0.0742999999998574,
-          "p50Ms": 0.06708299999991141,
-          "p95Ms": 0.08816699999988487,
-          "maxMs": 0.08816699999988487
+          "meanMs": 0.0663834000000861,
+          "p50Ms": 0.0663750000003347,
+          "p95Ms": 0.06870799999978772,
+          "maxMs": 0.06870799999978772
         }
       }
     },
@@ -1259,9 +1259,9 @@
       "fixture": "unfinished-backtick-64kib",
       "bytes": 65536,
       "iterations": 5,
-      "msPerOp": 166.69010019999988,
+      "msPerOp": 146.46888359999974,
       "outputBytes": 74347,
-      "heapDeltaKb": -65495.1875,
+      "heapDeltaKb": 101922.921875,
       "chunkSize": 32,
       "warmupReplays": 2,
       "updatesPerReplay": 2048,
@@ -1270,31 +1270,31 @@
       "latency": {
         "all": {
           "samples": 10240,
-          "meanMs": 0.08118271386719282,
-          "p50Ms": 0.07345799999893643,
-          "p95Ms": 0.1531250000007276,
-          "maxMs": 2.1279169999997976
+          "meanMs": 0.07141870000000025,
+          "p50Ms": 0.06754199999886623,
+          "p95Ms": 0.1258750000015425,
+          "maxMs": 1.5797920000004524
         },
         "openFence": {
           "samples": 10235,
-          "meanMs": 0.08121982081094817,
-          "p50Ms": 0.073500000000422,
-          "p95Ms": 0.15333299999838346,
-          "maxMs": 2.1279169999997976
+          "meanMs": 0.07145168001954101,
+          "p50Ms": 0.06758300000001327,
+          "p95Ms": 0.12591599999905156,
+          "maxMs": 1.5797920000004524
         },
         "lastTenPercentOpenFence": {
           "samples": 1025,
-          "meanMs": 0.15453332097562408,
-          "p50Ms": 0.1279580000009446,
-          "p95Ms": 0.22691699999995762,
-          "maxMs": 1.78583400000025
+          "meanMs": 0.13451612390242035,
+          "p50Ms": 0.12412500000027649,
+          "p95Ms": 0.14099999999962165,
+          "maxMs": 1.5716670000001614
         },
         "finalUpdate": {
           "samples": 5,
-          "meanMs": 0.1325332000003982,
-          "p50Ms": 0.13154100000065228,
-          "p95Ms": 0.14270900000155962,
-          "maxMs": 0.14270900000155962
+          "meanMs": 0.13024979999972858,
+          "p50Ms": 0.12666600000011385,
+          "p95Ms": 0.1373329999987618,
+          "maxMs": 0.1373329999987618
         }
       }
     },
@@ -1304,42 +1304,42 @@
       "fixture": "unfinished-backtick-64kib",
       "bytes": 65536,
       "iterations": 5,
-      "msPerOp": 6953.515150000001,
-      "outputBytes": 249146,
-      "heapDeltaKb": -35723.3515625,
+      "msPerOp": 3331.0571832,
+      "outputBytes": 340874,
+      "heapDeltaKb": -17365.609375,
       "chunkSize": 32,
       "warmupReplays": 2,
       "updatesPerReplay": 2048,
       "openFenceUpdatesPerReplay": 2047,
-      "checksum": 1793925812,
+      "checksum": 2455102706,
       "latency": {
         "all": {
           "samples": 10240,
-          "meanMs": 3.392740948242209,
-          "p50Ms": 3.4198749999995925,
-          "p95Ms": 6.580291999998735,
-          "maxMs": 12.043541999999434
+          "meanMs": 1.626001465332039,
+          "p50Ms": 1.6265000000021246,
+          "p95Ms": 3.0786670000015874,
+          "maxMs": 5.45850000000064
         },
         "openFence": {
           "samples": 10235,
-          "meanMs": 3.394368667415751,
-          "p50Ms": 3.421582999995735,
-          "p95Ms": 6.583459000001312,
-          "maxMs": 12.043541999999434
+          "meanMs": 1.6267844858817855,
+          "p50Ms": 1.6273330000003625,
+          "p95Ms": 3.079375000001164,
+          "maxMs": 5.45850000000064
         },
         "lastTenPercentOpenFence": {
           "samples": 1025,
-          "meanMs": 6.55173894926834,
-          "p50Ms": 6.430832999998529,
-          "p95Ms": 7.7552080000023125,
-          "maxMs": 10.843958000004932
+          "meanMs": 3.089021594146403,
+          "p50Ms": 3.002333999997063,
+          "p95Ms": 3.792333999997936,
+          "maxMs": 4.118875000000116
         },
         "finalUpdate": {
           "samples": 5,
-          "meanMs": 6.907216400001198,
-          "p50Ms": 6.77204100000381,
-          "p95Ms": 7.664291000000958,
-          "maxMs": 7.664291000000958
+          "meanMs": 3.1134502000000794,
+          "p50Ms": 3.096832999999606,
+          "p95Ms": 3.221916999998939,
+          "maxMs": 3.221916999998939
         }
       }
     },
@@ -1349,9 +1349,9 @@
       "fixture": "unfinished-backtick-64kib",
       "bytes": 65536,
       "iterations": 5,
-      "msPerOp": 148.42968340000078,
+      "msPerOp": 148.63596660000184,
       "outputBytes": 74318,
-      "heapDeltaKb": 29715.09375,
+      "heapDeltaKb": -39887.875,
       "chunkSize": 32,
       "warmupReplays": 2,
       "updatesPerReplay": 2048,
@@ -1360,31 +1360,31 @@
       "latency": {
         "all": {
           "samples": 10240,
-          "meanMs": 0.07235159365235333,
-          "p50Ms": 0.07262500000069849,
-          "p95Ms": 0.134249999995518,
-          "maxMs": 0.4335419999988517
+          "meanMs": 0.07248694218749989,
+          "p50Ms": 0.07266600000002654,
+          "p95Ms": 0.13479100000404287,
+          "maxMs": 0.3616249999977299
         },
         "openFence": {
           "samples": 10235,
-          "meanMs": 0.07238514342941847,
-          "p50Ms": 0.07266700000036508,
-          "p95Ms": 0.134249999995518,
-          "maxMs": 0.4335419999988517
+          "meanMs": 0.07252034235466616,
+          "p50Ms": 0.07274999999935972,
+          "p95Ms": 0.13479199999710545,
+          "maxMs": 0.3616249999977299
         },
         "lastTenPercentOpenFence": {
           "samples": 1025,
-          "meanMs": 0.135444688780415,
-          "p50Ms": 0.1322920000020531,
-          "p95Ms": 0.15491599999950267,
-          "maxMs": 0.3325830000030692
+          "meanMs": 0.13554160585357927,
+          "p50Ms": 0.13350000000355067,
+          "p95Ms": 0.14870800000062445,
+          "maxMs": 0.3566659999996773
         },
         "finalUpdate": {
           "samples": 5,
-          "meanMs": 0.14232500000071013,
-          "p50Ms": 0.13716700000077253,
-          "p95Ms": 0.16033299999980954,
-          "maxMs": 0.16033299999980954
+          "meanMs": 0.14119140000111657,
+          "p50Ms": 0.14099999999598367,
+          "p95Ms": 0.1495000000068103,
+          "maxMs": 0.1495000000068103
         }
       }
     },
@@ -1394,9 +1394,9 @@
       "fixture": "unfinished-tilde-64kib",
       "bytes": 65536,
       "iterations": 5,
-      "msPerOp": 79.82769179999741,
+      "msPerOp": 83.14050000000134,
       "outputBytes": 0,
-      "heapDeltaKb": 71313.5703125,
+      "heapDeltaKb": -36447.5234375,
       "chunkSize": 32,
       "warmupReplays": 2,
       "updatesPerReplay": 2048,
@@ -1405,31 +1405,31 @@
       "latency": {
         "all": {
           "samples": 10240,
-          "meanMs": 0.03892056455080208,
-          "p50Ms": 0.033999999999650754,
-          "p95Ms": 0.06441699999413686,
-          "maxMs": 2.7499169999937294
+          "meanMs": 0.04047574052735285,
+          "p50Ms": 0.03466599999956088,
+          "p95Ms": 0.06970800000271993,
+          "maxMs": 2.938000000001921
         },
         "openFence": {
           "samples": 10235,
-          "meanMs": 0.038938336394745345,
-          "p50Ms": 0.034040999998978805,
-          "p95Ms": 0.06445800000074087,
-          "maxMs": 2.7499169999937294
+          "meanMs": 0.04049413776258831,
+          "p50Ms": 0.03466699999989942,
+          "p95Ms": 0.06970900000305846,
+          "maxMs": 2.938000000001921
         },
         "lastTenPercentOpenFence": {
           "samples": 1025,
-          "meanMs": 0.07508403219514748,
-          "p50Ms": 0.06274999999732245,
-          "p95Ms": 0.08191700000315905,
-          "maxMs": 2.7499169999937294
+          "meanMs": 0.07303309951216783,
+          "p50Ms": 0.0625,
+          "p95Ms": 0.08812499999476131,
+          "maxMs": 2.773666000000958
         },
         "finalUpdate": {
           "samples": 5,
-          "meanMs": 0.06999179999838816,
-          "p50Ms": 0.06583299999329029,
-          "p95Ms": 0.08716699999786215,
-          "maxMs": 0.08716699999786215
+          "meanMs": 0.064691799999855,
+          "p50Ms": 0.0645409999997355,
+          "p95Ms": 0.06733399999939138,
+          "maxMs": 0.06733399999939138
         }
       }
     },
@@ -1439,9 +1439,9 @@
       "fixture": "unfinished-tilde-64kib",
       "bytes": 65536,
       "iterations": 5,
-      "msPerOp": 151.58304159999972,
+      "msPerOp": 144.7382165999996,
       "outputBytes": 74347,
-      "heapDeltaKb": -86751.4609375,
+      "heapDeltaKb": -63612.8515625,
       "chunkSize": 32,
       "warmupReplays": 2,
       "updatesPerReplay": 2048,
@@ -1450,31 +1450,31 @@
       "latency": {
         "all": {
           "samples": 10240,
-          "meanMs": 0.07392367548829241,
-          "p50Ms": 0.06974999999511056,
-          "p95Ms": 0.12745900000300026,
-          "maxMs": 1.701708000000508
+          "meanMs": 0.07061687089843716,
+          "p50Ms": 0.06645800000114832,
+          "p95Ms": 0.12391699999716366,
+          "maxMs": 1.8262909999975818
         },
         "openFence": {
           "samples": 10235,
-          "meanMs": 0.0739573055202851,
-          "p50Ms": 0.0697920000020531,
-          "p95Ms": 0.12749999999505235,
-          "maxMs": 1.701708000000508
+          "meanMs": 0.0706481810454313,
+          "p50Ms": 0.06650000000081491,
+          "p95Ms": 0.12391700000443961,
+          "maxMs": 1.8262909999975818
         },
         "lastTenPercentOpenFence": {
           "samples": 1025,
-          "meanMs": 0.13837541560961852,
-          "p50Ms": 0.12449999999807915,
-          "p95Ms": 0.1492080000025453,
-          "maxMs": 1.62275000000227
+          "meanMs": 0.13136572292675094,
+          "p50Ms": 0.12216600000101607,
+          "p95Ms": 0.13450000000011642,
+          "maxMs": 1.8262909999975818
         },
         "finalUpdate": {
           "samples": 5,
-          "meanMs": 0.1289249999987078,
-          "p50Ms": 0.1275420000019949,
-          "p95Ms": 0.13320799999928568,
-          "maxMs": 0.13320799999928568
+          "meanMs": 0.3488332000008086,
+          "p50Ms": 0.12887500000215368,
+          "p95Ms": 1.2287910000013653,
+          "maxMs": 1.2287910000013653
         }
       }
     },
@@ -1484,42 +1484,42 @@
       "fixture": "unfinished-tilde-64kib",
       "bytes": 65536,
       "iterations": 5,
-      "msPerOp": 8161.249008199998,
-      "outputBytes": 249146,
-      "heapDeltaKb": -109512.4609375,
+      "msPerOp": 3308.1842669999996,
+      "outputBytes": 340874,
+      "heapDeltaKb": -108007.8359375,
       "chunkSize": 32,
       "warmupReplays": 2,
       "updatesPerReplay": 2048,
       "openFenceUpdatesPerReplay": 2047,
-      "checksum": 1793925812,
+      "checksum": 2455102706,
       "latency": {
         "all": {
           "samples": 10240,
-          "meanMs": 3.982018991699145,
-          "p50Ms": 3.78270799999882,
-          "p95Ms": 8.104082999998354,
-          "maxMs": 92.9486670000042
+          "meanMs": 1.6148954679687328,
+          "p50Ms": 1.5834169999943697,
+          "p95Ms": 3.0910000000003492,
+          "maxMs": 6.116500000003725
         },
         "openFence": {
           "samples": 10235,
-          "meanMs": 3.9839234586223,
-          "p50Ms": 3.784333000003244,
-          "p95Ms": 8.106708999999682,
-          "maxMs": 92.9486670000042
+          "meanMs": 1.615668271323871,
+          "p50Ms": 1.5840000000025611,
+          "p95Ms": 3.0910409999996773,
+          "maxMs": 6.116500000003725
         },
         "lastTenPercentOpenFence": {
           "samples": 1025,
-          "meanMs": 7.017661139512117,
-          "p50Ms": 6.327290999994148,
-          "p95Ms": 9.367958000002545,
-          "maxMs": 89.78366599998844
+          "meanMs": 3.1088927492684695,
+          "p50Ms": 3.0232909999976982,
+          "p95Ms": 3.809292000005371,
+          "maxMs": 6.116500000003725
         },
         "finalUpdate": {
           "samples": 5,
-          "meanMs": 7.071666600002208,
-          "p50Ms": 6.715166000009049,
-          "p95Ms": 8.302792000002228,
-          "maxMs": 8.302792000002228
+          "meanMs": 3.478383199997188,
+          "p50Ms": 3.274916000002122,
+          "p95Ms": 4.1383329999953276,
+          "maxMs": 4.1383329999953276
         }
       }
     },
@@ -1529,9 +1529,9 @@
       "fixture": "unfinished-tilde-64kib",
       "bytes": 65536,
       "iterations": 5,
-      "msPerOp": 147.22933320000303,
+      "msPerOp": 146.2123002000022,
       "outputBytes": 74318,
-      "heapDeltaKb": 29615.7109375,
+      "heapDeltaKb": 27043.0859375,
       "chunkSize": 32,
       "warmupReplays": 2,
       "updatesPerReplay": 2048,
@@ -1540,31 +1540,31 @@
       "latency": {
         "all": {
           "samples": 10240,
-          "meanMs": 0.0717972814452807,
-          "p50Ms": 0.07083399999828544,
-          "p95Ms": 0.13324999999895226,
-          "maxMs": 0.3760000000038417
+          "meanMs": 0.07130581777339344,
+          "p50Ms": 0.06954200000473065,
+          "p95Ms": 0.134249999995518,
+          "maxMs": 0.36583299999620067
         },
         "openFence": {
           "samples": 10235,
-          "meanMs": 0.07182997430382528,
-          "p50Ms": 0.07087499999033753,
-          "p95Ms": 0.13324999999895226,
-          "maxMs": 0.3760000000038417
+          "meanMs": 0.07133906829502243,
+          "p50Ms": 0.06962499999644933,
+          "p95Ms": 0.134249999995518,
+          "maxMs": 0.36583299999620067
         },
         "lastTenPercentOpenFence": {
           "samples": 1025,
-          "meanMs": 0.13354970634142618,
-          "p50Ms": 0.13033300000824966,
-          "p95Ms": 0.1582909999997355,
-          "maxMs": 0.3410839999996824
+          "meanMs": 0.1352846224389178,
+          "p50Ms": 0.13091699999495177,
+          "p95Ms": 0.16820800000277814,
+          "maxMs": 0.36583299999620067
         },
         "finalUpdate": {
           "samples": 5,
-          "meanMs": 0.15028300000121816,
-          "p50Ms": 0.13937499999883585,
-          "p95Ms": 0.19883300000219606,
-          "maxMs": 0.19883300000219606
+          "meanMs": 0.14267519999848446,
+          "p50Ms": 0.13641700000152923,
+          "p95Ms": 0.16887499999575084,
+          "maxMs": 0.16887499999575084
         }
       }
     },
@@ -1574,9 +1574,9 @@
       "fixture": "closing-backtick-64kib",
       "bytes": 65566,
       "iterations": 5,
-      "msPerOp": 83.45165839999973,
+      "msPerOp": 78.84894159999968,
       "outputBytes": 0,
-      "heapDeltaKb": 72340.4921875,
+      "heapDeltaKb": 66372.8203125,
       "chunkSize": 32,
       "warmupReplays": 2,
       "updatesPerReplay": 2049,
@@ -1585,31 +1585,31 @@
       "latency": {
         "all": {
           "samples": 10245,
-          "meanMs": 0.04065191215222499,
-          "p50Ms": 0.034916999997221865,
-          "p95Ms": 0.0695830000040587,
-          "maxMs": 3.1708749999961583
+          "meanMs": 0.03841290141530911,
+          "p50Ms": 0.0334999999977299,
+          "p95Ms": 0.06274999999732245,
+          "maxMs": 3.091166999998677
         },
         "openFence": {
           "samples": 10235,
-          "meanMs": 0.04065160058618007,
-          "p50Ms": 0.034916999997221865,
-          "p95Ms": 0.06949999999778811,
-          "maxMs": 3.1708749999961583
+          "meanMs": 0.03841207122616914,
+          "p50Ms": 0.0334999999977299,
+          "p95Ms": 0.06270799999765586,
+          "maxMs": 3.091166999998677
         },
         "lastTenPercentOpenFence": {
           "samples": 1025,
-          "meanMs": 0.07932173170739922,
-          "p50Ms": 0.06325000000651926,
-          "p95Ms": 0.09729199999128468,
-          "maxMs": 2.7610419999982696
+          "meanMs": 0.07243183317066812,
+          "p50Ms": 0.06129199999850243,
+          "p95Ms": 0.09033300000010058,
+          "maxMs": 2.6258749999979045
         },
         "finalUpdate": {
           "samples": 5,
-          "meanMs": 0.0778249999973923,
-          "p50Ms": 0.07470899999316316,
-          "p95Ms": 0.08883300000161398,
-          "maxMs": 0.08883300000161398
+          "meanMs": 0.07494179999921471,
+          "p50Ms": 0.07570799999666633,
+          "p95Ms": 0.07904200000484707,
+          "maxMs": 0.07904200000484707
         }
       }
     },
@@ -1619,9 +1619,9 @@
       "fixture": "closing-backtick-64kib",
       "bytes": 65566,
       "iterations": 5,
-      "msPerOp": 158.23815839999878,
+      "msPerOp": 169.5597666000016,
       "outputBytes": 74378,
-      "heapDeltaKb": 3098.046875,
+      "heapDeltaKb": -50285.578125,
       "chunkSize": 32,
       "warmupReplays": 2,
       "updatesPerReplay": 2049,
@@ -1630,31 +1630,31 @@
       "latency": {
         "all": {
           "samples": 10245,
-          "meanMs": 0.07712069389948589,
-          "p50Ms": 0.06920800000079907,
-          "p95Ms": 0.1396670000103768,
-          "maxMs": 1.764999999999418
+          "meanMs": 0.08252839716932502,
+          "p50Ms": 0.0749160000050324,
+          "p95Ms": 0.15750000000116415,
+          "maxMs": 2.1430840000030003
         },
         "openFence": {
           "samples": 10235,
-          "meanMs": 0.07711955378605276,
-          "p50Ms": 0.06920800000079907,
-          "p95Ms": 0.13950000000477303,
-          "maxMs": 1.764999999999418
+          "meanMs": 0.0824256035173161,
+          "p50Ms": 0.0749160000050324,
+          "p95Ms": 0.15741700000216952,
+          "maxMs": 2.1430840000030003
         },
         "lastTenPercentOpenFence": {
           "samples": 1025,
-          "meanMs": 0.1427728409754828,
-          "p50Ms": 0.12816699998802505,
-          "p95Ms": 0.1669170000095619,
-          "maxMs": 1.6622079999942798
+          "meanMs": 0.15346935902445338,
+          "p50Ms": 0.12854199999856064,
+          "p95Ms": 0.20708400000148686,
+          "maxMs": 1.8632089999955497
         },
         "finalUpdate": {
           "samples": 5,
-          "meanMs": 0.15054999999701976,
-          "p50Ms": 0.146666999993613,
-          "p95Ms": 0.16754100000252947,
-          "maxMs": 0.16754100000252947
+          "meanMs": 0.365741800001706,
+          "p50Ms": 0.1624999999985448,
+          "p95Ms": 1.1464170000035665,
+          "maxMs": 1.1464170000035665
         }
       }
     },
@@ -1664,42 +1664,42 @@
       "fixture": "closing-backtick-64kib",
       "bytes": 65566,
       "iterations": 5,
-      "msPerOp": 6534.3609,
-      "outputBytes": 249177,
-      "heapDeltaKb": -117985.0078125,
+      "msPerOp": 4155.7037747999975,
+      "outputBytes": 340905,
+      "heapDeltaKb": -38715.265625,
       "chunkSize": 32,
       "warmupReplays": 2,
       "updatesPerReplay": 2049,
       "openFenceUpdatesPerReplay": 2047,
-      "checksum": 1795670051,
+      "checksum": 2457489041,
       "latency": {
         "all": {
           "samples": 10245,
-          "meanMs": 3.187517166325207,
-          "p50Ms": 3.1581670000159647,
-          "p95Ms": 6.161041999992449,
-          "maxMs": 12.539707999996608
+          "meanMs": 2.0267024503660087,
+          "p50Ms": 1.7902500000054715,
+          "p95Ms": 3.921541999996407,
+          "maxMs": 76.27770800000872
         },
         "openFence": {
           "samples": 10235,
-          "meanMs": 3.1875759316074004,
-          "p50Ms": 3.1581670000159647,
-          "p95Ms": 6.159833000012441,
-          "maxMs": 12.539707999996608
+          "meanMs": 2.0269585145090137,
+          "p50Ms": 1.7902500000054715,
+          "p95Ms": 3.921834000007948,
+          "maxMs": 76.27770800000872
         },
         "lastTenPercentOpenFence": {
           "samples": 1025,
-          "meanMs": 6.201656636098093,
-          "p50Ms": 6.096417000022484,
-          "p95Ms": 7.122999999992317,
-          "maxMs": 12.539707999996608
+          "meanMs": 4.553283425365453,
+          "p50Ms": 3.592125000010128,
+          "p95Ms": 8.576542000009795,
+          "maxMs": 69.1327089999977
         },
         "finalUpdate": {
           "samples": 5,
-          "meanMs": 6.199541799991858,
-          "p50Ms": 6.250833999976749,
-          "p95Ms": 6.409249999996973,
-          "maxMs": 6.409249999996973
+          "meanMs": 3.4714913999981944,
+          "p50Ms": 3.457416999997804,
+          "p95Ms": 3.8522910000028787,
+          "maxMs": 3.8522910000028787
         }
       }
     },
@@ -1709,9 +1709,9 @@
       "fixture": "closing-backtick-64kib",
       "bytes": 65566,
       "iterations": 5,
-      "msPerOp": 146.64199140000272,
+      "msPerOp": 149.56984160000283,
       "outputBytes": 74349,
-      "heapDeltaKb": -43318,
+      "heapDeltaKb": -44930.265625,
       "chunkSize": 32,
       "warmupReplays": 2,
       "updatesPerReplay": 2049,
@@ -1720,31 +1720,31 @@
       "latency": {
         "all": {
           "samples": 10245,
-          "meanMs": 0.07149037306003303,
-          "p50Ms": 0.07129200000781566,
-          "p95Ms": 0.13333399998373352,
-          "maxMs": 0.3815420000173617
+          "meanMs": 0.0729039801855356,
+          "p50Ms": 0.07233300000370946,
+          "p95Ms": 0.1350419999944279,
+          "maxMs": 0.45679099998960737
         },
         "openFence": {
           "samples": 10235,
-          "meanMs": 0.07148188373229648,
-          "p50Ms": 0.07129200000781566,
-          "p95Ms": 0.13329199998406693,
-          "maxMs": 0.3815420000173617
+          "meanMs": 0.07289595613100269,
+          "p50Ms": 0.07233300000370946,
+          "p95Ms": 0.1349999999947613,
+          "maxMs": 0.45679099998960737
         },
         "lastTenPercentOpenFence": {
           "samples": 1025,
-          "meanMs": 0.1348610351218206,
-          "p50Ms": 0.13129200000548735,
-          "p95Ms": 0.1559170000255108,
-          "maxMs": 0.3815420000173617
+          "meanMs": 0.13529435121954034,
+          "p50Ms": 0.13112499999988358,
+          "p95Ms": 0.17100000000209548,
+          "maxMs": 0.3830409999936819
         },
         "finalUpdate": {
           "samples": 5,
-          "meanMs": 0.15603319999645465,
-          "p50Ms": 0.15587499999674037,
-          "p95Ms": 0.1638329999987036,
-          "maxMs": 0.1638329999987036
+          "meanMs": 0.15739139999786858,
+          "p50Ms": 0.1567499999946449,
+          "p95Ms": 0.15862499999639113,
+          "maxMs": 0.15862499999639113
         }
       }
     }

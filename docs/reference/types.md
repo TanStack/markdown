@@ -126,7 +126,7 @@ Contains raw inline HTML `value`. It is created only when HTML parsing is enable
 
 ### `InlineComponentNode`
 
-Contains `type: 'inlineComponent'`, `name`, source `attributes`, inline `children`, and optional rendered `tagName` and string `properties`. Uses the same component replacements as `ComponentNode`, with a `<span>` fallback when no tag is provided. See [Custom components](../guides/extensions#custom-components).
+Contains `type: 'inlineComponent'`, `name`, source `attributes`, inline `children`, and optional rendered `tagName` and string `properties`. Uses the same component replacements as `ComponentNode`, with a `<span>` fallback when no tag is provided. See [Custom components](../guides/extensions.md#custom-components).
 
 ## Parsing and rendering options
 
@@ -136,7 +136,7 @@ Configures `allowHtml`, `urlTransform`, `frontmatter`, `headingIds`, and `extens
 
 ### `UrlTransform`
 
-Synchronous callback `(url: string, kind: 'link' | 'image', defaultUrl: string) => string | null`. Return the default screened URL, a trusted replacement, or `null` to keep only the label content. Applies during Markdown parsing, not to raw HTML or supplied ASTs. See [Custom URL policy](../core-concepts/security#custom-url-policy).
+Synchronous callback `(url: string, kind: 'link' | 'image', defaultUrl: string) => string | null`. Return the default screened URL, a trusted replacement, or `null` to keep only the label content. Applies during Markdown parsing, not to raw HTML or supplied ASTs. See [Custom URL policy](../core-concepts/security.md#custom-url-policy).
 
 ### `RenderOptions`
 
@@ -158,11 +158,23 @@ Configures anchor `content`, `className`, `ariaHidden`, and `tabIndex`.
 
 ### `MarkdownExtension`
 
-Named hook object with optional `parseBlock`, `transformDocument`, `transformInline`, and `renderHtml` functions.
+Named hook object with optional `parseBlock`, `transformDocument`, `transformInline`, and `renderHtml` functions, plus an optional `inlineParser`.
 
 ### `BlockParseContext`
 
 Provides source `lines`, current `index`, active `options`, nested `parseInline` and `parseBlocks` helpers, and `consume`.
+
+### `InlineParser`
+
+Contains literal starting UTF-16 code-unit `markers` and a synchronous `parse(context)` callback returning `InlineParseResult | undefined`. Runs at matching source positions after escapes and code spans, before other built-in inline rules.
+
+### `InlineParseContext`
+
+Provides current-container `source`, UTF-16 `index`, active `options`, `inLink`, and a nested `parseInline(value)` helper that shares the recursion and scan budget.
+
+### `InlineParseResult`
+
+Contains one standard `InlineNode` as `node` and a positive integer `length` in UTF-16 code units. The range must fit in the current source. Invalid lengths throw `RangeError`.
 
 ### `InlineTransformContext`
 

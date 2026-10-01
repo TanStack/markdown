@@ -133,7 +133,14 @@ async function validateLinks(file, source) {
       continue
     }
 
-    if (fragment) {
+    const isMarkdown = /\.(?:md|mdx)$/.test(markdownPath)
+    if (isMarkdown && pathPart && !/\.(?:md|mdx)$/.test(pathPart)) {
+      failures.push(
+        `Local link must include the .md extension so GitHub can resolve it in ${toPosix(path.relative(root, file))}: ${target}`,
+      )
+    }
+
+    if (isMarkdown && fragment) {
       const anchors = await getAnchors(markdownPath)
       const anchor = decodeURIComponent(fragment).toLowerCase()
       if (!anchors.has(anchor)) {

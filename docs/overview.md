@@ -31,7 +31,7 @@ TanStack Markdown spends its complexity budget on that path. It deliberately doe
 
 ### Small entry points
 
-Current minified browser bundles are 5.0 KB gzip for the parser, 6.8 KB for HTML rendering, and 6.7 KB for either UI adapter with its framework runtime externalized. The generated [bundle report](https://github.com/TanStack/markdown/blob/main/reports/sizes.md) is the source of truth.
+Current minified browser bundles are 5.2 KB gzip for the parser, 7.0 KB for HTML rendering, and 7.0 KB for either UI adapter with its framework runtime externalized. The generated [bundle report](https://github.com/TanStack/markdown/blob/main/reports/sizes.md) is the source of truth.
 
 ### Parse once, render many
 
@@ -43,15 +43,15 @@ Raw HTML is escaped unless `allowHtml` is enabled. Executable URL protocols such
 
 ### Focused compatibility
 
-The supported contract is the [TanStack docs syntax profile](core-concepts/syntax-profile), not full CommonMark or GFM. Compatibility is continuously measured so established behavior cannot regress silently.
+The supported contract is the [TanStack docs syntax profile](./core-concepts/syntax-profile.md), not full CommonMark or GFM. Compatibility is continuously measured so established behavior cannot regress silently.
 
 ### AI streaming without parser state
 
-The optional [AI streaming profile](guides/ai-streaming) reparses accumulated response text and suppresses incomplete trailing block placeholders. It adds 0.2 KB gzip to the React path while leaving the core parser and renderers unchanged.
+The optional [AI streaming profile](./guides/ai-streaming.md) reparses accumulated response text and suppresses incomplete trailing block placeholders. It adds 0.2 KB gzip to the React path while leaving the core parser and renderers unchanged.
 
 ## Choose your starting point
 
-- Continue to [Installation](installation) for package and runtime requirements.
-- Use [Quick Start](quick-start) for HTML, React, and Octane examples.
-- Read [Comparison](comparison) to evaluate the tradeoffs.
-- Review the [Syntax Profile](core-concepts/syntax-profile) before migrating an existing content corpus.
+- Continue to [Installation](./installation.md) for package and runtime requirements.
+- Use [Quick Start](./quick-start.md) for HTML, React, and Octane examples.
+- Read [Comparison](./comparison.md) to evaluate the tradeoffs.
+- Review the [Syntax Profile](./core-concepts/syntax-profile.md) before migrating an existing content corpus.

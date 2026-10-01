@@ -12,8 +12,8 @@ importers:
         specifier: 3.0.2
         version: 3.0.2
       '@tanstack/highlight':
-        specifier: 0.0.6
-        version: 0.0.6
+        specifier: 1.0.0
+        version: 1.0.0
       '@tanstack/intent':
         specifier: ^0.3.6
         version: 0.3.6
@@ -792,8 +792,8 @@ packages:
     peerDependencies:
       acorn: ^8.9.0
 
-  '@tanstack/highlight@0.0.6':
-    resolution: {integrity: sha512-thgHLjw2QWtV7ZBwce+3dL33hkgKKivpfqSMKOR5ILiAEV2lc90af8UpJVMY/hmeXVGseoxjbB134PRf85p8gQ==}
+  '@tanstack/highlight@1.0.0':
+    resolution: {integrity: sha512-nrg2iZSQUZlDZGTPKh/CNlg6Orm3vFHIaIi/9DqPC1rUpfe/M6rD2iokrckWTc2Z5jYDz185BK76GUh9VIjQRw==}
     engines: {node: '>=18'}
 
   '@tanstack/intent@0.3.6':
@@ -2073,7 +2073,7 @@ snapshots:
     dependencies:
       acorn: 8.17.0
 
-  '@tanstack/highlight@0.0.6': {}
+  '@tanstack/highlight@1.0.0': {}
 
   '@tanstack/intent@0.3.6':
     dependencies:

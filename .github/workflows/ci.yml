@@ -5,6 +5,7 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  workflow_call:
 
 permissions:
   contents: read
@@ -24,3 +25,48 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm run verify
       - run: pnpm run corpus:audit:external
+
+  consumers:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [22, 24]
+        react: ['18.0', '19']
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: pnpm/action-setup@b906affcce14559ad1aafd4ab0e942779e9f58b1
+        with:
+          version: 11.4.0
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: ${{ matrix.node }}
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run build
+      - run: pnpm run test:package
+        env:
+          TEST_REACT_VERSION: ${{ matrix.react }}
+
+  browsers:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        react: ['18.0', '19']
+        browser: [chromium, firefox, webkit]
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: pnpm/action-setup@b906affcce14559ad1aafd4ab0e942779e9f58b1
+        with:
+          version: 11.4.0
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm add -D react@${{ matrix.react }} react-dom@${{ matrix.react }} --ignore-scripts --lockfile=false
+      - run: pnpm exec playwright install --with-deps ${{ matrix.browser }}
+      - run: pnpm run test:streaming-browser
+        env:
+          TEST_BROWSER: ${{ matrix.browser }}

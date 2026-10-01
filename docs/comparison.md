@@ -40,11 +40,11 @@ These repository benchmarks bundle representative browser entry points from pinn
 
 | Entry | Gzip | Brotli |
 | --- | ---: | ---: |
-| `@tanstack/markdown/parser` | 4.9 KB | 4.5 KB |
-| `@tanstack/markdown/html` | 6.7 KB | 6.2 KB |
-| `@tanstack/markdown/react` | 6.7 KB | 6.2 KB |
-| React with streaming extension | 6.9 KB | 6.3 KB |
-| `@tanstack/markdown/octane` | 6.6 KB | 6.1 KB |
+| `@tanstack/markdown/parser` | 5.2 KB | 4.8 KB |
+| `@tanstack/markdown/html` | 7.0 KB | 6.5 KB |
+| `@tanstack/markdown/react` | 7.0 KB | 6.5 KB |
+| React with streaming extension | 7.2 KB | 6.6 KB |
+| `@tanstack/markdown/octane` | 7.0 KB | 6.4 KB |
 | Marked | 12.5 KB | 11.5 KB |
 | micromark | 15.4 KB | 13.7 KB |
 | markdown-wasm JS + WASM | 31.3 KB | 26.4 KB |
@@ -58,8 +58,8 @@ The comparison does not represent equivalent feature sets. It shows the cost of 
 
 The generated [compatibility report](https://github.com/TanStack/markdown/blob/main/reports/conformance.md) tracks matches against all 652 CommonMark 0.31.2 examples after serializer normalization. Every established match is protected individually by the regression suite. The count is accounting, not a conformance claim or a target to maximize. Selected official GFM examples separately cover tables, task lists, and strikethrough.
 
-Use [commonmark.js](https://github.com/commonmark/commonmark.js), micromark, or a unified pipeline when exact specification behavior is a requirement. Use TanStack Markdown when your corpus fits the [documented profile](core-concepts/syntax-profile) and the smaller, controlled renderer is the better product tradeoff.
+Use [commonmark.js](https://github.com/commonmark/commonmark.js), micromark, or a unified pipeline when exact specification behavior is a requirement. Use TanStack Markdown when your corpus fits the [documented profile](./core-concepts/syntax-profile.md) and the smaller, controlled renderer is the better product tradeoff.
 
 ## Performance
 
-Across the maintained fixtures, TanStack Markdown is competitive with the JavaScript renderers in the suite, but it is not the fastest result in every fixture. Pre-parsed AST rendering is its cheapest path. The defensible advantage is the combined size, output contract, and focused feature set. See [Performance](guides/performance) for methodology and current results.
+Across the maintained fixtures, TanStack Markdown is competitive with the JavaScript renderers in the suite, but it is not the fastest result in every fixture. Pre-parsed AST rendering is its cheapest path. The defensible advantage is the combined size, output contract, and focused feature set. See [Performance](./guides/performance.md) for methodology and current results.

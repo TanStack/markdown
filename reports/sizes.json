@@ -1,47 +1,47 @@
 {
-  "generatedAt": "2026-09-12T23:57:10.287Z",
+  "generatedAt": "2026-10-01T01:44:15.550Z",
   "results": [
     {
       "group": "tanstack",
       "name": "parser only",
-      "minBytes": 11949,
-      "gzipBytes": 4894,
-      "brotliBytes": 4539
+      "minBytes": 12648,
+      "gzipBytes": 5217,
+      "brotliBytes": 4823
     },
     {
       "group": "tanstack",
       "name": "html renderer no highlighter",
-      "minBytes": 17139,
-      "gzipBytes": 6729,
-      "brotliBytes": 6158
+      "minBytes": 17839,
+      "gzipBytes": 7048,
+      "brotliBytes": 6483
     },
     {
       "group": "tanstack",
       "name": "html renderer with external highlighter stub",
-      "minBytes": 17175,
-      "gzipBytes": 6751,
-      "brotliBytes": 6184
+      "minBytes": 17875,
+      "gzipBytes": 7068,
+      "brotliBytes": 6474
     },
     {
       "group": "tanstack",
       "name": "react adapter",
-      "minBytes": 17147,
-      "gzipBytes": 6676,
-      "brotliBytes": 6170
+      "minBytes": 17847,
+      "gzipBytes": 6998,
+      "brotliBytes": 6478
     },
     {
       "group": "tanstack",
       "name": "octane adapter",
-      "minBytes": 17084,
-      "gzipBytes": 6644,
-      "brotliBytes": 6143
+      "minBytes": 17784,
+      "gzipBytes": 6964,
+      "brotliBytes": 6438
     },
     {
       "group": "tanstack",
       "name": "docs extension preset",
-      "minBytes": 6423,
-      "gzipBytes": 2292,
-      "brotliBytes": 2073
+      "minBytes": 6285,
+      "gzipBytes": 2273,
+      "brotliBytes": 2059
     },
     {
       "group": "tanstack",
@@ -60,16 +60,16 @@
     {
       "group": "tanstack",
       "name": "react adapter with streaming extension",
-      "minBytes": 17839,
-      "gzipBytes": 6860,
-      "brotliBytes": 6302
+      "minBytes": 18539,
+      "gzipBytes": 7183,
+      "brotliBytes": 6621
     },
     {
       "group": "tanstack",
       "name": "tabs transforms",
-      "minBytes": 3290,
-      "gzipBytes": 1221,
-      "brotliBytes": 1082
+      "minBytes": 3152,
+      "gzipBytes": 1206,
+      "brotliBytes": 1076
     },
     {
       "group": "markdown",
@@ -116,37 +116,37 @@
     {
       "group": "tanstack-public",
       "name": ".",
-      "minBytes": 17404,
-      "gzipBytes": 6852,
-      "brotliBytes": 6267
+      "minBytes": 18104,
+      "gzipBytes": 7174,
+      "brotliBytes": 6583
     },
     {
       "group": "tanstack-public",
       "name": "./html",
-      "minBytes": 17364,
-      "gzipBytes": 6840,
-      "brotliBytes": 6283
+      "minBytes": 18064,
+      "gzipBytes": 7161,
+      "brotliBytes": 6580
     },
     {
       "group": "tanstack-public",
       "name": "./parser",
-      "minBytes": 12082,
-      "gzipBytes": 4981,
-      "brotliBytes": 4599
+      "minBytes": 12781,
+      "gzipBytes": 5304,
+      "brotliBytes": 4884
     },
     {
       "group": "tanstack-public",
       "name": "./react",
-      "minBytes": 17347,
-      "gzipBytes": 6790,
-      "brotliBytes": 6241
+      "minBytes": 18047,
+      "gzipBytes": 7108,
+      "brotliBytes": 6563
     },
     {
       "group": "tanstack-public",
       "name": "./octane",
-      "minBytes": 17287,
-      "gzipBytes": 6752,
-      "brotliBytes": 6209
+      "minBytes": 17987,
+      "gzipBytes": 7073,
+      "brotliBytes": 6504
     },
     {
       "group": "tanstack-public",
@@ -165,16 +165,16 @@
     {
       "group": "tanstack-public",
       "name": "./extensions/docs",
-      "minBytes": 6587,
-      "gzipBytes": 2392,
-      "brotliBytes": 2162
+      "minBytes": 6449,
+      "gzipBytes": 2373,
+      "brotliBytes": 2138
     },
     {
       "group": "tanstack-public",
       "name": "./extensions/framework",
-      "minBytes": 1470,
-      "gzipBytes": 734,
-      "brotliBytes": 630
+      "minBytes": 1422,
+      "gzipBytes": 706,
+      "brotliBytes": 607
     },
     {
       "group": "tanstack-public",
@@ -193,9 +193,9 @@
     {
       "group": "tanstack-public",
       "name": "./extensions/tabs",
-      "minBytes": 3537,
-      "gzipBytes": 1338,
-      "brotliBytes": 1185
+      "minBytes": 3399,
+      "gzipBytes": 1324,
+      "brotliBytes": 1183
     }
   ]
 }

@@ -96,7 +96,8 @@
     "research": "pnpm run conformance && pnpm run size && pnpm run bench",
     "verify": "pnpm test && pnpm run typecheck && pnpm run build && pnpm run docs:verify && pnpm run test:skills && pnpm run research && pnpm pack --dry-run",
     "prepublishOnly": "pnpm run verify",
-    "version": "pnpm run skills:sync-version"
+    "version": "pnpm run skills:sync-version",
+    "test:package": "node scripts/verify-package.mjs"
   },
   "publishConfig": {
     "access": "public"
@@ -115,7 +116,7 @@
   },
   "devDependencies": {
     "@changesets/cli": "3.0.2",
-    "@tanstack/highlight": "0.0.6",
+    "@tanstack/highlight": "1.0.0",
     "@tanstack/intent": "^0.3.6",
     "@types/node": "^24.0.0",
     "@types/react": "^19.0.0",
