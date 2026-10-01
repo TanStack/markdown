@@ -1,6 +1,6 @@
-# Inline source parser candidate
+# Inline source parsers
 
-Baseline: `1b7dc5410e2fd66f95e2eb557650403579fe530b`. Runtime: `v24.21.0`. This is an isolated inclusion proposal, not an approved 1.0 API decision.
+Baseline: `1b7dc5410e2fd66f95e2eb557650403579fe530b`. Runtime: `v24.21.0`. These measurements describe the optional inline parser API included in version 1.0.
 
 The two original PR #19 commits retain Silouan Wright as author. Generated reports and size ceilings were rebased onto the current streaming implementation rather than restoring the older PR ceilings. No runtime dependency is added.
 
