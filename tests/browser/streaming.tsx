@@ -3,6 +3,7 @@ import { flushSync } from 'react-dom'
 import { createRoot, hydrateRoot } from 'react-dom/client'
 import { renderToString } from 'react-dom/server'
 import { Markdown } from '../../src/react.js'
+import type { MarkdownExtension } from '../../src/types.js'
 import type { MarkdownProps } from '../../src/react.js'
 import { parseMarkdown } from '../../src/parser.js'
 import { streamingMarkdownExtension } from '../../src/extensions/streaming.js'
@@ -58,6 +59,31 @@ async function verifyStreamingReact() {
   flushSync(() => hydrated.render(<Markdown extensions={extensions}>{source + 'hydrated update'}</Markdown>))
   assert(container.querySelector('code')!.textContent === code + 'hydrated update', 'Hydrated code did not update correctly')
   flushSync(() => hydrated.unmount())
+  const inlineExtensions: MarkdownExtension[] = [{ name: 'mention', inlineParser: {
+    markers: '@',
+    parse({ source, index, inLink }) {
+      if (inLink) return
+      const match = /^@([a-z]+)/.exec(source.slice(index))
+      if (!match) return
+      return { length: match[0].length, node: { type: 'inlineCode', value: match[1]! } }
+    },
+  } }]
+  const inlineSource = '# @hello **@world** [@label](/safe)'
+  container.innerHTML = renderToString(<Markdown extensions={inlineExtensions}>{inlineSource}</Markdown>)
+  const inlineServerNode = container.querySelector('code')
+  const inlineRoot = hydrateRoot(container, <Markdown extensions={inlineExtensions}>{inlineSource}</Markdown>, { onRecoverableError: error => errors.push(error) })
+  await new Promise(requestAnimationFrame)
+  await new Promise(requestAnimationFrame)
+  assert(errors.length === 0, 'Source inline parser caused a hydration mismatch')
+  assert(container.querySelector('code') === inlineServerNode, 'Source inline parser replaced server markup')
+  assert(container.querySelector('strong code')?.textContent === 'world', 'Inline parser did not run inside emphasis')
+  assert(container.querySelector('a')?.textContent === '@label', 'Inline parser lost link-label context')
+  flushSync(() => inlineRoot.render(<Markdown extensions={inlineExtensions}>@hel</Markdown>))
+  assert(container.querySelector('code')?.textContent === 'hel', 'Inline parser did not process a partial update')
+  flushSync(() => inlineRoot.render(<Markdown extensions={inlineExtensions}>@hello</Markdown>))
+  assert(container.querySelector('code')?.textContent === 'hello', 'Inline parser did not process the completed update')
+  flushSync(() => inlineRoot.unmount())
+  checks += 6
   container.remove()
   return { checks: checks + 4 }
 }

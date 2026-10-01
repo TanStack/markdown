@@ -26,13 +26,21 @@ const ast = JSON.parse(JSON.stringify(parseMarkdown(source)))
 assert.equal(renderHtml(ast), renderHtml(source))
 assert.match(renderToStaticMarkup(createElement(Markdown, { children: ast })), /<strong>world<\\/strong>/)
 assert.ok(!renderHtml(source).includes('javascript:'))
+const extension = { name: 'mention', inlineParser: { markers: '@', parse({ source, index, inLink }) {
+  if (inLink || !source.startsWith('@hello', index)) return
+  return { length: 6, node: { type: 'inlineCode', value: 'hello' } }
+} } }
+const extended = JSON.parse(JSON.stringify(parseMarkdown('@hello and [@hello](/safe)', { extensions: [extension] })))
+assert.equal(renderHtml(extended), renderHtml('@hello and [@hello](/safe)', { extensions: [extension] }))
+assert.equal(renderHtml(extended), '<p><code>hello</code> and <a href="/safe">@hello</a></p>')
+assert.match(renderToStaticMarkup(createElement(Markdown, { children: extended })), /<code>hello<\\/code>/)
 ${react.startsWith('18') ? '' : `const { renderToStaticMarkup: renderOctane } = await import('octane/server')
 const { Markdown: OctaneMarkdown } = await import('@tanstack/markdown/octane')
 assert.match(renderOctane(OctaneMarkdown, { children: ast }).html, /<strong>world<\\/strong>/)`}
 console.log('Packed exports, serialized AST, React SSR, and safe URLs passed')
 `)
   run(process.execPath, ['verify.mjs'])
-  await writeFile(join(directory, 'verify.ts'), `import { parseMarkdown, renderHtml, type MarkdownDocument } from '@tanstack/markdown'; import { Markdown, type MarkdownProps } from '@tanstack/markdown/react'; const document: MarkdownDocument = parseMarkdown('# Typed'); const props: MarkdownProps = { children: document }; renderHtml(document); void Markdown; void props;`)
+  await writeFile(join(directory, 'verify.ts'), `import { parseMarkdown, renderHtml, type MarkdownDocument, type InlineParser } from '@tanstack/markdown'; import { Markdown, type MarkdownProps } from '@tanstack/markdown/react'; const document: MarkdownDocument = parseMarkdown('# Typed'); const props: MarkdownProps = { children: document }; renderHtml(document); void Markdown; void props; const parser: InlineParser = { markers: '@', parse: context => ({ length: 1, node: { type: 'text', value: context.source.slice(context.index, context.index + 1) } }) }; parseMarkdown('@', { extensions: [{ name: 'typed', inlineParser: parser }] });`)
   run(process.execPath, ['node_modules/typescript/bin/tsc', '--noEmit', '--strict', '--module', 'NodeNext', '--moduleResolution', 'NodeNext', '--target', 'ES2022', 'verify.ts'])
 } finally {
   await rm(directory, { recursive: true, force: true })

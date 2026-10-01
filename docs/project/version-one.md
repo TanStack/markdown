@@ -24,6 +24,6 @@ The React peer range allows newer compatible React releases; automated testing o
 
 ## Upgrading from 0.0.16
 
-Update `@tanstack/markdown` to `^1.0.0`. Existing parser, renderer, and docs extension calls require no migration. Rebuild generated AST caches once, run your own Markdown corpus, and inspect important anchor links and customized components. Do not enable `allowHtml` merely to restore differences from another parser.
+Update `@tanstack/markdown` to `^1.0.0`. Existing parser, renderer, and docs extension calls require no migration. Version 1 adds optional source-level inline parsers through `MarkdownExtension.inlineParser`. They run only when configured and leave default syntax unchanged. See [extensions](../guides/extensions.md) for marker dispatch, precedence, UTF-16 source offsets, shared parser budgets, and trusted callback requirements. Rebuild generated AST caches once, run your own Markdown corpus, and inspect important anchor links and customized components. Do not enable `allowHtml` merely to restore differences from another parser.
 
 The release pipeline validates the packed archive in an isolated consumer, all public imports, serialized AST rendering, safe URL handling, React server rendering, browser hydration and streamed updates. Published documentation and examples are checked alongside parser, resilience, security, and size regression tests.
