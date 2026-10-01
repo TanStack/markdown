@@ -6,13 +6,15 @@ The two original PR #19 commits retain Silouan Wright as author. Generated repor
 
 | Entry | Gzip before | Gzip after | Delta |
 | --- | ---: | ---: | ---: |
-| parser only | 4894 | 5196 | +302 |
-| html renderer no highlighter | 6729 | 7027 | +298 |
-| react adapter | 6676 | 6974 | +298 |
-| octane adapter | 6644 | 6941 | +297 |
-| react adapter with streaming extension | 6860 | 7157 | +297 |
+| parser only | 4894 | 5217 | +323 |
+| html renderer no highlighter | 6729 | 7048 | +319 |
+| react adapter | 6676 | 6998 | +322 |
+| octane adapter | 6644 | 6964 | +320 |
+| react adapter with streaming extension | 6860 | 7183 | +323 |
 
 CommonMark: 403 → 403, no established matches lost.
+
+The size measurements include the descendant-link correction. The timing measurements below were taken at `14a5c11`, before that correction, which only runs when a hook returns a node.
 
 Paired measurements warm both implementations and alternate order across nine rounds, with the hook disabled. These are local Node measurements, not browser timing claims.
 

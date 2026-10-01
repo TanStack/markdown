@@ -20,10 +20,10 @@
 
 A tiny, fast, deterministic Markdown parser and renderer for blogs and documentation.
 
-- 5.0 KB gzip parser
-- 6.8 KB gzip HTML renderer
-- 6.7 KB gzip React adapter
-- 6.7 KB gzip Octane adapter
+- 5.2 KB gzip parser
+- 7.0 KB gzip HTML renderer
+- 7.0 KB gzip React adapter
+- 7.0 KB gzip Octane adapter
 - zero runtime dependencies
 - serializable AST
 - safe defaults for raw HTML and executable URLs

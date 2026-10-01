@@ -17,6 +17,10 @@ export function parseInline(value: string, options: ParseOptions = {}): InlineNo
   return result
 }
 
+function hasLink(node: InlineNode): boolean {
+  return node.type === 'link' || ('children' in node && node.children.some(hasLink))
+}
+
 interface InlineParseBudget {
   scans: number
   depth: number
@@ -101,7 +105,7 @@ function parseInlineRaw(
       }
       pushText()
       nodes.push(result.node)
-      if (result.node.type === 'link') budget.links++
+      if (hasLink(result.node)) budget.links++
       index += result.length
       continue scan
     }

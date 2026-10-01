@@ -1,20 +1,20 @@
 # Bundle Size Results
 
-Generated: 2026-09-30T22:59:30.929Z
+Generated: 2026-10-01T01:44:15.553Z
 
 Bundles are ESM, browser-targeted, minified with esbuild, then gzip and brotli compressed. Framework runtimes are externalized for the React and Octane adapters.
 
 | Group | Entry | Min bytes | Gzip bytes | Brotli bytes |
 | :--- | :--- | ---: | ---: | ---: |
-| tanstack | parser only | 12583 | 5196 | 4785 |
-| tanstack | html renderer no highlighter | 17774 | 7027 | 6436 |
-| tanstack | html renderer with external highlighter stub | 17810 | 7049 | 6478 |
-| tanstack | react adapter | 17782 | 6974 | 6442 |
-| tanstack | octane adapter | 17719 | 6941 | 6383 |
+| tanstack | parser only | 12648 | 5217 | 4823 |
+| tanstack | html renderer no highlighter | 17839 | 7048 | 6483 |
+| tanstack | html renderer with external highlighter stub | 17875 | 7068 | 6474 |
+| tanstack | react adapter | 17847 | 6998 | 6478 |
+| tanstack | octane adapter | 17784 | 6964 | 6438 |
 | tanstack | docs extension preset | 6285 | 2273 | 2059 |
 | tanstack | callouts extension | 506 | 335 | 278 |
 | tanstack | streaming extension | 699 | 311 | 253 |
-| tanstack | react adapter with streaming extension | 18474 | 7157 | 6572 |
+| tanstack | react adapter with streaming extension | 18539 | 7183 | 6621 |
 | tanstack | tabs transforms | 3152 | 1206 | 1076 |
 | markdown | marked | 41415 | 12548 | 11509 |
 | markdown | markdown-it | 148242 | 52655 | 44023 |
@@ -22,11 +22,11 @@ Bundles are ESM, browser-targeted, minified with esbuild, then gzip and brotli c
 | markdown | commonmark | 159687 | 48084 | 39793 |
 | markdown | markdown-wasm browser js+wasm | 66387 | 31275 | 26431 |
 | markdown | unified remark+rehype | 119588 | 36843 | 32686 |
-| tanstack-public | . | 18039 | 7151 | 6580 |
-| tanstack-public | ./html | 17999 | 7141 | 6526 |
-| tanstack-public | ./parser | 12716 | 5284 | 4879 |
-| tanstack-public | ./react | 17982 | 7086 | 6513 |
-| tanstack-public | ./octane | 17922 | 7049 | 6485 |
+| tanstack-public | . | 18104 | 7174 | 6583 |
+| tanstack-public | ./html | 18064 | 7161 | 6580 |
+| tanstack-public | ./parser | 12781 | 5304 | 4884 |
+| tanstack-public | ./react | 18047 | 7108 | 6563 |
+| tanstack-public | ./octane | 17987 | 7073 | 6504 |
 | tanstack-public | ./extensions/callouts | 660 | 432 | 360 |
 | tanstack-public | ./extensions/comment-components | 1073 | 647 | 542 |
 | tanstack-public | ./extensions/docs | 6449 | 2373 | 2138 |

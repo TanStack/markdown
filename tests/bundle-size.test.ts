@@ -22,14 +22,14 @@ describe('bundle budgets', () => {
     // Measured Node 24 ceilings for the inline-hook candidate on the current streaming baseline.
     // Extension entries retain their 0.0.14 ceilings.
     for (const [result, min, gzip, brotli] of [
-      [parser, 12583, 5196, 4785],
-      [html, 17774, 7027, 6436],
-      [react, 17782, 6974, 6442],
-      [octane, 17719, 6941, 6383],
-      [pluggable, 17810, 7049, 6478],
+      [parser, 12648, 5217, 4823],
+      [html, 17839, 7048, 6483],
+      [react, 17847, 6998, 6478],
+      [octane, 17784, 6964, 6438],
+      [pluggable, 17875, 7068, 6474],
       [streaming, 699, 311, 253],
       [callouts, 506, 335, 278],
-      [reactStreaming, 18474, 7157, 6572],
+      [reactStreaming, 18539, 7183, 6621],
       [docs, 6423, 2292, 2073],
       [tabs, 3290, 1221, 1082],
     ] as const) {
@@ -42,11 +42,11 @@ describe('bundle budgets', () => {
 
   it('also protects the complete namespace of every public entry point', async () => {
     const budgets: Record<string, number[]> = {
-      '.': [18039, 7151, 6580],
-      './html': [17999, 7141, 6526],
-      './parser': [12716, 5284, 4879],
-      './react': [17982, 7086, 6513],
-      './octane': [17922, 7049, 6485],
+      '.': [18104, 7174, 6583],
+      './html': [18064, 7161, 6580],
+      './parser': [12781, 5304, 4884],
+      './react': [18047, 7108, 6563],
+      './octane': [17987, 7073, 6504],
       './extensions/callouts': [660, 432, 360],
       './extensions/comment-components': [1073, 647, 542],
       './extensions/docs': [6587, 2392, 2162],

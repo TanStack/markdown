@@ -5,7 +5,7 @@ import { describe, expect, it, vi } from 'vitest'
 import { parseInline, parseMarkdown, renderHtml } from '../src/index.js'
 import { Markdown as ReactMarkdown } from '../src/react.js'
 import { Markdown as OctaneMarkdown } from '../src/octane.js'
-import type { InlineParser, MarkdownDocument, MarkdownExtension, ParseOptions } from '../src/types.js'
+import type { InlineNode, InlineParser, MarkdownDocument, MarkdownExtension, ParseOptions } from '../src/types.js'
 import { normalizeStaticMarkup } from './helpers/normalize-html.js'
 
 const literal: MarkdownExtension = {
@@ -135,4 +135,21 @@ it('uses UTF-16 marker units while allowing complete Unicode syntax checks', () 
     },
   } }]
   expect(renderAll('🔥 then 😀', { extensions })).toBe('<p>🔥 then <code>emoji</code></p>')
+})
+
+
+it.each(['strong', 'emphasis', 'strike', 'inlineComponent'] as const)('counts links nested in extension %s nodes', type => {
+  const link: InlineNode = { type: 'link', href: '/inner', children: [{ type: 'text', value: 'inner' }] }
+  const children: InlineNode[] = [{ type: 'emphasis', children: [link] }]
+  const node: InlineNode = type === 'inlineComponent'
+    ? { type, name: 'nested', tagName: 'mark', attributes: {}, children }
+    : { type, children }
+  const extensions: MarkdownExtension[] = [{ name: 'nested-link', inlineParser: {
+    markers: '@', parse: () => ({ length: 1, node }),
+  } }]
+  const html = renderAll('[@](/outer)', { extensions })
+  expect(html).toContain('<a href="/inner">inner</a>')
+  expect(html).not.toContain('href="/outer"')
+  expect(html.match(/<a /g)).toHaveLength(1)
+  expect(html).toContain('](/outer)</p>')
 })

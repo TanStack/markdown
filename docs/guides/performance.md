@@ -13,9 +13,9 @@ The generated browser bundle report records:
 | Entry | Gzip | Brotli |
 | --- | ---: | ---: |
 | parser | 5.2 KB | 4.8 KB |
-| HTML renderer | 7.0 KB | 6.4 KB |
-| React adapter | 7.0 KB | 6.4 KB |
-| Octane adapter | 6.9 KB | 6.4 KB |
+| HTML renderer | 7.0 KB | 6.5 KB |
+| React adapter | 7.0 KB | 6.5 KB |
+| Octane adapter | 7.0 KB | 6.4 KB |
 | React adapter with streaming extension | 7.2 KB | 6.6 KB |
 | Streaming extension | 0.3 KB | 0.3 KB |
 | docs preset | 2.3 KB | 2.1 KB |
