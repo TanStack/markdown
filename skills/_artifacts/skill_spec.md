@@ -113,7 +113,7 @@ TanStack Markdown is a synchronous parser and renderer for controlled blog and d
 | Skill | Question | Status |
 | --- | --- | :---: |
 | react-rendering | How should React and Octane guidance be prioritized against real usage? | open |
-| custom-extensions | Which extension contracts are intended to remain stable before 1.0? | open |
+| custom-extensions | Which extension contracts remain stable within 1.x? | resolved |
 | production-pipelines | Which downstream AI mistakes recur beyond repository regressions? | open |
 
 ## Recommended Skill File Structure

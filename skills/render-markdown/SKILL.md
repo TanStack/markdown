@@ -152,8 +152,9 @@ lists, tables, frontmatter, reference definitions, and footnote definitions.
 - Footnotes render in first-reference order with collision-safe IDs and
   repeated-reference back links.
 - Code fence metadata is recorded in the AST; highlighting is external.
-- The AST is public but pre-1.0. Regenerate persisted documents when an
-  upgrade changes node contracts.
+- The documented AST follows the version 1 compatibility policy. Existing
+  valid 1.x documents remain supported by later 1.x renderers. Record the
+  producer version with persisted documents and rebuild caches to adopt fixes.
 
 ## Compatibility and Option Timing
 

@@ -55,7 +55,7 @@ export default function Response() {
 
 ```
 
-The streaming extension suppresses empty trailing headings, blockquotes, and list items while a response is incomplete. It does not change completed paragraphs, lists, tables, quotes, or fenced code. An unclosed code fence renders all code accumulated after its opening fence.
+The streaming extension suppresses empty trailing headings, blockquotes, and list items while a response is incomplete. This transform leaves other nodes unchanged, but the next update reparses the full source. Later text, such as a reference definition, can change how earlier content parses. An unclosed code fence renders all code accumulated after its opening fence.
 
 Keep the extension enabled after completion unless an intentionally empty final heading, quote, or list item is meaningful in your application. Without the extension, core parsing preserves those valid Markdown structures.
 
@@ -65,7 +65,7 @@ Unclosed emphasis, code spans, links, and other inline delimiters remain literal
 
 The package reparses the accumulated response rather than maintaining parser state between updates. Batch very small transport tokens into normal UI updates when responses are unusually long or tokens arrive faster than the screen should repaint.
 
-With the streaming extension enabled, React keeps completed groups of plain code lines in stable text nodes. Appending code updates the trailing group instead of replacing the entire block's text, which reduces browser layout work. Custom code components still receive string children, and highlighters keep their existing HTML rendering path.
+With the streaming extension enabled, React keeps completed groups of plain code lines in stable text nodes. Appending code updates the trailing group instead of replacing the entire block's text, which avoids updating completed text groups on each append. Custom code components still receive string children, and highlighters keep their existing HTML rendering path.
 
 ## Security
 

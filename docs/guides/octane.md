@@ -12,7 +12,7 @@ The Octane adapter renders Markdown source or a pre-parsed document directly to 
 pnpm add @tanstack/markdown octane
 ```
 
-The adapter requires `octane@0.1.12` or newer. Octane is an optional peer dependency and is not imported by any other package entry.
+The adapter is tested with `octane@0.1.12`. Octane is an optional peer dependency and is not imported by any other package entry. Its peer range permits newer versions without guaranteeing compatibility with future pre-1.0 Octane changes; see [Version 1 compatibility](../project/version-one.md).
 
 ## Component usage
 

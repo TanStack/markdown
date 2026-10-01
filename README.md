@@ -20,17 +20,14 @@
 
 A tiny, fast, deterministic Markdown parser and renderer for blogs and documentation.
 
-- 5.2 KB gzip parser
-- 7.0 KB gzip HTML renderer
-- 7.0 KB gzip React adapter
-- 7.0 KB gzip Octane adapter
+- separately importable parser, HTML renderer, React adapter, and Octane adapter
 - zero runtime dependencies
 - serializable AST
 - safe defaults for raw HTML and executable URLs
 - optional docs extensions and external syntax highlighting
 - optional AI streaming profile
 
-Bundle sizes include the parser and exclude framework runtimes and syntax highlighters.
+The [generated bundle report](./reports/sizes.md) records minified, gzip, and Brotli sizes for reproducible browser import profiles. Renderer measurements include the parser and exclude framework runtimes and syntax highlighters; complete public-entry measurements are listed separately.
 
 ```bash
 pnpm add @tanstack/markdown
@@ -60,7 +57,7 @@ export function Article({ source }: { source: string }) @{
 }
 ```
 
-TanStack Markdown targets controlled technical content. It supports the Markdown used by blogs and docs, then spends its remaining complexity budget on deterministic output, renderer parity, malformed-input resilience, and small entry points. It is intentionally not a complete CommonMark, GFM, MDX, or general content-processing implementation.
+TanStack Markdown targets controlled technical content. It supports the Markdown used by blogs and docs, with deterministic output, renderer parity, malformed-input limits, and separately importable entry points. It is intentionally not a complete CommonMark, GFM, MDX, or general content-processing implementation.
 
 For syntax highlighting, use the tested [TanStack Highlight adapter](./docs/guides/syntax-highlighting.md#tanstack-highlight-adapter). It registers only the languages you choose and returns escaped token markup inside Markdown-owned code containers.
 
