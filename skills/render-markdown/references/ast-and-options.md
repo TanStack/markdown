@@ -1,6 +1,6 @@
 # AST and Options Reference
 
-This reference targets `@tanstack/markdown@1.0.1`. Shared public types are
+This reference targets `@tanstack/markdown@1.1.0`. Shared public types are
 exported from `@tanstack/markdown`.
 
 ## Entry Points
