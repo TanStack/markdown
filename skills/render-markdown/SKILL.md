@@ -9,7 +9,7 @@ description: >
 metadata:
   type: core
   library: '@tanstack/markdown'
-  library_version: '1.1.0'
+  library_version: '1.1.1'
 sources:
   - 'TanStack/markdown:docs/quick-start.md'
   - 'TanStack/markdown:docs/core-concepts/document-model.md'
