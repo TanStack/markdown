@@ -16,7 +16,7 @@ Import from `@tanstack/markdown/extensions/autolinks`.
 function autolinksExtension(): MarkdownExtension
 ```
 
-Creates an inline source parser for bare `http://` / `https://` URLs and explicit `<https://…>` links. Returns ordinary link nodes and applies the active `urlTransform` policy. It is not included in the core entry or docs preset. See the [autolink profile](../guides/extensions#optional-url-linking) for boundaries and deliberate limits.
+Creates an inline source parser for bare `http://` / `https://` URLs and explicit `<https://…>` links. Returns ordinary link nodes and applies the active `urlTransform` policy. It is not included in the core entry or docs preset. See the [autolink profile](../guides/extensions.md#optional-url-linking) for boundaries and deliberate limits.
 
 ## Callouts
 
@@ -175,7 +175,7 @@ Turns code-block children into `md-tab-panel` elements and records file names, l
 
 ### `transformPackageManagerTabs`
 
-Parses `framework: package...` lines and records package groups plus `install`, `dev-install`, or `local-install` mode.
+Parses shared `package...` lines and `framework: package...` lines and records package groups plus `install`, `dev-install`, or `local-install` mode. A framework prefix is a name of letters, digits, `_`, or `-` followed by a colon that is not directly followed by `/` or `.`, so URL and path specifiers such as `https://` and `file:../` stay shared. Each line becomes a separate command group. Unprefixed groups appear under the empty string key in `packagesByFramework` and are also included in each named framework's groups, preserving source order.
 
 ### `transformBundlerTabs`
 

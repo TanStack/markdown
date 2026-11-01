@@ -9,7 +9,7 @@ description: >
 metadata:
   type: core
   library: '@tanstack/markdown'
-  library_version: '0.0.14'
+  library_version: '1.0.1'
 requires:
   - 'render-markdown'
 sources:
@@ -126,7 +126,7 @@ main {
 <!-- ::end:tabs -->
 ````
 
-Package-manager tabs consume `framework: package...` lines and remove their source children after creating metadata:
+Package-manager tabs consume `framework: package...` lines and shared `package...` lines, then remove their source children after creating metadata:
 
 ```md
 <!-- ::start:tabs variant="package-manager" mode="dev-install" -->

@@ -76,7 +76,7 @@ describe('optional HTTP(S) autolinks', () => {
 
   it.each([
     'www.example.com', 'person@example.com', 'ftp://example.com', 'javascript:alert(1)',
-    'xhttps://example.com', 'éhttps://example.com', '/https://example.com',
+    'xhttps://example.com', 'éhttps://example.com', '𝒜https://example.com', '𐐀https://example.com', '𝟙https://example.com', '/https://example.com',
     'https://', 'https://%', 'https://example.com:invalid/path', '<https://example.com',
     '\\<https://example.com>',
   ])('keeps unsupported or malformed input literal: %s', source => {

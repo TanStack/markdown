@@ -26,7 +26,7 @@ Normalizes and parses a complete Markdown source string into a deterministic `Ma
 | Option | Default | Behavior |
 | --- | --- | --- |
 | `allowHtml` | `false` | Recognize raw block and inline HTML nodes |
-| `urlTransform` | built-in policy | Override parsed link and image URLs; see [Custom URL policy](../core-concepts/security#custom-url-policy) |
+| `urlTransform` | built-in policy | Override parsed link and image URLs; see [Custom URL policy](../core-concepts/security.md#custom-url-policy) |
 | `frontmatter` | `true` | Extract a leading `---` frontmatter block |
 | `headingIds` | `true` | Generate IDs, disable them, or provide an ID function |
 | `extensions` | `[]` | Run custom parser and transform hooks in array order |
@@ -41,4 +41,4 @@ The last four state fields are public so extension-driven nested parsing can pre
 
 The result always has `type: 'root'` and a `children` array. It may also include raw `frontmatter` and extension-derived `headings`.
 
-See [Parsing](../core-concepts/parsing) for behavior and [Types](types) for complete contracts.
+See [Parsing](../core-concepts/parsing.md) for behavior and [Types](./types.md) for complete contracts.

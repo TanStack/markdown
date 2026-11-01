@@ -12,7 +12,13 @@ concurrency:
 permissions: {}
 
 jobs:
+  compatibility:
+    uses: ./.github/workflows/ci.yml
+    permissions:
+      contents: read
+
   verify:
+    needs: compatibility
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     permissions:
@@ -31,7 +37,7 @@ jobs:
           node-version: 24
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      - run: pnpm run verify
+      # The same-commit compatibility job already runs verify and the corpus gate.
       - name: Select release operation
         id: changesets
         uses: changesets/action/select-mode@ae32849d5ba541f9ae29e40e22a623bc13562f51 # v2.1.2

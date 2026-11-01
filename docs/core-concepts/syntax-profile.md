@@ -35,7 +35,7 @@ TanStack Markdown implements a documented subset aimed at repository-authored bl
 | Reference links and images | Yes | Full, collapsed, and shortcut forms; normalized reference labels |
 | Hard breaks | Yes | Backslash before a newline |
 | Raw inline HTML | Opt-in | Requires `allowHtml: true` |
-| Autolink literals | Opt-in | HTTP(S) only via the [autolinks extension](../guides/extensions#optional-url-linking) |
+| Autolink literals | Opt-in | HTTP(S) only via the [autolinks extension](../guides/extensions.md#optional-url-linking) |
 | Entity decoding | Partial | HTML is escaped; full CommonMark entity behavior is not a goal |
 
 ## Docs metadata
@@ -61,7 +61,7 @@ The docs extension entry points add:
 - comment-delimited component blocks
 - file, package-manager, bundler, and framework transforms
 
-See the [Docs Preset](../guides/docs-preset) guide.
+See the [Docs Preset](../guides/docs-preset.md) guide.
 
 ## Deliberate limits
 
@@ -75,4 +75,4 @@ The following are not project goals:
 - syntax highlighting, themes, or language grammars
 - asynchronous plugin pipelines
 
-Unsupported input must still be deterministic, escaped by default, and bounded in runtime. New syntax requires evidence from real documentation, regression fixtures, renderer parity, and an accepted bundle cost.
+Unsupported input must still be deterministic and escaped by default. Core parsing limits nesting and inline scans, but does not cap total input size or arbitrary extension work; see [Resource limits](./security.md#resource-limits). New syntax requires evidence from real documentation, regression fixtures, renderer parity, and an accepted bundle cost.

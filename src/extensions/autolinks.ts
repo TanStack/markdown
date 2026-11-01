@@ -1,7 +1,7 @@
 import type { InlineParseContext, InlineParseResult, MarkdownExtension } from '../types.js'
 
 const protocol = /https?:\/\//iy
-const boundary = /[\p{L}\p{N}_/@<\\]/u
+const boundary = /(?<=[\p{L}\p{N}_/@<\\])/uy
 const terminator = /[\s\u0000-\u0020\u007f<>"'`\\]/
 const trailing = /[.,!?;:]/
 
@@ -13,11 +13,11 @@ export function autolinksExtension(): MarkdownExtension {
 function parseAutolink({ source, index, options, inLink }: InlineParseContext): InlineParseResult | undefined {
   if (inLink) return
   const angle = source[index] === '<'
-  if (!angle && index > 0 && boundary.test(source[index - 1]!)) return
+  boundary.lastIndex = index
+  if (!angle && boundary.test(source)) return
   const start = index + Number(angle)
   protocol.lastIndex = start
-  const match = protocol.exec(source)
-  if (!match) return
+  if (!protocol.test(source)) return
 
   let end = protocol.lastIndex
   const depth = [0, 0, 0]
@@ -37,18 +37,16 @@ function parseAutolink({ source, index, options, inLink }: InlineParseContext): 
   const url = source.slice(start, end)
   const closed = !angle || source[end] === '>'
   const length = end + Number(angle && closed) - index
-  // Consume malformed candidates literally so their suffixes are not rescanned.
-  const literal: InlineParseResult = { length, node: { type: 'text', value: source.slice(index, index + length) } }
-  if (!closed) return literal
-  try {
+  let valid = closed
+  if (valid) try {
     new URL(url)
   } catch {
-    return literal
+    valid = false
   }
 
-  // Only validated http(s) source reaches this point, so the default is safe.
-  // As with core links, an application's replacement is trusted.
-  const href = options.urlTransform ? options.urlTransform(url, 'link', url) : url
-  const label = { type: 'text' as const, value: url }
+  // Consume malformed candidates literally so their suffixes are not rescanned.
+  // Only validated URLs reach the application's trusted replacement policy.
+  const href = valid ? options.urlTransform ? options.urlTransform(url, 'link', url) : url : null
+  const label = { type: 'text' as const, value: valid ? url : source.slice(index, index + length) }
   return { length, node: href === null ? label : { type: 'link', href, children: [label] } }
 }

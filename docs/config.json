@@ -55,7 +55,8 @@
       "label": "Project",
       "children": [
         { "label": "Architecture", "to": "project/architecture" },
-        { "label": "FAQ", "to": "project/faq" }
+        { "label": "FAQ", "to": "project/faq" },
+        { "label": "Version 1 compatibility", "to": "project/version-one" }
       ]
     }
   ]

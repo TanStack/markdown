@@ -1,5 +1,44 @@
 # @tanstack/markdown
 
+## 1.0.1
+
+### Patch Changes
+
+- 3385b4c: Correct the packaged AST guidance for version 1 and clarify bundle measurements, streaming reparsing, and supported adapter versions.
+
+## 1.0.0
+
+### Major Changes
+
+- 7cd68d4: Release the documented Markdown parser, HTML/React/Octane renderers, AST and extension APIs as version 1.0. Define the compatibility and trusted-content contracts, validate installed package entry points, and gate releases on supported server and browser rendering tests. Include the optional source-level inline parser contract for custom syntax without changing default parsing. Existing 0.0.16 calls require no migration.
+
+### Minor Changes
+
+- 771ab04: Add opt-in source-level inline parsers to Markdown extensions. Declare starting characters and return a standard inline node with an explicit consumed length, before built-in formatting changes the source. Preserve escape and code precedence, expose link-label context, and share parser budgets with nested parsing.
+
+## 0.0.16
+
+### Patch Changes
+
+- 967a294: Support framework-independent commands in package-manager tabs. Lines without a framework prefix are shared commands, and named framework groups include shared lines in source order. Preserve existing framework-prefixed commands and URL and path specifiers.
+
+## 0.0.15
+
+### Patch Changes
+
+- f37686a: Speed up plain fenced-code rendering with the React streaming extension by retaining completed code text nodes across updates. Reduce parser overhead and shrink every affected public bundle without adding runtime dependencies.
+  
+  Add unfinished-fence benchmarks at 4, 16, and 64 KiB, browser comparisons with Streamdown and streaming-markdown, and regression coverage for streamed text, custom code components, and hydration.
+- eb6ef72: Forward raw code-fence metadata to `pre[data-meta]` and highlighter options in HTML, React, and Octane.
+  
+  Add portable `InlineComponentNode` output for custom inline extensions, using the existing component maps without requiring raw HTML or a bundled math engine.
+  
+  Add `urlTransform(url, kind, defaultUrl)` for application-controlled link and image policies. Default URL screening is unchanged; returning `null` removes a link or image while keeping its label content.
+  
+  Use single-pass attribute escaping, expand renderer and security regression coverage, and update documentation and shipped skills. The combined renderer increase is 74-78 gzip bytes, with no new runtime dependencies.
+  
+  Code fences with metadata now include an additional escaped HTML attribute. Consumers with exhaustive `InlineNode` switches should handle the new `inlineComponent` variant.
+
 ## 0.0.14
 
 ### Patch Changes

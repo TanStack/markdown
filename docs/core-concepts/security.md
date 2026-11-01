@@ -61,7 +61,7 @@ renderHtml(source, { highlighter })
 
 Only use a highlighter that escapes source code and returns trusted markup. TanStack Markdown cannot distinguish token markup from an injection in the returned string.
 
-The tested [TanStack Highlight adapter](../guides/syntax-highlighting#tanstack-highlight-adapter) returns escaped inner token markup without duplicating Markdown's `<pre><code>` containers.
+The tested [TanStack Highlight adapter](../guides/syntax-highlighting.md#tanstack-highlight-adapter) returns escaped inner token markup without duplicating Markdown's `<pre><code>` containers.
 
 ## Extensions
 

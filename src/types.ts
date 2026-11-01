@@ -195,7 +195,7 @@ export interface MarkdownExtension {
 }
 
 export interface InlineParser {
-  /** Possible first characters, used to skip ordinary text efficiently. */
+  /** Literal possible starting UTF-16 code units, used to skip ordinary text. */
   markers: string
   parse: (context: InlineParseContext) => InlineParseResult | undefined
 }

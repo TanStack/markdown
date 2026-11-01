@@ -4,7 +4,7 @@ title: Octane
 
 # Octane
 
-The `@tanstack/markdown/octane` entry requires Octane 0.1.12 or newer.
+The `@tanstack/markdown/octane` entry is tested with Octane 0.1.12. See [Version 1 compatibility](../project/version-one.md) for the supported adapter and runtime versions.
 
 ```ts
 import {
@@ -78,4 +78,4 @@ function renderInlineOctane(
 
 Renders one inline node.
 
-See the [Octane Guide](../guides/octane) for TSRX, component mapping, and SSR usage.
+See the [Octane Guide](../guides/octane.md) for TSRX, component mapping, and SSR usage.

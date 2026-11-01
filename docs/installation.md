@@ -49,7 +49,7 @@ React is a peer dependency and is not bundled into the adapter.
 
 ## Octane usage
 
-The Octane adapter requires Octane 0.1.12 or newer:
+The Octane adapter is tested with Octane 0.1.12:
 
 ```bash
 pnpm add @tanstack/markdown octane
@@ -63,7 +63,7 @@ export function Article({ source }: { source: string }) @{
 }
 ```
 
-Octane is an optional peer dependency and is not bundled into the adapter.
+Octane is an optional peer dependency and is not bundled into the adapter. Its peer range permits newer releases without guaranteeing compatibility with future pre-1.0 Octane changes. See [Version 1 compatibility](./project/version-one.md) for tested versions and the React 19 requirement when both frameworks are installed.
 
 ## Runtime and module format
 
@@ -71,4 +71,4 @@ TanStack Markdown ships ESM JavaScript and TypeScript declarations. Its synchron
 
 ## Optional capabilities
 
-Syntax highlighting is supplied as a callback, so install only the highlighter your application uses. Docs-specific behavior is available through separately importable [extensions](guides/extensions).
+Syntax highlighting is supplied as a callback, so install only the highlighter your application uses. Docs-specific behavior is available through separately importable [extensions](./guides/extensions.md).

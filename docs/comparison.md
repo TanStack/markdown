@@ -36,30 +36,16 @@ Markdown libraries optimize for different jobs. TanStack Markdown is designed fo
 
 ## Measured browser size
 
-These repository benchmarks bundle representative browser entry points from pinned dependencies, minify them with esbuild, and compress them. They are reproducible with `pnpm run size`.
+The repository's [generated size report](https://github.com/TanStack/markdown/blob/main/reports/sizes.md) bundles representative browser entry points from pinned dependencies, minifies them with esbuild, and records gzip and Brotli bytes. Reproduce it with `pnpm run size`.
 
-| Entry | Gzip | Brotli |
-| --- | ---: | ---: |
-| `@tanstack/markdown/parser` | 5.3 KB | 4.9 KB |
-| `@tanstack/markdown/html` | 7.1 KB | 6.5 KB |
-| `@tanstack/markdown/react` | 7.0 KB | 6.5 KB |
-| React with streaming extension | 6.9 KB | 6.4 KB |
-| `@tanstack/markdown/octane` | 7.0 KB | 6.5 KB |
-| Marked | 12.5 KB | 11.5 KB |
-| micromark | 15.4 KB | 13.7 KB |
-| markdown-wasm JS + WASM | 31.3 KB | 26.4 KB |
-| unified + remark + rehype | 36.8 KB | 32.7 KB |
-| commonmark.js | 48.1 KB | 39.8 KB |
-| markdown-it | 52.7 KB | 44.0 KB |
-
-The comparison does not represent equivalent feature sets. It shows the cost of each measured path for this repository’s rendering benchmark. See the generated [size report](https://github.com/TanStack/markdown/blob/main/reports/sizes.md) for exact bytes and versions.
+The report distinguishes selected-function imports from the complete namespace of every TanStack Markdown public entry. Framework runtimes are externalized from adapter measurements. Comparison packages have different feature sets, so the results describe those import profiles rather than equivalent capabilities or the final size of your application.
 
 ## Compatibility accounting
 
 The generated [compatibility report](https://github.com/TanStack/markdown/blob/main/reports/conformance.md) tracks matches against all 652 CommonMark 0.31.2 examples after serializer normalization. Every established match is protected individually by the regression suite. The count is accounting, not a conformance claim or a target to maximize. Selected official GFM examples separately cover tables, task lists, and strikethrough.
 
-Use [commonmark.js](https://github.com/commonmark/commonmark.js), micromark, or a unified pipeline when exact specification behavior is a requirement. Use TanStack Markdown when your corpus fits the [documented profile](core-concepts/syntax-profile) and the smaller, controlled renderer is the better product tradeoff.
+Use [commonmark.js](https://github.com/commonmark/commonmark.js), micromark, or a unified pipeline when exact specification behavior is a requirement. Use TanStack Markdown when your corpus fits the [documented profile](./core-concepts/syntax-profile.md) and the smaller, controlled renderer is the better product tradeoff.
 
 ## Performance
 
-Across the maintained fixtures, TanStack Markdown is competitive with the JavaScript renderers in the suite, but it is not the fastest result in every fixture. Pre-parsed AST rendering is its cheapest path. The defensible advantage is the combined size, output contract, and focused feature set. See [Performance](guides/performance) for methodology and current results.
+Across the maintained fixtures, TanStack Markdown is competitive with the JavaScript renderers in the suite, but it is not the fastest result in every fixture. Pre-parsed AST rendering is its cheapest path. Compare the measured import sizes and supported syntax with the rendering and extension APIs your application needs. See [Performance](./guides/performance.md) for methodology and current results.
