@@ -137,6 +137,19 @@ describe('audit regressions', () => {
     expect(JSON.parse(output).children[0].highlightLines).toEqual([2, Number.MAX_SAFE_INTEGER])
   })
 
+  it('parses blockquote lines containing Unicode line separators without looping forever', () => {
+    // JavaScript treats U+2028 and U+2029 as line breaks so `.` does not match them.
+    const sources = ['>x\u2028', '>x\u2029', '> a\u2028b']
+    const output = execFileSync(process.execPath, ['--import', 'tsx', '--input-type=module', '-e',
+      `import {renderHtml} from './src/html.ts'; console.log(JSON.stringify(${JSON.stringify(sources)}.map(source => renderHtml(source))))`,
+    ], { encoding: 'utf8', timeout: 3000 })
+    expect(JSON.parse(output)).toEqual([
+      '<blockquote>\n<p>x</p>\n</blockquote>',
+      '<blockquote>\n<p>x</p>\n</blockquote>',
+      '<blockquote>\n<p>a\u2028b</p>\n</blockquote>',
+    ])
+  })
+
   it('keeps large code spans with one-sided padding and all-space content bounded', () => {
     const output = execFileSync(process.execPath, ['--import', 'tsx', '--input-type=module', '-e',
       `import {parseInline} from './src/inline.ts';

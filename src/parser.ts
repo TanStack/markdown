@@ -200,7 +200,7 @@ function createBlockParser(
     const quoted: string[] = []
     while (cursor < inputLines.length) {
       const line = current()
-      const match = line.match(/^ {0,3}>\s?(.*)$/)
+      const match = line.match(/^ {0,3}>\s?(.*)$/s)
       if (!match) {
         if (!isBlank(line)) break
         looseBlocks = true
