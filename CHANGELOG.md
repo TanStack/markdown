@@ -1,5 +1,11 @@
 # @tanstack/markdown
 
+## 1.0.1
+
+### Patch Changes
+
+- 3385b4c: Correct the packaged AST guidance for version 1 and clarify bundle measurements, streaming reparsing, and supported adapter versions.
+
 ## 1.0.0
 
 ### Major Changes
