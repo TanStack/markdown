@@ -69,6 +69,7 @@ if (process.argv[2] === '--child') {
   for (const fixture of fixtures) for (const api of Object.values(apis)) assert.equal(output(api, fixture), output(apis.original, fixture), `Equivalent completed work: ${fixture.name}`)
   const fixed = '𝒜https://example.com'
   assert.notEqual(output(apis.original, { source: fixed }), output(apis.candidate, { source: fixed }), 'Astral regression negative control')
+  assert.equal(output(apis.candidate, { source: fixed }), apis.candidate.renderHtml(fixed), 'Astral boundary must render literally')
   assert.equal(apis.candidate.renderHtml('https://example.com', { extensions: [apis.candidate.autolinksExtension()], urlTransform: () => '' }), '<p>https://example.com</p>')
   const fixturePath = resolve(directory, 'fixtures.json')
   await writeFile(fixturePath, JSON.stringify(fixtures))

@@ -1,7 +1,7 @@
 import type { InlineParseContext, InlineParseResult, MarkdownExtension } from '../types.js'
 
 const protocol = /https?:\/\//iy
-const boundary = /(?<=[\p{L}\p{N}_/@<\\])/uy
+const boundary = /(?<=[\p{L}\p{N}\p{M}_/@<\\])/uy
 const terminator = /[\s\u0000-\u0020\u007f<>"'`\\]/
 const trailing = /[.,!?;:]/
 

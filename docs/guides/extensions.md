@@ -91,7 +91,7 @@ This extension recognizes bare HTTP(S) URLs and `<http://…>` / `<https://…>`
 
 The bounded profile is intentionally smaller than GFM autolink literals:
 
-- Bare links must start at the container boundary or after punctuation/whitespace, excluding letters, numbers, `_`, `/`, `@`, `<`, and backslash. They stop at whitespace, controls, quotes, backticks, backslashes, angle brackets, or an unmatched closing parenthesis/bracket/brace.
+- Bare links must start at the container boundary or after punctuation/whitespace, excluding letters, numbers, combining marks, `_`, `/`, `@`, `<`, and backslash. They stop at whitespace, controls, quotes, backticks, backslashes, angle brackets, or an unmatched closing parenthesis/bracket/brace.
 - Balanced parentheses, brackets, and braces stay in bare URLs. Trailing `. , ! ? ; :` characters stay outside the link. Use angle notation or an explicit Markdown link when those trailing characters belong to the URL.
 - Angle notation preserves trailing punctuation and requires a closing `>` before whitespace, controls, quotes, backticks, backslashes, or another `<`. Escaping the opening `<` keeps it literal.
 - Explicit links (including their formatted labels), images, code, destinations, and enabled raw HTML are handled by the existing parser. Autolinks also work in ordinary emphasis, headings, lists, quotes, and table cells, within the enclosing inline boundaries.

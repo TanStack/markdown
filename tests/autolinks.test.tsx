@@ -72,11 +72,13 @@ describe('optional HTTP(S) autolinks', () => {
   it('leaves raw HTML tag attributes alone when HTML is enabled', () => {
     const source = '<span title="https://example.com">text</span>'
     expect(parseMarkdown(source, { extensions, allowHtml: true })).toEqual(parseMarkdown(source, { allowHtml: true }))
+    const unquoted = '<span data-url=https://example.com>text</span>'
+    expect(parseMarkdown(unquoted, { extensions, allowHtml: true })).toEqual(parseMarkdown(unquoted, { allowHtml: true }))
   })
 
   it.each([
     'www.example.com', 'person@example.com', 'ftp://example.com', 'javascript:alert(1)',
-    'xhttps://example.com', 'éhttps://example.com', '𝒜https://example.com', '𐐀https://example.com', '𝟙https://example.com', '/https://example.com',
+    'xhttps://example.com', 'éhttps://example.com', 'a\u0301https://example.com', '𝒜https://example.com', '𐐀https://example.com', '𝟙https://example.com', '/https://example.com',
     'https://', 'https://%', 'https://example.com:invalid/path', '<https://example.com',
     '\\<https://example.com>',
   ])('keeps unsupported or malformed input literal: %s', source => {

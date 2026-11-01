@@ -55,7 +55,7 @@ const sizes = []
 for (const entry of [...entries.filter(entry => entry.group === 'tanstack'), ...publicEntries]) {
   const results = []
   for (const previous of [true, false]) {
-    if (previous && entry.group === 'tanstack-public' && !Object.hasOwn(baselinePackage.exports, entry.name)) {
+    if (previous && entry.group === 'tanstack-public' && !Object.hasOwn(baselinePackage.exports ?? {}, entry.name)) {
       results.push(null)
       continue
     }
