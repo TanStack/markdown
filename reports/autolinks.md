@@ -16,7 +16,7 @@ Two initial isolated comparisons observed candidate/original ratios of 1.033-1.0
 
 These are enabled-extension comparisons, not a claim about default core performance or browser speed. Sampled allocation is separate from retained heap, RSS and peak memory. Local allocation samples suggested fewer allocations for URL-heavy and malformed fixtures, but do not establish a general memory improvement.
 
-Reproduce the isolated calibration before comparison with the opt-in `ci.yml` workflow inputs `autolink_calibration=true` and `autolink_mode=calibrate` or `compare`. Raw fixtures, source/emitted hashes, runtime metadata and all samples are uploaded by the workflow. The CLI equivalent is:
+Reproduce the isolated calibration before comparison with the dedicated `autolink-benchmarks.yml` workflow with `mode=calibrate` or `compare`. Raw fixtures, source/emitted hashes, runtime metadata and all samples are uploaded by the workflow. The CLI equivalent is:
 
 ```sh
 node scripts/bench-autolinks-compare.mjs artifacts/autolink-comparison calibrate
