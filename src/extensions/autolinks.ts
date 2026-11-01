@@ -48,5 +48,5 @@ function parseAutolink({ source, index, options, inLink }: InlineParseContext): 
   // Only validated URLs reach the application's trusted replacement policy.
   const href = valid ? options.urlTransform ? options.urlTransform(url, 'link', url) : url : null
   const label = { type: 'text' as const, value: valid ? url : source.slice(index, index + length) }
-  return { length, node: href === null ? label : { type: 'link', href, children: [label] } }
+  return { length, node: href ? { type: 'link', href, children: [label] } : label }
 }

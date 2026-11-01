@@ -100,6 +100,12 @@ describe('optional HTTP(S) autolinks', () => {
     })).toBe(`<p>https://blocked.test ${link('https://allowed.test')}</p>`)
   })
 
+  it.each(['', null])('keeps the URL label when application policy returns %j', result => {
+    for (const source of ['https://example.com', '<https://example.com>']) {
+      expect(renderAll(source, { urlTransform: () => result })).toBe('<p>https://example.com</p>')
+    }
+  })
+
   it('escapes labels and attributes and excludes controls and quotes', () => {
     expect(renderAll('https://example.com/?x=<script>')).toBe(`<p>${link('https://example.com/?x=')}&lt;script&gt;</p>`)
     expect(renderAll('https://example.com/" onclick="bad')).toBe(`<p>${link('https://example.com/')}&quot; onclick=&quot;bad</p>`)

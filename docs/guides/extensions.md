@@ -87,7 +87,7 @@ const html = renderHtml('See https://example.com/~alice~/notes.', {
 })
 ```
 
-This extension recognizes bare HTTP(S) URLs and `<http://…>` / `<https://…>` notation, without changing the core or docs-preset defaults. URLs retain their original source spelling, including Markdown punctuation. Host/port validity follows the platform `URL` implementation. Link nodes pass through the existing `urlTransform(url, 'link', defaultUrl)` policy and render consistently in HTML, React, and Octane; `null` keeps only the URL label. Application replacements remain trusted, as with explicit links.
+This extension recognizes bare HTTP(S) URLs and `<http://…>` / `<https://…>` notation, without changing the core or docs-preset defaults. URLs retain their original source spelling, including Markdown punctuation. Host/port validity follows the platform `URL` implementation. Link nodes pass through the existing `urlTransform(url, 'link', defaultUrl)` policy and render consistently in HTML, React, and Octane; `null` or an empty string keeps only the URL label. Application replacements remain trusted, as with explicit links.
 
 The bounded profile is intentionally smaller than GFM autolink literals:
 
