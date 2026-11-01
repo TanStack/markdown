@@ -25,17 +25,17 @@ General Markdown processors optimize for broad conformance, plugin ecosystems, o
 - code metadata for documentation UI
 - a small browser bundle
 
-TanStack Markdown spends its complexity budget on that path. It deliberately does not implement every CommonMark edge case, MDX evaluation, automatic linkification, or a general asynchronous processing ecosystem.
+TanStack Markdown supports that workflow through separately importable renderers and optional docs extensions. It deliberately does not implement every CommonMark edge case, MDX evaluation, automatic linkification, or a general asynchronous processing ecosystem.
 
 ## Core properties
 
 ### Small entry points
 
-Current minified browser bundles are 5.2 KB gzip for the parser, 7.0 KB for HTML rendering, and 7.0 KB for either UI adapter with its framework runtime externalized. The generated [bundle report](https://github.com/TanStack/markdown/blob/main/reports/sizes.md) is the source of truth.
+Import the parser, HTML renderer, or matching UI adapter separately. The generated [bundle report](https://github.com/TanStack/markdown/blob/main/reports/sizes.md) records minified browser bundles with framework runtimes externalized, including both selected-function imports and complete public entry points. Reproduce it with `pnpm run size`; your application’s imports and bundler configuration determine its final size.
 
 ### Parse once, render many
 
-`parseMarkdown` returns plain objects and arrays. The result can be serialized, cached, inspected, transformed, and passed to either renderer.
+`parseMarkdown` returns plain objects and arrays. The result can be serialized, cached, inspected, transformed, and passed to the HTML, React, or Octane renderer.
 
 ### Safe defaults
 
@@ -47,7 +47,7 @@ The supported contract is the [TanStack docs syntax profile](./core-concepts/syn
 
 ### AI streaming without parser state
 
-The optional [AI streaming profile](./guides/ai-streaming.md) reparses accumulated response text and suppresses incomplete trailing block placeholders. It adds 0.2 KB gzip to the React path while leaving the core parser and renderers unchanged.
+The optional [AI streaming profile](./guides/ai-streaming.md) reparses accumulated response text and suppresses incomplete trailing block placeholders. It is imported separately. Each update still parses the complete accumulated source; batch updates for long responses or very frequent transport tokens.
 
 ## Choose your starting point
 

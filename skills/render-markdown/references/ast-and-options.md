@@ -125,8 +125,10 @@ interface MarkdownDocument {
 - `frontmatter` contains the raw text between leading `---` delimiters.
 - `headings` is optional extension-derived data, not part of core parsing.
 - The object is plain and serializable.
-- Because the package is pre-1.0, persisted ASTs should be regenerated after
-  an upgrade that changes node contracts.
+- Existing valid 1.x ASTs remain supported by later 1.x renderers under
+  `docs/project/version-one.md`. Record the producing version with persisted
+  documents and rebuild caches to adopt parser fixes; rendered HTML bytes
+  are not a stable serialization contract.
 
 ## Block Nodes
 

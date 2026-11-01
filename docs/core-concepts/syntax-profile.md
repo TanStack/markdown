@@ -75,4 +75,4 @@ The following are not project goals:
 - syntax highlighting, themes, or language grammars
 - asynchronous plugin pipelines
 
-Unsupported input must still be deterministic, escaped by default, and bounded in runtime. New syntax requires evidence from real documentation, regression fixtures, renderer parity, and an accepted bundle cost.
+Unsupported input must still be deterministic and escaped by default. Core parsing limits nesting and inline scans, but does not cap total input size or arbitrary extension work; see [Resource limits](./security.md#resource-limits). New syntax requires evidence from real documentation, regression fixtures, renderer parity, and an accepted bundle cost.
