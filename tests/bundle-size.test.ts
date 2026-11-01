@@ -47,6 +47,7 @@ describe('bundle budgets', () => {
       './parser': [12781, 5304, 4884],
       './react': [18047, 7108, 6563],
       './octane': [17987, 7073, 6504],
+      './extensions/autolinks': [994, 632, 568],
       './extensions/callouts': [660, 432, 360],
       './extensions/comment-components': [1073, 647, 542],
       './extensions/docs': [6587, 2392, 2162],
