@@ -19,7 +19,7 @@ const html = renderHtml(document, {
 })
 ```
 
-The preset is a separate 2.3 KB gzip entry and is not imported by the parser or renderers.
+The preset is a separate entry and is not imported by the parser or renderers. See the [generated size report](https://github.com/TanStack/markdown/blob/main/reports/sizes.md) for measured import profiles.
 
 ## Callouts
 

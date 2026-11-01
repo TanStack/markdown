@@ -1,6 +1,6 @@
 {
   "name": "@tanstack/markdown",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "type": "module",
   "description": "A tiny, fast, deterministic Markdown renderer for blogs and documentation.",
   "license": "MIT",
@@ -69,6 +69,10 @@
     "./extensions/tabs": {
       "types": "./dist/extensions/tabs.d.ts",
       "import": "./dist/extensions/tabs.js"
+    },
+    "./extensions/autolinks": {
+      "types": "./dist/extensions/autolinks.d.ts",
+      "import": "./dist/extensions/autolinks.js"
     }
   },
   "scripts": {

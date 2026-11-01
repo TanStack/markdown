@@ -1,5 +1,17 @@
 # @tanstack/markdown
 
+## 1.1.0
+
+### Minor Changes
+
+- 90796de: Add a separately imported HTTP(S) autolink extension using the inline source parser API. Recognize pasted URLs and angle-bracket URLs before Markdown punctuation changes their contents, preserve code and explicit links, and apply the existing application URL policy. Core and docs-preset defaults are unchanged.
+
+## 1.0.1
+
+### Patch Changes
+
+- 3385b4c: Correct the packaged AST guidance for version 1 and clarify bundle measurements, streaming reparsing, and supported adapter versions.
+
 ## 1.0.0
 
 ### Major Changes

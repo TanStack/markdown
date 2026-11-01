@@ -84,8 +84,8 @@ await cache.set(key, JSON.stringify(document))
 const html = renderHtml(document)
 ```
 
-Parsing once is useful for build pipelines, content indexes, multiple render targets, and high-traffic SSR paths. Rendering a pre-parsed AST is also the fastest measured path in the package.
+Parsing once is useful for build pipelines, content indexes, multiple render targets, and high-traffic SSR paths. Passing a document to a renderer skips parsing the source again.
 
 ## Stability
 
-The AST is public and typed, but the package is still pre-1.0. Pin versions when persisting documents across deployments, and regenerate cached AST data when upgrading across a release that changes node contracts.
+The documented AST follows the [Version 1 compatibility policy](../project/version-one.md). Existing valid 1.x documents remain supported by later 1.x renderers. Record the producing package version with persisted documents, and rebuild caches to adopt parser fixes. Byte-for-byte rendered HTML is not a stable serialization contract, and untrusted JSON still requires validation before rendering.

@@ -19,8 +19,8 @@ describe('bundle budgets', () => {
       ['react'],
     )
 
-    // Measured Node 24 ceilings for the inline-hook candidate on the current streaming baseline.
-    // Extension entries retain their 0.0.14 ceilings.
+    // Node 24 ceilings include the bounded Unicode blockquote fix.
+    // Separately imported extension ceilings are unchanged.
     for (const [result, min, gzip, brotli] of [
       [parser, 12649, 5220, 4823],
       [html, 17840, 7050, 6485],
@@ -47,6 +47,7 @@ describe('bundle budgets', () => {
       './parser': [12782, 5307, 4886],
       './react': [18048, 7111, 6563],
       './octane': [17988, 7076, 6508],
+      './extensions/autolinks': [994, 632, 568],
       './extensions/callouts': [660, 432, 360],
       './extensions/comment-components': [1073, 647, 542],
       './extensions/docs': [6587, 2392, 2162],
