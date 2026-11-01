@@ -108,11 +108,7 @@ function createBlockParser(
       // It can still be a table header, so table detection remains below.
       const node =
         (/^[a-z]/i.test(current()) ? undefined : (
-          parseFence() ??
-          parseHeading() ??
-          parseThematicBreak() ??
-          parseBlockquote() ??
-          parseList()
+          parseBuiltin()
         )) ??
         parseTable() ??
         parseHtmlBlock() ??
@@ -148,12 +144,19 @@ function createBlockParser(
     return undefined
   }
 
-  function parseFence(): CodeBlockNode | undefined {
-    const match = current().match(/^( {0,3})(`{3,}|~{3,})(.*)$/)
-    if (!match) return undefined
+  function parseBuiltin(): BlockNode | undefined {
+    // Shared indentation, then fence, heading, rule, or quote captures.
+    // Quote content spans Unicode separators, unlike JavaScript dot.
+    const match = current().match(/^( {0,3})(?:(`{3,}|~{3,})(.*)$|(#{1,6})(?:[ \t]+(.*)|[ \t]*)$|([-*_])(?:\s*\6){2,}\s*$|>\s?([\s\S]*))/)
+    if (!match) return parseList()
+    if (match[2]) return parseFence(match[1]!.length, match[2], match[3]!)
+    if (match[4]) return parseHeading(match[4], match[5] ?? '')
+    if (match[6]) return parseThematicBreak()
+    return parseBlockquote(match[7]!)
+  }
 
-    const fence = match[2]!
-    const info = match[3]!.trim()
+  function parseFence(indent: number, fence: string, rawInfo: string): CodeBlockNode {
+    const info = rawInfo.trim()
     const code: string[] = []
     cursor++
 
@@ -163,7 +166,7 @@ function createBlockParser(
         cursor++
         break
       }
-      code.push(stripIndent(line, match[1]!.length))
+      code.push(stripIndent(line, indent))
       cursor++
     }
 
@@ -174,12 +177,8 @@ function createBlockParser(
     }
   }
 
-  function parseHeading(): HeadingNode | undefined {
-    const match = current().match(/^ {0,3}(#{1,6})(?:[ \t]+(.*)|[ \t]*)$/)
-    if (!match) return undefined
-
-    const depth = match[1]!.length as HeadingNode['depth']
-    const rawValue = match[2] ?? ''
+  function parseHeading(marker: string, rawValue: string): HeadingNode {
+    const depth = marker.length as HeadingNode['depth']
     const value = (/^#+[ \t]*$/.test(rawValue) ? '' : rawValue.replace(/[ \t]+#+[ \t]*$/, '')).trim()
     const children = parseInline(value, options)
     const id = createHeadingId(children)
@@ -189,18 +188,16 @@ function createBlockParser(
   }
 
   function parseThematicBreak(): BlockNode | undefined {
-    if (!/^ {0,3}([-*_])(?:\s*\1){2,}\s*$/.test(current())) return undefined
     cursor++
     return { type: 'thematicBreak' }
   }
 
-  function parseBlockquote(): BlockNode | undefined {
-    if (!/^ {0,3}>\s?/.test(current())) return undefined
-
-    const quoted: string[] = []
+  function parseBlockquote(first: string): BlockNode {
+    const quoted: string[] = [first]
+    cursor++
     while (cursor < inputLines.length) {
       const line = current()
-      const match = line.match(/^ {0,3}>\s?(.*)$/)
+      const match = line.match(/^ {0,3}>\s?(.*)$/s)
       if (!match) {
         if (!isBlank(line)) break
         looseBlocks = true
