@@ -5,6 +5,16 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+    inputs:
+      autolink_calibration:
+        description: Run only isolated autolink measurement controls
+        type: boolean
+        default: false
+      autolink_mode:
+        description: Calibrate identical controls before candidate comparison
+        type: choice
+        options: [calibrate, compare]
+        default: calibrate
   workflow_call:
 
 permissions:
@@ -12,6 +22,7 @@ permissions:
 
 jobs:
   verify:
+    if: github.event_name != 'workflow_dispatch' || !inputs.autolink_calibration
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
@@ -27,6 +38,7 @@ jobs:
       - run: pnpm run corpus:audit:external
 
   consumers:
+    if: github.event_name != 'workflow_dispatch' || !inputs.autolink_calibration
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -49,6 +61,7 @@ jobs:
           TEST_REACT_VERSION: ${{ matrix.react }}
 
   browsers:
+    if: github.event_name != 'workflow_dispatch' || !inputs.autolink_calibration
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -70,3 +83,31 @@ jobs:
       - run: pnpm run test:streaming-browser
         env:
           TEST_BROWSER: ${{ matrix.browser }}
+
+  autolink-calibration:
+    if: github.event_name == 'workflow_dispatch' && inputs.autolink_calibration
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: pnpm/action-setup@b906affcce14559ad1aafd4ab0e942779e9f58b1
+        with:
+          version: 11.4.0
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Run isolated controls
+        env:
+          AUTOLINK_MODE: ${{ inputs.autolink_mode }}
+        run: node scripts/bench-autolinks-compare.mjs artifacts/autolink-comparison "$AUTOLINK_MODE"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: autolink-comparison-${{ github.sha }}-${{ inputs.autolink_mode }}
+          path: artifacts/autolink-comparison
+          retention-days: 7
