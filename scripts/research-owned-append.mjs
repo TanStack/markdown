@@ -129,7 +129,7 @@ if (process.argv[2] === '--borrowed') {
   for(const name of ['baseline','control','candidate','candidate','control','baseline']) borrowed.push(JSON.parse(execFileSync(process.execPath,['--expose-gc',fileURLToPath(import.meta.url),'--borrowed',path,name],{encoding:'utf8',timeout:60000})))
   assert.equal(new Set(borrowed.map(row=>row.outputSHA256)).size,1)
   if(process.argv.includes('--guards-only')) {
-    await writeFile(resolve(directory,'guards.json'),JSON.stringify({commit:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),sourceHash,bundleSHA256:sha(compiled.outputFiles[0].contents),programSHA256:sha(await readFile(fileURLToPath(import.meta.url))),runtimeSources,baselineControlSameFactory:factories.baseline===factories.control,node:process.version,comparisons,checks,memory,borrowed,claim:'Semantic and separate retained-heap guards only; no runtime, API, size or production acceptance.'},null,2))
+    await writeFile(resolve(directory,'guards.json'),JSON.stringify({commit:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),sourceHash,bundleSHA256:sha(compiled.outputFiles[0].contents),programSHA256:sha(await readFile(fileURLToPath(import.meta.url))),runtimeSources,baselineControlSameFactory:factories.baseline===factories.control,node:process.version,comparisons,checks,sizeObservations,memory,borrowed,claim:'Semantic and separate retained-heap guards only; no runtime, API, size or production acceptance.'},null,2))
     console.log(JSON.stringify({comparisons,borrowed:borrowed.map(({name,activeHeapDelta,resetHeapDelta})=>({name,activeHeapDelta,resetHeapDelta}))}))
   } else {
   const iterationsByFixture = {}

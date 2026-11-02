@@ -22,7 +22,7 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm run build
       - run: mkdir -p artifacts
-      - run: node --expose-gc scripts/research-owned-append.mjs artifacts/owned-rendered-prefix --guards-only
+      - run: node --expose-gc scripts/research-owned-append.mjs artifacts/owned-rendered-prefix
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:
