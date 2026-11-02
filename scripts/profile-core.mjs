@@ -21,6 +21,7 @@ const fixtures = []
 for (const name of smoke ? ['small-doc.md'] : ['small-doc.md', 'prose-heavy.md', 'code-heavy.md', 'tables-lists.md', 'malformed.md', 'ai-response.md']) {
   fixtures.push({ name, source: await readFile(resolve(root, 'fixtures/benchmark', name), 'utf8') })
 }
+let sink = 0
 const workloads = fixtures.flatMap(fixture => {
   const ast = parseMarkdown(fixture.source)
   return [
@@ -32,21 +33,31 @@ const workloads = fixtures.flatMap(fixture => {
 const response = await readFile(resolve(root, 'fixtures/benchmark/ai-response.md'), 'utf8')
 for (const fixture of smoke ? [{ name: 'ai-prefixes', source: response.slice(0, 256) }] : [
   { name: 'ai-prefixes', source: response },
-  { name: 'open-code-4k', source: '```text\n' + 'Plain code and Unicode αβγ.\n'.repeat(160) },
-  { name: 'open-code-16k', source: '```text\n' + 'Plain code and Unicode αβγ.\n'.repeat(640) },
+  { name: 'open-code-short', source: '```text\n' + 'Plain code and Unicode αβγ.\n'.repeat(160) },
+  { name: 'open-code-long', source: '```text\n' + 'Plain code and Unicode αβγ.\n'.repeat(640) },
 ]) {
   const options = { extensions: [streamingMarkdownExtension()] }
-  workloads.push({ name: fixture.name + '-stream', source: fixture.source, run() {
-    const outputs = []
-    for (let end = 32; end < fixture.source.length + 32; end += 32) outputs.push(renderHtml(fixture.source.slice(0, end), options))
-    return outputs.join('\0')
+  function renderPrefixes(trace) {
+    let final = ''
+    let lengthSum = 0
+    for (let end = 32; end < fixture.source.length + 32; end += 32) {
+      final = renderHtml(fixture.source.slice(0, end), options)
+      lengthSum += final.length
+      trace?.update(final).update('\0')
+    }
+    sink += lengthSum
+    return final
+  }
+  workloads.push({ name: fixture.name + '-stream', source: fixture.source, run: () => renderPrefixes(), trace() {
+    const hash = createHash('sha256')
+    renderPrefixes(hash)
+    return hash.digest('hex')
   } })
 }
 const session = new Session()
 session.connect()
 const post = (method, params = {}) => new Promise((yes, no) => session.post(method, params, (error, result) => error ? no(error) : yes(result)))
 const frame = value => ({ function: value.functionName || '(anonymous)', url: value.url?.startsWith('file:') ? relative(root, fileURLToPath(value.url)) : value.url, line: value.lineNumber })
-let sink = 0
 const consume = output => { sink += typeof output === 'string' ? output.length : output.children.length }
 const rows = []
 try {
@@ -55,6 +66,7 @@ try {
   await post('HeapProfiler.enable')
   for (const workload of workloads) {
     const expected = sha(JSON.stringify(workload.run()))
+    const expectedTrace = workload.trace?.()
     for (let index = 0; index < (smoke ? 5 : 100); index++) consume(workload.run())
     global.gc()
     await post('Profiler.start')
@@ -82,7 +94,8 @@ try {
     allocationTop.sort((a, b) => b.sampledSelfBytes - a.sampledSelfBytes)
     const sampledBytes = allocation.samples.reduce((sum, sample) => sum + sample.size, 0)
     assert.equal(sha(JSON.stringify(workload.run())), expected, 'Nondeterministic completed output: ' + workload.name)
-    rows.push({ name: workload.name, sourceBytes: Buffer.byteLength(workload.source), sourceSHA256: sha(workload.source), outputSHA256: expected, cpuCompletedOperations: completed, cpuTop, allocationIterations: iterations, sampledBytes, sampledBytesPerOperation: sampledBytes / iterations, allocationTop: allocationTop.slice(0, 20) })
+    assert.equal(workload.trace?.(), expectedTrace, 'Nondeterministic progressive output: ' + workload.name)
+    rows.push({ name: workload.name, streamTraceSHA256: expectedTrace, sourceBytes: Buffer.byteLength(workload.source), sourceSHA256: sha(workload.source), outputSHA256: expected, cpuCompletedOperations: completed, cpuTop, allocationIterations: iterations, sampledBytes, sampledBytesPerOperation: sampledBytes / iterations, allocationTop: allocationTop.slice(0, 20) })
   }
 } finally {
   session.disconnect()
