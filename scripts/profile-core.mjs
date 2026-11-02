@@ -2,7 +2,7 @@ import assert from 'node:assert/strict'
 import { Session } from 'node:inspector'
 import { createHash } from 'node:crypto'
 import { execFileSync } from 'node:child_process'
-import { mkdir, readFile, writeFile } from 'node:fs/promises'
+import { mkdir, readdir, readFile, writeFile } from 'node:fs/promises'
 import { resolve, relative } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { gzipSync } from 'node:zlib'
@@ -15,6 +15,7 @@ const directory = resolve(process.argv[2] || 'artifacts/core-profiles')
 const smoke = process.argv.includes('--smoke')
 assert.equal(typeof global.gc, 'function', 'Run Node with --expose-gc')
 await mkdir(directory, { recursive: true })
+assert.equal((await readdir(directory)).length, 0, 'Output directory must be empty to preserve earlier profiles')
 const sha = value => createHash('sha256').update(value).digest('hex')
 const fixtures = []
 for (const name of smoke ? ['small-doc.md'] : ['small-doc.md', 'prose-heavy.md', 'code-heavy.md', 'tables-lists.md', 'malformed.md', 'ai-response.md']) {
