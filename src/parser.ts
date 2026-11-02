@@ -36,7 +36,7 @@ export function parseMarkdown(markdown: string, options: ParseOptions = {}): Mar
     }
   }
 
-  const definitions = extractDefinitions(lines)
+  const definitions = extractDefinitions(lines, normalized)
   lines = definitions.lines
   const footnoteOrder: string[] = []
   const footnoteCounts: Record<string, number> = Object.create(null)
@@ -386,9 +386,12 @@ function parseCodeInfo(info: string): Omit<CodeBlockNode, 'type' | 'value'> {
   }
 }
 
-function extractDefinitions(lines: string[]) {
+function extractDefinitions(lines: string[], source: string) {
   const references: NonNullable<ParseOptions['references']> = Object.create(null)
   const footnotes: NonNullable<ParseOptions['footnotes']> = Object.create(null)
+  // Both supported definition forms require an opening bracket.
+  if (!source.includes('[')) return { lines, references, footnotes }
+
   const footnoteIds = createSlugger(footnoteId)
   const remaining: string[] = []
   let activeFence = ''
