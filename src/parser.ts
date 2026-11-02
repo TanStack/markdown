@@ -289,11 +289,11 @@ function createBlockParser(
   function parseTable(): TableNode | undefined {
     const header = current()
     const delimiter = next()
-    const table = delimiter && tableHeader(header, delimiter)
-    if (!table) return undefined
+    if (!delimiter) return undefined
+    const headerCells = tableHeader(header, delimiter)
+    if (!headerCells) return undefined
 
-    const [headerCells, delimiterCells] = table
-    const align = delimiterCells.map(parseAlign)
+    const align = splitTableRow(delimiter).map(parseAlign)
     const columns = headerCells.length
     const rows: TableCellNode[][] = []
     cursor += 2
@@ -514,12 +514,12 @@ function isBlockStart(line: string, next?: string): boolean {
   )
 }
 
-function tableHeader(header: string, delimiter: string): [string[], string[]] | undefined {
+function tableHeader(header: string, delimiter: string): string[] | undefined {
   if (!header.includes('|') || !/^[\s|:-]+$/.test(delimiter)) return undefined
   const cells = splitTableRow(delimiter)
   const headerCells = splitTableRow(header)
   return cells.length === headerCells.length && cells.every(cell => /^:?-+:?$/.test(cell.trim()))
-    ? [headerCells, cells]
+    ? headerCells
     : undefined
 }
 
