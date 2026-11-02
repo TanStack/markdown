@@ -6,7 +6,8 @@ import { gunzipSync } from 'node:zlib'
 import { expect, it } from 'vitest'
 
 it('retains readable CPU/allocation profiles and completed-output metadata', () => {
-  const directory = mkdtempSync(join(tmpdir(), 'markdown-profile-'))
+  const root = mkdtempSync(join(tmpdir(), 'markdown-profile-'))
+  const directory = join(root, 'profiles')
   try {
     execFileSync(process.execPath, ['--expose-gc', '--import', 'tsx', 'scripts/profile-core.mjs', directory, '--smoke'], { timeout: 15000, stdio: 'pipe' })
     const receipt = JSON.parse(readFileSync(join(directory, 'summary.json'), 'utf8'))
@@ -17,7 +18,7 @@ it('retains readable CPU/allocation profiles and completed-output metadata', () 
     expect(receipt.rows).toHaveLength(4)
     expect(receipt.commit).toMatch(/^[a-f0-9]{40}$/)
     const preservedSummary = readFileSync(join(directory, 'summary.json'), 'utf8')
-    expect(() => execFileSync(process.execPath, ['--expose-gc', '--import', 'tsx', 'scripts/profile-core.mjs', directory, '--smoke'], { timeout: 15000, stdio: 'pipe' })).toThrow('Output directory must be empty')
+    expect(() => execFileSync(process.execPath, ['--expose-gc', '--import', 'tsx', 'scripts/profile-core.mjs', directory, '--smoke'], { timeout: 15000, stdio: 'pipe' })).toThrow('Output directory already exists')
     expect(readFileSync(join(directory, 'summary.json'), 'utf8')).toBe(preservedSummary)
     for (const row of receipt.rows) {
       expect(row.cpuCompletedOperations).toBeGreaterThan(0)
@@ -32,6 +33,6 @@ it('retains readable CPU/allocation profiles and completed-output metadata', () 
       expect(Array.isArray(heap.samples)).toBe(true)
     }
   } finally {
-    rmSync(directory, { recursive: true, force: true })
+    rmSync(root, { recursive: true, force: true })
   }
 }, 20000)

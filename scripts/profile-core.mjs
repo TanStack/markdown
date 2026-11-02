@@ -2,8 +2,8 @@ import assert from 'node:assert/strict'
 import { Session } from 'node:inspector'
 import { createHash } from 'node:crypto'
 import { execFileSync } from 'node:child_process'
-import { mkdir, readdir, readFile, writeFile } from 'node:fs/promises'
-import { resolve, relative } from 'node:path'
+import { mkdir, readFile, writeFile } from 'node:fs/promises'
+import { resolve, relative, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { gzipSync } from 'node:zlib'
 
@@ -11,8 +11,13 @@ const root = fileURLToPath(new URL('..', import.meta.url))
 const directory = resolve(process.argv[2] || 'artifacts/core-profiles')
 const smoke = process.argv.includes('--smoke')
 assert.equal(typeof global.gc, 'function', 'Run Node with --expose-gc')
-await mkdir(directory, { recursive: true })
-assert.equal((await readdir(directory)).length, 0, 'Output directory must be empty to preserve earlier profiles')
+await mkdir(dirname(directory), { recursive: true })
+try {
+  await mkdir(directory)
+} catch (error) {
+  if (error.code === 'EEXIST') throw new Error('Output directory already exists; choose a new directory to preserve earlier profiles', { cause: error })
+  throw error
+}
 const sha = value => createHash('sha256').update(value).digest('hex')
 async function snapshot() {
   const sourceFiles = execFileSync('git', ['ls-files', '--cached', '--others', '--exclude-standard', 'src'], { cwd: root, encoding: 'utf8' }).trim().split('\n').filter(Boolean).sort()
