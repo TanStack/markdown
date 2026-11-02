@@ -1,26 +1,15 @@
 import type { InlineNode, LinkReferenceDefinition } from './types.js'
 
-const htmlEscapes: Record<string, string> = {
-  '&': '&amp;',
-  '<': '&lt;',
-  '>': '&gt;',
-  '"': '&quot;',
-  "'": '&#39;',
-  '`': '&#96;',
-}
-
-const escapeCharacter = (char: string) => htmlEscapes[char]!
-
 export function normalizeInput(value: string): string {
   return value.replace(/^\uFEFF/, '').replace(/\r\n?/g, '\n')
 }
 
 export function escapeHtml(value: string): string {
-  return value.replace(/[&<>"']/g, escapeCharacter)
+  return value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;')
 }
 
 export function escapeAttr(value: string): string {
-  return value.replace(/[&<>"'`]/g, escapeCharacter)
+  return escapeHtml(value).replace(/`/g, '&#96;')
 }
 
 export function isBlank(value: string): boolean {
