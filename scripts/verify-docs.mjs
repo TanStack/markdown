@@ -52,6 +52,7 @@ const packageJson = JSON.parse(
 const apiDocuments = new Map([
   ['.', 'docs/reference/default-entry.md'],
   ['./html', 'docs/reference/html.md'],
+  ['./html/streaming', 'docs/reference/html.md'],
   ['./parser', 'docs/reference/parser.md'],
   ['./react', 'docs/reference/react.md'],
   ['./octane', 'docs/reference/octane.md'],

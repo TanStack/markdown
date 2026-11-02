@@ -4,7 +4,7 @@ title: AI Streaming
 
 # AI Streaming
 
-TanStack Markdown can render the accumulated text of a streamed AI response. Each update parses the complete string synchronously; there is no incremental parser state to coordinate or discard.
+TanStack Markdown can render the accumulated text of a streamed AI response. The React component and `renderHtml` parse the complete string synchronously on each update.
 
 ```tsx group=ai-streaming env=react file=/src/main.tsx entry
 import { streamingMarkdownExtension } from '@tanstack/markdown/extensions/streaming'
@@ -63,7 +63,7 @@ Keep the extension enabled after completion unless an intentionally empty final 
 
 Unclosed emphasis, code spans, links, and other inline delimiters remain literal text until their closing delimiter arrives. Completing a table delimiter, list continuation, or inline construct can legitimately restructure the latest block.
 
-The package reparses the accumulated response rather than maintaining parser state between updates. Batch very small transport tokens into normal UI updates when responses are unusually long or tokens arrive faster than the screen should repaint.
+The standard renderers reparse the accumulated response rather than maintaining parser state between updates. Batch very small transport tokens into normal UI updates when responses are unusually long or tokens arrive faster than the screen should repaint.
 
 With the streaming extension enabled, React keeps completed groups of plain code lines in stable text nodes. Appending code updates the trailing group instead of replacing the entire block's text, which avoids updating completed text groups on each append. Custom code components still receive string children, and highlighters keep their existing HTML rendering path.
 
@@ -96,3 +96,5 @@ const html = renderHtml(accumulatedResponse, {
 ```
 
 HTML and React output are tested for structural parity at every character boundary across representative prose, links, lists, tables, quotes, code, raw HTML, and executable URLs.
+
+For HTML responses that spend many updates inside a standalone open code fence, [createStreamingHtmlRenderer](../reference/html.md#createstreaminghtmlrenderer-and-streaminghtmlrenderer) can reuse the escaped code prefix. It still returns complete HTML for every update and falls back to the full renderer for other Markdown. Keep one session per response and call `reset()` when discarding it. Passing rendering options disables caching for that session so mutable extension hooks remain observable.
