@@ -21,10 +21,10 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: mkdir -p artifacts
-      - run: node scripts/research-owned-append.mjs artifacts/owned-append
+      - run: node scripts/research-owned-append.mjs artifacts/owned-rendered-prefix --guards-only
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:
-          name: owned-append-${{ github.sha }}
-          path: artifacts/owned-append
+          name: owned-rendered-prefix-${{ github.sha }}
+          path: artifacts/owned-rendered-prefix
           retention-days: 14

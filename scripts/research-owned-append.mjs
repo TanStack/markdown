@@ -76,6 +76,16 @@ if (process.argv[2] === '--borrowed') {
     return { events, outputs }
   }
   assert.deepEqual(custom(factories.candidate), custom(factories.baseline));comparisons++
+  for (const source of ['```text\nα😀<&', '```text\n\uD83D\uDE00', '```text\nfirst\n\nlast\n', '```text title="α<&"\nbody']) check(source,1)
+  function reentrant(factory) {
+    const renderer=factory()
+    const options={extensions:[{name:'nested',renderHtml(node){if(node.type==='paragraph')return renderer.render('```text\nnested')}}]}
+    const first=renderer.render('outer',options)
+    const second=renderer.render('```text\nnested plus')
+    renderer.render('reset',{extensions:[{name:'reset',renderHtml(){renderer.reset()}}]})
+    return [first,second,renderer.render('```text\nafter reset')]
+  }
+  assert.deepEqual(reentrant(factories.candidate),reentrant(factories.baseline));comparisons++
   const response = await readFile('fixtures/benchmark/ai-response.md', 'utf8')
   const fixtures = [{ name: 'small-doc', source: await readFile('fixtures/benchmark/small-doc.md', 'utf8') }, { name: 'ai-response', source: response }, { name: 'open-code-short', source: '```text\n' + 'Plain code and Unicode αβγ.\n'.repeat(160) }, { name: 'open-code-long', source: '```text\n' + 'Plain code and Unicode αβγ.\n'.repeat(640) }, { name: 'escaping-dense', source: '```text\n' + '<&"\' Unicode α.\n'.repeat(160) }]
   function replay(factory, fixture) {
@@ -84,6 +94,17 @@ if (process.argv[2] === '--borrowed') {
     return { sink, finalHash: sha(Buffer.from(final)), counters: renderer.counters }
   }
   const checks = fixtures.map(fixture => { check(fixture.source,32); const a = replay(factories.baseline, fixture), b = replay(factories.candidate, fixture);assert.equal(a.sink,b.sink);assert.equal(a.finalHash,b.finalHash);return { name:fixture.name, sourceSHA256:sha(fixture.source), ...b } })
+  const memory = []
+  for (const lines of [1024,4096]) for (const name of ['baseline','control','candidate','candidate','control','baseline']) memory.push(JSON.parse(execFileSync(process.execPath,['--expose-gc',fileURLToPath(import.meta.url),'--memory',path,name,String(lines)],{encoding:'utf8',timeout:60000})))
+  for (const lines of [1024,4096]) assert.equal(new Set(memory.filter(row=>row.lines===lines).map(row=>row.outputSHA256)).size,1)
+  const median = values=>[...values].sort((a,b)=>a-b)[Math.floor(values.length/2)]
+  const borrowed=[]
+  for(const name of ['baseline','control','candidate','candidate','control','baseline']) borrowed.push(JSON.parse(execFileSync(process.execPath,['--expose-gc',fileURLToPath(import.meta.url),'--borrowed',path,name],{encoding:'utf8',timeout:60000})))
+  assert.equal(new Set(borrowed.map(row=>row.outputSHA256)).size,1)
+  if(process.argv.includes('--guards-only')) {
+    await writeFile(resolve(directory,'guards.json'),JSON.stringify({commit:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),sourceHash,bundleSHA256:sha(compiled.outputFiles[0].contents),programSHA256:sha(await readFile(fileURLToPath(import.meta.url))),runtimeSources,baselineControlSameFactory:factories.baseline===factories.control,node:process.version,comparisons,checks,memory,borrowed,claim:'Semantic and separate retained-heap guards only; no runtime, API, size or production acceptance.'},null,2))
+    console.log(JSON.stringify({comparisons,borrowed:borrowed.map(({name,activeHeapDelta,resetHeapDelta})=>({name,activeHeapDelta,resetHeapDelta}))}))
+  } else {
   for (const fixture of fixtures) for (const factory of Object.values(factories)) for (let index = 0; index < 10; index++) replay(factory,fixture)
   const timings = []
   for (let round = 0; round < 9; round++) for (const fixture of fixtures) for (const name of round % 2 ? ['candidate','control','baseline'] : ['baseline','control','candidate']) {
@@ -93,14 +114,8 @@ if (process.argv[2] === '--borrowed') {
     timings.push({ round, fixture:fixture.name, variant:name, iterations, msPerReplay:(performance.now()-started)/iterations, sink })
     await writeFile(resolve(directory,'partial.json'),JSON.stringify(timings,null,2))
   }
-  const memory = []
-  for (const lines of [1024,4096]) for (const name of ['baseline','control','candidate','candidate','control','baseline']) memory.push(JSON.parse(execFileSync(process.execPath,['--expose-gc',fileURLToPath(import.meta.url),'--memory',path,name,String(lines)],{encoding:'utf8',timeout:60000})))
-  for (const lines of [1024,4096]) assert.equal(new Set(memory.filter(row=>row.lines===lines).map(row=>row.outputSHA256)).size,1)
-  const median = values=>[...values].sort((a,b)=>a-b)[Math.floor(values.length/2)]
-  const borrowed=[]
-  for(const name of ['baseline','control','candidate','candidate','control','baseline']) borrowed.push(JSON.parse(execFileSync(process.execPath,['--expose-gc',fileURLToPath(import.meta.url),'--borrowed',path,name],{encoding:'utf8',timeout:60000})))
-  assert.equal(new Set(borrowed.map(row=>row.outputSHA256)).size,1)
   const summary=fixtures.map(fixture=>({fixture:fixture.name,medians:Object.fromEntries(Object.keys(factories).map(name=>[name,median(timings.filter(row=>row.fixture===fixture.name&&row.variant===name).map(row=>row.msPerReplay))]))}))
   await writeFile(resolve(directory,'receipt.json'),JSON.stringify({commit:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),sourceHash,bundleSHA256:sha(compiled.outputFiles[0].contents),programSHA256:sha(await readFile(fileURLToPath(import.meta.url))),lockfileSHA256:sha(await readFile('pnpm-lock.yaml')),runtimeSources,baselineControlSameFactory:factories.baseline===factories.control,node:process.version,versions:process.versions,cpu:(await import('node:os')).cpus()[0].model,comparisons,checks,summary,timings,memory,borrowed,limitations:'Private stateful opt-in prototype only. Single standalone open-fence fast path; unchanged full renderer for other inputs/options. No public API, size budget, production change or release accepted. Complete UTF8/hash consumption is inside measured replay. Identical baseline/control factory, mirrored warmed same-process timing. Separate fresh-process active-session/reset heap, not allocation or peak RSS. Repetitions and full production API/size/corpus/browser/package gates still required.'},null,2))
   console.log(JSON.stringify({comparisons,summary,memory:memory.map(({name,lines,activeHeapDelta,resetHeapDelta,releasedByReset})=>({name,lines,activeHeapDelta,resetHeapDelta,releasedByReset}))}))
+  }
 }

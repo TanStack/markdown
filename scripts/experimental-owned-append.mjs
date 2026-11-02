@@ -31,23 +31,26 @@ export function createOwnedAppendRenderer() {
     if (!header || source.includes('\r') || source.charCodeAt(0) === 0xFEFF) return full(source)
     const body = source.slice(header[0].length)
     if (/^ {0,3}[`~]/m.test(body)) return full(source)
-    let prefix, suffix, escaped
+    if (!body) return full(source)
+    let ownedSource, output, suffix
     if (state && source.startsWith(state.source)) {
-      prefix = state.prefix
+      const delta = source.slice(state.source.length)
+      if (!delta) { counters.fast++; return state.html }
       suffix = state.suffix
-      escaped = [state.escaped, escapeHtml(source.slice(state.source.length))].join('')
+      ownedSource = [state.source, delta].join('')
+      output = [state.html.slice(0, -suffix.length), escapeHtml(delta), suffix].join('')
     } else {
       const document = parseMarkdown(header[0], base)
       if (document.children.length !== 1 || document.children[0].type !== 'code') return full(source)
       const empty = renderHtml(document, base)
       const end = empty.indexOf('</code>')
       if (end === -1) return full(source)
-      prefix = empty.slice(0, end)
+      const prefix = empty.slice(0, end)
       suffix = empty.slice(end)
-      escaped = escapeHtml(body)
+      ownedSource = [header[0], body].join('')
+      output = [prefix, escapeHtml(body), suffix].join('')
     }
-    const output = [prefix, escaped, suffix].join('')
-    state = { source, prefix, suffix, escaped }
+    state = { source: ownedSource, html: output, suffix }
     counters.fast++
     return output
   } }
