@@ -36,6 +36,8 @@ if (process.argv[2] === '--memory') {
   const api = await import(pathToFileURL(path).href)
   const sourceHash = sha(await readFile('scripts/experimental-owned-append.mjs'))
   const factories = { baseline: api.createBaselineRenderer, control: api.createBaselineRenderer, candidate: api.createOwnedAppendRenderer }
+  assert.equal(factories.baseline,factories.control)
+  const runtimeSources = Object.fromEntries(await Promise.all(execFileSync('git',['ls-files','src'],{encoding:'utf8'}).trim().split('\n').map(async name=>[name,sha(await readFile(name))])))
   let comparisons = 0
   function check(source, step = 7) {
     const left = factories.baseline(), right = factories.candidate()
@@ -68,7 +70,7 @@ if (process.argv[2] === '--memory') {
     for (let end = 32; end < fixture.source.length + 32; end += 32) { final = renderer.render(fixture.source.slice(0, end)); const bytes = Buffer.from(final);sink += bytes.length;sha(bytes) }
     return { sink, finalHash: sha(Buffer.from(final)), counters: renderer.counters }
   }
-  const checks = fixtures.map(fixture => { const a = replay(factories.baseline, fixture), b = replay(factories.candidate, fixture);assert.equal(a.sink,b.sink);assert.equal(a.finalHash,b.finalHash);return { name:fixture.name, sourceSHA256:sha(fixture.source), ...b } })
+  const checks = fixtures.map(fixture => { check(fixture.source,32); const a = replay(factories.baseline, fixture), b = replay(factories.candidate, fixture);assert.equal(a.sink,b.sink);assert.equal(a.finalHash,b.finalHash);return { name:fixture.name, sourceSHA256:sha(fixture.source), ...b } })
   for (const fixture of fixtures) for (const factory of Object.values(factories)) for (let index = 0; index < 10; index++) replay(factory,fixture)
   const timings = []
   for (let round = 0; round < 9; round++) for (const fixture of fixtures) for (const name of round % 2 ? ['candidate','control','baseline'] : ['baseline','control','candidate']) {
@@ -83,6 +85,6 @@ if (process.argv[2] === '--memory') {
   for (const lines of [1024,4096]) assert.equal(new Set(memory.filter(row=>row.lines===lines).map(row=>row.outputSHA256)).size,1)
   const median = values=>[...values].sort((a,b)=>a-b)[Math.floor(values.length/2)]
   const summary=fixtures.map(fixture=>({fixture:fixture.name,medians:Object.fromEntries(Object.keys(factories).map(name=>[name,median(timings.filter(row=>row.fixture===fixture.name&&row.variant===name).map(row=>row.msPerReplay))]))}))
-  await writeFile(resolve(directory,'receipt.json'),JSON.stringify({commit:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),sourceHash,bundleSHA256:sha(compiled.outputFiles[0].contents),programSHA256:sha(await readFile(fileURLToPath(import.meta.url))),lockfileSHA256:sha(await readFile('pnpm-lock.yaml')),node:process.version,versions:process.versions,cpu:(await import('node:os')).cpus()[0].model,comparisons,checks,summary,timings,memory,limitations:'Private stateful opt-in prototype only. Single standalone open-fence fast path; unchanged full renderer for other inputs/options. No public API, size budget, production change or release accepted. Complete UTF8/hash consumption is inside measured replay. Identical baseline/control factory, mirrored warmed same-process timing. Separate fresh-process active-session/reset heap, not allocation or peak RSS. Repetitions and full production API/size/corpus/browser/package gates still required.'},null,2))
+  await writeFile(resolve(directory,'receipt.json'),JSON.stringify({commit:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),sourceHash,bundleSHA256:sha(compiled.outputFiles[0].contents),programSHA256:sha(await readFile(fileURLToPath(import.meta.url))),lockfileSHA256:sha(await readFile('pnpm-lock.yaml')),runtimeSources,baselineControlSameFactory:factories.baseline===factories.control,node:process.version,versions:process.versions,cpu:(await import('node:os')).cpus()[0].model,comparisons,checks,summary,timings,memory,limitations:'Private stateful opt-in prototype only. Single standalone open-fence fast path; unchanged full renderer for other inputs/options. No public API, size budget, production change or release accepted. Complete UTF8/hash consumption is inside measured replay. Identical baseline/control factory, mirrored warmed same-process timing. Separate fresh-process active-session/reset heap, not allocation or peak RSS. Repetitions and full production API/size/corpus/browser/package gates still required.'},null,2))
   console.log(JSON.stringify({comparisons,summary,memory:memory.map(({name,lines,activeHeapDelta,resetHeapDelta,releasedByReset})=>({name,lines,activeHeapDelta,resetHeapDelta,releasedByReset}))}))
 }
