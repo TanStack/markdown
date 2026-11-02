@@ -20,7 +20,7 @@ describe('table recognition and materialization', () => {
     const values: string[] = []
     const document = parseMarkdown('H | I\n- | -\nA | B', { extensions: [{
       name: 'observe-table',
-      parseBlock(context) { if (context.index === 0) context.lines[0] = 'Changed | I' },
+      parseBlock(context) { if (context.index === 0) context.lines[0] = 'Changed | I'; return undefined },
       transformInline(nodes) {
         values.push(nodes.map(node => node.type === 'text' ? node.value : node.type).join(''))
         return nodes
