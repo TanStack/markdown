@@ -7,7 +7,20 @@ import { performance } from 'node:perf_hooks'
 import { resolve } from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
 const sha = value => createHash('sha256').update(value).digest('hex')
-if (process.argv[2] === '--memory') {
+if (process.argv[2] === '--borrowed') {
+  const api = await import(pathToFileURL(resolve(process.argv[3])).href)
+  const name = process.argv[4]
+  api.createBaselineRenderer().render('```\nwarm\nup');api.createOwnedAppendRenderer().render('```\nwarm\nup')
+  for(let index=0;index<4;index++) global.gc()
+  const before=process.memoryUsage()
+  function make(){const parent='x'.repeat(16*1024*1024)+'```text\n'+'a'.repeat(128)+'\n'+'b'.repeat(128);const source=parent.slice(16*1024*1024);const session=name==='candidate'?api.createOwnedAppendRenderer():api.createBaselineRenderer();const output=session.render(source);sha(Buffer.from(output));return {session,output,inputBytes:Buffer.byteLength(source)}}
+  globalThis.packet=make()
+  for(let index=0;index<4;index++) global.gc()
+  const active=process.memoryUsage();globalThis.packet.session.reset()
+  for(let index=0;index<4;index++) global.gc()
+  const reset=process.memoryUsage()
+  console.log(JSON.stringify({name,inputBytes:globalThis.packet.inputBytes,outputSHA256:sha(Buffer.from(globalThis.packet.output)),before,active,reset,activeHeapDelta:active.heapUsed-before.heapUsed,resetHeapDelta:reset.heapUsed-before.heapUsed,node:process.version}))
+} else if (process.argv[2] === '--memory') {
   const api = await import(pathToFileURL(resolve(process.argv[3])).href)
   const name = process.argv[4], lines = Number(process.argv[5])
   api.createBaselineRenderer().render('```\nwarm\nup')
@@ -84,7 +97,10 @@ if (process.argv[2] === '--memory') {
   for (const lines of [1024,4096]) for (const name of ['baseline','control','candidate','candidate','control','baseline']) memory.push(JSON.parse(execFileSync(process.execPath,['--expose-gc',fileURLToPath(import.meta.url),'--memory',path,name,String(lines)],{encoding:'utf8',timeout:60000})))
   for (const lines of [1024,4096]) assert.equal(new Set(memory.filter(row=>row.lines===lines).map(row=>row.outputSHA256)).size,1)
   const median = values=>[...values].sort((a,b)=>a-b)[Math.floor(values.length/2)]
+  const borrowed=[]
+  for(const name of ['baseline','control','candidate','candidate','control','baseline']) borrowed.push(JSON.parse(execFileSync(process.execPath,['--expose-gc',fileURLToPath(import.meta.url),'--borrowed',path,name],{encoding:'utf8',timeout:60000})))
+  assert.equal(new Set(borrowed.map(row=>row.outputSHA256)).size,1)
   const summary=fixtures.map(fixture=>({fixture:fixture.name,medians:Object.fromEntries(Object.keys(factories).map(name=>[name,median(timings.filter(row=>row.fixture===fixture.name&&row.variant===name).map(row=>row.msPerReplay))]))}))
-  await writeFile(resolve(directory,'receipt.json'),JSON.stringify({commit:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),sourceHash,bundleSHA256:sha(compiled.outputFiles[0].contents),programSHA256:sha(await readFile(fileURLToPath(import.meta.url))),lockfileSHA256:sha(await readFile('pnpm-lock.yaml')),runtimeSources,baselineControlSameFactory:factories.baseline===factories.control,node:process.version,versions:process.versions,cpu:(await import('node:os')).cpus()[0].model,comparisons,checks,summary,timings,memory,limitations:'Private stateful opt-in prototype only. Single standalone open-fence fast path; unchanged full renderer for other inputs/options. No public API, size budget, production change or release accepted. Complete UTF8/hash consumption is inside measured replay. Identical baseline/control factory, mirrored warmed same-process timing. Separate fresh-process active-session/reset heap, not allocation or peak RSS. Repetitions and full production API/size/corpus/browser/package gates still required.'},null,2))
+  await writeFile(resolve(directory,'receipt.json'),JSON.stringify({commit:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),sourceHash,bundleSHA256:sha(compiled.outputFiles[0].contents),programSHA256:sha(await readFile(fileURLToPath(import.meta.url))),lockfileSHA256:sha(await readFile('pnpm-lock.yaml')),runtimeSources,baselineControlSameFactory:factories.baseline===factories.control,node:process.version,versions:process.versions,cpu:(await import('node:os')).cpus()[0].model,comparisons,checks,summary,timings,memory,borrowed,limitations:'Private stateful opt-in prototype only. Single standalone open-fence fast path; unchanged full renderer for other inputs/options. No public API, size budget, production change or release accepted. Complete UTF8/hash consumption is inside measured replay. Identical baseline/control factory, mirrored warmed same-process timing. Separate fresh-process active-session/reset heap, not allocation or peak RSS. Repetitions and full production API/size/corpus/browser/package gates still required.'},null,2))
   console.log(JSON.stringify({comparisons,summary,memory:memory.map(({name,lines,activeHeapDelta,resetHeapDelta,releasedByReset})=>({name,lines,activeHeapDelta,resetHeapDelta,releasedByReset}))}))
 }
