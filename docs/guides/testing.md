@@ -82,7 +82,7 @@ Run the manual **Core workload profiles** workflow for isolated profiles of the 
 node --expose-gc --import tsx scripts/profile-core.mjs artifacts/core-profiles
 ```
 
-Choose an empty output directory for each run to preserve earlier results. The output includes raw CPU profiles, compressed sampled-allocation profiles, completed-output hashes, source and lockfile hashes, and runtime metadata. Workloads separate parsing, parsing with HTML rendering, cached-AST rendering, and progressive updates using the existing fixtures. Progressive profiles consume each update without retaining earlier rendered strings; a separate trace hash checks every update outside profiling.
+Choose an empty output directory for each run to preserve earlier results. The output includes raw CPU profiles, compressed sampled-allocation profiles, completed-output hashes, source and lockfile hashes, and runtime metadata. The run fails if its source, lockfile or profiling script changes while it runs. Workloads separate parsing, parsing with HTML rendering, cached-AST rendering, and progressive updates using the existing fixtures. Progressive profiles consume each update without retaining earlier rendered strings; a separate trace hash checks every update outside profiling.
 
 These profiles identify leads, not throughput or startup improvements. CPU attribution is sampled separately for each workload. Sampled allocation includes collected objects and does not measure retained heap, RSS or peak memory. Confirm promising changes with repeated equivalent-work comparisons and unchanged size gates.
 

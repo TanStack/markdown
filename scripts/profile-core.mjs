@@ -6,9 +6,6 @@ import { mkdir, readdir, readFile, writeFile } from 'node:fs/promises'
 import { resolve, relative } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { gzipSync } from 'node:zlib'
-import { parseMarkdown } from '../src/parser.ts'
-import { renderHtml } from '../src/html.ts'
-import { streamingMarkdownExtension } from '../src/extensions/streaming.ts'
 
 const root = fileURLToPath(new URL('..', import.meta.url))
 const directory = resolve(process.argv[2] || 'artifacts/core-profiles')
@@ -17,6 +14,21 @@ assert.equal(typeof global.gc, 'function', 'Run Node with --expose-gc')
 await mkdir(directory, { recursive: true })
 assert.equal((await readdir(directory)).length, 0, 'Output directory must be empty to preserve earlier profiles')
 const sha = value => createHash('sha256').update(value).digest('hex')
+async function snapshot() {
+  const sourceFiles = execFileSync('git', ['ls-files', '--cached', '--others', '--exclude-standard', 'src'], { cwd: root, encoding: 'utf8' }).trim().split('\n').filter(Boolean).sort()
+  return {
+    commit: execFileSync('git', ['rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8' }).trim(),
+    trackedDirtyState: execFileSync('git', ['status', '--porcelain', '--untracked-files=no'], { cwd: root, encoding: 'utf8' }),
+    programSHA256: sha(await readFile(fileURLToPath(import.meta.url))),
+    lockfileSHA256: sha(await readFile(resolve(root, 'pnpm-lock.yaml'))),
+    sources: Object.fromEntries(await Promise.all(sourceFiles.map(async path => [path, sha(await readFile(resolve(root, path)))]))),
+  }
+}
+const frozen = await snapshot()
+await writeFile(resolve(directory, 'source.json'), JSON.stringify(frozen, null, 2))
+const [{ parseMarkdown }, { renderHtml }, { streamingMarkdownExtension }] = await Promise.all([
+  import('../src/parser.ts'), import('../src/html.ts'), import('../src/extensions/streaming.ts'),
+])
 const fixtures = []
 for (const name of smoke ? ['small-doc.md'] : ['small-doc.md', 'prose-heavy.md', 'code-heavy.md', 'tables-lists.md', 'malformed.md', 'ai-response.md']) {
   fixtures.push({ name, source: await readFile(resolve(root, 'fixtures/benchmark', name), 'utf8') })
@@ -100,12 +112,16 @@ try {
 } finally {
   session.disconnect()
 }
-const sourceFiles = execFileSync('git', ['ls-files', 'src'], { cwd: root, encoding: 'utf8' }).trim().split('\n').filter(Boolean)
-const sources = Object.fromEntries(await Promise.all(sourceFiles.map(async path => [path, sha(await readFile(resolve(root, path)))])))
+const after = await snapshot()
+try {
+  assert.deepEqual(after, frozen, 'Source changed during profiling')
+} catch (error) {
+  await writeFile(resolve(directory, 'source-drift.json'), JSON.stringify({ before: frozen, after }, null, 2))
+  throw error
+}
 const receipt = {
-  schemaVersion: 1, smoke, commit: execFileSync('git', ['rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8' }).trim(),
-  trackedDirtyState: execFileSync('git', ['status', '--porcelain', '--untracked-files=no'], { cwd: root, encoding: 'utf8' }),
-  node: process.version, versions: process.versions, lockfileSHA256: sha(await readFile(resolve(root, 'pnpm-lock.yaml'))), sources,
+  schemaVersion: 1, smoke, ...frozen, sourceStable: true,
+  node: process.version, versions: process.versions,
   rows, sink, recordedAt: new Date().toISOString(),
   limitations: 'Discovery profiles, not throughput or startup comparisons. CPU attribution is sampled exclusive time per workload, never add percentages across workloads. Allocation is sampled including collected objects, not retained heap, RSS, peak memory or an exact allocation count. TS source instrumentation and inspector overhead can differ from production bundles. Repeat promising leads with equivalent completed-work controls before changing production.',
 }
