@@ -5,7 +5,6 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { performance } from 'node:perf_hooks'
 import { resolve } from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
-import { build } from 'esbuild'
 const sha = bytes => createHash('sha256').update(bytes).digest('hex')
 if (process.argv[2] === '--child') {
   assert.equal(typeof global.gc, 'function')
@@ -27,6 +26,7 @@ if (process.argv[2] === '--child') {
   const firstCompletedMs = performance.now() - firstStarted
   console.log(JSON.stringify({ importMs, firstCompletedMs, moduleHeapDelta: afterImport.heapUsed - before.heapUsed, before, afterImport, outputBytes: bytes.length, outputSHA256, node: process.version }))
 } else {
+  const { build, version: esbuildVersion } = await import('esbuild')
   const directory = resolve(process.argv[2])
   await mkdir(directory, { recursive: false })
   const metadataResponse = await fetch('https://registry.npmjs.org/@tanstack%2fmarkdown')
@@ -84,6 +84,6 @@ if (process.argv[2] === '--child') {
       summary.push({ group, variant, samples: samples.length, importMedianMs: median(samples.map(row => row.importMs)), importMinMs: Math.min(...samples.map(row => row.importMs)), importMaxMs: Math.max(...samples.map(row => row.importMs)), firstCompletedMedianMs: median(samples.map(row => row.firstCompletedMs)), moduleHeapMedianBytes: median(samples.map(row => row.moduleHeapDelta)) })
     }
   }
-  await writeFile(resolve(directory, 'receipt.json'), JSON.stringify({ package: pkg.name, version: pkg.version, integrity: version.dist.integrity, tarballSHA256: sha(archive), programSHA256: sha(await readFile(fileURLToPath(import.meta.url))), commit: execFileSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim(), node: process.version, versions: process.versions, files, scenarios, summary, rows, limitations: 'Exploratory cold-process module initialization on warm filesystem cache. Identical native controls, mirrored order, actual published artifact versus non-minified tree-shaking-disabled bundles. Import excludes process creation; process wall time includes harness/GC. First completed work includes serialization/UTF8/hash. Groups have different work and must not be ranked against one another. Not browser/cold-disk startup, throughput, sampled allocation or peak memory, and no packaging candidate is accepted.' }, null, 2))
+  await writeFile(resolve(directory, 'receipt.json'), JSON.stringify({ package: pkg.name, version: pkg.version, integrity: version.dist.integrity, tarballSHA256: sha(archive), programSHA256: sha(await readFile(fileURLToPath(import.meta.url))), commit: execFileSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim(), node: process.version, versions: process.versions, platform: process.platform, arch: process.arch, cpu: (await import('node:os')).cpus()[0].model, esbuildVersion, files, scenarios, summary, rows, limitations: 'Exploratory cold-process module initialization on warm filesystem cache. Identical native controls, mirrored order, actual published artifact versus non-minified tree-shaking-disabled bundles. Import excludes process creation; process wall time includes harness/GC. First completed work includes serialization/UTF8/hash. Groups have different work and must not be ranked against one another. Not browser/cold-disk startup, throughput, sampled allocation or peak memory, and no packaging candidate is accepted.' }, null, 2))
   console.log(JSON.stringify(summary))
 }
