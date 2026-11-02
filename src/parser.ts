@@ -1,3 +1,4 @@
+import { SourceLines } from './source-lines.js'
 import { parseInline } from './inline.js'
 import type {
   BlockNode,
@@ -25,14 +26,14 @@ const maxBlockDepth = 64
 export function parseMarkdown(markdown: string, options: ParseOptions = {}): MarkdownDocument {
   const normalized = normalizeInput(markdown)
   const frontmatterEnabled = options.frontmatter !== false
-  let lines = normalized.split('\n')
+  let lines = new SourceLines(normalized)
   let frontmatter: string | undefined
 
-  if (frontmatterEnabled && lines[0] === '---') {
-    const end = lines.findIndex((line, index) => index > 0 && line === '---')
+  if (frontmatterEnabled && lines.at(0) === '---') {
+    const end = lines.all().findIndex((line, index) => index > 0 && line === '---')
     if (end > 0) {
       frontmatter = lines.slice(1, end).join('\n')
-      lines = lines.slice(end + 1)
+      lines = new SourceLines(lines.slice(end + 1))
     }
   }
 
@@ -67,11 +68,12 @@ export function parseMarkdown(markdown: string, options: ParseOptions = {}): Mar
 }
 
 function createBlockParser(
-  inputLines: string[],
+  input: SourceLines | string[],
   options: ParseOptions,
   slugger: Slugger,
   budget: BlockParseBudget = { depth: 0 },
 ) {
+  const inputLines = input instanceof SourceLines ? input : new SourceLines(input)
   let cursor = 0
   let looseBlocks = false
   return {
@@ -129,7 +131,7 @@ function createBlockParser(
     for (const extension of options.extensions ?? []) {
       let consumed = 0
       const node = extension.parseBlock?.({
-        lines: inputLines,
+        lines: inputLines.all(),
         index: cursor,
         options: options,
         parseInline: value => parseInline(value, options),
@@ -154,22 +156,24 @@ function createBlockParser(
 
     const fence = match[2]!
     const info = match[3]!.trim()
-    const code: string[] = []
+    const start = cursor + 1
+    let end = start
     cursor++
 
     while (cursor < inputLines.length) {
       const line = current()
       if (line.includes(fence) && /^ {0,3}(?:`+|~+)\s*$/.test(line)) {
+        end = cursor
         cursor++
         break
       }
-      code.push(stripIndent(line, match[1]!.length))
       cursor++
+      end = cursor
     }
 
     return {
       type: 'code',
-      value: code.join('\n'),
+      value: inputLines.code(start, end, match[1]!.length),
       ...parseCodeInfo(info),
     }
   }
@@ -242,8 +246,8 @@ function createBlockParser(
         if (nextMarker && nextMarker.indent === baseIndent) break
         if (isBlank(line)) {
           let nextIndex = cursor
-          while (nextIndex < inputLines.length && isBlank(inputLines[nextIndex]!)) nextIndex++
-          const following = inputLines[nextIndex]
+          while (nextIndex < inputLines.length && isBlank(inputLines.at(nextIndex)!)) nextIndex++
+          const following = inputLines.at(nextIndex)
           if (following === undefined) break
 
           const followingMarker = listMarker(following)
@@ -256,7 +260,7 @@ function createBlockParser(
 
           if (leadingSpaces(following) < marker.contentIndent) break
 
-          while (cursor < nextIndex) itemLines.push(stripIndent(inputLines[cursor++]!, marker.contentIndent))
+          while (cursor < nextIndex) itemLines.push(stripIndent(inputLines.at(cursor++)!, marker.contentIndent))
           continue
         }
         if (leadingSpaces(line) >= marker.contentIndent) {
@@ -360,11 +364,11 @@ function createBlockParser(
   }
 
   function current(): string {
-    return inputLines[cursor] ?? ''
+    return inputLines.at(cursor) ?? ''
   }
 
   function next(): string | undefined {
-    return inputLines[cursor + 1]
+    return inputLines.at(cursor + 1)
   }
 }
 
@@ -386,16 +390,16 @@ function parseCodeInfo(info: string): Omit<CodeBlockNode, 'type' | 'value'> {
   }
 }
 
-function extractDefinitions(lines: string[]) {
+function extractDefinitions(lines: SourceLines) {
   const references: NonNullable<ParseOptions['references']> = Object.create(null)
   const footnotes: NonNullable<ParseOptions['footnotes']> = Object.create(null)
   const footnoteIds = createSlugger(footnoteId)
-  const remaining: string[] = []
+  const remaining: number[] = []
   let activeFence = ''
   let index = 0
 
   while (index < lines.length) {
-    const line = lines[index]!
+    const line = lines.at(index)!
     const fence = (!activeFence || line.includes(activeFence)) && line.match(/^ {0,3}(`{3,}|~{3,})(.*)$/)
     if (fence) {
       if (!activeFence) activeFence = fence[1]!
@@ -408,7 +412,7 @@ function extractDefinitions(lines: string[]) {
         index++
 
         while (index < lines.length) {
-          const continuation = lines[index]!
+          const continuation = lines.at(index)!
           if (!/^(?: {4,}|\t)/.test(continuation)) break
           content.push(continuation.replace(/^(?: {4}|\t)/, ''))
           index++
@@ -430,11 +434,11 @@ function extractDefinitions(lines: string[]) {
       }
     }
 
-    remaining.push(line)
+    remaining.push(index)
     index++
   }
 
-  return { lines: remaining, references, footnotes }
+  return { lines: lines.select(remaining), references, footnotes }
 }
 
 function createFootnotesBlock(
