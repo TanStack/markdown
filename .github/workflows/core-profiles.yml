@@ -26,5 +26,5 @@ jobs:
         if: always()
         with:
           name: owned-rendered-prefix-${{ github.sha }}
-          path: artifacts/owned-rendered-prefix --guards-only
+          path: artifacts/owned-rendered-prefix
           retention-days: 14
