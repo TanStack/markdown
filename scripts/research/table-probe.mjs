@@ -33,7 +33,26 @@ for(const header of headers)for(const delimiter of delimiters)equal(header+'\n'+
 for(const source of ['Header | Last\\|\n--- | ---\nBody | Final\\|','H | I\n\u00a0- | -\u00a0','Before\nH | I\n- | -\nA | B','> H | I\n> - | -\n> A | B','- H | I\n  - | -\n  A | B'])for(let end=0;end<=source.length;end++)equal(source.slice(0,end))
 function observe(api){
  const events=[];let installed=false
- const options={extensions:[{name:'observe',parseBlock(context){events.push(['block',context.index]);if(!installed){installed=true;for(const index of [0,1]){let value=context.lines[index];Object.defineProperty(context.lines,index,{configurable:true,get(){events.push(['read',index]);return value},set(next){events.push(['write',index,next]);value=next}})}return undefined},transformInline(nodes){events.push(['inline',nodes]);return nodes},renderHtml(node){events.push(['render',node.type])}}]}
+ const options = { extensions: [{
+  name: 'observe',
+  parseBlock(context) {
+   events.push(['block', context.index])
+   if (!installed) {
+    installed = true
+    for (const index of [0, 1]) {
+     let value = context.lines[index]
+     Object.defineProperty(context.lines, index, {
+      configurable: true,
+      get() { events.push(['read', index]); return value },
+      set(next) { events.push(['write', index, next]); value = next },
+     })
+    }
+   }
+   return undefined
+  },
+  transformInline(nodes) { events.push(['inline', nodes]); return nodes },
+  renderHtml(node) { events.push(['render', node.type]) },
+ }] }
  Object.defineProperty(options,'headingIds',{enumerable:true,get(){events.push('headingIds');return false}})
  Object.defineProperty(options,'allowHtml',{enumerable:true,get(){events.push('allowHtml');return false}})
  const html=api.renderHtml('H | I\n- | -\nA | B\n\nAfter',options)
