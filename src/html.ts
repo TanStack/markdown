@@ -4,80 +4,132 @@ import { escapeAttr, escapeHtml, footnoteReferenceId } from './utils.js'
 
 export function renderHtml(input: MarkdownInput, options: RenderOptions = {}): string {
   const document = typeof input === 'string' ? parseMarkdown(input, options) : input
-  return document.children.map(node => renderBlock(node, options)).join('\n')
+  const output: string[] = []
+  writeSequence(document.children, writeBlock, options, output, '\n')
+  return output.join('')
 }
 
 export function renderBlock(node: BlockNode, options: RenderOptions = {}): string {
-  const extension = renderExtension(node, options)
-  if (extension !== undefined) return extension
+  const output: string[] = []
+  writeBlock(node, options, output)
+  return output.join('')
+}
 
+function writeBlock(node: BlockNode, options: RenderOptions, output: string[]): void {
+  const extension = renderExtension(node, options)
+  if (extension !== undefined) {
+    output.push(extension)
+    return
+  }
   switch (node.type) {
     case 'heading': {
       const id = node.id ? ` id="${escapeAttr(node.id)}"` : ''
       const framework = node.framework ? ` data-framework="${escapeAttr(node.framework)}"` : ''
-      return `<h${node.depth}${id}${framework}>${renderInlines(node.children, options)}${renderHeadingAnchor(node.id, options)}</h${node.depth}>`
+      output.push(`<h${node.depth}${id}${framework}>`)
+      writeSequence(node.children, writeInline, options, output)
+      output.push(`${renderHeadingAnchor(node.id, options)}</h${node.depth}>`)
+      return
     }
     case 'paragraph':
-      return `<p>${renderInlines(node.children, options)}</p>`
+      writeInlineContainer('p', node.children, options, output)
+      return
     case 'code':
-      return renderCodeBlock(node, options)
+      output.push(renderCodeBlock(node, options))
+      return
     case 'list': {
       const tag = node.ordered ? 'ol' : 'ul'
       const start = node.ordered && node.start !== undefined && node.start !== 1 ? ` start="${node.start}"` : ''
-      const items = node.items.map(item => `<li>${renderListItemChildren(item.children, item.checked, node.loose, options)}</li>`).join('\n')
-      return `<${tag}${start}>\n${items}\n</${tag}>`
+      output.push(`<${tag}${start}>\n`)
+      writeSequence(node.items, (item, _, target) => {
+        target.push(`<li>${renderListItemChildren(item.children, item.checked, node.loose, options)}</li>`)
+      }, options, output, '\n')
+      output.push(`\n</${tag}>`)
+      return
     }
     case 'blockquote':
-      return `<blockquote>\n${node.children.map(child => renderBlock(child, options)).join('\n')}\n</blockquote>`
-    case 'table': {
-      const header = `<thead><tr>${node.header.map((cell, index) => renderTableCell('th', cell, node.align[index], options)).join('')}</tr></thead>`
-      const body = node.rows.length
-        ? `<tbody>${node.rows
-            .map(row => `<tr>${row.map((cell, index) => renderTableCell('td', cell, node.align[index], options)).join('')}</tr>`)
-            .join('')}</tbody>`
-        : ''
-      return `<table>${header}${body}</table>`
-    }
+      output.push('<blockquote>\n')
+      writeSequence(node.children, writeBlock, options, output, '\n')
+      output.push('\n</blockquote>')
+      return
+    case 'table':
+      output.push('<table><thead><tr>')
+      writeSequence(node.header, (cell, opts, target, index) => writeCell('th', cell, node.align[index], opts, target), options, output)
+      output.push('</tr></thead>')
+      if (node.rows.length) {
+        output.push('<tbody>')
+        writeSequence(node.rows, (row, opts, target) => {
+          target.push('<tr>')
+          writeSequence(row, (cell, cellOptions, cellTarget, index) => writeCell('td', cell, node.align[index], cellOptions, cellTarget), opts, target)
+          target.push('</tr>')
+        }, options, output)
+        output.push('</tbody>')
+      }
+      output.push('</table>')
+      return
     case 'footnotes':
-      return renderFootnotes(node.items, options)
+      output.push(renderFootnotes(node.items, options))
+      return
     case 'thematicBreak':
-      return '<hr>'
+      output.push('<hr>')
+      return
     case 'html':
-      return options.allowHtml ? node.value : escapeHtml(node.value)
+      output.push(options.allowHtml ? node.value : escapeHtml(node.value))
+      return
     case 'callout':
-      return renderCallout(node, options)
+      output.push(renderCallout(node, options))
+      return
     case 'component':
-      return renderComponent(node, options)
+      output.push(renderComponent(node, options))
   }
 }
 
 export function renderInline(node: InlineNode, options: RenderOptions = {}): string {
-  const extension = renderExtension(node, options)
-  if (extension !== undefined) return extension
+  const output: string[] = []
+  writeInline(node, options, output)
+  return output.join('')
+}
 
+function writeInline(node: InlineNode, options: RenderOptions, output: string[]): void {
+  const extension = renderExtension(node, options)
+  if (extension !== undefined) {
+    output.push(extension)
+    return
+  }
   switch (node.type) {
     case 'text':
-      return escapeHtml(node.value)
+      output.push(escapeHtml(node.value))
+      return
     case 'inlineCode':
-      return `<code>${escapeHtml(node.value)}</code>`
+      output.push(`<code>${escapeHtml(node.value)}</code>`)
+      return
     case 'strong':
-      return `<strong>${renderInlines(node.children, options)}</strong>`
+      writeInlineContainer('strong', node.children, options, output)
+      return
     case 'emphasis':
-      return `<em>${renderInlines(node.children, options)}</em>`
+      writeInlineContainer('em', node.children, options, output)
+      return
     case 'strike':
-      return `<del>${renderInlines(node.children, options)}</del>`
+      writeInlineContainer('del', node.children, options, output)
+      return
     case 'footnoteReference':
-      return `<sup><a id="user-content-fnref-${escapeAttr(footnoteReferenceId(node.id, node.referenceIndex))}" data-footnote-ref="" aria-describedby="footnote-label" href="#user-content-fn-${escapeAttr(node.id)}">${node.number}</a></sup>`
+      output.push(`<sup><a id="user-content-fnref-${escapeAttr(footnoteReferenceId(node.id, node.referenceIndex))}" data-footnote-ref="" aria-describedby="footnote-label" href="#user-content-fn-${escapeAttr(node.id)}">${node.number}</a></sup>`)
+      return
     case 'link':
-      return `<a href="${escapeAttr(node.href)}"${node.title ? ` title="${escapeAttr(node.title)}"` : ''}>${renderInlines(node.children, options)}</a>`
+      output.push(`<a href="${escapeAttr(node.href)}"${node.title ? ` title="${escapeAttr(node.title)}"` : ''}>`)
+      writeSequence(node.children, writeInline, options, output)
+      output.push('</a>')
+      return
     case 'image':
-      return `<img src="${escapeAttr(node.src)}" alt="${escapeAttr(node.alt)}"${node.title ? ` title="${escapeAttr(node.title)}"` : ''}>`
+      output.push(`<img src="${escapeAttr(node.src)}" alt="${escapeAttr(node.alt)}"${node.title ? ` title="${escapeAttr(node.title)}"` : ''}>`)
+      return
     case 'break':
-      return '<br>'
+      output.push('<br>')
+      return
     case 'inlineHtml':
-      return options.allowHtml ? node.value : escapeHtml(node.value)
+      output.push(options.allowHtml ? node.value : escapeHtml(node.value))
+      return
     case 'inlineComponent':
-      return renderComponent(node, options)
+      output.push(renderComponent(node, options))
   }
 }
 
@@ -86,7 +138,30 @@ export function renderDocument(document: MarkdownDocument, options: RenderOption
 }
 
 function renderInlines(nodes: InlineNode[], options: RenderOptions): string {
-  return nodes.map(node => renderInline(node, options)).join('')
+  const output: string[] = []
+  writeSequence(nodes, writeInline, options, output)
+  return output.join('')
+}
+
+function writeInlineContainer(tag: string, nodes: InlineNode[], options: RenderOptions, output: string[]): void {
+  output.push(`<${tag}>`)
+  writeSequence(nodes, writeInline, options, output)
+  output.push(`</${tag}>`)
+}
+
+function writeSequence<T>(nodes: T[], write: (node: T, options: RenderOptions, output: string[], index: number) => void, options: RenderOptions, output: string[], separator = ''): void {
+  const length = nodes.length
+  for (let index = 0; index < length; index++) {
+    if (index && separator) output.push(separator)
+    if (index in nodes) write(nodes[index]!, options, output, index)
+  }
+}
+
+function writeCell(tag: 'td' | 'th', cell: TableCellNode, align: 'left' | 'center' | 'right' | undefined, options: RenderOptions, output: string[]): void {
+  const style = align ? ` style="text-align:${align}"` : ''
+  output.push(`<${tag}${style}>`)
+  writeSequence(cell.children, writeInline, options, output)
+  output.push(`</${tag}>`)
 }
 
 function renderCodeBlock(node: Extract<BlockNode, { type: 'code' }>, options: RenderOptions): string {
@@ -163,16 +238,6 @@ function renderComponent(node: ComponentNode | InlineComponentNode, options: Ren
     ? renderInlines(node.children, options)
     : node.children.map(child => renderBlock(child, options)).join('\n')
   return `<${tag}${attrs}>${children}</${tag}>`
-}
-
-function renderTableCell(
-  tag: 'td' | 'th',
-  cell: TableCellNode,
-  align: 'left' | 'center' | 'right' | undefined,
-  options: RenderOptions,
-): string {
-  const style = align ? ` style="text-align:${align}"` : ''
-  return `<${tag}${style}>${renderInlines(cell.children, options)}</${tag}>`
 }
 
 function renderExtension(node: BlockNode | InlineNode, options: RenderOptions): string | undefined {
