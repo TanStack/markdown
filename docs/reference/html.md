@@ -88,6 +88,6 @@ renderer.reset()
 
 `render(input: MarkdownInput, options?: RenderOptions): string` returns complete HTML with the streaming extension enabled. Pass the whole accumulated source on each update. Edits and document inputs are supported. Custom extensions run after the built-in streaming extension.
 
-The session reuses escaped HTML while appending to a standalone, unindented open code fence with LF line endings and no possible closing-fence line. Other inputs use the full renderer. It keeps the current source and HTML, so call `reset(): void` when discarding a response. This clears cached text without changing extension configuration.
+The session reuses escaped HTML while appending to a standalone, unindented open code fence with LF line endings and no possible closing-fence line. Edits to an eligible open fence rebuild its header and escape its body. Other inputs use the full renderer. It keeps the current source and HTML, so call `reset(): void` when discarding a response. This clears cached text without changing extension configuration.
 
 Supplying an options object disables caching for the rest of that session, including after reset. Extension hooks can retain and mutate the built-in extension, so later calls continue through the full pipeline to honor those mutations. Create a fresh session to use caching again. Options, highlighters, escaping and URL safety follow `renderHtml`.
