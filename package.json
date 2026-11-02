@@ -30,6 +30,10 @@
       "types": "./dist/html.d.ts",
       "import": "./dist/html.js"
     },
+    "./html/streaming": {
+      "types": "./dist/html/streaming.d.ts",
+      "import": "./dist/html/streaming.js"
+    },
     "./parser": {
       "types": "./dist/parser.d.ts",
       "import": "./dist/parser.js"

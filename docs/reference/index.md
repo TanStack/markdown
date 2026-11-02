@@ -11,6 +11,7 @@ TanStack Markdown uses explicit subpath exports so applications can import only 
 | `@tanstack/markdown` | parser, inline parser, HTML renderer, and all shared types |
 | `@tanstack/markdown/parser` | `parseMarkdown` only |
 | `@tanstack/markdown/html` | HTML rendering functions |
+| `@tanstack/markdown/html/streaming` | optional HTML rendering session |
 | `@tanstack/markdown/react` | React component and React rendering functions |
 | `@tanstack/markdown/octane` | Octane component and descriptor rendering functions |
 | `@tanstack/markdown/extensions/autolinks` | optional HTTP(S) URL linking |

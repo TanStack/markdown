@@ -44,6 +44,7 @@ describe('bundle budgets', () => {
     const budgets: Record<string, number[]> = {
       '.': [18105, 7177, 6596],
       './html': [18065, 7164, 6582],
+      './html/streaming': [19605, 7694, 7083],
       './parser': [12782, 5307, 4886],
       './react': [18048, 7111, 6563],
       './octane': [17988, 7076, 6508],
