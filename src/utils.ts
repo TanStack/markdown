@@ -5,6 +5,7 @@ export function normalizeInput(value: string): string {
 }
 
 export function escapeHtml(value: string): string {
+  if (!/[&<>"']/.test(value)) return value
   return value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;')
 }
 
