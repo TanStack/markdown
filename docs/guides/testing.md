@@ -74,6 +74,18 @@ Size tests protect both narrow imports and the complete namespace of every publi
 
 After running both corpus audits, add `--corpus` to compare both revisions in core and docs-extension modes against the same source files and Marked version. Use `--no-bench` when checking only output and size. Review changed output even when a file already differs from Marked. The corpus classification is a triage tool, not proof that two outputs behave identically.
 
+## CPU and sampled allocation profiles
+
+Run the manual **Core workload profiles** workflow for isolated profiles of the current revision, or use Node 24 locally during a reserved quiet slot:
+
+```sh
+node --expose-gc --import tsx scripts/profile-core.mjs artifacts/core-profiles
+```
+
+Choose a new output directory for each run. Exclusive directory creation prevents simultaneous runs from overwriting one another or earlier results. The output includes raw CPU profiles, compressed sampled-allocation profiles, completed-output hashes, source and lockfile hashes, and runtime metadata. The run fails if its source, lockfile or profiling script changes while it runs. Workloads separate parsing, parsing with HTML rendering, cached-AST rendering, and progressive updates using the existing fixtures. Progressive profiles consume each update without retaining earlier rendered strings; a separate trace hash checks every update outside profiling.
+
+These profiles identify leads, not throughput or startup improvements. CPU attribution is sampled separately for each workload. Sampled allocation includes collected objects and does not measure retained heap, RSS or peak memory. Confirm promising changes with repeated equivalent-work comparisons and unchanged size gates.
+
 ## Resilience
 
 The suite includes fixed-seed generated malformed documents and adversarial cases such as unmatched delimiters, deep blockquotes, nested lists, and parser depth exhaustion. Performance thresholds are generous enough for CI variation but strict enough to catch accidental superlinear behavior.
