@@ -1,5 +1,11 @@
 # @tanstack/markdown
 
+## 1.1.1
+
+### Patch Changes
+
+- d0a5dab: Fix parser to stop looping forever on U+2028 or U+2029 in blockquotes.
+
 ## 1.1.0
 
 ### Minor Changes
