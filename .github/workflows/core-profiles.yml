@@ -1,4 +1,4 @@
-name: Core workload profiles
+name: Native escaping experiment
 on:
   workflow_dispatch:
 permissions:
@@ -20,10 +20,13 @@ jobs:
           node-version: 24
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      - run: node --expose-gc --import tsx scripts/profile-core.mjs artifacts/core-profiles
+      - run: pnpm exec vitest run tests/escaping.test.ts
+      - run: pnpm run typecheck
+      - run: node --import tsx scripts/compare-revision.mjs ca59f585e292a4788cacb95e9729a2b9a4850d59 --no-bench
+      - run: node --expose-gc scripts/research/escaping.mjs
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:
-          name: core-profiles-${{ github.sha }}
-          path: artifacts/core-profiles
+          name: escaping-${{ github.sha }}
+          path: artifacts/
           retention-days: 14
