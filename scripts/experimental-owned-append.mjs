@@ -20,6 +20,7 @@ export function createOwnedAppendRenderer() {
   const base = { extensions: [streamingMarkdownExtension()] }
   const counters = { fast: 0, full: 0 }
   let state
+  let profileExposed = false
   function full(source, options) {
     state = undefined
     counters.full++
@@ -54,7 +55,9 @@ export function createOwnedAppendRenderer() {
     return output
   }
   return { counters, reset() { state = undefined }, render(source, options) {
-    if (options !== undefined || typeof source !== 'string' || (source[0] !== '`' && source[0] !== '~')) return full(source, options)
+    // Options hooks can retain and mutate the internal extension after this call.
+    if (options !== undefined) profileExposed = true
+    if (profileExposed || typeof source !== 'string' || (source[0] !== '`' && source[0] !== '~')) return full(source, options)
     return fenced(source)
   } }
 }

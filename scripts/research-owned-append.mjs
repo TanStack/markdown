@@ -97,6 +97,20 @@ if (process.argv[2] === '--borrowed') {
     return [first,second,renderer.render('```text\nafter reset')]
   }
   assert.deepEqual(reentrant(factories.candidate),reentrant(factories.baseline));comparisons++
+  function escapedProfile(factory,mode) {
+    const renderer=factory(),events=[];let extension
+    renderer.render('capture',{extensions:[{name:'capture',transformDocument(document,context){extension=context.options.extensions[0]}}]})
+    if(mode==='transform') {
+      const delegate=extension.transformDocument
+      extension.transformDocument=(document,context)=>{events.push(document.children.map(node=>node.type==='code'?node.value:node.type));return delegate(document,context)}
+    }
+    if(mode==='parseBlock') extension.parseBlock=context=>{events.push([...context.lines])}
+    if(mode==='render') extension.renderHtml=node=>node.type==='code'?'<pre><code>'+node.value.toUpperCase()+'</code></pre>':undefined
+    const outputs=[renderer.render('```text\nalpha'),renderer.render('```text\nalpha beta')]
+    renderer.reset();outputs.push(renderer.render('```text\nalpha'))
+    return {events,outputs}
+  }
+  for(const mode of ['transform','parseBlock','render']) {assert.deepEqual(escapedProfile(factories.candidate,mode),escapedProfile(factories.baseline,mode),'Escaped mutable profile: '+mode);comparisons++}
   const response = await readFile('fixtures/benchmark/ai-response.md', 'utf8')
   const fixtures = [{ name: 'small-doc', source: await readFile('fixtures/benchmark/small-doc.md', 'utf8') }, { name: 'ai-response', source: response }, { name: 'open-code-short', source: '```text\n' + 'Plain code and Unicode αβγ.\n'.repeat(160) }, { name: 'open-code-long', source: '```text\n' + 'Plain code and Unicode αβγ.\n'.repeat(640) }, { name: 'escaping-dense', source: '```text\n' + '<&"\' Unicode α.\n'.repeat(160) }]
   function replay(factory, fixture) {
