@@ -122,7 +122,7 @@ if (process.argv[2] === '--borrowed') {
   const memory = []
   for (const lines of [1024,4096]) for (const name of ['baseline','control','candidate','candidate','control','baseline']) memory.push(JSON.parse(execFileSync(process.execPath,['--expose-gc',fileURLToPath(import.meta.url),'--memory',path,name,String(lines)],{encoding:'utf8',timeout:60000})))
   for (const lines of [1024,4096]) assert.equal(new Set(memory.filter(row=>row.lines===lines).map(row=>row.outputSHA256)).size,1)
-  const median = values=>[...values].sort((a,b)=>a-b)[Math.floor(values.length/2)]
+  const median = values=>{const sorted=[...values].sort((a,b)=>a-b);const middle=Math.floor(sorted.length/2);return sorted.length%2?sorted[middle]:(sorted[middle-1]+sorted[middle])/2}
   const borrowed=[]
   for(const name of ['baseline','control','candidate','candidate','control','baseline']) borrowed.push(JSON.parse(execFileSync(process.execPath,['--expose-gc',fileURLToPath(import.meta.url),'--borrowed',path,name],{encoding:'utf8',timeout:60000})))
   assert.equal(new Set(borrowed.map(row=>row.outputSHA256)).size,1)
@@ -141,7 +141,8 @@ if (process.argv[2] === '--borrowed') {
     iterationsByFixture[fixture.name]=Math.max(3,Math.ceil(150/((performance.now()-started)/5)))
   }
   const timings = []
-  for (let round = 0; round < 9; round++) for (const fixture of fixtures) for (const name of round % 2 ? ['candidate','control','baseline'] : ['baseline','control','candidate']) {
+  const timingOrders=[['baseline','control','candidate'],['control','candidate','baseline'],['candidate','baseline','control'],['candidate','control','baseline'],['control','baseline','candidate'],['baseline','candidate','control']]
+  for (let round = 0; round < 12; round++) for (const fixture of fixtures) for (const name of timingOrders[round % timingOrders.length]) {
     const iterations = iterationsByFixture[fixture.name]
     global.gc?.()
     const started = performance.now();let sink=0
@@ -150,7 +151,7 @@ if (process.argv[2] === '--borrowed') {
     await writeFile(resolve(directory,'partial.json'),JSON.stringify(timings,null,2))
   }
   const summary=fixtures.map(fixture=>({fixture:fixture.name,medians:Object.fromEntries(Object.keys(factories).map(name=>[name,median(timings.filter(row=>row.fixture===fixture.name&&row.variant===name).map(row=>row.msPerReplay))]))}))
-  await writeFile(resolve(directory,'receipt.json'),JSON.stringify({commit:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),sourceHash,bundleSHA256:sha(compiled.outputFiles[0].contents),programSHA256:sha(await readFile(fileURLToPath(import.meta.url))),lockfileSHA256:sha(await readFile('pnpm-lock.yaml')),runtimeSources,baselineControlSameFactory:factories.baseline===factories.control,node:process.version,versions:process.versions,cpu:(await import('node:os')).cpus()[0].model,comparisons,checks,sizeObservations,iterationsByFixture,summary,timings,memory,borrowed,limitations:'Private stateful opt-in prototype only. Single standalone open-fence fast path; unchanged full renderer for other inputs/options. No public API, size budget, production change or release accepted. Complete UTF8/hash consumption is inside measured replay. Identical baseline/control factory, mirrored warmed same-process timing. Separate fresh-process active-session/reset heap, not allocation or peak RSS. Repetitions and full production API/size/corpus/browser/package gates still required.'},null,2))
+  await writeFile(resolve(directory,'receipt.json'),JSON.stringify({commit:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),sourceHash,bundleSHA256:sha(compiled.outputFiles[0].contents),programSHA256:sha(await readFile(fileURLToPath(import.meta.url))),lockfileSHA256:sha(await readFile('pnpm-lock.yaml')),runtimeSources,baselineControlSameFactory:factories.baseline===factories.control,node:process.version,versions:process.versions,cpu:(await import('node:os')).cpus()[0].model,comparisons,checks,sizeObservations,iterationsByFixture,timingOrders,summary,timings,memory,borrowed,limitations:'Private stateful opt-in prototype only. Single standalone open-fence fast path; unchanged full renderer for other inputs/options. No public API, size budget, production change or release accepted. Complete UTF8/hash consumption is inside measured replay. Identical baseline/control factory, mirrored warmed same-process timing. Separate fresh-process active-session/reset heap, not allocation or peak RSS. Repetitions and full production API/size/corpus/browser/package gates still required.'},null,2))
   console.log(JSON.stringify({comparisons,summary,memory:memory.map(({name,lines,activeHeapDelta,resetHeapDelta,releasedByReset})=>({name,lines,activeHeapDelta,resetHeapDelta,releasedByReset}))}))
   }
 }
