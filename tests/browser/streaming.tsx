@@ -1,3 +1,5 @@
+import { createStreamingHtmlRenderer } from '../../src/html/streaming.js'
+import { renderHtml } from '../../src/html.js'
 import { createElement, useEffect, type ReactNode } from 'react'
 import { flushSync } from 'react-dom'
 import { createRoot, hydrateRoot } from 'react-dom/client'
@@ -22,7 +24,7 @@ function HydrationReady({ children, onReady }: { children: ReactNode; onReady: (
 async function verifyStreamingReact() {
   const container = document.body.appendChild(document.createElement('div'))
   const root = createRoot(container)
-  let checks = 0
+  let checks = verifyStreamingHtml()
   const render = (source: string, options: Omit<MarkdownProps, 'children'> = {}) => {
     flushSync(() => root.render(<Markdown extensions={extensions} {...options}>{source}</Markdown>))
     const expected = parseMarkdown(source).children.find(node => node.type === 'code')
@@ -95,6 +97,25 @@ async function verifyStreamingReact() {
   checks += 6
   container.remove()
   return { checks: checks + 4 }
+}
+
+function verifyStreamingHtml() {
+  const actual = document.createElement('div'), expected = document.createElement('div')
+  let checks = 0
+  for (const source of ['```ts title="α<&"\nconst x = "<&"\n😀\n```\n\nAfter', '# Answer\n\n- Item\n\n[unsafe](javascript:alert(1))\n<script>bad</script>']) {
+    const renderer = createStreamingHtmlRenderer()
+    for (let end = 0; end <= source.length; end++) {
+      const prefix = source.slice(0, end), html = renderer.render(prefix)
+      const reference = renderHtml(prefix, { extensions })
+      assert(html === reference, 'Streaming HTML changed a complete prefix')
+      actual.innerHTML = html;expected.innerHTML = reference
+      assert(actual.innerHTML === expected.innerHTML, 'Streaming HTML DOM differs')
+      assert(!actual.querySelector('script'), 'Streaming HTML relaxed raw HTML safety')
+      checks++
+    }
+    renderer.reset()
+  }
+  return checks
 }
 
 declare global {
