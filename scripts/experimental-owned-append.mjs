@@ -25,8 +25,7 @@ export function createOwnedAppendRenderer() {
     counters.full++
     return renderHtml(source, optionsFor(base, options))
   }
-  return { counters, reset() { state = undefined }, render(source, options) {
-    if (options !== undefined || typeof source !== 'string') return full(source, options)
+  function fenced(source) {
     const header = source.match(/^(`{3,}|~{3,})[^\n]*\n/)
     if (!header || source.includes('\r') || source.charCodeAt(0) === 0xFEFF) return full(source)
     const body = source.slice(header[0].length)
@@ -53,5 +52,9 @@ export function createOwnedAppendRenderer() {
     state = { source: ownedSource, html: output, suffix }
     counters.fast++
     return output
+  }
+  return { counters, reset() { state = undefined }, render(source, options) {
+    if (options !== undefined || typeof source !== 'string' || (source[0] !== '`' && source[0] !== '~')) return full(source, options)
+    return fenced(source)
   } }
 }
