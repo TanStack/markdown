@@ -20,10 +20,14 @@ jobs:
           node-version: 24
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      - run: node --expose-gc --import tsx scripts/profile-core.mjs artifacts/core-profiles
+      - run: mkdir -p artifacts
+      - run: node --import tsx scripts/html-sequences-equivalence.mjs artifacts/html-sequences-equivalence
+      - run: node scripts/html-sequences-retention.mjs artifacts/html-sequences-equivalence
+      - run: node --import tsx scripts/compare-revision.mjs f99165e3c6e50fc8cbc5654838c524ff4995f68f --no-bench
+      - run: node --expose-gc --import tsx scripts/profile-core.mjs artifacts/html-sequences-profiles
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:
-          name: core-profiles-${{ github.sha }}
-          path: artifacts/core-profiles
+          name: html-sequences-research-${{ github.sha }}
+          path: artifacts
           retention-days: 14

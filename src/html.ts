@@ -4,7 +4,7 @@ import { escapeAttr, escapeHtml, footnoteReferenceId } from './utils.js'
 
 export function renderHtml(input: MarkdownInput, options: RenderOptions = {}): string {
   const document = typeof input === 'string' ? parseMarkdown(input, options) : input
-  return document.children.map(node => renderBlock(node, options)).join('\n')
+  return renderSequence(document.children, renderBlock, options, '\n')
 }
 
 export function renderBlock(node: BlockNode, options: RenderOptions = {}): string {
@@ -24,17 +24,15 @@ export function renderBlock(node: BlockNode, options: RenderOptions = {}): strin
     case 'list': {
       const tag = node.ordered ? 'ol' : 'ul'
       const start = node.ordered && node.start !== undefined && node.start !== 1 ? ` start="${node.start}"` : ''
-      const items = node.items.map(item => `<li>${renderListItemChildren(item.children, item.checked, node.loose, options)}</li>`).join('\n')
+      const items = renderSequence(node.items, item => `<li>${renderListItemChildren(item.children, item.checked, node.loose, options)}</li>`, options, '\n')
       return `<${tag}${start}>\n${items}\n</${tag}>`
     }
     case 'blockquote':
-      return `<blockquote>\n${node.children.map(child => renderBlock(child, options)).join('\n')}\n</blockquote>`
+      return `<blockquote>\n${renderSequence(node.children, renderBlock, options, '\n')}\n</blockquote>`
     case 'table': {
-      const header = `<thead><tr>${node.header.map((cell, index) => renderTableCell('th', cell, node.align[index], options)).join('')}</tr></thead>`
+      const header = `<thead><tr>${renderSequence(node.header, (cell, _, index) => renderTableCell('th', cell, node.align[index], options), options)}</tr></thead>`
       const body = node.rows.length
-        ? `<tbody>${node.rows
-            .map(row => `<tr>${row.map((cell, index) => renderTableCell('td', cell, node.align[index], options)).join('')}</tr>`)
-            .join('')}</tbody>`
+        ? `<tbody>${renderSequence(node.rows, row => `<tr>${renderSequence(row, (cell, _, index) => renderTableCell('td', cell, node.align[index], options), options)}</tr>`, options)}</tbody>`
         : ''
       return `<table>${header}${body}</table>`
     }
@@ -86,7 +84,17 @@ export function renderDocument(document: MarkdownDocument, options: RenderOption
 }
 
 function renderInlines(nodes: InlineNode[], options: RenderOptions): string {
-  return nodes.map(node => renderInline(node, options)).join('')
+  return renderSequence(nodes, renderInline, options)
+}
+
+function renderSequence<T>(nodes: T[], render: (node: T, options: RenderOptions, index: number) => string, options: RenderOptions, separator = ''): string {
+  const length = nodes.length
+  let result = ''
+  for (let index = 0; index < length; index++) {
+    if (index) result += separator
+    if (index in nodes) result += render(nodes[index]!, options, index)
+  }
+  return result
 }
 
 function renderCodeBlock(node: Extract<BlockNode, { type: 'code' }>, options: RenderOptions): string {
@@ -122,12 +130,12 @@ function renderListItemChildren(children: BlockNode[], checked: boolean | undefi
 
 function renderCallout(node: Extract<BlockNode, { type: 'callout' }>, options: RenderOptions): string {
   const kind = node.kind.toLowerCase()
-  const children = node.children.map(child => renderBlock(child, options)).join('\n')
+  const children = renderSequence(node.children, renderBlock, options, '\n')
   return `<div class="markdown-alert markdown-alert-${escapeAttr(kind)}"><p class="markdown-alert-title">${escapeHtml(node.title)}</p><div class="markdown-alert-content">${children}</div></div>`
 }
 
 function renderFootnotes(items: FootnoteItemNode[], options: RenderOptions): string {
-  const renderedItems = items.map(item => `<li id="user-content-fn-${escapeAttr(item.id)}">\n${renderFootnoteItem(item, options)}\n</li>`).join('\n')
+  const renderedItems = renderSequence(items, item => `<li id="user-content-fn-${escapeAttr(item.id)}">\n${renderFootnoteItem(item, options)}\n</li>`, options, '\n')
   return `<section data-footnotes="" class="footnotes"><h2 id="footnote-label" class="sr-only">Footnotes${renderHeadingAnchor('footnote-label', options)}</h2>\n<ol>\n${renderedItems}\n</ol>\n</section>`
 }
 
@@ -161,7 +169,7 @@ function renderComponent(node: ComponentNode | InlineComponentNode, options: Ren
   const attrs = renderComponentAttrs(node)
   const children = node.type === 'inlineComponent'
     ? renderInlines(node.children, options)
-    : node.children.map(child => renderBlock(child, options)).join('\n')
+    : renderSequence(node.children, renderBlock, options, '\n')
   return `<${tag}${attrs}>${children}</${tag}>`
 }
 
