@@ -47,6 +47,17 @@ if (process.argv[2] === '--borrowed') {
   const compiled = await build({ stdin: { contents: "export * from './scripts/experimental-owned-append.mjs'; export {parseMarkdown} from './src/parser.ts'", resolveDir: process.cwd(), loader: 'js' }, bundle: true, minify: true, treeShaking: true, write: false, platform: 'node', format: 'esm', target: 'es2022' })
   const path = resolve(directory, 'api.mjs');await writeFile(path, compiled.outputFiles[0].contents)
   const api = await import(pathToFileURL(path).href)
+  const {gzipSync,brotliCompressSync}=await import('node:zlib')
+  const sizeObservations=[]
+  for(const [name,contents] of [
+    ['existing HTML plus streaming',"import {renderHtml} from './src/html.ts'; import {streamingMarkdownExtension} from './src/extensions/streaming.ts'; console.log(renderHtml,streamingMarkdownExtension)"],
+    ['baseline private factory',"import {createBaselineRenderer} from './scripts/experimental-owned-append.mjs'; console.log(createBaselineRenderer)"],
+    ['candidate private factory with diagnostics',"import {createOwnedAppendRenderer} from './scripts/experimental-owned-append.mjs'; console.log(createOwnedAppendRenderer)"]
+  ]) {
+    const result=await build({stdin:{contents,resolveDir:process.cwd(),loader:'js'},bundle:true,minify:true,treeShaking:true,write:false,platform:'browser',format:'esm',target:'es2022'})
+    const bytes=result.outputFiles[0].contents
+    sizeObservations.push({name,min:bytes.length,gzip:gzipSync(bytes,{level:9}).length,brotli:brotliCompressSync(bytes).length,sha256:sha(bytes)})
+  }
   const sourceHash = sha(await readFile('scripts/experimental-owned-append.mjs'))
   const factories = { baseline: api.createBaselineRenderer, control: api.createBaselineRenderer, candidate: api.createOwnedAppendRenderer }
   assert.equal(factories.baseline,factories.control)
@@ -105,17 +116,27 @@ if (process.argv[2] === '--borrowed') {
     await writeFile(resolve(directory,'guards.json'),JSON.stringify({commit:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),sourceHash,bundleSHA256:sha(compiled.outputFiles[0].contents),programSHA256:sha(await readFile(fileURLToPath(import.meta.url))),runtimeSources,baselineControlSameFactory:factories.baseline===factories.control,node:process.version,comparisons,checks,memory,borrowed,claim:'Semantic and separate retained-heap guards only; no runtime, API, size or production acceptance.'},null,2))
     console.log(JSON.stringify({comparisons,borrowed:borrowed.map(({name,activeHeapDelta,resetHeapDelta})=>({name,activeHeapDelta,resetHeapDelta}))}))
   } else {
-  for (const fixture of fixtures) for (const factory of Object.values(factories)) for (let index = 0; index < 10; index++) replay(factory,fixture)
+  const iterationsByFixture = {}
+  for(const fixture of fixtures) {
+    for(const factory of Object.values(factories)) {
+      const started=performance.now()
+      do { replay(factory,fixture) } while(performance.now()-started<250)
+    }
+    const started=performance.now()
+    for(let index=0;index<5;index++) replay(factories.baseline,fixture)
+    iterationsByFixture[fixture.name]=Math.max(3,Math.ceil(150/((performance.now()-started)/5)))
+  }
   const timings = []
   for (let round = 0; round < 9; round++) for (const fixture of fixtures) for (const name of round % 2 ? ['candidate','control','baseline'] : ['baseline','control','candidate']) {
-    const iterations = fixture.name === 'open-code-long' ? 3 : 8
+    const iterations = iterationsByFixture[fixture.name]
+    global.gc?.()
     const started = performance.now();let sink=0
     for (let index=0;index<iterations;index++) sink += replay(factories[name],fixture).sink
     timings.push({ round, fixture:fixture.name, variant:name, iterations, msPerReplay:(performance.now()-started)/iterations, sink })
     await writeFile(resolve(directory,'partial.json'),JSON.stringify(timings,null,2))
   }
   const summary=fixtures.map(fixture=>({fixture:fixture.name,medians:Object.fromEntries(Object.keys(factories).map(name=>[name,median(timings.filter(row=>row.fixture===fixture.name&&row.variant===name).map(row=>row.msPerReplay))]))}))
-  await writeFile(resolve(directory,'receipt.json'),JSON.stringify({commit:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),sourceHash,bundleSHA256:sha(compiled.outputFiles[0].contents),programSHA256:sha(await readFile(fileURLToPath(import.meta.url))),lockfileSHA256:sha(await readFile('pnpm-lock.yaml')),runtimeSources,baselineControlSameFactory:factories.baseline===factories.control,node:process.version,versions:process.versions,cpu:(await import('node:os')).cpus()[0].model,comparisons,checks,summary,timings,memory,borrowed,limitations:'Private stateful opt-in prototype only. Single standalone open-fence fast path; unchanged full renderer for other inputs/options. No public API, size budget, production change or release accepted. Complete UTF8/hash consumption is inside measured replay. Identical baseline/control factory, mirrored warmed same-process timing. Separate fresh-process active-session/reset heap, not allocation or peak RSS. Repetitions and full production API/size/corpus/browser/package gates still required.'},null,2))
+  await writeFile(resolve(directory,'receipt.json'),JSON.stringify({commit:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),sourceHash,bundleSHA256:sha(compiled.outputFiles[0].contents),programSHA256:sha(await readFile(fileURLToPath(import.meta.url))),lockfileSHA256:sha(await readFile('pnpm-lock.yaml')),runtimeSources,baselineControlSameFactory:factories.baseline===factories.control,node:process.version,versions:process.versions,cpu:(await import('node:os')).cpus()[0].model,comparisons,checks,sizeObservations,iterationsByFixture,summary,timings,memory,borrowed,limitations:'Private stateful opt-in prototype only. Single standalone open-fence fast path; unchanged full renderer for other inputs/options. No public API, size budget, production change or release accepted. Complete UTF8/hash consumption is inside measured replay. Identical baseline/control factory, mirrored warmed same-process timing. Separate fresh-process active-session/reset heap, not allocation or peak RSS. Repetitions and full production API/size/corpus/browser/package gates still required.'},null,2))
   console.log(JSON.stringify({comparisons,summary,memory:memory.map(({name,lines,activeHeapDelta,resetHeapDelta,releasedByReset})=>({name,lines,activeHeapDelta,resetHeapDelta,releasedByReset}))}))
   }
 }
