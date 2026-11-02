@@ -52,7 +52,9 @@ if (process.argv[2] === '--borrowed') {
   for(const [name,contents] of [
     ['existing HTML plus streaming',"import {renderHtml} from './src/html.ts'; import {streamingMarkdownExtension} from './src/extensions/streaming.ts'; console.log(renderHtml,streamingMarkdownExtension)"],
     ['baseline private factory',"import {createBaselineRenderer} from './scripts/experimental-owned-append.mjs'; console.log(createBaselineRenderer)"],
-    ['candidate private factory with diagnostics',"import {createOwnedAppendRenderer} from './scripts/experimental-owned-append.mjs'; console.log(createOwnedAppendRenderer)"]
+    ['candidate factory without diagnostics',"import {createOwnedAppendRenderer} from './scripts/experimental-owned-append.mjs'; console.log(createOwnedAppendRenderer)"],
+    ['proposed source namespace',"import * as streaming from './src/html/streaming.ts'; console.log(streaming)"],
+    ['proposed built namespace',"import * as streaming from './dist/html/streaming.js'; console.log(streaming)"]
   ]) {
     const result=await build({stdin:{contents,resolveDir:process.cwd(),loader:'js'},bundle:true,minify:true,treeShaking:true,write:false,platform:'browser',format:'esm',target:'es2022'})
     const bytes=result.outputFiles[0].contents
