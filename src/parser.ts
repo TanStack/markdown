@@ -390,7 +390,7 @@ function extractDefinitions(lines: string[]) {
   const references: NonNullable<ParseOptions['references']> = Object.create(null)
   const footnotes: NonNullable<ParseOptions['footnotes']> = Object.create(null)
   const footnoteIds = createSlugger(footnoteId)
-  const remaining: string[] = []
+  let remaining = 0
   let activeFence = ''
   let index = 0
 
@@ -430,11 +430,13 @@ function extractDefinitions(lines: string[]) {
       }
     }
 
-    remaining.push(line)
+    lines[remaining++] = line
     index++
   }
 
-  return { lines: remaining, references, footnotes }
+  // This array is private until extraction finishes; writes never pass reads.
+  lines.length = remaining
+  return { lines, references, footnotes }
 }
 
 function createFootnotesBlock(
