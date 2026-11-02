@@ -478,7 +478,7 @@ function parseLineRanges(value: string): number[] {
 function listMarker(line: string):
   | {
       ordered: boolean
-      number?: number
+      number: number
       indent: number
       marker: string
       contentIndent: number
@@ -490,9 +490,10 @@ function listMarker(line: string):
 
   const marker = match[2]!
   const ordered = /\d/.test(marker[0]!)
+  // Zero is unused for unordered markers, keeping every record the same shape.
   return {
     ordered,
-    ...(ordered && { number: Number.parseInt(marker, 10) }),
+    number: ordered ? Number.parseInt(marker, 10) : 0,
     indent: match[1]!.length,
     marker: ordered ? marker.at(-1)! : marker,
     contentIndent: match[1]!.length + marker.length + (match[3]?.length ?? 1),
