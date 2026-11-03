@@ -20,6 +20,30 @@ function equivalent(input: MarkdownInput, options: RenderOptions = {}) {
 }
 
 describe('audit regressions', () => {
+  it('keeps safe and unsafe escaping stateless across repeated calls', () => {
+    for (const value of ['safe', '&', '&', '', '&']) {
+      expect(escapeHtml(value)).toBe(value === '&' ? '&amp;' : value)
+    }
+    for (const value of ['safe', '`', '`', '', '`']) {
+      expect(escapeAttr(value)).toBe(value === '`' ? '&#96;' : value)
+    }
+  })
+
+  it('observes extension edits to a pending list marker', () => {
+    let outerLines: string[] | undefined
+    const document = parseMarkdown('- first\n- second', {
+      extensions: [{
+        name: 'edit-pending-list',
+        parseBlock({ lines }) {
+          if (lines[0] === '- first') outerLines = lines
+          if (lines[0] === 'first' && outerLines) outerLines[1] = '+ changed'
+          return undefined
+        },
+      }],
+    })
+    expect(equivalent(document)).toBe('<ul>\n<li>first</li>\n</ul>\n<ul>\n<li>changed</li>\n</ul>')
+  })
+
   it('keeps single-pass attribute escaping identical to the existing policy', () => {
     const source = Array.from({ length: 256 }, (_, index) => String.fromCharCode(index)).join('') + '\u2028\u2029&copy;&#96;'
     expect(escapeAttr(source)).toBe(escapeHtml(source).replace(/`/g, '&#96;'))

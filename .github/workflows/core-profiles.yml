@@ -1,6 +1,11 @@
-name: Core workload profiles
+name: Combined parsing and rendering validation
 on:
   workflow_dispatch:
+    inputs:
+      gates:
+        type: boolean
+        default: false
+        description: Run the combined source gates and size packet
 permissions:
   contents: read
 jobs:
@@ -20,10 +25,42 @@ jobs:
           node-version: 24
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      - run: node --expose-gc scripts/profile-core.mjs artifacts/core-profiles
+      - run: node --expose-gc scripts/research/recheck-callback-preflight.mjs artifacts/combined-performance
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:
-          name: core-profiles-${{ github.sha }}
-          path: artifacts/core-profiles
+          name: combined-performance-${{ github.sha }}
+          path: artifacts/combined-performance
+          retention-days: 14
+  gates:
+    if: inputs.gates
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: pnpm/action-setup@b906affcce14559ad1aafd4ab0e942779e9f58b1
+        with:
+          version: 11.4.0
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run typecheck
+      - run: pnpm run build
+      - run: pnpm run docs:verify
+      - run: pnpm run test:skills
+      - run: pnpm run conformance
+      - run: pnpm pack --dry-run
+      - run: pnpm run corpus:audit:external
+      - run: node --import tsx scripts/compare-revision.mjs 2fe93336be299082ac935a5aaf76c358168942ce --no-bench
+      - run: node --import tsx scripts/research/packet-sizes.mjs
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: combined-gates-${{ github.sha }}
+          path: artifacts/list-marker-packet
           retention-days: 14
