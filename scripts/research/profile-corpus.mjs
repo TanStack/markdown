@@ -2,7 +2,7 @@ import assert from 'node:assert/strict'
 import { Session } from 'node:inspector'
 import { createHash } from 'node:crypto'
 import { execFileSync } from 'node:child_process'
-import { mkdir, readFile, writeFile } from 'node:fs/promises'
+import { mkdir, readFile, writeFile, readdir } from 'node:fs/promises'
 import { resolve, relative, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { gzipSync } from 'node:zlib'
@@ -26,13 +26,14 @@ async function snapshot() {
     trackedDirtyState: execFileSync('git', ['status', '--porcelain', '--untracked-files=no'], { cwd: root, encoding: 'utf8' }),
     programSHA256: sha(await readFile(fileURLToPath(import.meta.url))),
     lockfileSHA256: sha(await readFile(resolve(root, 'pnpm-lock.yaml'))),
+    compiledJS:Object.fromEntries(await Promise.all((await readdir(resolve(root,'dist'),{recursive:true})).filter(name=>name.endsWith('.js')).sort().map(async name=>[name,sha(await readFile(resolve(root,'dist',name)))]))),
     sources: Object.fromEntries(await Promise.all(sourceFiles.map(async path => [path, sha(await readFile(resolve(root, path)))]))),
   }
 }
 const frozen = await snapshot()
 await writeFile(resolve(directory, 'source.json'), JSON.stringify(frozen, null, 2))
 const [{ parseMarkdown }, { renderHtml }, { docsMarkdownExtensions }] = await Promise.all([
-  import('../../src/parser.ts'), import('../../src/html.ts'), import('../../src/extensions/docs.ts'),
+  import('../../dist/parser.js'), import('../../dist/html.js'), import('../../dist/extensions/docs.js'),
 ])
 const selection = JSON.parse(await readFile(resolve(root,'scripts/research/corpus-selection.json'),'utf8'))
 const fixtures = []
@@ -93,7 +94,7 @@ try {
     const cpuModuleMicros = {}
     for (const [id,micros] of weights) {
       const value=frame(byId.get(id)),url=value.url||''
-      const group=url.startsWith('src/extensions/')?'src/extensions':url.startsWith('src/')?url:url.startsWith('scripts/')?'research/consumer':value.function==='(garbage collector)'?'garbage collector':'runtime/native/other'
+      const group=url.startsWith('dist/extensions/')?'dist/extensions':url.startsWith('dist/')?url:url.startsWith('scripts/')?'research/consumer':value.function==='(garbage collector)'?'garbage collector':'runtime/native/other'
       cpuModuleMicros[group]=(cpuModuleMicros[group]||0)+micros
     }
     const cpuTop = [...weights].map(([id, sampledSelfMicros]) => ({ ...frame(byId.get(id)), sampledSelfMicros })).sort((a, b) => b.sampledSelfMicros - a.sampledSelfMicros).slice(0, 20)
@@ -123,7 +124,7 @@ try {
   throw error
 }
 const receipt = {
-  schemaVersion: 1, smoke, ...frozen, sourceStable: true, reverse:process.argv.includes('--reverse'),selectionSHA256:sha(await readFile(resolve(root,'scripts/research/corpus-selection.json'))),
+  schemaVersion: 1, smoke, ...frozen, sourceStable: true,emission:'plain Node native JS, byte-identical to actual1.2.0', reverse:process.argv.includes('--reverse'),selectionSHA256:sha(await readFile(resolve(root,'scripts/research/corpus-selection.json'))),
   node: process.version, versions: process.versions,
   rows, sink, recordedAt: new Date().toISOString(),
   limitations: 'Stratified corpus discovery, not a population or traffic model. Core and docs profiles have different supported outputs and are not like-for-like speed comparisons. HTML UTF8 and SHA consumer included. JS heap samples exclude native/external allocation. Adaptive iterations per source size, same policy both controls. Discovery profiles, not throughput or startup comparisons. CPU attribution is sampled exclusive time per workload, never add percentages across workloads. Allocation is sampled including collected objects, not retained heap, RSS, peak memory or an exact allocation count. TS source instrumentation and inspector overhead can differ from production bundles. Repeat promising leads with equivalent completed-work controls before changing production.',

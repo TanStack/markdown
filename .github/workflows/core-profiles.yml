@@ -20,11 +20,13 @@ jobs:
           node-version: 24
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      - run: node --expose-gc --import tsx scripts/research/profile-corpus.mjs artifacts/corpus-costs/forward
-      - run: node --expose-gc --import tsx scripts/research/profile-corpus.mjs artifacts/corpus-costs/reverse --reverse
+      - run: pnpm run build
+      - run: node scripts/research/verify-emission.mjs
+      - run: node --expose-gc scripts/research/profile-corpus.mjs artifacts/native-corpus-costs/forward
+      - run: node --expose-gc scripts/research/profile-corpus.mjs artifacts/native-corpus-costs/reverse --reverse
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:
-          name: corpus-costs-${{ github.sha }}
-          path: artifacts/corpus-costs
+          name: native-corpus-costs-${{ github.sha }}
+          path: artifacts
           retention-days: 14
