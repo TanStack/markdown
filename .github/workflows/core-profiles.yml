@@ -2,6 +2,10 @@ name: Focused list-cache crossover
 on:
   workflow_dispatch:
     inputs:
+      sizes:
+        type: boolean
+        default: false
+        description: Collect concrete size packet only
       gates:
         type: boolean
         default: false
@@ -10,6 +14,7 @@ permissions:
   contents: read
 jobs:
   profile:
+    if: ${{ !inputs.sizes }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -62,4 +67,29 @@ jobs:
         with:
           name: list-cache-gates-${{ github.sha }}
           path: artifacts/audit-comparison.json
+          retention-days: 14
+  sizes:
+    if: inputs.sizes
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: pnpm/action-setup@b906affcce14559ad1aafd4ab0e942779e9f58b1
+        with:
+          version: 11.4.0
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run build
+      - run: node --import tsx scripts/research/packet-sizes.mjs
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: list-marker-packet-${{ github.sha }}
+          path: artifacts/list-marker-packet
           retention-days: 14
