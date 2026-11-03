@@ -33,7 +33,10 @@ function nodeOptionsArguments(value) {
 }
 const preloadFlags = ['--import', '--loader', '--experimental-loader', '--require', '-r']
 const nodeArguments = [...process.execArgv, ...nodeOptionsArguments(process.env.NODE_OPTIONS ?? '')]
-const hasPreload = nodeArguments.some(arg => preloadFlags.some(flag => arg === flag || arg.startsWith(flag + '=')))
+const hasPreload = nodeArguments.some(arg => {
+  const name = arg.startsWith('--') ? arg.split('=', 1)[0].replaceAll('_', '-') : arg
+  return preloadFlags.includes(name)
+})
 assert.ok(!hasPreload, 'Run with plain Node, without module loaders or preload hooks')
 await mkdir(dirname(directory), { recursive: true })
 try {
