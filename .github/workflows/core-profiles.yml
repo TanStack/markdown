@@ -1,4 +1,4 @@
-name: Isolated list-cache validation
+name: Focused list-cache crossover
 on:
   workflow_dispatch:
     inputs:
@@ -25,12 +25,12 @@ jobs:
           node-version: 24
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      - run: node --expose-gc scripts/research/isolated-list-cache.mjs artifacts/isolated-list-cache
+      - run: node --expose-gc scripts/research/focused-list-cache.mjs artifacts/focused-list-cache
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:
-          name: isolated-list-cache-${{ github.sha }}
-          path: artifacts/isolated-list-cache
+          name: focused-list-cache-${{ github.sha }}
+          path: artifacts/focused-list-cache
           retention-days: 14
   gates:
     if: inputs.gates
