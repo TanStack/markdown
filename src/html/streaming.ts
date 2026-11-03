@@ -24,7 +24,7 @@ export function createStreamingHtmlRenderer(): StreamingHtmlRenderer {
     return renderHtml(source, optionsFor(base, options))
   }
   function fenced(source: string): string {
-    const header = source.match(/^(`{3,}|~{3,})[^\n]*\n/)
+    const header = source.match(/^(?:[\s\S]*\n\n)?(?:`{3,}|~{3,})[^\n]*\n/)
     if (!header || source.includes('\r') || source.charCodeAt(0) === 0xFEFF) return full(source)
     const body = source.slice(header[0].length)
     if (/^ {0,3}[`~]/m.test(body)) return full(source)
@@ -38,9 +38,10 @@ export function createStreamingHtmlRenderer(): StreamingHtmlRenderer {
       output = [state.html.slice(0, -suffix.length), escapeHtml(delta), suffix].join('')
     } else {
       const document = parseMarkdown(header[0], base)
-      if (document.children.length !== 1 || document.children[0]?.type !== 'code') return full(source)
+      const last = document.children.at(-1)
+      if (last?.type !== 'code' || last.value !== '') return full(source)
       const empty = renderHtml(document, base)
-      const end = empty.indexOf('</code>')
+      const end = empty.lastIndexOf('</code>')
       if (end === -1) return full(source)
       const prefix = empty.slice(0, end)
       suffix = empty.slice(end)
@@ -53,7 +54,7 @@ export function createStreamingHtmlRenderer(): StreamingHtmlRenderer {
   return { reset() { state = undefined }, render(source, options) {
     // Options hooks can retain and mutate the internal extension after this call.
     if (options !== undefined) profileExposed = true
-    if (profileExposed || typeof source !== 'string' || (source[0] !== '`' && source[0] !== '~')) return full(source, options)
+    if (profileExposed || typeof source !== 'string') return full(source, options)
     return fenced(source)
   } }
 }
