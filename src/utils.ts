@@ -15,11 +15,16 @@ export function normalizeInput(value: string): string {
   return value.replace(/^\uFEFF/, '').replace(/\r\n?/g, '\n')
 }
 
+const htmlEscapeTest = /[&<>"']/
+const attrEscapeTest = /[&<>"'`]/
+
 export function escapeHtml(value: string): string {
+  if (typeof value === 'string' && !htmlEscapeTest.test(value)) return value
   return value.replace(/[&<>"']/g, escapeCharacter)
 }
 
 export function escapeAttr(value: string): string {
+  if (typeof value === 'string' && !attrEscapeTest.test(value)) return value
   return value.replace(/[&<>"'`]/g, escapeCharacter)
 }
 
