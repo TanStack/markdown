@@ -1,4 +1,4 @@
-name: Callback escaping symmetric AST controls
+name: Callback preflight control audit
 on:
   workflow_dispatch:
 permissions:
@@ -20,10 +20,10 @@ jobs:
           node-version: 24
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      - run: node --expose-gc scripts/research/callback-escaping.mjs
+      - run: node --expose-gc scripts/research/recheck-callback-preflight.mjs artifacts/callback-control-recheck
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:
-          name: callback-escaping-symmetric-${{ github.sha }}
-          path: artifacts/callback-escaping
+          name: callback-control-recheck-${{ github.sha }}
+          path: artifacts/callback-control-recheck
           retention-days: 14
