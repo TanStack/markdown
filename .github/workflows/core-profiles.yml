@@ -1,4 +1,4 @@
-name: Callback escaping remaining gates and sizes
+name: Callback escaping symmetric AST controls
 on:
   workflow_dispatch:
 permissions:
@@ -20,18 +20,10 @@ jobs:
           node-version: 24
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      - run: pnpm run typecheck
-      - run: pnpm run build
-      - run: pnpm run docs:verify
-      - run: pnpm run test:skills
-      - run: pnpm run research
-      - run: pnpm pack --dry-run
-      - run: pnpm run corpus:audit:external
-      - run: node --import tsx scripts/compare-revision.mjs 2fe93336be299082ac935a5aaf76c358168942ce --no-bench
-      - run: mkdir -p artifacts/callback-escaping && cp artifacts/audit-comparison.json artifacts/callback-escaping/size-comparison.json
+      - run: node --expose-gc scripts/research/callback-escaping.mjs
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:
-          name: callback-escaping-gates-${{ github.sha }}
+          name: callback-escaping-symmetric-${{ github.sha }}
           path: artifacts/callback-escaping
           retention-days: 14
