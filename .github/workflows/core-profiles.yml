@@ -20,10 +20,19 @@ jobs:
           node-version: 24
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      - run: node --expose-gc --import tsx scripts/profile-core.mjs artifacts/core-profiles
+      - name: Profile frozen baseline, identical control and candidate in fresh processes
+        run: |
+          git worktree add "$RUNNER_TEMP/parser-baseline" ca59f585e292a4788cacb95e9729a2b9a4850d59
+          ln -s "$GITHUB_WORKSPACE/node_modules" "$RUNNER_TEMP/parser-baseline/node_modules"
+          cd "$RUNNER_TEMP/parser-baseline"
+          node --expose-gc --import tsx scripts/profile-core.mjs "$GITHUB_WORKSPACE/artifacts/shared-parser/baseline"
+          node --expose-gc --import tsx scripts/profile-core.mjs "$GITHUB_WORKSPACE/artifacts/shared-parser/control"
+          cd "$GITHUB_WORKSPACE"
+          node --expose-gc --import tsx scripts/profile-core.mjs artifacts/shared-parser/candidate
+          node scripts/research/compare-block-profiles.mjs artifacts/shared-parser
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:
-          name: core-profiles-${{ github.sha }}
-          path: artifacts/core-profiles
+          name: shared-parser-${{ github.sha }}
+          path: artifacts/shared-parser
           retention-days: 14
