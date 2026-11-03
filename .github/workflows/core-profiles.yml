@@ -1,6 +1,11 @@
 name: Isolated list-cache validation
 on:
   workflow_dispatch:
+    inputs:
+      gates:
+        type: boolean
+        default: false
+        description: Run remaining gates only when needed
 permissions:
   contents: read
 jobs:
@@ -28,6 +33,7 @@ jobs:
           path: artifacts/isolated-list-cache
           retention-days: 14
   gates:
+    if: inputs.gates
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:

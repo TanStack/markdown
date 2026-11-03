@@ -3,7 +3,7 @@ import {createHash} from 'node:crypto'
 import {execFileSync} from 'node:child_process'
 import {readFile,writeFile,mkdir,readdir} from 'node:fs/promises'
 import {createRequire} from 'node:module'
-import {resolve} from 'node:path'
+import {resolve,dirname} from 'node:path'
 import {pathToFileURL,fileURLToPath} from 'node:url'
 import {Session} from 'node:inspector'
 import {gzipSync} from 'node:zlib'
@@ -24,6 +24,7 @@ if(['--cpu','--allocation'].includes(process.argv[2])){
  console.log(JSON.stringify(row));process.exit(0)
 }
 const baseline='2fe93336be299082ac935a5aaf76c358168942ce',directory=resolve(process.argv[2]||'artifacts/isolated-list-cache'),require=createRequire(import.meta.url),compiler=require.resolve('typescript/bin/tsc'),program=fileURLToPath(import.meta.url)
+await mkdir(dirname(directory),{recursive:true})
 await mkdir(directory)
 const sources=Object.fromEntries(await Promise.all(execFileSync('git',['ls-files','src'],{encoding:'utf8'}).trim().split('\n').map(async p=>[p,sha(await readFile(p))]))),programSHA256=sha(await readFile(program)),lockfileSHA256=sha(await readFile('pnpm-lock.yaml')),builds=[]
 for(const role of ['baseline','control','candidate']){
