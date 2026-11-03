@@ -216,8 +216,10 @@ function createBlockParser(
   }
 
   function parseList(): ListNode | undefined {
-    const first = listMarker(current())
-    if (!first) return undefined
+    let markerLine = current()
+    let markerValue = listMarker(markerLine)
+    if (!markerValue) return undefined
+    const first = markerValue
 
     const items: ListItemNode[] = []
     const ordered = first.ordered
@@ -225,7 +227,12 @@ function createBlockParser(
     let loose = false
 
     while (cursor < inputLines.length) {
-      const marker = listMarker(current())
+      const line = current()
+      if (line !== markerLine) {
+        markerLine = line
+        markerValue = listMarker(line)
+      }
+      const marker = markerValue
       if (!marker || marker.marker !== first.marker || marker.indent !== baseIndent) break
 
       let firstLine = marker.content
@@ -238,7 +245,9 @@ function createBlockParser(
 
       while (cursor < inputLines.length) {
         const line = current()
-        const nextMarker = listMarker(line)
+        markerLine = line
+        markerValue = listMarker(line)
+        const nextMarker = markerValue
         if (nextMarker && nextMarker.indent === baseIndent) break
         if (isBlank(line)) {
           let nextIndex = cursor
@@ -246,7 +255,9 @@ function createBlockParser(
           const following = inputLines[nextIndex]
           if (following === undefined) break
 
-          const followingMarker = listMarker(following)
+          markerLine = following
+          markerValue = listMarker(following)
+          const followingMarker = markerValue
           if (followingMarker?.indent === baseIndent) {
             if (followingMarker.marker !== first.marker) break
             loose = true
