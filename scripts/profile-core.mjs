@@ -11,9 +11,29 @@ const root = fileURLToPath(new URL('..', import.meta.url))
 const directory = resolve(process.argv[2] || 'artifacts/core-profiles')
 const smoke = process.argv.includes('--smoke')
 assert.equal(typeof global.gc, 'function', 'Run Node with --expose-gc')
+// NODE_OPTIONS uses spaces and double quotes, with backslash escapes inside quotes.
+function nodeOptionsArguments(value) {
+  const args = []
+  let token = '', quoted = false
+  for (let index = 0; index < value.length; index++) {
+    const char = value[index]
+    if (char === '\\' && quoted) {
+      assert.ok(index + 1 < value.length, 'Invalid NODE_OPTIONS escape')
+      token += value[++index]
+    } else if (char === '"') {
+      quoted = !quoted
+    } else if (char === ' ' && !quoted) {
+      if (token) args.push(token)
+      token = ''
+    } else token += char
+  }
+  assert.ok(!quoted, 'Unterminated NODE_OPTIONS quote')
+  if (token) args.push(token)
+  return args
+}
 const preloadFlags = ['--import', '--loader', '--experimental-loader', '--require', '-r']
-const hasPreload = process.execArgv.some(arg => preloadFlags.some(flag => arg === flag || arg.startsWith(flag + '=')))
-  || /--(?:import|(?:experimental-)?loader|require)(?:=|\s|$)|(?:^|\s)-r(?:\s|$)/.test(process.env.NODE_OPTIONS ?? '')
+const nodeArguments = [...process.execArgv, ...nodeOptionsArguments(process.env.NODE_OPTIONS ?? '')]
+const hasPreload = nodeArguments.some(arg => preloadFlags.some(flag => arg === flag || arg.startsWith(flag + '=')))
 assert.ok(!hasPreload, 'Run with plain Node, without module loaders or preload hooks')
 await mkdir(dirname(directory), { recursive: true })
 try {

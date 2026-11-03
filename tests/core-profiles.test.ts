@@ -20,6 +20,10 @@ it('retains readable CPU/allocation profiles and completed-output metadata', () 
     expect(receipt.runtimeModules['parser.js']).toBe(createHash('sha256').update(parserBytes).digest('hex'))
     expect(() => execFileSync(process.execPath, ['--expose-gc', '--import', 'tsx', 'scripts/profile-core.mjs', join(root, 'instrumented'), '--smoke'], { timeout: 15000, stdio: 'pipe' })).toThrow('without module loaders or preload hooks')
     expect(() => execFileSync(process.execPath, ['--expose-gc', '-r', 'node:fs', 'scripts/profile-core.mjs', join(root, 'preloaded'), '--smoke'], { timeout: 15000, stdio: 'pipe' })).toThrow('without module loaders or preload hooks')
+    for (const options of ['"--require" node:fs', '--"require"=node:fs', String.raw`"--requ\ire" node:fs`]) {
+      expect(() => execFileSync(process.execPath, ['--expose-gc', 'scripts/profile-core.mjs', join(root, 'environment-preload'), '--smoke'], { timeout: 15000, stdio: 'pipe', env: { ...process.env, NODE_OPTIONS: options } })).toThrow('without module loaders or preload hooks')
+    }
+    expect(() => execFileSync(process.execPath, ['--expose-gc', 'scripts/profile-core.mjs', directory, '--smoke'], { timeout: 15000, stdio: 'pipe', env: { ...process.env, NODE_OPTIONS: '--diagnostic-dir="/tmp/a --require-looking path"' } })).toThrow('Output directory already exists')
     expect(receipt.programSHA256).toMatch(/^[a-f0-9]{64}$/)
     expect(receipt.sources).toHaveProperty("src/parser.ts")
     expect(receipt.rows).toHaveLength(4)
