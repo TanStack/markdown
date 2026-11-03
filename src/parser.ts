@@ -72,6 +72,8 @@ function createBlockParser(
   slugger: Slugger,
   budget: BlockParseBudget = { depth: 0 },
 ) {
+  let markerLine: string | undefined
+  let markerValue: ReturnType<typeof listMarker>
   let cursor = 0
   let looseBlocks = false
   return {
@@ -216,7 +218,7 @@ function createBlockParser(
   }
 
   function parseList(): ListNode | undefined {
-    const first = listMarker(current())
+    const first = recognizeList(current())
     if (!first) return undefined
 
     const items: ListItemNode[] = []
@@ -225,7 +227,7 @@ function createBlockParser(
     let loose = false
 
     while (cursor < inputLines.length) {
-      const marker = listMarker(current())
+      const marker = recognizeList(current())
       if (!marker || marker.marker !== first.marker || marker.indent !== baseIndent) break
 
       let firstLine = marker.content
@@ -238,7 +240,7 @@ function createBlockParser(
 
       while (cursor < inputLines.length) {
         const line = current()
-        const nextMarker = listMarker(line)
+        const nextMarker = recognizeList(line)
         if (nextMarker && nextMarker.indent === baseIndent) break
         if (isBlank(line)) {
           let nextIndex = cursor
@@ -246,7 +248,7 @@ function createBlockParser(
           const following = inputLines[nextIndex]
           if (following === undefined) break
 
-          const followingMarker = listMarker(following)
+          const followingMarker = recognizeList(following)
           if (followingMarker?.indent === baseIndent) {
             if (followingMarker.marker !== first.marker) break
             loose = true
@@ -264,7 +266,7 @@ function createBlockParser(
           cursor++
           continue
         }
-        if (isBlockStart(line, next())) break
+        if (isBlockStart(line, next(), recognizeList(line))) break
         itemLines.push(line.trimStart())
         cursor++
       }
@@ -299,7 +301,7 @@ function createBlockParser(
 
     while (cursor < inputLines.length) {
       const line = current()
-      if (isBlank(line) || isBlockStart(line, next())) break
+      if (isBlank(line) || isBlockStart(line, next(), recognizeList(line))) break
       const values = splitTableRow(line)
       rows.push(Array.from({ length: columns }, (_, index) => cell(values[index] ?? '', options)))
       cursor++
@@ -341,7 +343,7 @@ function createBlockParser(
     while (cursor < inputLines.length) {
       const line = current()
       if (isBlank(line)) break
-      if (lines.length > 0 && isBlockStart(line, next())) break
+      if (lines.length > 0 && isBlockStart(line, next(), recognizeList(line))) break
       lines.push(line.trim())
       cursor++
     }
@@ -357,6 +359,14 @@ function createBlockParser(
     const text = plainText(children)
     if (typeof options.headingIds === 'function') return options.headingIds(text, cursor)
     return slugger(text)
+  }
+
+  function recognizeList(line: string): ReturnType<typeof listMarker> {
+    if (line !== markerLine) {
+      markerLine = line
+      markerValue = listMarker(line)
+    }
+    return markerValue
   }
 
   function current(): string {
@@ -504,8 +514,7 @@ function leadingSpaces(line: string): number {
   return line.match(/^ */)?.[0].length ?? 0
 }
 
-function isBlockStart(line: string, next?: string): boolean {
-  const marker = listMarker(line)
+function isBlockStart(line: string, next: string | undefined, marker: ReturnType<typeof listMarker>): boolean {
   return (
     /^ {0,3}(?:`{3,}|~{3,}|#{1,6}(?:\s|$)|([-*_])(?:\s*\1){2,}\s*$|>)/.test(line) ||
     (marker !== undefined && (!marker.ordered || marker.number === 1)) ||
