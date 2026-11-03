@@ -36,3 +36,13 @@ it('handles chunk updates crossing a close and a later opener', () => {
   }
   expect(renderer.render(source)).toBe(renderHtml(source, { extensions }))
 })
+
+it('includes partial previous lines and CR in append fallback decisions', () => {
+  for (const updates of [
+    ['Intro\n\n```js\nplain\n  ', 'Intro\n\n```js\nplain\n  ```\nDone'],
+    ['Intro\n\n```js\nplain', 'Intro\n\n```js\nplain\r\nnext'],
+  ]) {
+    const renderer = createStreamingHtmlRenderer(), extensions = [streamingMarkdownExtension()]
+    for (const source of updates) expect(renderer.render(source)).toBe(renderHtml(source, { extensions }))
+  }
+})
