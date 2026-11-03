@@ -32,7 +32,7 @@ describe('audit regressions', () => {
         },
       }],
     })
-    expect(equivalent(document)).toBe('<ul><li>first</li></ul><ul><li>changed</li></ul>')
+    expect(equivalent(document)).toBe('<ul>\n<li>first</li>\n</ul>\n<ul>\n<li>changed</li>\n</ul>')
   })
 
   it('keeps single-pass attribute escaping identical to the existing policy', () => {
