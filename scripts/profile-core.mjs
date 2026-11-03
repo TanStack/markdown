@@ -2,15 +2,42 @@ import assert from 'node:assert/strict'
 import { Session } from 'node:inspector'
 import { createHash } from 'node:crypto'
 import { execFileSync } from 'node:child_process'
-import { mkdir, readFile, writeFile } from 'node:fs/promises'
-import { resolve, relative, dirname } from 'node:path'
-import { fileURLToPath } from 'node:url'
+import { mkdir, readFile, writeFile, readdir } from 'node:fs/promises'
+import { resolve, relative, dirname, sep } from 'node:path'
+import { fileURLToPath, pathToFileURL } from 'node:url'
 import { gzipSync } from 'node:zlib'
 
 const root = fileURLToPath(new URL('..', import.meta.url))
 const directory = resolve(process.argv[2] || 'artifacts/core-profiles')
 const smoke = process.argv.includes('--smoke')
 assert.equal(typeof global.gc, 'function', 'Run Node with --expose-gc')
+// NODE_OPTIONS uses spaces and double quotes, with backslash escapes inside quotes.
+function nodeOptionsArguments(value) {
+  const args = []
+  let token = '', quoted = false
+  for (let index = 0; index < value.length; index++) {
+    const char = value[index]
+    if (char === '\\' && quoted) {
+      assert.ok(index + 1 < value.length, 'Invalid NODE_OPTIONS escape')
+      token += value[++index]
+    } else if (char === '"') {
+      quoted = !quoted
+    } else if (char === ' ' && !quoted) {
+      if (token) args.push(token)
+      token = ''
+    } else token += char
+  }
+  assert.ok(!quoted, 'Unterminated NODE_OPTIONS quote')
+  if (token) args.push(token)
+  return args
+}
+const preloadFlags = ['--import', '--loader', '--experimental-loader', '--require', '-r']
+const nodeArguments = [...process.execArgv, ...nodeOptionsArguments(process.env.NODE_OPTIONS ?? '')]
+const hasPreload = nodeArguments.some(arg => {
+  const name = arg.startsWith('--') ? arg.split('=', 1)[0].replaceAll('_', '-') : arg
+  return preloadFlags.includes(name)
+})
+assert.ok(!hasPreload, 'Run with plain Node, without module loaders or preload hooks')
 await mkdir(dirname(directory), { recursive: true })
 try {
   await mkdir(directory)
@@ -19,20 +46,33 @@ try {
   throw error
 }
 const sha = value => createHash('sha256').update(value).digest('hex')
-async function snapshot() {
+const runtimeDirectory = resolve(directory, 'runtime')
+async function snapshot(includeRuntime = true) {
   const sourceFiles = execFileSync('git', ['ls-files', '--cached', '--others', '--exclude-standard', 'src'], { cwd: root, encoding: 'utf8' }).trim().split('\n').filter(Boolean).sort()
   return {
     commit: execFileSync('git', ['rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8' }).trim(),
     trackedDirtyState: execFileSync('git', ['status', '--porcelain', '--untracked-files=no'], { cwd: root, encoding: 'utf8' }),
     programSHA256: sha(await readFile(fileURLToPath(import.meta.url))),
     lockfileSHA256: sha(await readFile(resolve(root, 'pnpm-lock.yaml'))),
+    buildInputs: Object.fromEntries(await Promise.all(['package.json', 'tsconfig.json', 'tsconfig.build.json'].map(async path => [path, sha(await readFile(resolve(root, path)))]))),
+    compilerVersion: JSON.parse(await readFile(resolve(root, 'node_modules/typescript/package.json'), 'utf8')).version,
+    ...(includeRuntime && { runtime: 'native-js', runtimeModules: Object.fromEntries(await Promise.all(
+      (await readdir(runtimeDirectory, { recursive: true })).filter(path => path.endsWith('.js')).sort()
+        .map(async path => [path, sha(await readFile(resolve(runtimeDirectory, path)))]),
+    )) }),
     sources: Object.fromEntries(await Promise.all(sourceFiles.map(async path => [path, sha(await readFile(resolve(root, path)))]))),
   }
 }
+const beforeBuild = await snapshot(false)
+execFileSync(process.execPath, [resolve(root, 'node_modules/typescript/bin/tsc'), '-p', resolve(root, 'tsconfig.build.json'), '--outDir', runtimeDirectory], { cwd: root, stdio: 'pipe' })
+await writeFile(resolve(runtimeDirectory, 'package.json'), '{"type":"module"}\n')
+assert.deepEqual(await snapshot(false), beforeBuild, 'Build inputs changed while compiling')
 const frozen = await snapshot()
 await writeFile(resolve(directory, 'source.json'), JSON.stringify(frozen, null, 2))
 const [{ parseMarkdown }, { renderHtml }, { streamingMarkdownExtension }] = await Promise.all([
-  import('../src/parser.ts'), import('../src/html.ts'), import('../src/extensions/streaming.ts'),
+  import(pathToFileURL(resolve(runtimeDirectory, 'parser.js')).href),
+  import(pathToFileURL(resolve(runtimeDirectory, 'html.js')).href),
+  import(pathToFileURL(resolve(runtimeDirectory, 'extensions/streaming.js')).href),
 ])
 const fixtures = []
 for (const name of smoke ? ['small-doc.md'] : ['small-doc.md', 'prose-heavy.md', 'code-heavy.md', 'tables-lists.md', 'malformed.md', 'ai-response.md']) {
@@ -74,7 +114,14 @@ for (const fixture of smoke ? [{ name: 'ai-prefixes', source: response.slice(0, 
 const session = new Session()
 session.connect()
 const post = (method, params = {}) => new Promise((yes, no) => session.post(method, params, (error, result) => error ? no(error) : yes(result)))
-const frame = value => ({ function: value.functionName || '(anonymous)', url: value.url?.startsWith('file:') ? relative(root, fileURLToPath(value.url)) : value.url, line: value.lineNumber })
+const frame = value => {
+  let url = value.url
+  if (url?.startsWith('file:')) {
+    const path = fileURLToPath(url)
+    url = path.startsWith(runtimeDirectory + sep) ? 'runtime/' + relative(runtimeDirectory, path).split(sep).join('/') : relative(root, path).split(sep).join('/')
+  }
+  return { function: value.functionName || '(anonymous)', url, line: value.lineNumber }
+}
 const consume = output => { sink += typeof output === 'string' ? output.length : output.children.length }
 const rows = []
 try {
@@ -128,7 +175,7 @@ const receipt = {
   schemaVersion: 1, smoke, ...frozen, sourceStable: true,
   node: process.version, versions: process.versions,
   rows, sink, recordedAt: new Date().toISOString(),
-  limitations: 'Discovery profiles, not throughput or startup comparisons. CPU attribution is sampled exclusive time per workload, never add percentages across workloads. Allocation is sampled including collected objects, not retained heap, RSS, peak memory or an exact allocation count. TS source instrumentation and inspector overhead can differ from production bundles. Repeat promising leads with equivalent completed-work controls before changing production.',
+  limitations: 'Discovery profiles, not throughput or startup comparisons. CPU attribution is sampled exclusive time per workload, never add percentages across workloads. Allocation is sampled including collected objects, not retained heap, RSS, peak memory or an exact allocation count. The runtime directory is compiled from the frozen checkout before sampling, without TS loaders. Compilation is outside profiling. Inspector overhead can still differ from production execution. Repeat promising leads with equivalent completed-work controls before changing production.',
 }
 await writeFile(resolve(directory, 'summary.json'), JSON.stringify(receipt, null, 2))
 console.log(JSON.stringify({ commit: receipt.commit, workloads: rows.length, directory, smoke }))

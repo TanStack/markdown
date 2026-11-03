@@ -79,10 +79,12 @@ After running both corpus audits, add `--corpus` to compare both revisions in co
 Run the manual **Core workload profiles** workflow for isolated profiles of the current revision, or use Node 24 locally during a reserved quiet slot:
 
 ```sh
-node --expose-gc --import tsx scripts/profile-core.mjs artifacts/core-profiles
+node --expose-gc scripts/profile-core.mjs artifacts/core-profiles
 ```
 
-Choose a new output directory for each run. Exclusive directory creation prevents simultaneous runs from overwriting one another or earlier results. The output includes raw CPU profiles, compressed sampled-allocation profiles, completed-output hashes, source and lockfile hashes, and runtime metadata. The run fails if its source, lockfile or profiling script changes while it runs. Workloads separate parsing, parsing with HTML rendering, cached-AST rendering, and progressive updates using the existing fixtures. Progressive profiles consume each update without retaining earlier rendered strings; a separate trace hash checks every update outside profiling.
+The script uses the installed project TypeScript compiler and build configuration to emit fresh JavaScript into the output directory before profiling. It leaves the working `dist` directory untouched and records the compiler version, build inputs and emitted module hashes. Compilation is outside profiling. Use plain Node without module loaders or preload hooks, since loader transforms can add costs absent from the shipped JavaScript.
+
+Choose a new output directory for each run. Exclusive directory creation prevents simultaneous runs from overwriting one another or earlier results. The output includes raw CPU profiles, compressed sampled-allocation profiles, completed-output hashes, source and lockfile hashes, and runtime metadata. The run fails if its source, build inputs, emitted JavaScript, lockfile or profiling script changes while it runs. Workloads separate parsing, parsing with HTML rendering, cached-AST rendering, and progressive updates using the existing fixtures. Progressive profiles consume each update without retaining earlier rendered strings; a separate trace hash checks every update outside profiling.
 
 These profiles identify leads, not throughput or startup improvements. CPU attribution is sampled separately for each workload. Sampled allocation includes collected objects and does not measure retained heap, RSS or peak memory. Confirm promising changes with repeated equivalent-work comparisons and unchanged size gates.
 
