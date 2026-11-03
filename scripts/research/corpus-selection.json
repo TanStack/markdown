@@ -1,0 +1,157 @@
+[
+  {
+    "id": "corpus-01",
+    "repository": "github-docs",
+    "github": "github/docs",
+    "commit": "f455adb9ecb48ec7212177af292758bb2f32c1d7",
+    "path": "content/discussions/guides/best-practices-for-community-conversations-on-github.md",
+    "bytes": 3668,
+    "sha256": "c2df3d8771d317f2b7c771a5ac04858bc1e663625123c8091e7a191442cc7304",
+    "kind": "docs",
+    "features": [
+      "atx-heading",
+      "frontmatter",
+      "site-template"
+    ],
+    "reason": "Byte-size quantile 0.5, equal weight per corpus file, not user traffic"
+  },
+  {
+    "id": "corpus-02",
+    "repository": "rust-blog",
+    "github": "rust-lang/blog.rust-lang.org",
+    "commit": "f35e1174d2c15be7b692863b874a8a0046722081",
+    "path": "content/const-eval-safety-rule-revision.md",
+    "bytes": 15802,
+    "sha256": "b10a4fbe7a4658c3662d5a76051a7838e412e9b618924394f52bde69b6b9ef1e",
+    "kind": "docs",
+    "features": [
+      "atx-heading",
+      "blockquote",
+      "fenced-code",
+      "literal-autolink",
+      "reference-link"
+    ],
+    "reason": "Byte-size quantile 0.9, equal weight per corpus file, not user traffic"
+  },
+  {
+    "id": "corpus-03",
+    "repository": "react-dev",
+    "github": "reactjs/react.dev",
+    "commit": "7b6c3ceb9dd97249e9dce4a8a94e61aed6424698",
+    "path": "src/content/learn/removing-effect-dependencies.md",
+    "bytes": 75798,
+    "sha256": "cf6db0f288ec7315cd61a89511536c4b1838df2a26f64d6058cecdc8ee49b37d",
+    "kind": "docs",
+    "features": [
+      "atx-heading",
+      "code-metadata",
+      "fenced-code",
+      "frontmatter",
+      "raw-html",
+      "site-template"
+    ],
+    "reason": "Byte-size quantile 0.99, equal weight per corpus file, not user traffic"
+  },
+  {
+    "id": "corpus-04",
+    "repository": "docusaurus",
+    "github": "facebook/docusaurus",
+    "commit": "a0bc32214436d52a5ac9de9be1a515d872987366",
+    "path": "CHANGELOG-v2.md",
+    "bytes": 624488,
+    "sha256": "cdee0f2a40bbfdeb6bef0b84cee3f37cac3af6384b57eb6dc894bb066227c617",
+    "kind": "other",
+    "features": [
+      "atx-heading",
+      "fenced-code",
+      "four-space-indent",
+      "literal-autolink",
+      "nested-list"
+    ],
+    "reason": "Largest eligible Markdown source"
+  },
+  {
+    "id": "corpus-05",
+    "repository": "node-docs",
+    "github": "nodejs/node",
+    "commit": "2deb0a1b0f542c4b7fedc16dda1149c65e546f0d",
+    "path": "doc/api/fs.md",
+    "bytes": 298647,
+    "sha256": "977c9668e0223a72adfd2bab5295b87e3f3a75217f6912ad6e4c7aeed1e52074",
+    "kind": "docs",
+    "features": [
+      "atx-heading",
+      "blockquote",
+      "fenced-code",
+      "four-space-indent",
+      "literal-autolink",
+      "nested-list",
+      "raw-html",
+      "reference-link",
+      "table"
+    ],
+    "reason": "Large table source"
+  },
+  {
+    "id": "corpus-06",
+    "repository": "node-docs",
+    "github": "nodejs/node",
+    "commit": "2deb0a1b0f542c4b7fedc16dda1149c65e546f0d",
+    "path": "doc/api/crypto.md",
+    "bytes": 232629,
+    "sha256": "27ac44989caaf26480ec2e43df6fffc124a897fedf7816d53c2511b64afb26e2",
+    "kind": "docs",
+    "features": [
+      "atx-heading",
+      "blockquote",
+      "fenced-code",
+      "footnote",
+      "four-space-indent",
+      "literal-autolink",
+      "nested-list",
+      "raw-html",
+      "reference-link"
+    ],
+    "reason": "Large footnote source"
+  },
+  {
+    "id": "corpus-07",
+    "repository": "kubernetes-docs",
+    "github": "kubernetes/website",
+    "commit": "f2987ba1cceaa85fcd44cd1a221010d745d7335c",
+    "path": "content/en/blog/_posts/2025/ensure-secret-pulled-images/index.md",
+    "bytes": 8391,
+    "sha256": "d09e0845ba913cb9213d060f6444a4059361787ba496f3f324a95cce5f1c2f40",
+    "kind": "blog",
+    "features": [
+      "atx-heading",
+      "blockquote",
+      "four-space-indent",
+      "frontmatter",
+      "nested-list",
+      "site-template"
+    ],
+    "reason": "Moderate nested-list document from a distinct repository"
+  },
+  {
+    "id": "corpus-08",
+    "repository": "react-dev",
+    "github": "reactjs/react.dev",
+    "commit": "7b6c3ceb9dd97249e9dce4a8a94e61aed6424698",
+    "path": "src/content/blog/2025/04/23/react-labs-view-transitions-activity-and-more.md",
+    "bytes": 336530,
+    "sha256": "9533ad1f2c978c2f2fe70303ce5a3d046693956639c5d5f36cf0848fda6a6c20",
+    "kind": "blog",
+    "features": [
+      "atx-heading",
+      "code-metadata",
+      "entity-reference",
+      "fenced-code",
+      "four-space-indent",
+      "frontmatter",
+      "raw-html",
+      "site-template"
+    ],
+    "reason": "Large narrative/blog source"
+  }
+]
