@@ -12,8 +12,8 @@ const directory = resolve(process.argv[2] || 'artifacts/core-profiles')
 const smoke = process.argv.includes('--smoke')
 assert.equal(typeof global.gc, 'function', 'Run Node with --expose-gc')
 const preloadFlags = ['--import', '--loader', '--experimental-loader', '--require', '-r']
-const hasPreload = process.execArgv.some(arg => preloadFlags.some(flag => arg === flag || arg.startsWith(flag + '=')))
-  || /--(?:import|(?:experimental-)?loader|require)(?:=|\s|$)|(?:^|\s)-r(?:\s|$)/.test(process.env.NODE_OPTIONS ?? '')
+const hasPreload = process.execArgv.some(arg => arg.startsWith('-r') || preloadFlags.some(flag => arg === flag || arg.startsWith(flag + '=')))
+  || /--(?:import|(?:experimental-)?loader|require)(?:=|\s|$)|(?:^|\s)-r/.test(process.env.NODE_OPTIONS ?? '')
 assert.ok(!hasPreload, 'Run with plain Node, without module loaders or preload hooks')
 await mkdir(dirname(directory), { recursive: true })
 try {
