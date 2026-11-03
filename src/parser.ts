@@ -52,7 +52,7 @@ export function parseMarkdown(markdown: string, options: ParseOptions = {}): Mar
       : options
 
   const slugger = createSlugger()
-  const parser = createBlockParser(lines, parseOptions, slugger)
+  const parser = new BlockParser(lines, parseOptions, slugger)
   const children = parser.parse()
   if (hasFootnotes && footnoteOrder.length > 0) {
     children.push(createFootnotesBlock(definitions.footnotes, footnoteOrder, parseOptions, slugger))
@@ -66,39 +66,43 @@ export function parseMarkdown(markdown: string, options: ParseOptions = {}): Mar
   return document
 }
 
-function createBlockParser(
-  inputLines: string[],
-  options: ParseOptions,
-  slugger: Slugger,
-  budget: BlockParseBudget = { depth: 0 },
-) {
-  let cursor = 0
-  let looseBlocks = false
-  return {
-    parse,
-    get loose() {
-      return looseBlocks
-    },
+class BlockParser {
+  #inputLines: string[]
+  #options: ParseOptions
+  #slugger: Slugger
+  #budget: BlockParseBudget
+  #cursor = 0
+  #looseBlocks = false
+
+  constructor(inputLines: string[], options: ParseOptions, slugger: Slugger, budget: BlockParseBudget = { depth: 0 }) {
+    this.#inputLines = inputLines
+    this.#options = options
+    this.#slugger = slugger
+    this.#budget = budget
   }
 
-  function parse(): BlockNode[] {
-    if (budget.depth >= maxBlockDepth) {
-      const value = inputLines.slice(cursor).join('\n')
-      cursor = inputLines.length
-      return value ? [{ type: 'paragraph', children: parseInline(value, options) }] : []
+  get loose() {
+    return this.#looseBlocks
+  }
+
+  parse(): BlockNode[] {
+    if (this.#budget.depth >= maxBlockDepth) {
+      const value = this.#inputLines.slice(this.#cursor).join('\n')
+      this.#cursor = this.#inputLines.length
+      return value ? [{ type: 'paragraph', children: parseInline(value, this.#options) }] : []
     }
 
-    budget.depth++
+    this.#budget.depth++
     const nodes: BlockNode[] = []
 
-    while (cursor < inputLines.length) {
-      if (isBlank(current())) {
-        if (nodes.length) looseBlocks = true
-        cursor++
+    while (this.#cursor < this.#inputLines.length) {
+      if (isBlank(this.#current())) {
+        if (nodes.length) this.#looseBlocks = true
+        this.#cursor++
         continue
       }
 
-      const extensionNode = parseExtensionBlock()
+      const extensionNode = this.#parseExtensionBlock()
       if (extensionNode) {
         nodes.push(extensionNode)
         continue
@@ -107,40 +111,40 @@ function createBlockParser(
       // Letter-led text cannot open a fence, heading, rule, quote, or list.
       // It can still be a table header, so table detection remains below.
       const node =
-        (/^[a-z]/i.test(current()) ? undefined : (
-          parseFence() ??
-          parseHeading() ??
-          parseThematicBreak() ??
-          parseBlockquote() ??
-          parseList()
+        (/^[a-z]/i.test(this.#current()) ? undefined : (
+          this.#parseFence() ??
+          this.#parseHeading() ??
+          this.#parseThematicBreak() ??
+          this.#parseBlockquote() ??
+          this.#parseList()
         )) ??
-        parseTable() ??
-        parseHtmlBlock() ??
-        parseParagraph()
+        this.#parseTable() ??
+        this.#parseHtmlBlock() ??
+        this.#parseParagraph()
 
       nodes.push(node)
     }
 
-    budget.depth--
+    this.#budget.depth--
     return nodes
   }
 
-  function parseExtensionBlock(): BlockNode | undefined {
-    for (const extension of options.extensions ?? []) {
+  #parseExtensionBlock(): BlockNode | undefined {
+    for (const extension of this.#options.extensions ?? []) {
       let consumed = 0
       const node = extension.parseBlock?.({
-        lines: inputLines,
-        index: cursor,
-        options: options,
-        parseInline: value => parseInline(value, options),
-        parseBlocks: value => createBlockParser(normalizeInput(value).split('\n'), options, slugger, budget).parse(),
+        lines: this.#inputLines,
+        index: this.#cursor,
+        options: this.#options,
+        parseInline: value => parseInline(value, this.#options),
+        parseBlocks: value => new BlockParser(normalizeInput(value).split('\n'), this.#options, this.#slugger, this.#budget).parse(),
         consume: lines => {
           consumed = lines
         },
       })
 
       if (node) {
-        cursor += Math.max(consumed, 1)
+        this.#cursor += Math.max(consumed, 1)
         return node
       }
     }
@@ -148,23 +152,23 @@ function createBlockParser(
     return undefined
   }
 
-  function parseFence(): CodeBlockNode | undefined {
-    const match = current().match(/^( {0,3})(`{3,}|~{3,})(.*)$/)
+  #parseFence(): CodeBlockNode | undefined {
+    const match = this.#current().match(/^( {0,3})(`{3,}|~{3,})(.*)$/)
     if (!match) return undefined
 
     const fence = match[2]!
     const info = match[3]!.trim()
     const code: string[] = []
-    cursor++
+    this.#cursor++
 
-    while (cursor < inputLines.length) {
-      const line = current()
+    while (this.#cursor < this.#inputLines.length) {
+      const line = this.#current()
       if (line.includes(fence) && /^ {0,3}(?:`+|~+)\s*$/.test(line)) {
-        cursor++
+        this.#cursor++
         break
       }
       code.push(stripIndent(line, match[1]!.length))
-      cursor++
+      this.#cursor++
     }
 
     return {
@@ -174,49 +178,49 @@ function createBlockParser(
     }
   }
 
-  function parseHeading(): HeadingNode | undefined {
-    const match = current().match(/^ {0,3}(#{1,6})(?:[ \t]+(.*)|[ \t]*)$/)
+  #parseHeading(): HeadingNode | undefined {
+    const match = this.#current().match(/^ {0,3}(#{1,6})(?:[ \t]+(.*)|[ \t]*)$/)
     if (!match) return undefined
 
     const depth = match[1]!.length as HeadingNode['depth']
     const rawValue = match[2] ?? ''
     const value = (/^#+[ \t]*$/.test(rawValue) ? '' : rawValue.replace(/[ \t]+#+[ \t]*$/, '')).trim()
-    const children = parseInline(value, options)
-    const id = createHeadingId(children)
-    cursor++
+    const children = parseInline(value, this.#options)
+    const id = this.#createHeadingId(children)
+    this.#cursor++
 
     return id ? { type: 'heading', depth, id, children } : { type: 'heading', depth, children }
   }
 
-  function parseThematicBreak(): BlockNode | undefined {
-    if (!/^ {0,3}([-*_])(?:\s*\1){2,}\s*$/.test(current())) return undefined
-    cursor++
+  #parseThematicBreak(): BlockNode | undefined {
+    if (!/^ {0,3}([-*_])(?:\s*\1){2,}\s*$/.test(this.#current())) return undefined
+    this.#cursor++
     return { type: 'thematicBreak' }
   }
 
-  function parseBlockquote(): BlockNode | undefined {
-    if (!/^ {0,3}>\s?/.test(current())) return undefined
+  #parseBlockquote(): BlockNode | undefined {
+    if (!/^ {0,3}>\s?/.test(this.#current())) return undefined
 
     const quoted: string[] = []
-    while (cursor < inputLines.length) {
-      const line = current()
+    while (this.#cursor < this.#inputLines.length) {
+      const line = this.#current()
       const match = line.match(/^ {0,3}>\s?(.*)$/s)
       if (!match) {
         if (!isBlank(line)) break
-        looseBlocks = true
+        this.#looseBlocks = true
       }
       quoted.push(match?.[1] ?? '')
-      cursor++
+      this.#cursor++
     }
 
     return {
       type: 'blockquote',
-      children: createBlockParser(quoted, options, slugger, budget).parse(),
+      children: new BlockParser(quoted, this.#options, this.#slugger, this.#budget).parse(),
     }
   }
 
-  function parseList(): ListNode | undefined {
-    const first = listMarker(current())
+  #parseList(): ListNode | undefined {
+    const first = listMarker(this.#current())
     if (!first) return undefined
 
     const items: ListItemNode[] = []
@@ -224,8 +228,8 @@ function createBlockParser(
     const baseIndent = first.indent
     let loose = false
 
-    while (cursor < inputLines.length) {
-      const marker = listMarker(current())
+    while (this.#cursor < this.#inputLines.length) {
+      const marker = listMarker(this.#current())
       if (!marker || marker.marker !== first.marker || marker.indent !== baseIndent) break
 
       let firstLine = marker.content
@@ -234,42 +238,42 @@ function createBlockParser(
       if (task) firstLine = task[2]!
 
       const itemLines = [firstLine]
-      cursor++
+      this.#cursor++
 
-      while (cursor < inputLines.length) {
-        const line = current()
+      while (this.#cursor < this.#inputLines.length) {
+        const line = this.#current()
         const nextMarker = listMarker(line)
         if (nextMarker && nextMarker.indent === baseIndent) break
         if (isBlank(line)) {
-          let nextIndex = cursor
-          while (nextIndex < inputLines.length && isBlank(inputLines[nextIndex]!)) nextIndex++
-          const following = inputLines[nextIndex]
+          let nextIndex = this.#cursor
+          while (nextIndex < this.#inputLines.length && isBlank(this.#inputLines[nextIndex]!)) nextIndex++
+          const following = this.#inputLines[nextIndex]
           if (following === undefined) break
 
           const followingMarker = listMarker(following)
           if (followingMarker?.indent === baseIndent) {
             if (followingMarker.marker !== first.marker) break
             loose = true
-            cursor = nextIndex
+            this.#cursor = nextIndex
             break
           }
 
           if (leadingSpaces(following) < marker.contentIndent) break
 
-          while (cursor < nextIndex) itemLines.push(stripIndent(inputLines[cursor++]!, marker.contentIndent))
+          while (this.#cursor < nextIndex) itemLines.push(stripIndent(this.#inputLines[this.#cursor++]!, marker.contentIndent))
           continue
         }
         if (leadingSpaces(line) >= marker.contentIndent) {
           itemLines.push(stripIndent(line, marker.contentIndent))
-          cursor++
+          this.#cursor++
           continue
         }
-        if (isBlockStart(line, next())) break
+        if (isBlockStart(line, this.#next())) break
         itemLines.push(line.trimStart())
-        cursor++
+        this.#cursor++
       }
 
-      const parser = createBlockParser(itemLines, options, slugger, budget)
+      const parser = new BlockParser(itemLines, this.#options, this.#slugger, this.#budget)
       const children = parser.parse()
       loose ||= parser.loose
       const item: ListItemNode = { type: 'listItem', children }
@@ -286,85 +290,85 @@ function createBlockParser(
     }
   }
 
-  function parseTable(): TableNode | undefined {
-    const header = current()
-    const delimiter = next()
+  #parseTable(): TableNode | undefined {
+    const header = this.#current()
+    const delimiter = this.#next()
     if (!delimiter || !looksLikeTableHeader(header, delimiter)) return undefined
 
     const headerCells = splitTableRow(header)
     const align = splitTableRow(delimiter).map(parseAlign)
     const columns = headerCells.length
     const rows: TableCellNode[][] = []
-    cursor += 2
+    this.#cursor += 2
 
-    while (cursor < inputLines.length) {
-      const line = current()
-      if (isBlank(line) || isBlockStart(line, next())) break
+    while (this.#cursor < this.#inputLines.length) {
+      const line = this.#current()
+      if (isBlank(line) || isBlockStart(line, this.#next())) break
       const values = splitTableRow(line)
-      rows.push(Array.from({ length: columns }, (_, index) => cell(values[index] ?? '', options)))
-      cursor++
+      rows.push(Array.from({ length: columns }, (_, index) => cell(values[index] ?? '', this.#options)))
+      this.#cursor++
     }
 
     return {
       type: 'table',
       align,
-      header: headerCells.map(value => cell(value, options)),
+      header: headerCells.map(value => cell(value, this.#options)),
       rows,
     }
   }
 
-  function parseHtmlBlock(): BlockNode | undefined {
-    if (!options.allowHtml || !/^ {0,3}<([A-Za-z][\w:-]*|!--|\/[A-Za-z])/.test(current())) return undefined
+  #parseHtmlBlock(): BlockNode | undefined {
+    if (!this.#options.allowHtml || !/^ {0,3}<([A-Za-z][\w:-]*|!--|\/[A-Za-z])/.test(this.#current())) return undefined
 
     const html: string[] = []
-    if (/^ {0,3}<!--/.test(current())) {
-      while (cursor < inputLines.length) {
-        const line = current()
+    if (/^ {0,3}<!--/.test(this.#current())) {
+      while (this.#cursor < this.#inputLines.length) {
+        const line = this.#current()
         html.push(line)
-        cursor++
+        this.#cursor++
         if (line.includes('-->')) break
       }
       return { type: 'html', value: html.join('\n') }
     }
 
-    while (cursor < inputLines.length && !isBlank(current())) {
-      html.push(current())
-      cursor++
+    while (this.#cursor < this.#inputLines.length && !isBlank(this.#current())) {
+      html.push(this.#current())
+      this.#cursor++
     }
 
     return { type: 'html', value: html.join('\n') }
   }
 
-  function parseParagraph(): BlockNode {
+  #parseParagraph(): BlockNode {
     const lines: string[] = []
 
-    while (cursor < inputLines.length) {
-      const line = current()
+    while (this.#cursor < this.#inputLines.length) {
+      const line = this.#current()
       if (isBlank(line)) break
-      if (lines.length > 0 && isBlockStart(line, next())) break
+      if (lines.length > 0 && isBlockStart(line, this.#next())) break
       lines.push(line.trim())
-      cursor++
+      this.#cursor++
     }
 
     return {
       type: 'paragraph',
-      children: parseInline(lines.join('\n'), options),
+      children: parseInline(lines.join('\n'), this.#options),
     }
   }
 
-  function createHeadingId(children: InlineNode[]): string | undefined {
-    if (options.headingIds === false) return undefined
+  #createHeadingId(children: InlineNode[]): string | undefined {
+    if (this.#options.headingIds === false) return undefined
     const text = plainText(children)
-    if (typeof options.headingIds === 'function') return options.headingIds(text, cursor)
-    return slugger(text)
+    if (typeof this.#options.headingIds === 'function') return this.#options.headingIds(text, this.#cursor)
+    return this.#slugger(text)
   }
 
-  function current(): string {
-    return inputLines[cursor] ?? ''
+  #current(): string {
+    return this.#inputLines[this.#cursor] ?? ''
   }
 
-  function next(): string | undefined {
-    return inputLines[cursor + 1]
+  #next(): string | undefined {
+    return this.#inputLines[this.#cursor + 1]
   }
 }
 
@@ -451,7 +455,7 @@ function createFootnotesBlock(
     items.push({
       id: definition.id ?? footnoteId(definition.label),
       number: index + 1,
-      children: createBlockParser(normalizeInput(definition.content).split('\n'), options, slugger).parse(),
+      children: new BlockParser(normalizeInput(definition.content).split('\n'), options, slugger).parse(),
     })
   }
   for (const item of items) {
