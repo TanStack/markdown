@@ -8,6 +8,18 @@ import {pathToFileURL} from 'node:url'
 import {gzipSync,brotliCompressSync} from 'node:zlib'
 import {build} from 'esbuild'
 const sha=x=>createHash('sha256').update(x).digest('hex')
+if(process.argv[2]==='--memory'){
+ const api=await import(pathToFileURL(resolve(process.argv[3])).href),mode=process.argv[4]
+ const prefix=mode==='standalone'?'':mode==='narrative'?'# Answer\n\nHere is code.\n\n':'```old\none\n```\n\nNext\n\n'
+ const input=prefix+'```text\n'+'Plain <& α😀\n'.repeat(16)
+ api.createStreamingHtmlRenderer().render(input)
+ const collect=()=>{ /probe/.test('probe');for(let n=0;n<4;n++)global.gc() }
+ collect();const before=process.memoryUsage()
+ function make(){const parent='x'.repeat(16*1024*1024)+input;const source=parent.slice(16*1024*1024);const session=api.createStreamingHtmlRenderer();const output=session.render(source);return {session,output}}
+ globalThis.packet=make();collect();const held=process.memoryUsage();const outputSHA256=sha(Buffer.from(globalThis.packet.output));collect();const consumed=process.memoryUsage()
+ globalThis.packet.session.reset();collect();const reset=process.memoryUsage();globalThis.packet=null;collect();const released=process.memoryUsage()
+ console.log(JSON.stringify({mode,before,held,consumed,reset,released,heldHeapDelta:held.heapUsed-before.heapUsed,resetHeapDelta:reset.heapUsed-before.heapUsed,releasedHeapDelta:released.heapUsed-before.heapUsed,outputSHA256,node:process.version}));process.exit(0)
+}
 const directory=resolve(process.argv[2]);await mkdir(directory,{recursive:true})
 const baseline='ca59f585e292a4788cacb95e9729a2b9a4850d59'
 const old=execFileSync('git',['show',baseline+':src/html/streaming.ts'],{encoding:'utf8'})
@@ -31,5 +43,6 @@ for(let round=0;round<12;round++)for(const w of workloads)for(const variant of o
 const median=x=>{x.sort((a,b)=>a-b);return (x[(x.length-1)>>1]+x[x.length>>1])/2}
 const summary=workloads.map(w=>({name:w.name,medians:Object.fromEntries(Object.keys(factories).map(v=>[v,median(timings.filter(t=>t.name===w.name&&t.variant===v).map(t=>t.msPerOperation))]))}))
 const sizes=[];for(const v of ['baseline','candidate']){const bytes=await readFile(resolve(directory,v+'.mjs'));sizes.push({variant:v,min:bytes.length,gzip:gzipSync(bytes,{level:9}).length,brotli:brotliCompressSync(bytes).length,sha256:sha(bytes)})}
-const receipt={baseline,commit:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),programSHA256:sha(await readFile('scripts/research/narrative-fence.mjs')),lockfileSHA256:sha(await readFile('pnpm-lock.yaml')),runtimeSources:Object.fromEntries(await Promise.all(execFileSync('git',['ls-files','src'],{encoding:'utf8'}).trim().split('\n').map(async p=>[p,sha(await readFile(p))]))),node:process.version,cpu:(await import('node:os')).cpus()[0],comparisons,expected,orders,timings,summary,sizes,limitations:'Completed progressive HTML/UTF8/hash work in balanced warmed sessions. Not startup, allocation, peak/RSS, retained-memory or full production acceptance. Node bundle size is discovery only; existing browser/package size gates remain authoritative.'}
+const memory=[];for(const mode of ['standalone','narrative','prior-code'])for(let replica=0;replica<2;replica++)for(const variant of ['baseline','control','candidate'])memory.push({variant,replica,...JSON.parse(execFileSync(process.execPath,['--expose-gc','scripts/research/narrative-fence.mjs','--memory',resolve(directory,(variant==='control'?'baseline':variant)+'.mjs'),mode],{encoding:'utf8'}))});
+const receipt={memory,baseline,commit:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),programSHA256:sha(await readFile('scripts/research/narrative-fence.mjs')),lockfileSHA256:sha(await readFile('pnpm-lock.yaml')),runtimeSources:Object.fromEntries(await Promise.all(execFileSync('git',['ls-files','src'],{encoding:'utf8'}).trim().split('\n').map(async p=>[p,sha(await readFile(p))]))),node:process.version,cpu:(await import('node:os')).cpus()[0],comparisons,expected,orders,timings,summary,sizes,limitations:'Completed progressive HTML/UTF8/hash work in balanced warmed sessions. Not startup, allocation, peak/RSS or full production acceptance. Fresh-child retained heap checks clear ambient RegExp statics before four collections, measure output live before UTF8 consumption, then reset and released states; not peak memory. Node bundle size is discovery only; existing browser/package size gates remain authoritative.'}
 await writeFile(resolve(directory,'receipt.json'),JSON.stringify(receipt,null,2));console.log(JSON.stringify({comparisons,summary,sizes}))
