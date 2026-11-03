@@ -1,3 +1,4 @@
+import { readFileSync } from 'node:fs'
 import { expect, it } from 'vitest'
 import { createStreamingHtmlRenderer } from '../src/html/streaming.js'
 import { renderHtml } from '../src/html.js'
@@ -24,4 +25,14 @@ it.each([
   renderer.reset()
   expect(renderer.render(source)).toBe(renderHtml(source, { extensions }))
   expect(renderer.render(source.slice(0, -3))).toBe(renderHtml(source.slice(0, -3), { extensions }))
+})
+
+it('handles chunk updates crossing a close and a later opener', () => {
+  const source = readFileSync(new URL('../fixtures/benchmark/code-heavy.md', import.meta.url), 'utf8')
+  const renderer = createStreamingHtmlRenderer(), extensions = [streamingMarkdownExtension()]
+  for (let end = 16; end < source.length; end += 16) {
+    const prefix = source.slice(0, end)
+    expect(renderer.render(prefix)).toBe(renderHtml(prefix, { extensions }))
+  }
+  expect(renderer.render(source)).toBe(renderHtml(source, { extensions }))
 })

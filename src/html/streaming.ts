@@ -17,7 +17,7 @@ function optionsFor(base: { extensions: MarkdownExtension[] }, options?: RenderO
 
 export function createStreamingHtmlRenderer(): StreamingHtmlRenderer {
   const base = { extensions: [streamingMarkdownExtension()] }
-  let state: { source: string; html: string; suffix: string } | undefined
+  let state: { source: string; html: string; suffix: string; header: number } | undefined
   let profileExposed = false
   function full(source: MarkdownInput, options?: RenderOptions): string {
     state = undefined
@@ -30,7 +30,7 @@ export function createStreamingHtmlRenderer(): StreamingHtmlRenderer {
     if (/^ {0,3}[`~]/m.test(body)) return full(source)
     if (!body) return full(source)
     let ownedSource: string, output: string, suffix: string
-    if (state && source.startsWith(state.source)) {
+    if (state && state.header === header[0].length && source.startsWith(state.source)) {
       const delta = source.slice(state.source.length)
       if (!delta) { return state.html }
       suffix = state.suffix
@@ -48,7 +48,7 @@ export function createStreamingHtmlRenderer(): StreamingHtmlRenderer {
       ownedSource = [header[0], body].join('')
       output = [prefix, escapeHtml(body), suffix].join('')
     }
-    state = { source: ownedSource, html: output, suffix }
+    state = { source: ownedSource, html: output, suffix, header: header[0].length }
     return output
   }
   return { reset() { state = undefined }, render(source, options) {
