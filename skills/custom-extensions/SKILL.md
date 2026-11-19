@@ -7,7 +7,7 @@ description: >
 metadata:
   type: core
   library: '@tanstack/markdown'
-  library_version: '1.2.0'
+  library_version: '1.2.1'
 requires:
   - 'render-markdown'
 sources:
