@@ -1,16 +1,47 @@
+import { renderToStaticMarkup as renderOctane } from 'octane/server'
+import { createElement } from 'react'
+import { renderToStaticMarkup as renderReact } from 'react-dom/server'
 import { describe, expect, it } from 'vitest'
 import { parseMarkdown, renderHtml } from '../src/index.js'
 import { docsMarkdownExtensions } from '../src/extensions/docs.js'
+import { Markdown as OctaneMarkdown } from '../src/octane.js'
+import { Markdown as ReactMarkdown } from '../src/react.js'
 
 const docs = docsMarkdownExtensions()
 
 describe('docs markdown extensions', () => {
   it('renders GitHub-style callouts', () => {
-    const html = renderHtml('> [!TIP] Custom title\n> Use `redirect_from`.', {
+    const document = parseMarkdown('> [!TIP] Custom title\n> Use `redirect_from`.', {
       extensions: docs,
     })
+    expect(document.children[0]).not.toHaveProperty('open')
 
-    expect(html).toBe('<div class="markdown-alert markdown-alert-tip"><p class="markdown-alert-title">Custom title</p><div class="markdown-alert-content"><p>Use <code>redirect_from</code>.</p></div></div>')
+    const html = '<div class="markdown-alert markdown-alert-tip"><p class="markdown-alert-title">Custom title</p><div class="markdown-alert-content"><p>Use <code>redirect_from</code>.</p></div></div>'
+    expect(renderHtml(document)).toBe(html)
+    expect(renderReact(createElement(ReactMarkdown, { children: document }))).toBe(html)
+    expect(renderOctane(OctaneMarkdown, { children: document }).html).toBe(html)
+  })
+
+  it.each([
+    ['-', 'Polyfill <requirements>', 'Polyfill &lt;requirements&gt;', false],
+    ['+', '', 'Tip', true],
+  ] as const)('renders %s callouts with native disclosure in every renderer', (marker, title, escapedTitle, open) => {
+    const source = `> [!TIP]${marker}${title && ` ${title}`}\n> Use **this** polyfill.`
+    const options = { extensions: docs }
+    const document = parseMarkdown(source, options)
+    expect(document.children[0]).toMatchObject({
+      type: 'callout',
+      kind: 'tip',
+      title: title || 'Tip',
+      open,
+    })
+
+    const classes = 'class="markdown-alert markdown-alert-tip"'
+    const content = `<summary class="markdown-alert-title">${escapedTitle}</summary><div class="markdown-alert-content"><p>Use <strong>this</strong> polyfill.</p></div></details>`
+    expect(renderHtml(document)).toBe(`<details${open ? ' open' : ''} ${classes}>${content}`)
+    const expectedFrameworkMarkup = `<details${open ? ' open=""' : ''} ${classes}>${content}`
+    expect(renderReact(createElement(ReactMarkdown, { children: document }))).toBe(expectedFrameworkMarkup)
+    expect(renderOctane(OctaneMarkdown, { children: document }).html).toBe(expectedFrameworkMarkup)
   })
 
   it('renders heading anchors and collects headings', () => {

@@ -10,21 +10,13 @@ export interface DocsMarkdownOptions {
 }
 
 export function docsMarkdownExtensions(options: DocsMarkdownOptions = {}): MarkdownExtension[] {
+  const { collectHeadings } = options
   const extensions = [
     calloutsExtension(),
-    commentComponentsExtension({
-      transformComponent: transformDocsComponent,
-    }),
+    commentComponentsExtension({ transformComponent: transformDocsComponent }),
   ]
-
-  if (options.collectHeadings !== false) {
-    extensions.push(
-      headingCollectionExtension(
-        typeof options.collectHeadings === 'object' ? options.collectHeadings : {},
-      ),
-    )
-  }
-
+  if (collectHeadings === false) return extensions
+  extensions.push(headingCollectionExtension(typeof collectHeadings === 'object' ? collectHeadings : undefined))
   return extensions
 }
 

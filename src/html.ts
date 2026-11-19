@@ -3,8 +3,7 @@ import type { BlockNode, ComponentNode, FootnoteItemNode, HeadingAnchorOptions, 
 import { escapeAttr, escapeHtml, footnoteReferenceId } from './utils.js'
 
 export function renderHtml(input: MarkdownInput, options: RenderOptions = {}): string {
-  const document = typeof input === 'string' ? parseMarkdown(input, options) : input
-  return document.children.map(node => renderBlock(node, options)).join('\n')
+  return renderDocument(typeof input === 'string' ? parseMarkdown(input, options) : input, options)
 }
 
 export function renderBlock(node: BlockNode, options: RenderOptions = {}): string {
@@ -28,7 +27,7 @@ export function renderBlock(node: BlockNode, options: RenderOptions = {}): strin
       return `<${tag}${start}>\n${items}\n</${tag}>`
     }
     case 'blockquote':
-      return `<blockquote>\n${node.children.map(child => renderBlock(child, options)).join('\n')}\n</blockquote>`
+      return `<blockquote>\n${renderBlocks(node.children, options)}\n</blockquote>`
     case 'table': {
       const header = `<thead><tr>${node.header.map((cell, index) => renderTableCell('th', cell, node.align[index], options)).join('')}</tr></thead>`
       const body = node.rows.length
@@ -44,8 +43,12 @@ export function renderBlock(node: BlockNode, options: RenderOptions = {}): strin
       return '<hr>'
     case 'html':
       return options.allowHtml ? node.value : escapeHtml(node.value)
-    case 'callout':
-      return renderCallout(node, options)
+    case 'callout': {
+      const { open } = node
+      const tag = open === undefined ? 'div' : 'details'
+      const titleTag = open === undefined ? 'p' : 'summary'
+      return `<${tag}${open ? ' open' : ''} class="markdown-alert markdown-alert-${escapeAttr(node.kind.toLowerCase())}"><${titleTag} class="markdown-alert-title">${escapeHtml(node.title)}</${titleTag}><div class="markdown-alert-content">${renderBlocks(node.children, options)}</div></${tag}>`
+    }
     case 'component':
       return renderComponent(node, options)
   }
@@ -82,7 +85,11 @@ export function renderInline(node: InlineNode, options: RenderOptions = {}): str
 }
 
 export function renderDocument(document: MarkdownDocument, options: RenderOptions = {}): string {
-  return renderHtml(document, options)
+  return renderBlocks(document.children, options)
+}
+
+function renderBlocks(nodes: BlockNode[], options: RenderOptions): string {
+  return nodes.map(node => renderBlock(node, options)).join('\n')
 }
 
 function renderInlines(nodes: InlineNode[], options: RenderOptions): string {
@@ -91,7 +98,8 @@ function renderInlines(nodes: InlineNode[], options: RenderOptions): string {
 
 function renderCodeBlock(node: Extract<BlockNode, { type: 'code' }>, options: RenderOptions): string {
   const lang = node.lang ?? 'plaintext'
-  const preAttrs = `class="tm-code${options.codeLineNumbers ? ' tm-code--line-numbers' : ''}" data-lang="${escapeAttr(lang)}"`
+  const escapedLang = escapeAttr(lang)
+  const preAttrs = `class="tm-code${options.codeLineNumbers ? ' tm-code--line-numbers' : ''}" data-lang="${escapedLang}"`
     + (node.meta ? ` data-meta="${escapeAttr(node.meta)}"` : '')
     + (node.title ? ` data-code-title="${escapeAttr(node.title)}"` : '')
     + (node.file ? ` data-filename="${escapeAttr(node.file)}"` : '')
@@ -102,10 +110,10 @@ function renderCodeBlock(node: Extract<BlockNode, { type: 'code' }>, options: Re
     ...(options.codeLineNumbers !== undefined && { lineNumbers: options.codeLineNumbers }),
   }) ?? escapeHtml(node.value)
 
-  const pre = `<pre ${preAttrs}><code class="language-${escapeAttr(lang)}">${html}</code></pre>`
+  const pre = `<pre ${preAttrs}><code class="language-${escapedLang}">${html}</code></pre>`
   if (!node.title) return pre
 
-  return `<figure class="tm-code-frame" data-lang="${escapeAttr(lang)}"><figcaption>${escapeHtml(node.title)}</figcaption>${pre}</figure>`
+  return `<figure class="tm-code-frame" data-lang="${escapedLang}"><figcaption>${escapeHtml(node.title)}</figcaption>${pre}</figure>`
 }
 
 function renderListItemChildren(children: BlockNode[], checked: boolean | undefined, loose: boolean | undefined, options: RenderOptions): string {
@@ -118,12 +126,6 @@ function renderListItemChildren(children: BlockNode[], checked: boolean | undefi
     } else result += (index ? '\n' : '') + renderBlock(child, options)
   }
   return result
-}
-
-function renderCallout(node: Extract<BlockNode, { type: 'callout' }>, options: RenderOptions): string {
-  const kind = node.kind.toLowerCase()
-  const children = node.children.map(child => renderBlock(child, options)).join('\n')
-  return `<div class="markdown-alert markdown-alert-${escapeAttr(kind)}"><p class="markdown-alert-title">${escapeHtml(node.title)}</p><div class="markdown-alert-content">${children}</div></div>`
 }
 
 function renderFootnotes(items: FootnoteItemNode[], options: RenderOptions): string {
@@ -158,10 +160,19 @@ function renderFootnoteBackrefs(item: FootnoteItemNode): string {
 
 function renderComponent(node: ComponentNode | InlineComponentNode, options: RenderOptions): string {
   const tag = node.tagName ?? (node.type === 'inlineComponent' ? 'span' : 'md-comment-component')
-  const attrs = renderComponentAttrs(node)
+  const props: Record<string, string> = {
+    ...node.properties,
+  }
+
+  if (!node.tagName) {
+    props['data-component'] = node.name
+    if (!props['data-attributes']) props['data-attributes'] = JSON.stringify(node.attributes)
+  }
+
+  const attrs = Object.entries(props).map(([key, value]) => ` ${key}="${escapeAttr(value)}"`).join('')
   const children = node.type === 'inlineComponent'
     ? renderInlines(node.children, options)
-    : node.children.map(child => renderBlock(child, options)).join('\n')
+    : renderBlocks(node.children, options)
   return `<${tag}${attrs}>${children}</${tag}>`
 }
 
@@ -192,17 +203,4 @@ function renderHeadingAnchor(id: string | undefined, options: RenderOptions): st
   if (!id || !headingAnchors) return ''
   const anchorOptions = typeof headingAnchors === 'object' ? headingAnchors : {}
   return `<a href="#${escapeAttr(id)}" aria-hidden="${anchorOptions.ariaHidden ?? true}" class="${escapeAttr(anchorOptions.className ?? 'anchor-heading anchor-heading-link')}" tabindex="${anchorOptions.tabIndex ?? -1}">${escapeHtml(anchorOptions.content ?? '#')}</a>`
-}
-
-function renderComponentAttrs(node: ComponentNode | InlineComponentNode): string {
-  const props: Record<string, string> = {
-    ...node.properties,
-  }
-
-  if (!node.tagName) {
-    props['data-component'] = node.name
-    if (!props['data-attributes']) props['data-attributes'] = JSON.stringify(node.attributes)
-  }
-
-  return Object.entries(props).map(([key, value]) => ` ${key}="${escapeAttr(value)}"`).join('')
 }

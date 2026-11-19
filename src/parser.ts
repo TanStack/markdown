@@ -21,14 +21,13 @@ interface BlockParseBudget {
 }
 
 const maxBlockDepth = 64
+const fenceStart = /^( {0,3})(`{3,}|~{3,})(.*)$/
 
 export function parseMarkdown(markdown: string, options: ParseOptions = {}): MarkdownDocument {
-  const normalized = normalizeInput(markdown)
-  const frontmatterEnabled = options.frontmatter !== false
-  let lines = normalized.split('\n')
+  let lines = normalizeInput(markdown).split('\n')
   let frontmatter: string | undefined
 
-  if (frontmatterEnabled && lines[0] === '---') {
+  if (options.frontmatter !== false && lines[0] === '---') {
     const end = lines.findIndex((line, index) => index > 0 && line === '---')
     if (end > 0) {
       frontmatter = lines.slice(1, end).join('\n')
@@ -36,28 +35,26 @@ export function parseMarkdown(markdown: string, options: ParseOptions = {}): Mar
     }
   }
 
-  const definitions = extractDefinitions(lines)
-  lines = definitions.lines
+  const { lines: content, references, footnotes } = extractDefinitions(lines)
   const footnoteOrder: string[] = []
   const footnoteCounts: Record<string, number> = Object.create(null)
-  const hasReferences = Object.keys(definitions.references).length > 0
-  const hasFootnotes = Object.keys(definitions.footnotes).length > 0
+  const hasReferences = Object.keys(references).length
+  const hasFootnotes = Object.keys(footnotes).length
   const parseOptions =
     hasReferences || hasFootnotes
       ? {
           ...options,
-          ...(hasReferences && { references: definitions.references }),
-          ...(hasFootnotes && { footnotes: definitions.footnotes, footnoteOrder, footnoteCounts }),
+          ...(hasReferences && { references }),
+          ...(hasFootnotes && { footnotes, footnoteOrder, footnoteCounts }),
         }
       : options
 
   const slugger = createSlugger()
-  const parser = createBlockParser(lines, parseOptions, slugger)
-  const children = parser.parse()
-  if (hasFootnotes && footnoteOrder.length > 0) {
-    children.push(createFootnotesBlock(definitions.footnotes, footnoteOrder, parseOptions, slugger))
+  const children = createBlockParser(content, parseOptions, slugger).parse()
+  if (footnoteOrder.length) {
+    children.push(createFootnotesBlock(footnotes, footnoteOrder, parseOptions, slugger))
   }
-  let document: MarkdownDocument = frontmatter === undefined ? { type: 'root', children } : { type: 'root', frontmatter, children }
+  let document: MarkdownDocument = { type: 'root', ...(frontmatter !== undefined && { frontmatter }), children }
 
   for (const extension of parseOptions.extensions ?? []) {
     document = extension.transformDocument?.(document, { options: parseOptions }) ?? document
@@ -98,15 +95,9 @@ function createBlockParser(
         continue
       }
 
-      const extensionNode = parseExtensionBlock()
-      if (extensionNode) {
-        nodes.push(extensionNode)
-        continue
-      }
-
       // Letter-led text cannot open a fence, heading, rule, quote, or list.
       // It can still be a table header, so table detection remains below.
-      const node =
+      const node = parseExtensionBlock() ??
         (/^[a-z]/i.test(current()) ? undefined : (
           parseFence() ??
           parseHeading() ??
@@ -125,6 +116,10 @@ function createBlockParser(
     return nodes
   }
 
+  function createNestedParser(lines: string[]) {
+    return createBlockParser(lines, options, slugger, budget)
+  }
+
   function parseExtensionBlock(): BlockNode | undefined {
     for (const extension of options.extensions ?? []) {
       let consumed = 0
@@ -133,7 +128,7 @@ function createBlockParser(
         index: cursor,
         options: options,
         parseInline: value => parseInline(value, options),
-        parseBlocks: value => createBlockParser(normalizeInput(value).split('\n'), options, slugger, budget).parse(),
+        parseBlocks: value => createNestedParser(normalizeInput(value).split('\n')).parse(),
         consume: lines => {
           consumed = lines
         },
@@ -149,7 +144,7 @@ function createBlockParser(
   }
 
   function parseFence(): CodeBlockNode | undefined {
-    const match = current().match(/^( {0,3})(`{3,}|~{3,})(.*)$/)
+    const match = fenceStart.exec(current())
     if (!match) return undefined
 
     const fence = match[2]!
@@ -180,12 +175,12 @@ function createBlockParser(
 
     const depth = match[1]!.length as HeadingNode['depth']
     const rawValue = match[2] ?? ''
-    const value = (/^#+[ \t]*$/.test(rawValue) ? '' : rawValue.replace(/[ \t]+#+[ \t]*$/, '')).trim()
+    const value = rawValue.replace(/(?:^|[ \t]+)#+[ \t]*$/, '').trim()
     const children = parseInline(value, options)
     const id = createHeadingId(children)
     cursor++
 
-    return id ? { type: 'heading', depth, id, children } : { type: 'heading', depth, children }
+    return { type: 'heading', depth, ...(id && { id }), children }
   }
 
   function parseThematicBreak(): BlockNode | undefined {
@@ -211,7 +206,7 @@ function createBlockParser(
 
     return {
       type: 'blockquote',
-      children: createBlockParser(quoted, options, slugger, budget).parse(),
+      children: createNestedParser(quoted).parse(),
     }
   }
 
@@ -257,24 +252,19 @@ function createBlockParser(
           if (leadingSpaces(following) < marker.contentIndent) break
 
           while (cursor < nextIndex) itemLines.push(stripIndent(inputLines[cursor++]!, marker.contentIndent))
-          continue
-        }
-        if (leadingSpaces(line) >= marker.contentIndent) {
+        } else if (leadingSpaces(line) >= marker.contentIndent) {
           itemLines.push(stripIndent(line, marker.contentIndent))
           cursor++
-          continue
+        } else {
+          if (isBlockStart(line, next())) break
+          itemLines.push(line.trimStart())
+          cursor++
         }
-        if (isBlockStart(line, next())) break
-        itemLines.push(line.trimStart())
-        cursor++
       }
 
-      const parser = createBlockParser(itemLines, options, slugger, budget)
-      const children = parser.parse()
+      const parser = createNestedParser(itemLines)
+      items.push({ type: 'listItem', children: parser.parse(), ...(checked !== undefined && { checked }) })
       loose ||= parser.loose
-      const item: ListItemNode = { type: 'listItem', children }
-      if (checked !== undefined) item.checked = checked
-      items.push(item)
     }
 
     return {
@@ -314,25 +304,18 @@ function createBlockParser(
   }
 
   function parseHtmlBlock(): BlockNode | undefined {
-    if (!options.allowHtml || !/^ {0,3}<([A-Za-z][\w:-]*|!--|\/[A-Za-z])/.test(current())) return undefined
+    if (!options.allowHtml) return
+    const startTag = /^ {0,3}<(?:[A-Za-z]|(!--)|\/[A-Za-z])/.exec(current())
+    if (!startTag) return
 
-    const html: string[] = []
-    if (/^ {0,3}<!--/.test(current())) {
-      while (cursor < inputLines.length) {
-        const line = current()
-        html.push(line)
-        cursor++
-        if (line.includes('-->')) break
-      }
-      return { type: 'html', value: html.join('\n') }
+    const start = cursor
+    if (startTag[1]) {
+      while (cursor < inputLines.length && !inputLines[cursor++]!.includes('-->')) {}
+    } else {
+      while (cursor < inputLines.length && !isBlank(current())) cursor++
     }
 
-    while (cursor < inputLines.length && !isBlank(current())) {
-      html.push(current())
-      cursor++
-    }
-
-    return { type: 'html', value: html.join('\n') }
+    return { type: 'html', value: inputLines.slice(start, cursor).join('\n') }
   }
 
   function parseParagraph(): BlockNode {
@@ -396,10 +379,10 @@ function extractDefinitions(lines: string[]) {
 
   while (index < lines.length) {
     const line = lines[index]!
-    const fence = (!activeFence || line.includes(activeFence)) && line.match(/^ {0,3}(`{3,}|~{3,})(.*)$/)
+    const fence = (!activeFence || line.includes(activeFence)) && fenceStart.exec(line)
     if (fence) {
-      if (!activeFence) activeFence = fence[1]!
-      else if (fence[1]!.startsWith(activeFence) && isBlank(fence[2]!)) activeFence = ''
+      if (!activeFence) activeFence = fence[2]!
+      else if (fence[2]!.startsWith(activeFence) && isBlank(fence[3]!)) activeFence = ''
     } else if (!activeFence) {
       const footnote = line.match(/^ {0,3}\[\^([^\]\n]+)\]:[ \t]*(.*)$/)
       if (footnote) {
@@ -489,19 +472,20 @@ function listMarker(line: string):
   if (!match) return undefined
 
   const marker = match[2]!
-  const ordered = /\d/.test(marker[0]!)
+  const ordered = marker.length > 1
+  const indent = match[1]!.length
   return {
     ordered,
     ...(ordered && { number: Number.parseInt(marker, 10) }),
-    indent: match[1]!.length,
+    indent,
     marker: ordered ? marker.at(-1)! : marker,
-    contentIndent: match[1]!.length + marker.length + (match[3]?.length ?? 1),
+    contentIndent: indent + marker.length + (match[3]?.length ?? 1),
     content: match[4] ?? '',
   }
 }
 
 function leadingSpaces(line: string): number {
-  return line.match(/^ */)?.[0].length ?? 0
+  return /^ */.exec(line)![0].length
 }
 
 function isBlockStart(line: string, next?: string): boolean {
@@ -516,7 +500,7 @@ function isBlockStart(line: string, next?: string): boolean {
 function looksLikeTableHeader(header: string, delimiter: string): boolean {
   if (!header.includes('|')) return false
   const cells = splitTableRow(delimiter)
-  return cells.length === splitTableRow(header).length && cells.every(cell => /^:?-+:?$/.test(cell.trim()))
+  return cells.length === splitTableRow(header).length && cells.every(cell => /^:?-+:?$/.test(cell))
 }
 
 function splitTableRow(value: string): string[] {
@@ -543,11 +527,8 @@ function splitTableRow(value: string): string[] {
 }
 
 function parseAlign(value: string): 'left' | 'center' | 'right' | undefined {
-  const trimmed = value.trim()
-  if (trimmed.startsWith(':') && trimmed.endsWith(':')) return 'center'
-  if (trimmed.endsWith(':')) return 'right'
-  if (trimmed.startsWith(':')) return 'left'
-  return undefined
+  if (value.startsWith(':')) return value.endsWith(':') ? 'center' : 'left'
+  if (value.endsWith(':')) return 'right'
 }
 
 function cell(value: string, options: ParseOptions): TableCellNode {

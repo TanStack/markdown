@@ -28,7 +28,7 @@ export function Markdown({ children, ...options }: MarkdownProps): ReactElement 
 
 export function renderMarkdownReact(input: MarkdownInput, options: MarkdownReactOptions = {}): ReactNode {
   const document = typeof input === 'string' ? parseMarkdown(input, options) : input
-  return document.children.map((node, index) => renderBlockReact(node, options, `b:${index}`))
+  return renderBlocks(document.children, options, 'b')
 }
 
 export function renderBlockReact(node: BlockNode, options: MarkdownReactOptions = {}, key?: string): ReactElement {
@@ -57,7 +57,7 @@ export function renderBlockReact(node: BlockNode, options: MarkdownReactOptions 
       )
     }
     case 'blockquote':
-      return h(options, 'blockquote', { key }, node.children.map((child, index) => renderBlockReact(child, options, `${key}:${index}`)))
+      return h(options, 'blockquote', { key }, renderBlocks(node.children, options, key))
     case 'table':
       return h(
         options,
@@ -83,14 +83,17 @@ export function renderBlockReact(node: BlockNode, options: MarkdownReactOptions 
       return options.allowHtml
         ? h(options, 'div', { key, dangerouslySetInnerHTML: { __html: node.value } })
         : h(options, 'p', { key }, node.value)
-    case 'callout':
+    case 'callout': {
+      const { open } = node
+      const foldable = open !== undefined
       return h(
         options,
-        'div',
-        { key, className: `markdown-alert markdown-alert-${node.kind.toLowerCase()}` },
-        h(options, 'p', { className: 'markdown-alert-title' }, node.title),
-        h(options, 'div', { className: 'markdown-alert-content' }, node.children.map((child, index) => renderBlockReact(child, options, `${key}:${index}`))),
+        foldable ? 'details' : 'div',
+        { key, ...(foldable && { open }), className: `markdown-alert markdown-alert-${node.kind.toLowerCase()}` },
+        h(options, foldable ? 'summary' : 'p', { className: 'markdown-alert-title' }, node.title),
+        h(options, 'div', { className: 'markdown-alert-content' }, renderBlocks(node.children, options, key)),
       )
+    }
     case 'component':
       return renderComponentReact(node, options, key)
   }
@@ -138,6 +141,10 @@ export function renderInlineReact(node: InlineNode, options: MarkdownReactOption
     case 'inlineComponent':
       return renderComponentReact(node, options, key)
   }
+}
+
+function renderBlocks(nodes: BlockNode[], options: MarkdownReactOptions, key?: string) {
+  return nodes.map((child, index) => renderBlockReact(child, options, `${key}:${index}`))
 }
 
 function renderInlines(nodes: InlineNode[], options: MarkdownReactOptions): ReactNode[] {
@@ -306,7 +313,7 @@ function renderComponentReact(node: ComponentNode | InlineComponentNode, options
 
   return h(options, tag, { key, ...props }, node.type === 'inlineComponent'
     ? renderInlines(node.children, options)
-    : node.children.map((child, index) => renderBlockReact(child, options, `${key}:${index}`)))
+    : renderBlocks(node.children, options, key))
 }
 
 function renderHeadingAnchorReact(id: string | undefined, options: MarkdownReactOptions): ReactNode {

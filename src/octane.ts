@@ -20,7 +20,7 @@ export function Markdown({ children, ...options }: MarkdownProps): ElementDescri
 
 export function renderMarkdownOctane(input: MarkdownInput, options: MarkdownOctaneOptions = {}): OctaneNode[] {
   const document = typeof input === 'string' ? parseMarkdown(input, options) : input
-  return document.children.map((node, index) => renderBlockOctane(node, options, `b:${index}`))
+  return renderBlocks(document.children, options, 'b')
 }
 
 export function renderBlockOctane(node: BlockNode, options: MarkdownOctaneOptions = {}, key?: string): ElementDescriptor {
@@ -49,7 +49,7 @@ export function renderBlockOctane(node: BlockNode, options: MarkdownOctaneOption
       )
     }
     case 'blockquote':
-      return h(options, 'blockquote', { key }, node.children.map((child, index) => renderBlockOctane(child, options, `${key}:${index}`)))
+      return h(options, 'blockquote', { key }, renderBlocks(node.children, options, key))
     case 'table':
       return h(
         options,
@@ -75,14 +75,17 @@ export function renderBlockOctane(node: BlockNode, options: MarkdownOctaneOption
       return options.allowHtml
         ? h(options, 'div', { key, dangerouslySetInnerHTML: { __html: node.value } })
         : h(options, 'p', { key }, node.value)
-    case 'callout':
+    case 'callout': {
+      const { open } = node
+      const foldable = open !== undefined
       return h(
         options,
-        'div',
-        { key, className: `markdown-alert markdown-alert-${node.kind.toLowerCase()}` },
-        h(options, 'p', { className: 'markdown-alert-title' }, node.title),
-        h(options, 'div', { className: 'markdown-alert-content' }, node.children.map((child, index) => renderBlockOctane(child, options, `${key}:${index}`))),
+        foldable ? 'details' : 'div',
+        { key, ...(foldable && { open }), className: `markdown-alert markdown-alert-${node.kind.toLowerCase()}` },
+        h(options, foldable ? 'summary' : 'p', { className: 'markdown-alert-title' }, node.title),
+        h(options, 'div', { className: 'markdown-alert-content' }, renderBlocks(node.children, options, key)),
       )
+    }
     case 'component':
       return renderComponentOctane(node, options, key)
   }
@@ -130,6 +133,10 @@ export function renderInlineOctane(node: InlineNode, options: MarkdownOctaneOpti
     case 'inlineComponent':
       return renderComponentOctane(node, options, key)
   }
+}
+
+function renderBlocks(nodes: BlockNode[], options: MarkdownOctaneOptions, key?: string) {
+  return nodes.map((child, index) => renderBlockOctane(child, options, `${key}:${index}`))
 }
 
 function renderInlines(nodes: InlineNode[], options: MarkdownOctaneOptions): OctaneNode[] {
@@ -295,7 +302,7 @@ function renderComponentOctane(node: ComponentNode | InlineComponentNode, option
 
   return h(options, tag, { key, ...props }, node.type === 'inlineComponent'
     ? renderInlines(node.children, options)
-    : node.children.map((child, index) => renderBlockOctane(child, options, `${key}:${index}`)))
+    : renderBlocks(node.children, options, key))
 }
 
 function renderHeadingAnchorOctane(id: string | undefined, options: MarkdownOctaneOptions): OctaneNode {

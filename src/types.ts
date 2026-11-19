@@ -100,6 +100,8 @@ export interface CalloutNode {
   type: 'callout'
   kind: string
   title: string
+  /** Initial disclosure state. Omit for a static callout. */
+  open?: boolean
   children: BlockNode[]
 }
 

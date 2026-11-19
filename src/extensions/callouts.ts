@@ -7,33 +7,28 @@ export function calloutsExtension(): MarkdownExtension {
   }
 }
 
-export function parseCalloutBlock(context: Parameters<NonNullable<MarkdownExtension['parseBlock']>>[0]): CalloutNode | undefined {
-  const first = context.lines[context.index] ?? ''
-  const match = first.match(/^ {0,3}>\s*\[!([A-Za-z]+)\](?:\s+(.*))?$/)
-  if (!match) return undefined
+export function parseCalloutBlock({
+  lines,
+  index,
+  consume,
+  parseBlocks,
+}: Parameters<NonNullable<MarkdownExtension['parseBlock']>>[0]): CalloutNode | undefined {
+  const match = lines[index]?.match(/^ {0,3}>\s*\[!([A-Za-z]+)\]([+-])?(?:\s+(.*))?$/)
+  if (!match) return
 
   const kind = match[1]!.toLowerCase()
-  const title = match[2]?.trim() || titleCase(kind)
   const body: string[] = []
-  let cursor = context.index + 1
-
-  while (cursor < context.lines.length) {
-    const line = context.lines[cursor] ?? ''
-    const quoted = line.match(/^ {0,3}>\s?(.*)$/)
-    if (!quoted) break
-    body.push(quoted[1]!)
-    cursor++
+  let cursor = index + 1
+  for (let quote; (quote = lines[cursor]?.match(/^ {0,3}>\s?(.*)$/)); cursor++) {
+    body.push(quote[1]!)
   }
 
-  context.consume(cursor - context.index)
+  consume(cursor - index)
   return {
     type: 'callout',
     kind,
-    title,
-    children: context.parseBlocks(body.join('\n')),
+    title: match[3]?.trim() || kind[0]!.toUpperCase() + kind.slice(1),
+    ...(match[2] && { open: match[2] === '+' }),
+    children: parseBlocks(body.join('\n')),
   }
-}
-
-function titleCase(value: string) {
-  return value.slice(0, 1).toUpperCase() + value.slice(1).toLowerCase()
 }
