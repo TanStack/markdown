@@ -79,35 +79,35 @@ export function transformPackageManagerTabs(node: ComponentNode): ComponentNode 
 
 export function transformBundlerTabs(node: ComponentNode): ComponentNode {
   const sections = splitByHeading(node.children)
-  const selected = (['vite', 'rsbuild'] as const).flatMap(bundler => {
-    const section = sections.find(section => section.name.toLowerCase() === bundler)
-    return section ? [{ ...section, name: bundler }] : []
-  })
-  if (!selected.length) return node
-
-  const tabs = selected.map(section => ({ slug: section.name, name: section.name }))
+  const tabs: Array<{ slug: string; name: string }> = []
+  const children: ComponentNode[] = []
+  for (const name of ['vite', 'rsbuild']) {
+    const section = sections.find(section => section.name.toLowerCase() === name)
+    if (!section) continue
+    tabs.push({ slug: name, name })
+    children.push({
+      type: 'component',
+      name: 'tab-panel',
+      tagName: 'md-tab-panel',
+      attributes: {},
+      properties: {
+        'data-tab-slug': name,
+        'data-tab-index': `${children.length}`,
+        'data-content': section.children.length === 1 && section.children[0]?.type === 'code' ? 'code-only' : 'mixed',
+      },
+      children: section.children,
+    })
+  }
+  if (!tabs.length) return node
 
   return {
     ...node,
     properties: {
       ...node.properties,
       'data-attributes': JSON.stringify({ tabs }),
-      'data-bundler-meta': JSON.stringify({ bundlers: selected.map(section => section.name) }),
+      'data-bundler-meta': JSON.stringify({ bundlers: tabs.map(tab => tab.name) }),
     },
-    children: selected.map((section, index): ComponentNode => {
-      return {
-        type: 'component',
-        name: 'tab-panel',
-        tagName: 'md-tab-panel',
-        attributes: {},
-        properties: {
-          'data-tab-slug': section.name,
-          'data-tab-index': `${index}`,
-          'data-content': section.children.length === 1 && section.children[0]?.type === 'code' ? 'code-only' : 'mixed',
-        },
-        children: section.children,
-      }
-    }),
+    children,
   }
 }
 
